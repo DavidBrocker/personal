@@ -4,7 +4,7 @@ output: html_document
 
 <br>
 
-## Posters
+### Posters
 
 
 ### [Science Day](files/MFA.pdf)
