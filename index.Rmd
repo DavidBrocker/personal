@@ -1,0 +1,14 @@
+---
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+<img src="images/IMG_0815.jpeg" style="width:25%; border:5px solid; margin-right: 20px" align="left">
+
+
+I graduated from [CUNY Brooklyn College](http://www.brooklyn.cuny.edu/web/academics/schools/naturalsciences/graduate/psychology/experimental.php) with an MA in experimental psychology. 
+
+Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus 
+
+
+My full CV is available [here](files/David Brocker CV 2019.pdf).
