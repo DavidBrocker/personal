@@ -8,7 +8,7 @@ navbar:
     - text: "Presentations"
       href: posters.html
     - text: "Teaching"
-      href: teaching.html
+      href: Teaching.html
   right:
     - icon: fa-envelope fa-lg
       href: mailto:davidabrocker@gmail.com
