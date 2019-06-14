@@ -6,9 +6,10 @@
 <img src="images/IMG_0815.jpeg" style="width:25%; border:5px solid; margin-right: 20px" align="left">
 
 
-I graduated from [CUNY Brooklyn College](http://www.brooklyn.cuny.edu/web/academics/schools/naturalsciences/graduate/psychology/experimental.php) with an MA in experimental psychology. 
+I graduated from [CUNY Brooklyn College](http://www.brooklyn.cuny.edu/web/academics/schools/naturalsciences/graduate/psychology/experimental.php) with an MA in experimental psychology. During my time at Brooklyn College I researched the role that emotions play in moral judgments. Specifically, I was interested in seeing how anger is related to judgment of an action itself, and how disgust is related to judgment of the character *of* the actor. 
 
-Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus Lorem ipsum dolus 
+In the Fall I will be starting a new position at [Farmingdale State College](https://www.farmingdale.edu/arts-sciences/psychology/applied-psychology/index.shtml) as an adjunct professor. Additionally, I will be the lab manager for the Psychology Department. 
 
+My research interests are centered on perception, memory, attention, morality, and religion. 
 
 My full CV is available [here](files/David Brocker CV 2019.pdf).
