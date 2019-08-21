@@ -1,0 +1,73 @@
+---
+
+---
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Marya Howell-Carter
+**Areas of Specialization:** Adolescent Therapy, Psychological Concerns in College Students, Family Therapy, Women’s Issues
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Michael Goodstone
+**Areas of Specialization:** Industrial/Organizational Psychology, clinical applications in organizations, psychological assessment.
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Jennifer Gonder
+**Areas of Specialization:** Industrial/Organizational Psychology; performance evaluation and feedback; leadership development; work motivation; customer satisfaction.
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Sayeed Islam
+**Areas of Specialization:** Customer service, Self-efficacy, Training and Development, proactive personality
+</div>
+
+<div class = "row">
+
+<div class = "col-md-3">
+#### Dr. Marla Johnston
+**Areas of Specialization:** Child Development, Moral Development, Parenting, Discipline, Domain Theory, Adolescent Stress
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Michaela Porubanova
+**Areas of Specialization:** Cognitive Psychology; Visual Attention and Emotion; Culture and Cognition
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Maria Anderson
+**Areas of Specialization:** Behavioral Neuroscience, animal models of Alzheimer’s disease, lifestyle interventions and cognitive decline
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Michael Figuccio
+**Areas of Specialization:** Behavioral Neuroscience, animal models of Alzheimer’s disease, lifestyle interventions and cognitive decline
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Bindu Annie Dulock, M.A.
+**Areas of Specialization:** Child and Family Psychology, Parenting, Cognitive Behavioral Treatment
+</div>
+
+<div class = "row">
+  
+<div class = "col-md-3">
+#### Dr. Jason Clarke
+**Areas of Specialization:** Cognitive Psychology, Visual Perception and Cognition, Counsciousness.
+</div>
+</div>

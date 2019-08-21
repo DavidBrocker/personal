@@ -1,24 +1,25 @@
-name: "David Brocker"
+
 output_dir: "."
 navbar:
-  title: "David Brocker"
+  title: "Research at Farmingdale State College"
   left:
-    - text: "Writing"
-      href: writing.html
-    - text: "Presentations"
-      href: posters.html
-    - text: "Teaching"
-      href: Teaching.html
+    - text: "People"
+      href: research.html
+    - text: "Join a Lab"
+      href: joinlab.html
   right:
     - icon: fa-envelope fa-lg
-      href: mailto:davidabrocker@gmail.com
+      href: mailto:brockeda@farmingdale.edu
     - icon: fa-github fa-lg
-      href: http://github.com/davidbrocker
+      href: http://github.com/zabore
     - icon: fa-twitter fa-lg
-      href: https://twitter.com/DaveBrocker
+      href: https://twitter.com/FarmingdaleSC
     - icon: fa-linkedin fa-lg
-      href: https://www.linkedin.com/in/david-brocker-33838490/
+      href: https://www.linkedin.com/school/farmingdalestatecollege/
 output:
   html_document:
     theme: paper
+    highlight: textmate
     css: 'styles.css'
+    include:
+      after_body: footer.Rmd
