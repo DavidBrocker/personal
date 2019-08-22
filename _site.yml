@@ -1,0 +1,24 @@
+name: 
+output_dir: "."
+navbar:
+  title: "David Brocker"
+  left:
+    - text: "writing"
+      href: writing.html
+    - text: "posters"
+      href: posters.html
+    - text: "Teaching"
+      href: Teaching.html
+  right:
+    - icon: fa-envelope fa-lg
+      href: mailto:davidabrocker@gmail.com
+    - icon: fa-github fa-lg
+      href: http://github.com/davidbrocker
+    - icon: fa-twitter fa-lg
+      href: https://twitter.com/DaveBrocker
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/david-brocker-33838490/
+output:
+  html_document:
+    theme: paper
+    css: 'styles.css'
