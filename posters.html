@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -21,7 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -87,6 +86,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -247,6 +247,18 @@ $(document).ready(function () {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
 
@@ -275,13 +287,10 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="writing.html">writing</a>
+  <a href="research.html">Research</a>
 </li>
 <li>
-  <a href="posters.html">posters</a>
-</li>
-<li>
-  <a href="Teaching.html">Teaching</a>
+  <a href="courses.html">Teaching</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -292,7 +301,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="http://github.com/davidbrocker">
+  <a href="http://github.com/zabore">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -323,13 +332,22 @@ $(document).ready(function () {
 
 
 <p><br></p>
-<div id="posters" class="section level3">
-<h3>Posters</h3>
+<div id="research" class="section level4">
+<h4>Research</h4>
+<p><img src="files/mfa.png" style="width:20%; border:2px solid; margin-right: 20px" align="left"></p>
+<div id="science-day-cuny-brooklyn-college-2018" class="section level5">
+<h5><a href="files/MFA.pdf">‘Science Day’, CUNY Brooklyn College: 2018</a></h5>
+<p>This research was motived by the work from Alicke (1992) which showed that the motivation for an action can have a direct effect of the perception of the actor. Each participant read about one of three John’s: one who sped home to hide cocaine, one who sped home to hide a present, and one who sped home to get dinner. All John’s ran through an obscured stop sign, hitting the car in front of them and injuring the driver. Results showed that even though the series of events were the same across conditions, participants were more likley to attribute ratings of disgust towards the ‘bad’ John. <br><br></p>
+<p><img src="images/LIPC.png" style="width:20%; border:2px solid; margin-right: 20px" align="left"></p>
 </div>
-<div id="science-day" class="section level3">
-<h3><a href="files/MFA.pdf">Science Day</a></h3>
+<div id="top-conference-farmingdale-state-college-2015" class="section level5">
+<h5><a href="files/LIPC%202015%20DB.pdf">TOP Conference, Farmingdale State College: 2015</a></h5>
+<p>This was my first foray into research, the premise was based on impression formation theory. I was interested in whether or not the presence of some intelligence indicator or prime could influence perception about a person on aspects such as attractiveness, presentability, hireability, and intelligence. Results confirmed the presence of an attractiveness bias while also showing that the indicator of an intelligence marker, improved ratings on the above attributes.</p>
+</div>
 </div>
 
+<br><br><br><br>
+<p>Copyright &copy; 2019 David Brocker All rights reserved.</p>
 
 
 
@@ -347,23 +365,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

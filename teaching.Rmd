@@ -1,0 +1,30 @@
+---
+output: html_document
+---
+
+<br>
+
+### Teaching Experience
+
+I have taught three classes as a lab instructor:
+
+1. **Statistics for the Psychological Sciences** - SPSS-Approach
+
+2. **Experimental Psychology**
+
+3. **Statistics for the Psychological Sciences** - R-Approach
+
+I am currently teaching two courses as full instructor:
+
+1. **Introduction to Psychology**
+
+2. **Research Design and Analysis I**
+
+
+<br>
+
+
+### Teaching Materials 
+
+[Entire Course in R](https://davidbrocker.github.io/DBPSYC3400/)
+
