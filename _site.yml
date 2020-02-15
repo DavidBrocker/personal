@@ -1,19 +1,19 @@
-name: 
+
 output_dir: "."
 navbar:
   title: "David Brocker"
   left:
-    - text: "writing"
-      href: writing.html
-    - text: "posters"
-      href: posters.html
+    - text: "Research"
+      href: research.html
     - text: "Teaching"
-      href: Teaching.html
+      href: courses.html
+    - text: "R-Stuff"
+      href: r-stuff.html
   right:
     - icon: fa-envelope fa-lg
       href: mailto:davidabrocker@gmail.com
     - icon: fa-github fa-lg
-      href: http://github.com/davidbrocker
+      href: http://github.com/zabore
     - icon: fa-twitter fa-lg
       href: https://twitter.com/DaveBrocker
     - icon: fa-linkedin fa-lg
@@ -21,4 +21,7 @@ navbar:
 output:
   html_document:
     theme: paper
+    highlight: textmate
     css: 'styles.css'
+    include:
+      after_body: footer.Rmd
