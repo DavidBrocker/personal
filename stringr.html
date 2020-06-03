@@ -11,7 +11,7 @@
 
 
 
-<title>stringr.utf8</title>
+<title>stringr</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -457,7 +457,20 @@ word_tbl &lt;- word_tbl %&gt;%
   tally()</code></pre>
 <p>We could look at the table and make some observations, but it would be better to just graph everything!</p>
 <p>Keep in mind that this list of words is only 980 observations long so there are plenty of missing words. With that being said, what letter is represented the most in the <code>stringr::words</code> vector?</p>
-<pre class="r"><code>word_tbl %&gt;% 
+<pre class="r"><code>library(ggplot2)
+
+words &lt;- str_to_lower(words)
+
+word_tbl &lt;- tibble(line=1:length(words),words=words)
+
+
+word_tbl &lt;- word_tbl %&gt;% 
+  mutate(sw=unlist(str_match_all(words,&quot;^.&quot;))) %&gt;% 
+  group_by(sw) %&gt;% 
+  tally()
+
+
+word_tbl %&gt;% 
   ggplot(aes(fct_reorder(sw,n),n,fill=sw)) + 
     geom_bar(stat=&quot;identity&quot;) +
     coord_flip() +
