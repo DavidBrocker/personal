@@ -1,8 +1,0 @@
----
-output: html_document
----
-<br>
-
-### Writing
-
-[Thesis](files/David_Brocker_Thesis.pdf)
