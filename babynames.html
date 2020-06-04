@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>babynames</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">David Brocker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="courses.html">Teaching</a>
+</li>
+<li>
+  <a href="RLearning.html">R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:davidabrocker@gmail.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/DavidBrocker">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/DaveBrocker">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/david-brocker-33838490/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><br><br></p>
+<p>We will be using the <code>babynames</code> dataset to explore the <code>dplyr</code> and <code>ggplot2</code> package.</p>
+<p>First, let us take a look at the <code>babynames</code> dataset.</p>
+<pre class="r"><code>head(babynames)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##    year sex   name          n   prop
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+## 1  1880 F     Mary       7065 0.0724
+## 2  1880 F     Anna       2604 0.0267
+## 3  1880 F     Emma       2003 0.0205
+## 4  1880 F     Elizabeth  1939 0.0199
+## 5  1880 F     Minnie     1746 0.0179
+## 6  1880 F     Margaret   1578 0.0162</code></pre>
+<p>The table is structured in the following:</p>
+<ul>
+<li>Year: The year the name was recorded</li>
+<li>Name: The assigned sex of the recorded individual</li>
+<li>n: The number of recorded people with the name</li>
+<li>prop: n divided by total number of applicants in that year, which means proportions are of people of that gender with that name born in that year <a href="https://cran.r-project.org/web/packages/babynames/babynames.pdf"><sup>1</sup></a></li>
+</ul>
+<p>There are a myriad of questions we could ask here!</p>
+<ul>
+<li>How many unique names are there?</li>
+<li>What is the most common name?</li>
+<li>Do Male or Females represent the majority of unique names?</li>
+<li>How many unique names do each letter of the alphabet account for?</li>
+</ul>
+<div id="how-many-unique-names-are-there" class="section level6">
+<h6><strong>How many unique names are there?</strong></h6>
+<p>We will need to use <code>dplyr</code> and <code>distinct</code> in order to find the number of unique names, or else we will run into an issue in which multiple instances of a name will be counted–thereby obscuring the actual number.</p>
+<p>Here it is the ‘wrong’ way:</p>
+<pre class="r"><code>babynames %&gt;% 
+  group_by(name) %&gt;% 
+  count()</code></pre>
+<pre><code>## # A tibble: 97,310 x 2
+## # Groups:   name [97,310]
+##    name          n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 Aaban        10
+##  2 Aabha         5
+##  3 Aabid         2
+##  4 Aabir         1
+##  5 Aabriella     5
+##  6 Aada          1
+##  7 Aadam        26
+##  8 Aadan        11
+##  9 Aadarsh      17
+## 10 Aaden        18
+## # … with 97,300 more rows</code></pre>
+<p>You can see from the n column that this is reporting mulitple instances of each name. This does inadvertedly answer one of our other questions: <strong>Which name appears most often throughout the years from 1880-2017?</strong></p>
+<pre class="r"><code>babynames %&gt;% 
+  group_by(name) %&gt;% 
+  count(sort=T)</code></pre>
+<pre><code>## # A tibble: 97,310 x 2
+## # Groups:   name [97,310]
+##    name        n
+##    &lt;chr&gt;   &lt;int&gt;
+##  1 Francis   276
+##  2 James     276
+##  3 Jean      276
+##  4 Jesse     276
+##  5 Jessie    276
+##  6 John      276
+##  7 Johnnie   276
+##  8 Joseph    276
+##  9 Lee       276
+## 10 Leslie    276
+## # … with 97,300 more rows</code></pre>
+<p>It is also helpful to understand that this represents the number of occurrences throughout the years, it does not tell us the associated n’s with each name, we will do that soon!</p>
+<p>Back to our original question: we need to remove all instances of a repeated name. We can do this with the <code>distinct</code> function.</p>
+<p><code>distinct</code> uses the following argurments:</p>
+<ul>
+<li><code>data</code> - What variable do you want to collect distinct values from?</li>
+<li><code>.keep_all(logical)</code> - Can either be TRUE/T or FALSE/F which determines whether the other variables should remain.</li>
+</ul>
+<p>Here is an example using generated data first:</p>
+<pre class="r"><code># Take a sample of letters from the alphabet with replacement
+x &lt;- sample(letters,50,replace = T)
+y &lt;- round(runif(50,5,100))
+# Prevent the string constants from being treated as factors
+xy &lt;- data.frame(x,y,stringsAsFactors = F)
+# Find the distinct values
+xy %&gt;% distinct(x)</code></pre>
+<pre><code>##    x
+## 1  r
+## 2  z
+## 3  g
+## 4  y
+## 5  u
+## 6  q
+## 7  n
+## 8  s
+## 9  x
+## 10 c
+## 11 h
+## 12 m
+## 13 k
+## 14 d
+## 15 l
+## 16 w
+## 17 e
+## 18 i
+## 19 a
+## 20 j
+## 21 f
+## 22 p
+## 23 o
+## 24 t</code></pre>
+<p>You will notice that we lost everything in the y column! We need to use the <code>.keep_all()</code> argument.</p>
+<pre class="r"><code># Take a sample of letters from the alphabet with replacement
+x &lt;- sample(letters,50,replace = T)
+y &lt;- round(runif(50,5,100))
+# Prevent the string constants from being treated as factors
+xy &lt;- data.frame(x,y,stringsAsFactors = F)
+# Find the distinct values
+xy %&gt;% 
+  distinct(x,.keep_all = T) %&gt;% 
+  group_by(x) %&gt;% 
+  arrange(x)</code></pre>
+<pre><code>## # A tibble: 21 x 2
+## # Groups:   x [21]
+##    x         y
+##    &lt;chr&gt; &lt;dbl&gt;
+##  1 a        81
+##  2 c        21
+##  3 e        60
+##  4 f        57
+##  5 g        41
+##  6 h        72
+##  7 i        58
+##  8 j        56
+##  9 k        94
+## 10 l        82
+## # … with 11 more rows</code></pre>
+<p>So now we will do the same with the <code>babynames</code> dataset to find the number of distinct names.</p>
+<pre class="r"><code>babynames %&gt;% 
+  distinct(name,.keep_all = T)</code></pre>
+<pre><code>## # A tibble: 97,310 x 5
+##     year sex   name          n   prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+##  1  1880 F     Mary       7065 0.0724
+##  2  1880 F     Anna       2604 0.0267
+##  3  1880 F     Emma       2003 0.0205
+##  4  1880 F     Elizabeth  1939 0.0199
+##  5  1880 F     Minnie     1746 0.0179
+##  6  1880 F     Margaret   1578 0.0162
+##  7  1880 F     Ida        1472 0.0151
+##  8  1880 F     Alice      1414 0.0145
+##  9  1880 F     Bertha     1320 0.0135
+## 10  1880 F     Sarah      1288 0.0132
+## # … with 97,300 more rows</code></pre>
+<p>Again we see the same 97,310 we saw previously! This tells us that the function worked. Now let us try to answer the question: <strong>How many unique names do each letter of the alphabet account for?</strong></p>
+<p>For this we will need to create a new variable: sw, that represents the letter the name starts with.</p>
+<p>We will do this using <code>muatate</code> and regular expressions, which are covered <a href="stringr.html">here</a>. We will then need to repeat what we did by only returning the distinct names in the set.</p>
+<p>When the data is in this format, we will then <code>group_by</code> the new variable, sw and count.</p>
+<pre class="r"><code>babynames %&gt;% 
+  mutate(sw=unlist(str_match_all(name,&quot;^.&quot;))) %&gt;% 
+  distinct(name,.keep_all = T) %&gt;% 
+  group_by(sw) %&gt;% 
+  count(sort=T)</code></pre>
+<pre><code>## # A tibble: 26 x 2
+## # Groups:   sw [26]
+##    sw        n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 A     10292
+##  2 S      7931
+##  3 J      7817
+##  4 M      7529
+##  5 K      7283
+##  6 D      6574
+##  7 T      6278
+##  8 L      5744
+##  9 C      5731
+## 10 R      4429
+## # … with 16 more rows</code></pre>
+<p>Awesome! We can see that the letter A dominates the other letters.</p>
+<p>Now we can throw this into a graph:</p>
+<pre class="r"><code>babynames %&gt;% 
+  mutate(sw=unlist(str_match_all(name,&quot;^.&quot;))) %&gt;% 
+  distinct(name,.keep_all = T) %&gt;% 
+  group_by(sw) %&gt;% 
+  count(sort=T) %&gt;% 
+  ggplot(aes(fct_rev(sw),n,fill=sw)) +
+    geom_bar(stat=&quot;identity&quot;,size=1) +
+    coord_flip() +
+    scale_fill_discrete() +
+    theme_clean() +
+    theme(legend.position = &quot;none&quot;,
+          axis.ticks = element_blank())+
+    labs(x=&quot;&quot;,y=&quot;&quot;,
+         title=&quot;Number of Unique Names Per Letter&quot;,
+         caption=&quot;(based on babynames)&quot;)</code></pre>
+<p><img src="babynames_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+
+
+<br><br><br><br>
+<p>Copyright &copy; 2019 David Brocker All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
