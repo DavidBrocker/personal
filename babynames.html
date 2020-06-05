@@ -512,6 +512,80 @@ xy %&gt;%
          title=&quot;Number of Unique Names Per Letter&quot;,
          caption=&quot;(based on babynames)&quot;)</code></pre>
 <p><img src="babynames_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Cool!</p>
+<p>Now let us take a look at how many unique names are Male and how many are Female.</p>
+<pre class="r"><code>babynames %&gt;% 
+  mutate(sw=unlist(str_match_all(name,&quot;^.&quot;))) %&gt;% 
+  distinct(name,.keep_all = T) %&gt;% 
+  group_by(sex) %&gt;% 
+  count() %&gt;% 
+  ggplot(aes(sex,n,fill=sex)) +
+    geom_bar(stat=&quot;identity&quot;) +
+    coord_flip() +
+    theme_clean()+
+    theme(axis.ticks = element_blank(),
+          legend.position = &quot;bottom&quot;)+
+    labs(x=&quot;Sex&quot;,y=&quot;&quot;,
+         title=&quot;Unique Names Attributed to Sex&quot;,
+         caption=&quot;(based on babynames)&quot;)+
+  scale_fill_manual(values=c(&quot;#8700F9&quot;,&quot;#00C4AA&quot;))</code></pre>
+<p><img src="babynames_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We can see that females have almost double the amount of unique names!</p>
+<p>Next we can take a look at what names have the most number of owners.</p>
+<p>We will do this by summing up every occurence of a name and then sorting them to get each names total count.</p>
+<pre class="r"><code>babynames %&gt;% 
+    group_by(sex,name) %&gt;% 
+    summarise(Total=sum(n)) %&gt;% 
+    arrange(desc(Total)) %&gt;% 
+    group_by(name) </code></pre>
+<pre><code>## # A tibble: 107,973 x 3
+## # Groups:   name [97,310]
+##    sex   name      Total
+##    &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;
+##  1 M     James   5150472
+##  2 M     John    5115466
+##  3 M     Robert  4814815
+##  4 M     Michael 4350824
+##  5 F     Mary    4123200
+##  6 M     William 4102604
+##  7 M     David   3611329
+##  8 M     Joseph  2603445
+##  9 M     Richard 2563082
+## 10 M     Charles 2386048
+## # … with 107,963 more rows</code></pre>
+<p>Let’s see if we answered all of the questions!</p>
+<ul>
+<li><strong>How many unique names are there?</strong>
+<ul>
+<li>There are 97,310 unique names.</li>
+</ul></li>
+<li><strong>What is the most common name?</strong>
+<ul>
+<li>The most common name, or the name with the most owners appears to be James–with a whopping 5,150,472!</li>
+</ul></li>
+<li><strong>Do Male or Females represent the majority of unique names?</strong>
+<ul>
+<li>Females dominate the name ownership game with 61,832.</li>
+</ul></li>
+<li><strong>How many unique names do each letter of the alphabet account for?</strong>
+<ul>
+<li>Since there are 26 values–I’ll point you in the direction of the graph!</li>
+</ul></li>
+</ul>
+<p>Let’s finish up with a animated graph:</p>
+<pre class="r"><code>babynames %&gt;% 
+    filter(name==&quot;David&quot;) %&gt;% 
+    filter(sex==&quot;M&quot;) %&gt;% 
+    ggplot(aes(year,n,group=name,color=name)) +
+    geom_point() +
+    geom_line() +
+    theme_clean() +
+    labs(y=&quot;Total Count&quot;,x=&quot;Year&quot;,
+         title=paste(&quot;Popularity of the name David from 1880-2017&quot;)) +
+    theme(axis.ticks = element_blank(),
+        legend.title = element_blank()) +
+  transition_reveal(year)</code></pre>
+<p><img src="babynames_files/figure-html/unnamed-chunk-12-1.gif" /><!-- --></p>
 </div>
 
 
