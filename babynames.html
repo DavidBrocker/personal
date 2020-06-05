@@ -320,18 +320,22 @@ $(document).ready(function () {
 
 
 <p><br><br></p>
+<div id="introduction" class="section level4">
+<h4><strong>Introduction</strong></h4>
+<hr />
 <p>We will be using the <code>babynames</code> dataset to explore the <code>dplyr</code> and <code>ggplot2</code> package.</p>
 <p>First, let us take a look at the <code>babynames</code> dataset.</p>
-<pre class="r"><code>head(babynames)</code></pre>
-<pre><code>## # A tibble: 6 x 5
-##    year sex   name          n   prop
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
-## 1  1880 F     Mary       7065 0.0724
-## 2  1880 F     Anna       2604 0.0267
-## 3  1880 F     Emma       2003 0.0205
-## 4  1880 F     Elizabeth  1939 0.0199
-## 5  1880 F     Minnie     1746 0.0179
-## 6  1880 F     Margaret   1578 0.0162</code></pre>
+<pre class="r"><code># Preview of what the dataset looks like 
+head(babynames)</code></pre>
+<pre><code># A tibble: 6 x 5
+   year sex   name          n   prop
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+1  1880 F     Mary       7065 0.0724
+2  1880 F     Anna       2604 0.0267
+3  1880 F     Emma       2003 0.0205
+4  1880 F     Elizabeth  1939 0.0199
+5  1880 F     Minnie     1746 0.0179
+6  1880 F     Margaret   1578 0.0162</code></pre>
 <p>The table is structured in the following:</p>
 <ul>
 <li>Year: The year the name was recorded</li>
@@ -346,47 +350,55 @@ $(document).ready(function () {
 <li>Do Male or Females represent the majority of unique names?</li>
 <li>How many unique names do each letter of the alphabet account for?</li>
 </ul>
-<div id="how-many-unique-names-are-there" class="section level6">
-<h6><strong>How many unique names are there?</strong></h6>
+</div>
+<div id="how-many-unique-names-are-there" class="section level4">
+<h4><strong>How many unique names are there?</strong></h4>
+<hr />
 <p>We will need to use <code>dplyr</code> and <code>distinct</code> in order to find the number of unique names, or else we will run into an issue in which multiple instances of a name will be counted–thereby obscuring the actual number.</p>
-<p>Here it is the ‘wrong’ way:</p>
 <pre class="r"><code>babynames %&gt;% 
+  # Get data ready to be sorted by name
   group_by(name) %&gt;% 
+  # Count how many times each name appears
   count()</code></pre>
-<pre><code>## # A tibble: 97,310 x 2
-## # Groups:   name [97,310]
-##    name          n
-##    &lt;chr&gt;     &lt;int&gt;
-##  1 Aaban        10
-##  2 Aabha         5
-##  3 Aabid         2
-##  4 Aabir         1
-##  5 Aabriella     5
-##  6 Aada          1
-##  7 Aadam        26
-##  8 Aadan        11
-##  9 Aadarsh      17
-## 10 Aaden        18
-## # … with 97,300 more rows</code></pre>
-<p>You can see from the n column that this is reporting mulitple instances of each name. This does inadvertedly answer one of our other questions: <strong>Which name appears most often throughout the years from 1880-2017?</strong></p>
+<pre><code># A tibble: 97,310 x 2
+# Groups:   name [97,310]
+   name          n
+   &lt;chr&gt;     &lt;int&gt;
+ 1 Aaban        10
+ 2 Aabha         5
+ 3 Aabid         2
+ 4 Aabir         1
+ 5 Aabriella     5
+ 6 Aada          1
+ 7 Aadam        26
+ 8 Aadan        11
+ 9 Aadarsh      17
+10 Aaden        18
+# … with 97,300 more rows</code></pre>
+<p>You can see from the n column that this is reporting mulitple instances of each name. This does inadvertedly answer one of our other questions:</p>
+</div>
+<div id="which-name-appears-most-often-throughout-the-years-from-1880-2017" class="section level4">
+<h4><strong>Which name appears most often throughout the years from 1880-2017?</strong></h4>
+<hr />
 <pre class="r"><code>babynames %&gt;% 
   group_by(name) %&gt;% 
+  # Sort the data from largest to smallest
   count(sort=T)</code></pre>
-<pre><code>## # A tibble: 97,310 x 2
-## # Groups:   name [97,310]
-##    name        n
-##    &lt;chr&gt;   &lt;int&gt;
-##  1 Francis   276
-##  2 James     276
-##  3 Jean      276
-##  4 Jesse     276
-##  5 Jessie    276
-##  6 John      276
-##  7 Johnnie   276
-##  8 Joseph    276
-##  9 Lee       276
-## 10 Leslie    276
-## # … with 97,300 more rows</code></pre>
+<pre><code># A tibble: 97,310 x 2
+# Groups:   name [97,310]
+   name        n
+   &lt;chr&gt;   &lt;int&gt;
+ 1 Francis   276
+ 2 James     276
+ 3 Jean      276
+ 4 Jesse     276
+ 5 Jessie    276
+ 6 John      276
+ 7 Johnnie   276
+ 8 Joseph    276
+ 9 Lee       276
+10 Leslie    276
+# … with 97,300 more rows</code></pre>
 <p>It is also helpful to understand that this represents the number of occurrences throughout the years, it does not tell us the associated n’s with each name, we will do that soon!</p>
 <p>Back to our original question: we need to remove all instances of a repeated name. We can do this with the <code>distinct</code> function.</p>
 <p><code>distinct</code> uses the following argurments:</p>
@@ -402,31 +414,31 @@ y &lt;- round(runif(50,5,100))
 xy &lt;- data.frame(x,y,stringsAsFactors = F)
 # Find the distinct values
 xy %&gt;% distinct(x)</code></pre>
-<pre><code>##    x
-## 1  r
-## 2  z
-## 3  g
-## 4  y
-## 5  u
-## 6  q
-## 7  n
-## 8  s
-## 9  x
-## 10 c
-## 11 h
-## 12 m
-## 13 k
-## 14 d
-## 15 l
-## 16 w
-## 17 e
-## 18 i
-## 19 a
-## 20 j
-## 21 f
-## 22 p
-## 23 o
-## 24 t</code></pre>
+<pre><code>   x
+1  r
+2  z
+3  g
+4  y
+5  u
+6  q
+7  n
+8  s
+9  x
+10 c
+11 h
+12 m
+13 k
+14 d
+15 l
+16 w
+17 e
+18 i
+19 a
+20 j
+21 f
+22 p
+23 o
+24 t</code></pre>
 <p>You will notice that we lost everything in the y column! We need to use the <code>.keep_all()</code> argument.</p>
 <pre class="r"><code># Take a sample of letters from the alphabet with replacement
 x &lt;- sample(letters,50,replace = T)
@@ -438,62 +450,71 @@ xy %&gt;%
   distinct(x,.keep_all = T) %&gt;% 
   group_by(x) %&gt;% 
   arrange(x)</code></pre>
-<pre><code>## # A tibble: 21 x 2
-## # Groups:   x [21]
-##    x         y
-##    &lt;chr&gt; &lt;dbl&gt;
-##  1 a        81
-##  2 c        21
-##  3 e        60
-##  4 f        57
-##  5 g        41
-##  6 h        72
-##  7 i        58
-##  8 j        56
-##  9 k        94
-## 10 l        82
-## # … with 11 more rows</code></pre>
+<pre><code># A tibble: 21 x 2
+# Groups:   x [21]
+   x         y
+   &lt;chr&gt; &lt;dbl&gt;
+ 1 a        81
+ 2 c        21
+ 3 e        60
+ 4 f        57
+ 5 g        41
+ 6 h        72
+ 7 i        58
+ 8 j        56
+ 9 k        94
+10 l        82
+# … with 11 more rows</code></pre>
 <p>So now we will do the same with the <code>babynames</code> dataset to find the number of distinct names.</p>
 <pre class="r"><code>babynames %&gt;% 
+  # Remove all duplicated names, but keep the other variables
   distinct(name,.keep_all = T)</code></pre>
-<pre><code>## # A tibble: 97,310 x 5
-##     year sex   name          n   prop
-##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
-##  1  1880 F     Mary       7065 0.0724
-##  2  1880 F     Anna       2604 0.0267
-##  3  1880 F     Emma       2003 0.0205
-##  4  1880 F     Elizabeth  1939 0.0199
-##  5  1880 F     Minnie     1746 0.0179
-##  6  1880 F     Margaret   1578 0.0162
-##  7  1880 F     Ida        1472 0.0151
-##  8  1880 F     Alice      1414 0.0145
-##  9  1880 F     Bertha     1320 0.0135
-## 10  1880 F     Sarah      1288 0.0132
-## # … with 97,300 more rows</code></pre>
-<p>Again we see the same 97,310 we saw previously! This tells us that the function worked. Now let us try to answer the question: <strong>How many unique names do each letter of the alphabet account for?</strong></p>
+<pre><code># A tibble: 97,310 x 5
+    year sex   name          n   prop
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+ 1  1880 F     Mary       7065 0.0724
+ 2  1880 F     Anna       2604 0.0267
+ 3  1880 F     Emma       2003 0.0205
+ 4  1880 F     Elizabeth  1939 0.0199
+ 5  1880 F     Minnie     1746 0.0179
+ 6  1880 F     Margaret   1578 0.0162
+ 7  1880 F     Ida        1472 0.0151
+ 8  1880 F     Alice      1414 0.0145
+ 9  1880 F     Bertha     1320 0.0135
+10  1880 F     Sarah      1288 0.0132
+# … with 97,300 more rows</code></pre>
+<p>Again we see the same 97,310 we saw previously! This tells us that the function worked. Now let us try to answer the following question:</p>
+</div>
+<div id="how-many-unique-names-do-each-letter-of-the-alphabet-account-for" class="section level4">
+<h4><strong>How many unique names do each letter of the alphabet account for?</strong></h4>
+<hr />
 <p>For this we will need to create a new variable: sw, that represents the letter the name starts with.</p>
 <p>We will do this using <code>muatate</code> and regular expressions, which are covered <a href="stringr.html">here</a>. We will then need to repeat what we did by only returning the distinct names in the set.</p>
 <p>When the data is in this format, we will then <code>group_by</code> the new variable, sw and count.</p>
 <pre class="r"><code>babynames %&gt;% 
+  # Create new column that looks for the start of each name
   mutate(sw=unlist(str_match_all(name,&quot;^.&quot;))) %&gt;% 
+  # Remove duplicate names
   distinct(name,.keep_all = T) %&gt;% 
+  # Sort by the starting letter
   group_by(sw) %&gt;% 
+  # Sort by largest to smallest
   count(sort=T)</code></pre>
-<pre><code>## # A tibble: 26 x 2
-## # Groups:   sw [26]
-##    sw        n
-##    &lt;chr&gt; &lt;int&gt;
-##  1 A     10292
-##  2 S      7931
-##  3 J      7817
-##  4 M      7529
-##  5 K      7283
-##  6 D      6574
-##  7 T      6278
-##  8 L      5744
-##  9 C      5731
-## 10 R      4429
-## # … with 16 more rows</code></pre>
+<pre><code># A tibble: 26 x 2
+# Groups:   sw [26]
+   sw        n
+   &lt;chr&gt; &lt;int&gt;
+ 1 A     10292
+ 2 S      7931
+ 3 J      7817
+ 4 M      7529
+ 5 K      7283
+ 6 D      6574
+ 7 T      6278
+ 8 L      5744
+ 9 C      5731
+10 R      4429
+# … with 16 more rows</code></pre>
 <p>Awesome! We can see that the letter A dominates the other letters.</p>
 <p>Now we can throw this into a graph:</p>
 <pre class="r"><code>babynames %&gt;% 
@@ -501,13 +522,20 @@ xy %&gt;%
   distinct(name,.keep_all = T) %&gt;% 
   group_by(sw) %&gt;% 
   count(sort=T) %&gt;% 
+  # fct_rev will make it A-Z rather than Z-A
   ggplot(aes(fct_rev(sw),n,fill=sw)) +
+    # Use a bar chart
     geom_bar(stat=&quot;identity&quot;,size=1) +
+    # Flip for better view
     coord_flip() +
+    # Fill based on category
     scale_fill_discrete() +
+    # Super cool theme
     theme_clean() +
+    # Remove legend and axis ticks
     theme(legend.position = &quot;none&quot;,
           axis.ticks = element_blank())+
+    # No need for axis labels, give title and caption
     labs(x=&quot;&quot;,y=&quot;&quot;,
          title=&quot;Number of Unique Names Per Letter&quot;,
          caption=&quot;(based on babynames)&quot;)</code></pre>
@@ -517,7 +545,9 @@ xy %&gt;%
 <pre class="r"><code>babynames %&gt;% 
   mutate(sw=unlist(str_match_all(name,&quot;^.&quot;))) %&gt;% 
   distinct(name,.keep_all = T) %&gt;% 
+  # Sort by sex for easy filtering
   group_by(sex) %&gt;% 
+  # Get the number of each sex
   count() %&gt;% 
   ggplot(aes(sex,n,fill=sex)) +
     geom_bar(stat=&quot;identity&quot;) +
@@ -528,31 +558,61 @@ xy %&gt;%
     labs(x=&quot;Sex&quot;,y=&quot;&quot;,
          title=&quot;Unique Names Attributed to Sex&quot;,
          caption=&quot;(based on babynames)&quot;)+
+  # Manually fill colors
   scale_fill_manual(values=c(&quot;#8700F9&quot;,&quot;#00C4AA&quot;))</code></pre>
 <p><img src="babynames_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>We can see that females have almost double the amount of unique names!</p>
+<p>While going through the dataset I noticed that even after removing duplicate names I was still seeing name doubles. I realized that this was because some exist have both male and female owners.</p>
+<p>The arranging of this particular question was a little difficult for me so I went over to <a href="reddit.com/r/rstats.com">Reddit</a> where a helpful user, PM_ME_CAREER_CHOICES was able to guide me in the right direction.</p>
+<pre class="r"><code>babynames %&gt;% 
+  distinct(sex,name,.keep_all = T) %&gt;% 
+  group_by(name) %&gt;% 
+  count() %&gt;% 
+  # If a name is truly unique it should be n = 1
+  filter(n ==2) </code></pre>
+<pre><code># A tibble: 10,663 x 2
+# Groups:   name [10,663]
+   name        n
+   &lt;chr&gt;   &lt;int&gt;
+ 1 Aaden       2
+ 2 Aadi        2
+ 3 Aadyn       2
+ 4 Aalijah     2
+ 5 Aaliyah     2
+ 6 Aaliyan     2
+ 7 Aamari      2
+ 8 Aamir       2
+ 9 Aaren       2
+10 Aareon      2
+# … with 10,653 more rows</code></pre>
+<p>We can see from this table that there are 10,763 names that have both male and female owners. Pretty cool!</p>
+</div>
+<div id="what-names-has-the-most-owners-dead-and-alive" class="section level4">
+<h4><strong>What name(s) has the most owners (dead and alive)</strong></h4>
+<hr />
 <p>Next we can take a look at what names have the most number of owners.</p>
 <p>We will do this by summing up every occurence of a name and then sorting them to get each names total count.</p>
 <pre class="r"><code>babynames %&gt;% 
     group_by(sex,name) %&gt;% 
+    # Create column that adds up every n instance of a name
     summarise(Total=sum(n)) %&gt;% 
-    arrange(desc(Total)) %&gt;% 
-    group_by(name) </code></pre>
-<pre><code>## # A tibble: 107,973 x 3
-## # Groups:   name [97,310]
-##    sex   name      Total
-##    &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;
-##  1 M     James   5150472
-##  2 M     John    5115466
-##  3 M     Robert  4814815
-##  4 M     Michael 4350824
-##  5 F     Mary    4123200
-##  6 M     William 4102604
-##  7 M     David   3611329
-##  8 M     Joseph  2603445
-##  9 M     Richard 2563082
-## 10 M     Charles 2386048
-## # … with 107,963 more rows</code></pre>
+    # Arrange in descending order the total number 
+    arrange(desc(Total))</code></pre>
+<pre><code># A tibble: 107,973 x 3
+# Groups:   sex [2]
+   sex   name      Total
+   &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;
+ 1 M     James   5150472
+ 2 M     John    5115466
+ 3 M     Robert  4814815
+ 4 M     Michael 4350824
+ 5 F     Mary    4123200
+ 6 M     William 4102604
+ 7 M     David   3611329
+ 8 M     Joseph  2603445
+ 9 M     Richard 2563082
+10 M     Charles 2386048
+# … with 107,963 more rows</code></pre>
 <p>Let’s see if we answered all of the questions!</p>
 <ul>
 <li><strong>How many unique names are there?</strong>
@@ -561,7 +621,7 @@ xy %&gt;%
 </ul></li>
 <li><strong>What is the most common name?</strong>
 <ul>
-<li>The most common name, or the name with the most owners appears to be James–with a whopping 5,150,472!</li>
+<li>The most common name, or the name with the most owners appears to be James–with a whopping <strong>5,150,472</strong>!</li>
 </ul></li>
 <li><strong>Do Male or Females represent the majority of unique names?</strong>
 <ul>
@@ -572,20 +632,28 @@ xy %&gt;%
 <li>Since there are 26 values–I’ll point you in the direction of the graph!</li>
 </ul></li>
 </ul>
-<p>Let’s finish up with a animated graph:</p>
+<p>Let’s finish up with a animated graph using the <code>gganimate</code> package.</p>
 <pre class="r"><code>babynames %&gt;% 
+    # Choose Specifc Name
     filter(name==&quot;David&quot;) %&gt;% 
+    # Choose Sex (we know ~10% of names are M and F)
     filter(sex==&quot;M&quot;) %&gt;% 
+    # Notice how we group by name, so the line will follow
     ggplot(aes(year,n,group=name,color=name)) +
+    # Plot the points
     geom_point() +
+    # Plot a line to connect the points
     geom_line() +
+    # Cool Theme
     theme_clean() +
     labs(y=&quot;Total Count&quot;,x=&quot;Year&quot;,
          title=paste(&quot;Popularity of the name David from 1880-2017&quot;)) +
+    # Remove ticks and legend
     theme(axis.ticks = element_blank(),
         legend.title = element_blank()) +
+    # gganimate will use this to go from each year as its own graph
   transition_reveal(year)</code></pre>
-<p><img src="babynames_files/figure-html/unnamed-chunk-12-1.gif" /><!-- --></p>
+<p><img src="babynames_files/figure-html/unnamed-chunk-13-1.gif" /><!-- --></p>
 </div>
 
 
