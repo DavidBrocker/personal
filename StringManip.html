@@ -280,30 +280,37 @@ $(document).ready(function () {
 <li>
   <a href="RLearning.html">R</a>
 </li>
+<li>
+  <a href="Gallery.html">Gallery</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="mailto:davidabrocker@gmail.com">
     <span class="fa fa-envelope fa-lg"></span>
      
+    Mail
   </a>
 </li>
 <li>
   <a href="http://github.com/DavidBrocker">
     <span class="fa fa-github fa-lg"></span>
      
+    Github
   </a>
 </li>
 <li>
   <a href="https://twitter.com/DaveBrocker">
     <span class="fa fa-twitter fa-lg"></span>
      
+    Twitter
   </a>
 </li>
 <li>
   <a href="https://www.linkedin.com/in/david-brocker-33838490/">
     <span class="fa fa-linkedin fa-lg"></span>
      
+    LinkedIn
   </a>
 </li>
       </ul>
@@ -749,35 +756,35 @@ str_detect(x_sent,&quot;\\b[aeiou]\\w+&quot;)</code></pre>
 # 6 numbers and 2 letters in the range [aA-zZ]
 paste0(stri_rand_strings(10,6,&quot;[0-9]&quot;),
       stri_rand_strings(10,2,&quot;[aA-zZ:]&quot;))</code></pre>
-<pre><code> [1] &quot;892412:B&quot;  &quot;089874os&quot;  &quot;978295Sq&quot;  &quot;980420kH&quot;  &quot;213770\\Q&quot; &quot;491567MA&quot; 
- [7] &quot;665879kS&quot;  &quot;243664Hl&quot;  &quot;991777eh&quot;  &quot;046732]n&quot; </code></pre>
+<pre><code> [1] &quot;706521jq&quot; &quot;483450vw&quot; &quot;301001c:&quot; &quot;386915eX&quot; &quot;677956cc&quot; &quot;000055lP&quot;
+ [7] &quot;439687NC&quot; &quot;073604yT&quot; &quot;539429Ds&quot; &quot;218091xV&quot;</code></pre>
 </div>
 <div id="string-manipulation-use-cases---string-extraction" class="section level4">
 <h4>String Manipulation: Use Cases - String Extraction</h4>
 <p>Imagine that you were given the following dataset:</p>
 <pre><code>        filename label
-1  (IMG_333.JPG)     t
-2  (IMG_684.JPG)     i
-3  (IMG_415.JPG)     h
-4  (IMG_469.JPG)     u
-5  (IMG_684.JPG)     s
-6  (IMG_998.JPG)     f
-7  (IMG_882.JPG)     l
-8  (IMG_576.JPG)     w
-9  (IMG_601.JPG)     r
-10 (IMG_798.JPG)     e</code></pre>
+1  (IMG_366.JPG)     z
+2  (IMG_365.JPG)     x
+3  (IMG_547.JPG)     i
+4  (IMG_288.JPG)     o
+5  (IMG_240.JPG)     a
+6  (IMG_445.JPG)     f
+7  (IMG_386.JPG)     w
+8  (IMG_646.JPG)     d
+9  (IMG_199.JPG)     v
+10 (IMG_697.JPG)     u</code></pre>
 <p>Your task is to extract <em>just</em> the numbers. You could do it one of two ways:</p>
 <pre class="r"><code># Use | to indicate a logical OR
 str_remove_all(str_df$filename,&quot;\\(IMG_|\\.|JPG\\)&quot;)</code></pre>
-<pre><code> [1] &quot;333&quot; &quot;684&quot; &quot;415&quot; &quot;469&quot; &quot;684&quot; &quot;998&quot; &quot;882&quot; &quot;576&quot; &quot;601&quot; &quot;798&quot;</code></pre>
+<pre><code> [1] &quot;366&quot; &quot;365&quot; &quot;547&quot; &quot;288&quot; &quot;240&quot; &quot;445&quot; &quot;386&quot; &quot;646&quot; &quot;199&quot; &quot;697&quot;</code></pre>
 <pre class="r"><code>unlist(str_match_all(str_df$filename,&quot;\\d{1,}&quot;))</code></pre>
-<pre><code> [1] &quot;333&quot; &quot;684&quot; &quot;415&quot; &quot;469&quot; &quot;684&quot; &quot;998&quot; &quot;882&quot; &quot;576&quot; &quot;601&quot; &quot;798&quot;</code></pre>
+<pre><code> [1] &quot;366&quot; &quot;365&quot; &quot;547&quot; &quot;288&quot; &quot;240&quot; &quot;445&quot; &quot;386&quot; &quot;646&quot; &quot;199&quot; &quot;697&quot;</code></pre>
 <p>Both methods return the same values, but with fewer needed regular expressions to match in the second example</p>
 </div>
 
 
 <br><br><br><br>
-<p>Copyright &copy; 2019 David Brocker All rights reserved.</p>
+<p>Copyright &copy; 2020 David Brocker All rights reserved.</p>
 
 
 
