@@ -457,7 +457,7 @@ doctorwho_pltly &lt;- doctorwho %&gt;%
                      &quot;Title: &quot;, Title, &quot;\n&quot;,
                      &quot;Doctor: &quot;,Doctor))
 
-doctorwho %&gt;% 
+p &lt;- doctorwho %&gt;% 
   ggplot(aes(factor(Season),EpisodeNumber,fill=Quality)) +
     geom_tile(colour=&quot;black&quot;)+
     geom_text(aes(label=Ratings))+
@@ -465,8 +465,10 @@ doctorwho %&gt;%
   theme_classic()+
   theme(axis.ticks = element_blank()) +
     labs(x=&quot;Season&quot;,y=&quot;Episode #&quot;,
-         title=&quot;Doctor Who IMDb Ratings: 2005-2020&quot;)</code></pre>
-<p><img src="tvshow_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+         title=&quot;Doctor Who IMDb Ratings: 2005-2020&quot;)
+
+p</code></pre>
+<p><img src="tvshow_files/figure-html/unnamed-chunk-7-1.png" width="672" /> <img src="tvshow_files/figure-html/unnamed-chunk-8-1.png" /></p>
 <p>For an interactvie plot, see <a href="DW_plot.html">here</a></p>
 </div>
 
