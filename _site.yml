@@ -7,14 +7,20 @@ navbar:
       href: courses.html
     - text: "R"
       href: RLearning.html
+    - text: "Gallery"
+      href: Gallery.html
   right:
-    - icon: fa-envelope fa-lg
+    - text: "Mail"
+      icon: fa-envelope fa-lg
       href: mailto:davidabrocker@gmail.com
-    - icon: fa-github fa-lg
+    - text: "Github"
+      icon: fa-github fa-lg
       href: http://github.com/DavidBrocker
-    - icon: fa-twitter fa-lg
+    - text: "Twitter"
+      icon: fa-twitter fa-lg
       href: https://twitter.com/DaveBrocker
-    - icon: fa-linkedin fa-lg
+    - text: "LinkedIn"
+      icon: fa-linkedin fa-lg
       href: https://www.linkedin.com/in/david-brocker-33838490/
 output:
   html_document:
