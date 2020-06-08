@@ -280,30 +280,37 @@ $(document).ready(function () {
 <li>
   <a href="RLearning.html">R</a>
 </li>
+<li>
+  <a href="Gallery.html">Gallery</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="mailto:davidabrocker@gmail.com">
     <span class="fa fa-envelope fa-lg"></span>
      
+    Mail
   </a>
 </li>
 <li>
   <a href="http://github.com/DavidBrocker">
     <span class="fa fa-github fa-lg"></span>
      
+    Github
   </a>
 </li>
 <li>
   <a href="https://twitter.com/DaveBrocker">
     <span class="fa fa-twitter fa-lg"></span>
      
+    Twitter
   </a>
 </li>
 <li>
   <a href="https://www.linkedin.com/in/david-brocker-33838490/">
     <span class="fa fa-linkedin fa-lg"></span>
      
+    LinkedIn
   </a>
 </li>
       </ul>
@@ -360,20 +367,22 @@ head(babynames)</code></pre>
   group_by(name) %&gt;% 
   # Count how many times each name appears
   count()</code></pre>
+<pre><code>Using `n` as weighting variable
+ℹ Quiet this message with `wt = n` or count rows with `wt = 1`</code></pre>
 <pre><code># A tibble: 97,310 x 2
 # Groups:   name [97,310]
    name          n
    &lt;chr&gt;     &lt;int&gt;
- 1 Aaban        10
- 2 Aabha         5
- 3 Aabid         2
- 4 Aabir         1
- 5 Aabriella     5
- 6 Aada          1
- 7 Aadam        26
- 8 Aadan        11
- 9 Aadarsh      17
-10 Aaden        18
+ 1 Aaban       107
+ 2 Aabha        35
+ 3 Aabid        10
+ 4 Aabir         5
+ 5 Aabriella    32
+ 6 Aada          5
+ 7 Aadam       254
+ 8 Aadan       130
+ 9 Aadarsh     199
+10 Aaden      4658
 # … with 97,300 more rows</code></pre>
 <p>You can see from the n column that this is reporting mulitple instances of each name. This does inadvertedly answer one of our other questions:</p>
 </div>
@@ -384,20 +393,22 @@ head(babynames)</code></pre>
   group_by(name) %&gt;% 
   # Sort the data from largest to smallest
   count(sort=T)</code></pre>
+<pre><code>Using `n` as weighting variable
+ℹ Quiet this message with `wt = n` or count rows with `wt = 1`</code></pre>
 <pre><code># A tibble: 97,310 x 2
 # Groups:   name [97,310]
-   name        n
-   &lt;chr&gt;   &lt;int&gt;
- 1 Francis   276
- 2 James     276
- 3 Jean      276
- 4 Jesse     276
- 5 Jessie    276
- 6 John      276
- 7 Johnnie   276
- 8 Joseph    276
- 9 Lee       276
-10 Leslie    276
+   name          n
+   &lt;chr&gt;     &lt;int&gt;
+ 1 James   5173828
+ 2 John    5137142
+ 3 Robert  4834915
+ 4 Michael 4372536
+ 5 Mary    4138360
+ 6 William 4118553
+ 7 David   3624225
+ 8 Joseph  2614083
+ 9 Richard 2572613
+10 Charles 2398453
 # … with 97,300 more rows</code></pre>
 <p>It is also helpful to understand that this represents the number of occurrences throughout the years, it does not tell us the associated n’s with each name, we will do that soon!</p>
 <p>Back to our original question: we need to remove all instances of a repeated name. We can do this with the <code>distinct</code> function.</p>
@@ -500,20 +511,22 @@ xy %&gt;%
   group_by(sw) %&gt;% 
   # Sort by largest to smallest
   count(sort=T)</code></pre>
+<pre><code>Using `n` as weighting variable
+ℹ Quiet this message with `wt = n` or count rows with `wt = 1`</code></pre>
 <pre><code># A tibble: 26 x 2
 # Groups:   sw [26]
    sw        n
    &lt;chr&gt; &lt;int&gt;
- 1 A     10292
- 2 S      7931
- 3 J      7817
- 4 M      7529
- 5 K      7283
- 6 D      6574
- 7 T      6278
- 8 L      5744
- 9 C      5731
-10 R      4429
+ 1 A     78080
+ 2 M     67929
+ 3 S     56536
+ 4 J     55272
+ 5 K     48880
+ 6 C     45724
+ 7 D     45526
+ 8 L     45260
+ 9 T     41376
+10 E     39295
 # … with 16 more rows</code></pre>
 <p>Awesome! We can see that the letter A dominates the other letters.</p>
 <p>Now we can throw this into a graph:</p>
@@ -539,6 +552,8 @@ xy %&gt;%
     labs(x=&quot;&quot;,y=&quot;&quot;,
          title=&quot;Number of Unique Names Per Letter&quot;,
          caption=&quot;(based on babynames)&quot;)</code></pre>
+<pre><code>Using `n` as weighting variable
+ℹ Quiet this message with `wt = n` or count rows with `wt = 1`</code></pre>
 <p><img src="babynames_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Cool!</p>
 <p>Now let us take a look at how many unique names are Male and how many are Female.</p>
@@ -560,6 +575,8 @@ xy %&gt;%
          caption=&quot;(based on babynames)&quot;)+
   # Manually fill colors
   scale_fill_manual(values=c(&quot;#8700F9&quot;,&quot;#00C4AA&quot;))</code></pre>
+<pre><code>Using `n` as weighting variable
+ℹ Quiet this message with `wt = n` or count rows with `wt = 1`</code></pre>
 <p><img src="babynames_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>We can see that females have almost double the amount of unique names!</p>
 <p>While going through the dataset I noticed that even after removing duplicate names I was still seeing name doubles. I realized that this was because some exist have both male and female owners.</p>
@@ -570,21 +587,11 @@ xy %&gt;%
   count() %&gt;% 
   # If a name is truly unique it should be n = 1
   filter(n ==2) </code></pre>
-<pre><code># A tibble: 10,663 x 2
-# Groups:   name [10,663]
-   name        n
-   &lt;chr&gt;   &lt;int&gt;
- 1 Aaden       2
- 2 Aadi        2
- 3 Aadyn       2
- 4 Aalijah     2
- 5 Aaliyah     2
- 6 Aaliyan     2
- 7 Aamari      2
- 8 Aamir       2
- 9 Aaren       2
-10 Aareon      2
-# … with 10,653 more rows</code></pre>
+<pre><code>Using `n` as weighting variable
+ℹ Quiet this message with `wt = n` or count rows with `wt = 1`</code></pre>
+<pre><code># A tibble: 0 x 2
+# Groups:   name [0]
+# … with 2 variables: name &lt;chr&gt;, n &lt;int&gt;</code></pre>
 <p>We can see from this table that there are 10,763 names that have both male and female owners. Pretty cool!</p>
 </div>
 <div id="what-names-has-the-most-owners-dead-and-alive" class="section level4">
@@ -598,6 +605,7 @@ xy %&gt;%
     summarise(Total=sum(n)) %&gt;% 
     # Arrange in descending order the total number 
     arrange(desc(Total))</code></pre>
+<pre><code>`summarise()` regrouping output by &#39;sex&#39; (override with `.groups` argument)</code></pre>
 <pre><code># A tibble: 107,973 x 3
 # Groups:   sex [2]
    sex   name      Total
@@ -654,11 +662,24 @@ xy %&gt;%
     # gganimate will use this to go from each year as its own graph
   transition_reveal(year)</code></pre>
 <p><img src="babynames_files/figure-html/unnamed-chunk-13-1.gif" /><!-- --></p>
+<pre class="r"><code>babynames %&gt;% 
+  filter(name==&quot;David&quot;) %&gt;% 
+    # Choose Sex (we know ~10% of names are M and F)
+    filter(sex==&quot;M&quot;) %&gt;% 
+    # Notice how we group by name, so the line will follow
+    ggplot(aes(year,n,group=name,color=name)) +
+    # Plot the points
+    geom_point() +
+    # Plot a line to connect the points
+    geom_line() +
+    # Cool Theme
+    theme_clean() </code></pre>
+<p><img src="babynames_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 
 
 <br><br><br><br>
-<p>Copyright &copy; 2019 David Brocker All rights reserved.</p>
+<p>Copyright &copy; 2020 David Brocker All rights reserved.</p>
 
 
 

@@ -280,30 +280,37 @@ $(document).ready(function () {
 <li>
   <a href="RLearning.html">R</a>
 </li>
+<li>
+  <a href="Gallery.html">Gallery</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="mailto:davidabrocker@gmail.com">
     <span class="fa fa-envelope fa-lg"></span>
      
+    Mail
   </a>
 </li>
 <li>
   <a href="http://github.com/DavidBrocker">
     <span class="fa fa-github fa-lg"></span>
      
+    Github
   </a>
 </li>
 <li>
   <a href="https://twitter.com/DaveBrocker">
     <span class="fa fa-twitter fa-lg"></span>
      
+    Twitter
   </a>
 </li>
 <li>
   <a href="https://www.linkedin.com/in/david-brocker-33838490/">
     <span class="fa fa-linkedin fa-lg"></span>
      
+    LinkedIn
   </a>
 </li>
       </ul>
@@ -386,8 +393,8 @@ head(five_letter_fixed)</code></pre>
 <p>Here we will use a regular expression that looks for where words start with specific letters.</p>
 <pre class="r"><code>vowel_words &lt;- unlist(str_match_all(words,&quot;^[aeiou].*$&quot;))
 sample(vowel_words,10)</code></pre>
-<pre><code> [1] &quot;in&quot;       &quot;unite&quot;    &quot;apply&quot;    &quot;out&quot;      &quot;odd&quot;      &quot;explain&quot; 
- [7] &quot;especial&quot; &quot;include&quot;  &quot;indeed&quot;   &quot;one&quot;     </code></pre>
+<pre><code> [1] &quot;america&quot;    &quot;order&quot;      &quot;allow&quot;      &quot;at&quot;         &quot;explain&quot;   
+ [6] &quot;employ&quot;     &quot;university&quot; &quot;often&quot;      &quot;able&quot;       &quot;okay&quot;      </code></pre>
 <p>Great!</p>
 <p>The regular expression does the following:</p>
 <ul>
@@ -475,7 +482,7 @@ word_tbl &lt;- word_tbl %&gt;%
 sample_words &lt;- sample(words,10)
 # Find the length of each word
 str_length(sample_words)</code></pre>
-<pre><code> [1] 4 6 6 3 6 4 4 4 9 9</code></pre>
+<pre><code> [1] 9 5 5 3 4 5 5 4 7 4</code></pre>
 <p>Using this same approach we could find out the number of each letter-sized word in the package.</p>
 <pre class="r"><code># X-Axis Values for later
 xax &lt;- 1:11
@@ -567,7 +574,7 @@ berry</code></pre>
 
 
 <br><br><br><br>
-<p>Copyright &copy; 2019 David Brocker All rights reserved.</p>
+<p>Copyright &copy; 2020 David Brocker All rights reserved.</p>
 
 
 
