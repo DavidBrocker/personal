@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>TV Shows</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.2.9000/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">David Brocker</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="courses.html">Teaching</a>
+</li>
+<li>
+  <a href="RLearning.html">R</a>
+</li>
+<li>
+  <a href="Gallery.html">Gallery</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:davidabrocker@gmail.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+    Mail
+  </a>
+</li>
+<li>
+  <a href="http://github.com/DavidBrocker">
+    <span class="fa fa-github fa-lg"></span>
+     
+    Github
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/DaveBrocker">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+    Twitter
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/david-brocker-33838490/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+    LinkedIn
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><br><br></p>
+<div id="using-dplyr-and-ggplot-for-visualization" class="section level4">
+<h4>Using <code>dplyr</code> and <code>ggplot</code> for Visualization</h4>
+<pre class="r"><code>library(ggplot2)
+library(stringr)
+library(forcats)
+library(gganimate)
+library(tidytext)</code></pre>
+<p>I am still getting used to the idea of a few of these functions so if this seems all over the place, there is a reason for that!</p>
+<p>I came across <a href="https://www.reddit.com/r/dataisbeautiful/comments/fw4iv0/oc_rating_of_simpsons_episodes_according_to_imdb/">this</a> post on <a href="reddit.com/r/dataisbeautiful">r/dataisbeautiful</a> and I was instantly convinced to give it a shot!</p>
+<p>The method I used was a little bit convoluted and hacky. What I am going to show here is how to read data off of a website and then show you how the data looks, and how to plot it in the way we would like.</p>
+<p>Further down the line when I am more comfortable with the complex, I can make a more detailed tutorial.</p>
+<p>For now, we will be downloading the file hosted <a href="https://raw.githubusercontent.com/DavidBrocker/personal/master/files/DoctorWho_Ratings.csv">here</a></p>
+<pre class="r"><code># First read in the csv hosted on my Github
+doctorwho &lt;- read_csv(&quot;https://raw.githubusercontent.com/DavidBrocker/personal/master/files/DoctorWho_Ratings.csv&quot;)</code></pre>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   X1 = col_double(),
+##   Season = col_double(),
+##   EpisodeNumber = col_double(),
+##   Doctor = col_character(),
+##   Title = col_character(),
+##   Ratings = col_double(),
+##   Quality = col_character()
+## )</code></pre>
+<pre class="r"><code>head(doctorwho)</code></pre>
+<pre><code>## # A tibble: 6 x 7
+##      X1 Season EpisodeNumber Doctor Title                Ratings Quality
+##   &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;  
+## 1     1      1             1 Ninth  Rose                     7.5 Good   
+## 2     2      1             2 Ninth  The End of the World     7.6 Good   
+## 3     3      1             3 Ninth  The Unquiet Dead         7.5 Good   
+## 4     4      1             4 Ninth  Aliens of London         7   Regular
+## 5     5      1             5 Ninth  World War Three          7   Regular
+## 6     6      1             6 Ninth  Dalek                    8.7 Great</code></pre>
+<p>From our dataset we can see that we have information on the following:</p>
+<ul>
+<li><p>Season Number</p></li>
+<li><p>Episode Number</p></li>
+<li><p>Episode Title</p></li>
+<li><p>IMDb User Rating</p></li>
+<li><p>Categorical Rating</p></li>
+</ul>
+<p>We can do a few things with this data. First, lets see which doctor has the most episodes.</p>
+<pre class="r"><code>doctorwho %&gt;% 
+  group_by(Doctor) %&gt;% 
+  count(sort=T)</code></pre>
+<pre><code>## # A tibble: 5 x 2
+## # Groups:   Doctor [5]
+##   Doctor         n
+##   &lt;chr&gt;      &lt;int&gt;
+## 1 Eleventh      55
+## 2 Tenth         42
+## 3 Twelfth       27
+## 4 Thirteenth    22
+## 5 Ninth         13</code></pre>
+<p>The eleventh doctor wins out here!</p>
+<p>Next it might be fun to see which season had the highest rating and then graph that.</p>
+<pre class="r"><code>avg_season &lt;- doctorwho %&gt;% 
+  # Make Season the target for how we will be viewing ratings
+  group_by(Season) %&gt;% 
+  # Make a new summary column with will average the ratings
+  # per season
+  summarise(avg=round(mean(Ratings),2),.groups=&quot;drop&quot;)
+avg_season</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##    Season   avg
+##     &lt;dbl&gt; &lt;dbl&gt;
+##  1      1  8   
+##  2      2  7.9 
+##  3      3  8.07
+##  4      4  8.36
+##  5      5  8.15
+##  6      6  8.09
+##  7      7  7.77
+##  8      8  7.8 
+##  9      9  8.14
+## 10     10  7.73
+## 11     11  6.08
+## 12     12  6.19</code></pre>
+<pre class="r"><code>avg_season %&gt;% 
+  ggplot(aes(factor(Season),avg))+
+  geom_point()+
+   geom_segment(aes(Season,xend=Season, y=0, yend=avg,color=Season))+
+    coord_flip()+
+    theme_classic() +
+    theme(legend.position = &quot;none&quot;,
+          axis.ticks = element_blank()) +
+    labs(x=&quot;Season&quot;,y=&quot;Rating&quot;,
+         title=&quot;Doctor Who Seasons Average Rating&quot;,
+         caption=&quot;(based on IMDb User Ratings)&quot;) </code></pre>
+<p><img src="tvshow_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Okay–full disclosure that the colors do not look the best but we can fix that a little later on.</p>
+<p>The takeaway from this is that the last two seasons were rated as the worst with Season 4 being rated as the best.</p>
+<p>Another question might be which Doctor has the highest rated episodes?</p>
+<p>Luckily we have a column with categorical information that tells us what ratings correspond to “Great”.</p>
+<p>Here is the system used: &lt; 5.0 = Garbage &lt; 6.5 = Bad &lt; 7.5 = Regular &lt; 8.5 = Good &lt; 10 = Great</p>
+<p>So we could either <code>filter(Ratings&gt;8.5)</code> or we could <code>filter(Quality==&quot;Great&quot;)</code>.</p>
+<p>Grouping by Doctor ensures that the information of who the Doctor was that recieved that rating.</p>
+<pre class="r"><code>doctorwho %&gt;% 
+  group_by(Doctor,Ratings) %&gt;% 
+  filter(Quality==&quot;Great&quot;) %&gt;% 
+  group_by(Doctor) %&gt;% 
+  count() %&gt;% 
+  ggplot(aes(fct_reorder(Doctor,n),n,fill=Doctor)) +
+    geom_bar(stat=&quot;identity&quot;) +
+    theme_classic()+
+    theme(axis.ticks = element_blank(),
+          legend.position = &quot;none&quot;) +
+    labs(x=&quot;&quot;,y=&quot;Count&quot;,
+         title=&quot;Number of &#39;Great&#39; Episodes: Per Doctor&quot;,
+         captions=&quot;(based on IMDb User Ratings)&quot;)</code></pre>
+<p><img src="tvshow_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>To be honest, no surprise here either!</p>
+<p>Lastly, let’s construct a heatmap of all of the episodes of Doctor Who.</p>
+<pre class="r"><code># These are the custom colors we will be using for our ratings
+cols=c(&quot;Bad&quot;=&quot;red2&quot;,
+       &quot;Garbage&quot; =&quot;dodgerblue2&quot;,
+       &quot;Great&quot; =&quot;greenyellow&quot;,
+       &quot;Regular&quot;=&quot;darkorange1&quot;, 
+       &quot;Good&quot; =&quot;gold1&quot;)
+
+# Plotly is a package add-on that will make our graph interactive
+# This is how it can be specially formatted
+doctorwho_pltly &lt;- doctorwho %&gt;% 
+  mutate(text=paste0(&quot;Season: &quot;, Season, &quot;\n&quot;,
+                     &quot;Episode: &quot;, EpisodeNumber,&quot;\n&quot;,
+                     &quot;Title: &quot;, Title, &quot;\n&quot;,
+                     &quot;Doctor: &quot;,Doctor))
+
+dw_p &lt;- doctorwho_pltly %&gt;% 
+  # Notice the text=text in the aesthetics
+  ggplot(aes(factor(Season),EpisodeNumber,fill=Quality,text=text)) +
+    geom_tile(colour=&quot;black&quot;)+
+    geom_text(aes(label=Ratings))+
+    scale_fill_manual(values=cols)+
+  theme_classic()+
+  theme(axis.ticks = element_blank()) +
+    labs(x=&quot;Season&quot;,y=&quot;Episode #&quot;,
+         title=&quot;Doctor Who IMDb Ratings: 2005-2020&quot;)
+# This is what makes the plot interactive
+pp &lt;- ggplotly(dw_p,tooltip = &quot;text&quot;)  
+ 
+pp</code></pre>
+<div id="htmlwidget-defd36d34c667faeedcb" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-defd36d34c667faeedcb">{"x":{"data":[{"x":[10.5,10.5,11.5,11.5,10.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 11<br />Episode: 10<br />Title: It Takes You Away<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 11<br />Episode: 11<br />Title: The Battle of Ranskoor Av Kolos<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 11<br />Episode: 12<br />Title: Resolution<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 11<br />Episode: 3<br />Title: The Ghost Monument<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 11<br />Episode: 5<br />Title: Arachnids in the UK<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 11<br />Episode: 7<br />Title: Demons of the Punjab<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 11<br />Episode: 8<br />Title: Kerblam!<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 11<br />Episode: 9<br />Title: The Witchfinders<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 12<br />Episode: 10<br />Title: The Timeless Children<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 12<br />Episode: 6<br />Title: Praxeus<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 12<br />Episode: 7<br />Title: Can You Hear Me?<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 2<br />Episode: 11<br />Title: Love & Monsters<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 2<br />Episode: 12<br />Title: Fear Her<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 8<br />Episode: 11<br />Title: In the Forest of the Night<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 9<br />Episode: 10<br />Title: Sleep No More<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(238,0,0,1)","hoveron":"fills","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 11<br />Episode: 6<br />Title: The Tsuranga Conundrum<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(28,134,238,1)","hoveron":"fills","name":"Garbage","legendgroup":"Garbage","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 12<br />Episode: 3<br />Title: Orphan 55<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(28,134,238,1)","hoveron":"fills","name":"Garbage","legendgroup":"Garbage","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 1<br />Episode: 1<br />Title: Rose<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 1<br />Episode: 2<br />Title: The End of the World<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 1<br />Episode: 3<br />Title: The Unquiet Dead<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 1<br />Episode: 8<br />Title: Father's Day<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 10<br />Episode: 2<br />Title: The Pilot<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 10<br />Episode: 6<br />Title: Oxygen<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 10<br />Episode: 7<br />Title: Extremis<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 10<br />Episode: 8<br />Title: The Pyramid at the End of the World<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 11<br />Episode: 1<br />Title: Twice Upon a Time<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 12<br />Episode: 5<br />Title: Fugitive of the Judoon<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 2<br />Episode: 1<br />Title: The Christmas Invasion<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 2<br />Episode: 3<br />Title: Tooth and Claw<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 2<br />Episode: 4<br />Title: School Reunion<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 2<br />Episode: 6<br />Title: Rise of the Cybermen<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 2<br />Episode: 7<br />Title: The Age of Steel<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 3<br />Episode: 1<br />Title: The Runaway Bride<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[13.5,14.5,14.5,13.5,13.5],"text":"Season: 3<br />Episode: 14<br />Title: Last of the Time Lords<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 3<br />Episode: 2<br />Title: Smith and Jones<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 3<br />Episode: 3<br />Title: The Shakespeare Code<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 3<br />Episode: 4<br />Title: Gridlock<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 4<br />Episode: 1<br />Title: Voyage of the Damned<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 4<br />Episode: 2<br />Title: Partners in Crime<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 4<br />Episode: 3<br />Title: The Fires of Pompeii<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 4<br />Episode: 4<br />Title: Planet of the Ood<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 4<br />Episode: 5<br />Title: The Sontaran Stratagem<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 4<br />Episode: 6<br />Title: The Poison Sky<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 4<br />Episode: 7<br />Title: The Doctor's Daughter<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 4<br />Episode: 8<br />Title: The Unicorn and the Wasp<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 5<br />Episode: 11<br />Title: The Lodger<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 5<br />Episode: 2<br />Title: The Beast Below<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 5<br />Episode: 7<br />Title: Amy's Choice<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 6<br />Episode: 12<br />Title: The God Complex<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 6<br />Episode: 13<br />Title: Closing Time<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 6<br />Episode: 9<br />Title: Let's Kill Hitler<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 7<br />Episode: 11<br />Title: Hide<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 7<br />Episode: 5<br />Title: The Power of Three<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 7<br />Episode: 7<br />Title: The Snowmen<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 7<br />Episode: 8<br />Title: The Bells of Saint John<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 8<br />Episode: 1<br />Title: The Time of the Doctor<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 8<br />Episode: 13<br />Title: Death in Heaven<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 8<br />Episode: 2<br />Title: Deep Breath<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 8<br />Episode: 3<br />Title: Into the Dalek<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 8<br />Episode: 6<br />Title: Time Heist<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 9<br />Episode: 1<br />Title: Last Christmas<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 9<br />Episode: 4<br />Title: Under the Lake<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 9<br />Episode: 5<br />Title: Before the Flood<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 9<br />Episode: 6<br />Title: The Girl Who Died<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 9<br />Episode: 7<br />Title: The Woman Who Lived<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 9<br />Episode: 8<br />Title: The Zygon Invasion<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,215,0,1)","hoveron":"fills","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 1<br />Episode: 10<br />Title: The Doctor Dances<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 1<br />Episode: 12<br />Title: Bad Wolf<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 1<br />Episode: 13<br />Title: The Parting of the Ways<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 1<br />Episode: 6<br />Title: Dalek<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 1<br />Episode: 9<br />Title: The Empty Child<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 10<br />Episode: 12<br />Title: World Enough and Time<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 10<br />Episode: 13<br />Title: The Doctor Falls<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 2<br />Episode: 10<br />Title: The Satan Pit<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 2<br />Episode: 13<br />Title: Army of Ghosts<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[13.5,14.5,14.5,13.5,13.5],"text":"Season: 2<br />Episode: 14<br />Title: Doomsday<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 2<br />Episode: 5<br />Title: The Girl in the Fireplace<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 2<br />Episode: 9<br />Title: The Impossible Planet<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 3<br />Episode: 10<br />Title: The Family of Blood<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 3<br />Episode: 11<br />Title: Blink<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 3<br />Episode: 12<br />Title: Utopia<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 3<br />Episode: 13<br />Title: The Sound of Drums<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 3<br />Episode: 9<br />Title: Human Nature<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 4<br />Episode: 10<br />Title: Forest of the Dead<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 4<br />Episode: 11<br />Title: Midnight<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 4<br />Episode: 12<br />Title: Turn Left<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 4<br />Episode: 13<br />Title: The Stolen Earth<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[13.5,14.5,14.5,13.5,13.5],"text":"Season: 4<br />Episode: 14<br />Title: Journey's End<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.5,3.5,4.5,4.5,3.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 4<br />Episode: 9<br />Title: Silence in the Library<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 5<br />Episode: 1<br />Title: The Eleventh Hour<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 5<br />Episode: 10<br />Title: Vincent and the Doctor<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 5<br />Episode: 12<br />Title: The Pandorica Opens<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 5<br />Episode: 13<br />Title: The Big Bang<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 5<br />Episode: 4<br />Title: The Time of Angels<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 5<br />Episode: 5<br />Title: Flesh and Stone<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 6<br />Episode: 1<br />Title: A Christmas Carol<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 6<br />Episode: 11<br />Title: The Girl Who Waited<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[13.5,14.5,14.5,13.5,13.5],"text":"Season: 6<br />Episode: 14<br />Title: The Wedding of River Song<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 6<br />Episode: 2<br />Title: The Impossible Astronaut<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 6<br />Episode: 3<br />Title: Day of the Moon<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 6<br />Episode: 5<br />Title: The Doctor's Wife<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 6<br />Episode: 8<br />Title: A Good Man Goes to War<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[14.5,15.5,15.5,14.5,14.5],"text":"Season: 7<br />Episode: 15<br />Title: The Name of the Doctor<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 7<br />Episode: 2<br />Title: Asylum of the Daleks<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 7<br />Episode: 6<br />Title: The Angels Take Manhattan<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 8<br />Episode: 10<br />Title: Flatline<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 8<br />Episode: 12<br />Title: Dark Water<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 8<br />Episode: 5<br />Title: Listen<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 8<br />Episode: 9<br />Title: Mummy on the Orient Express<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 9<br />Episode: 11<br />Title: Face the Raven<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 9<br />Episode: 12<br />Title: Heaven Sent<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 9<br />Episode: 13<br />Title: Hell Bent<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[13.5,14.5,14.5,13.5,13.5],"text":"Season: 9<br />Episode: 14<br />Title: The Husbands of River Song<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 9<br />Episode: 2<br />Title: The Magician's Apprentice<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 9<br />Episode: 3<br />Title: The Witch's Familiar<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.5,8.5,9.5,9.5,8.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 9<br />Episode: 9<br />Title: The Zygon Inversion<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(173,255,47,1)","hoveron":"fills","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 1<br />Episode: 11<br />Title: Boom Town<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 1<br />Episode: 4<br />Title: Aliens of London<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 1<br />Episode: 5<br />Title: World War Three<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.5,0.5,1.5,1.5,0.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 1<br />Episode: 7<br />Title: The Long Game<br />Doctor: Ninth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 10<br />Episode: 1<br />Title: The Return of Doctor Mysterio<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 10<br />Episode: 10<br />Title: Empress of Mars<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[10.5,11.5,11.5,10.5,10.5],"text":"Season: 10<br />Episode: 11<br />Title: The Eaters of Light<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 10<br />Episode: 3<br />Title: Smile<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 10<br />Episode: 4<br />Title: Thin Ice<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 10<br />Episode: 5<br />Title: Knock Knock<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.5,9.5,10.5,10.5,9.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 10<br />Episode: 9<br />Title: The Lie of the Land<br />Doctor: Twelfth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 11<br />Episode: 2<br />Title: The Woman Who Fell to Earth<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.5,10.5,11.5,11.5,10.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 11<br />Episode: 4<br />Title: Rosa<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 12<br />Episode: 1<br />Title: Spyfall: Part One<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 12<br />Episode: 2<br />Title: Spyfall: Part Two<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 12<br />Episode: 4<br />Title: Nikola Tesla's Night of Terror<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 12<br />Episode: 8<br />Title: The Haunting of Villa Diodati<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11.5,11.5,12.5,12.5,11.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 12<br />Episode: 9<br />Title: Ascension of the Cybermen<br />Doctor: Thirteenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[1.5,2.5,2.5,1.5,1.5],"text":"Season: 2<br />Episode: 2<br />Title: New Earth<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1.5,1.5,2.5,2.5,1.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 2<br />Episode: 8<br />Title: The Idiot's Lantern<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[4.5,5.5,5.5,4.5,4.5],"text":"Season: 3<br />Episode: 5<br />Title: Daleks in Manhattan<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 3<br />Episode: 6<br />Title: Evolution of the Daleks<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 3<br />Episode: 7<br />Title: The Lazarus Experiment<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.5,2.5,3.5,3.5,2.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 3<br />Episode: 8<br />Title: 42<br />Doctor: Tenth","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 5<br />Episode: 3<br />Title: Victory of the Daleks<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 5<br />Episode: 6<br />Title: The Vampires of Venice<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 5<br />Episode: 8<br />Title: The Hungry Earth<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4.5,4.5,5.5,5.5,4.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 5<br />Episode: 9<br />Title: Cold Blood<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 6<br />Episode: 10<br />Title: Night Terrors<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 6<br />Episode: 4<br />Title: The Curse of the Black Spot<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[5.5,6.5,6.5,5.5,5.5],"text":"Season: 6<br />Episode: 6<br />Title: The Rebel Flesh<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5.5,5.5,6.5,6.5,5.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 6<br />Episode: 7<br />Title: The Almost People<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[0.5,1.5,1.5,0.5,0.5],"text":"Season: 7<br />Episode: 1<br />Title: The Doctor, the Widow and the Wardrobe<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[9.5,10.5,10.5,9.5,9.5],"text":"Season: 7<br />Episode: 10<br />Title: Cold War<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[11.5,12.5,12.5,11.5,11.5],"text":"Season: 7<br />Episode: 12<br />Title: Journey to the Centre of the TARDIS<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[12.5,13.5,13.5,12.5,12.5],"text":"Season: 7<br />Episode: 13<br />Title: The Crimson Horror<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[13.5,14.5,14.5,13.5,13.5],"text":"Season: 7<br />Episode: 14<br />Title: Nightmare in Silver<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[2.5,3.5,3.5,2.5,2.5],"text":"Season: 7<br />Episode: 3<br />Title: Dinosaurs on a Spaceship<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 7<br />Episode: 4<br />Title: A Town Called Mercy<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.5,6.5,7.5,7.5,6.5],"y":[8.5,9.5,9.5,8.5,8.5],"text":"Season: 7<br />Episode: 9<br />Title: The Rings of Akhaten<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[3.5,4.5,4.5,3.5,3.5],"text":"Season: 8<br />Episode: 4<br />Title: Robot of Sherwood<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[6.5,7.5,7.5,6.5,6.5],"text":"Season: 8<br />Episode: 7<br />Title: The Caretaker<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5,7.5,8.5,8.5,7.5],"y":[7.5,8.5,8.5,7.5,7.5],"text":"Season: 8<br />Episode: 8<br />Title: Kill the Moon<br />Doctor: Eleventh","type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"rgba(0,0,0,1)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,0,1)","hoveron":"fills","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2,2,8,9,11,11,11,11,11,11,11,11,12,12,12],"y":[11,12,11,10,3,5,7,8,9,10,11,12,6,7,10],"text":[6.1,5.9,6,5.8,6,5,6.4,6.2,5.6,6.1,5.1,5.7,5.2,5.8,5.5],"hovertext":["Season: 2<br />Episode: 11<br />Title: Love & Monsters<br />Doctor: Tenth","Season: 2<br />Episode: 12<br />Title: Fear Her<br />Doctor: Tenth","Season: 8<br />Episode: 11<br />Title: In the Forest of the Night<br />Doctor: Eleventh","Season: 9<br />Episode: 10<br />Title: Sleep No More<br />Doctor: Twelfth","Season: 11<br />Episode: 3<br />Title: The Ghost Monument<br />Doctor: Thirteenth","Season: 11<br />Episode: 5<br />Title: Arachnids in the UK<br />Doctor: Thirteenth","Season: 11<br />Episode: 7<br />Title: Demons of the Punjab<br />Doctor: Thirteenth","Season: 11<br />Episode: 8<br />Title: Kerblam!<br />Doctor: Thirteenth","Season: 11<br />Episode: 9<br />Title: The Witchfinders<br />Doctor: Thirteenth","Season: 11<br />Episode: 10<br />Title: It Takes You Away<br />Doctor: Thirteenth","Season: 11<br />Episode: 11<br />Title: The Battle of Ranskoor Av Kolos<br />Doctor: Thirteenth","Season: 11<br />Episode: 12<br />Title: Resolution<br />Doctor: Thirteenth","Season: 12<br />Episode: 6<br />Title: Praxeus<br />Doctor: Thirteenth","Season: 12<br />Episode: 7<br />Title: Can You Hear Me?<br />Doctor: Thirteenth","Season: 12<br />Episode: 10<br />Title: The Timeless Children<br />Doctor: Thirteenth"],"textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Bad","legendgroup":"Bad","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11,12],"y":[6,3],"text":[4.9,4.1],"hovertext":["Season: 11<br />Episode: 6<br />Title: The Tsuranga Conundrum<br />Doctor: Thirteenth","Season: 12<br />Episode: 3<br />Title: Orphan 55<br />Doctor: Thirteenth"],"textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Garbage","legendgroup":"Garbage","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,11,12],"y":[1,2,3,8,1,3,4,6,7,1,2,3,4,14,1,2,3,4,5,6,7,8,2,7,11,9,12,13,5,7,8,11,1,2,3,6,13,1,4,5,6,7,8,2,6,7,8,1,5],"text":[7.5,7.6,7.5,8.4,8.1,7.8,8.3,7.8,7.9,7.6,8,7.7,8,8.4,7.6,7.8,8,8.1,7.5,7.5,7.6,7.7,7.6,8.2,8.2,8,8.1,7.6,7.5,8.4,7.9,7.7,8.4,7.9,7.7,7.9,7.8,8.3,8.3,8,7.5,7.5,7.8,7.9,8.1,8.4,7.6,8.1,7.6],"hovertext":["Season: 1<br />Episode: 1<br />Title: Rose<br />Doctor: Ninth","Season: 1<br />Episode: 2<br />Title: The End of the World<br />Doctor: Ninth","Season: 1<br />Episode: 3<br />Title: The Unquiet Dead<br />Doctor: Ninth","Season: 1<br />Episode: 8<br />Title: Father's Day<br />Doctor: Ninth","Season: 2<br />Episode: 1<br />Title: The Christmas Invasion<br />Doctor: Tenth","Season: 2<br />Episode: 3<br />Title: Tooth and Claw<br />Doctor: Tenth","Season: 2<br />Episode: 4<br />Title: School Reunion<br />Doctor: Tenth","Season: 2<br />Episode: 6<br />Title: Rise of the Cybermen<br />Doctor: Tenth","Season: 2<br />Episode: 7<br />Title: The Age of Steel<br />Doctor: Tenth","Season: 3<br />Episode: 1<br />Title: The Runaway Bride<br />Doctor: Tenth","Season: 3<br />Episode: 2<br />Title: Smith and Jones<br />Doctor: Tenth","Season: 3<br />Episode: 3<br />Title: The Shakespeare Code<br />Doctor: Tenth","Season: 3<br />Episode: 4<br />Title: Gridlock<br />Doctor: Tenth","Season: 3<br />Episode: 14<br />Title: Last of the Time Lords<br />Doctor: Tenth","Season: 4<br />Episode: 1<br />Title: Voyage of the Damned<br />Doctor: Tenth","Season: 4<br />Episode: 2<br />Title: Partners in Crime<br />Doctor: Tenth","Season: 4<br />Episode: 3<br />Title: The Fires of Pompeii<br />Doctor: Tenth","Season: 4<br />Episode: 4<br />Title: Planet of the Ood<br />Doctor: Tenth","Season: 4<br />Episode: 5<br />Title: The Sontaran Stratagem<br />Doctor: Tenth","Season: 4<br />Episode: 6<br />Title: The Poison Sky<br />Doctor: Tenth","Season: 4<br />Episode: 7<br />Title: The Doctor's Daughter<br />Doctor: Tenth","Season: 4<br />Episode: 8<br />Title: The Unicorn and the Wasp<br />Doctor: Tenth","Season: 5<br />Episode: 2<br />Title: The Beast Below<br />Doctor: Eleventh","Season: 5<br />Episode: 7<br />Title: Amy's Choice<br />Doctor: Eleventh","Season: 5<br />Episode: 11<br />Title: The Lodger<br />Doctor: Eleventh","Season: 6<br />Episode: 9<br />Title: Let's Kill Hitler<br />Doctor: Eleventh","Season: 6<br />Episode: 12<br />Title: The God Complex<br />Doctor: Eleventh","Season: 6<br />Episode: 13<br />Title: Closing Time<br />Doctor: Eleventh","Season: 7<br />Episode: 5<br />Title: The Power of Three<br />Doctor: Eleventh","Season: 7<br />Episode: 7<br />Title: The Snowmen<br />Doctor: Eleventh","Season: 7<br />Episode: 8<br />Title: The Bells of Saint John<br />Doctor: Eleventh","Season: 7<br />Episode: 11<br />Title: Hide<br />Doctor: Eleventh","Season: 8<br />Episode: 1<br />Title: The Time of the Doctor<br />Doctor: Eleventh","Season: 8<br />Episode: 2<br />Title: Deep Breath<br />Doctor: Eleventh","Season: 8<br />Episode: 3<br />Title: Into the Dalek<br />Doctor: Eleventh","Season: 8<br />Episode: 6<br />Title: Time Heist<br />Doctor: Eleventh","Season: 8<br />Episode: 13<br />Title: Death in Heaven<br />Doctor: Eleventh","Season: 9<br />Episode: 1<br />Title: Last Christmas<br />Doctor: Twelfth","Season: 9<br />Episode: 4<br />Title: Under the Lake<br />Doctor: Twelfth","Season: 9<br />Episode: 5<br />Title: Before the Flood<br />Doctor: Twelfth","Season: 9<br />Episode: 6<br />Title: The Girl Who Died<br />Doctor: Twelfth","Season: 9<br />Episode: 7<br />Title: The Woman Who Lived<br />Doctor: Twelfth","Season: 9<br />Episode: 8<br />Title: The Zygon Invasion<br />Doctor: Twelfth","Season: 10<br />Episode: 2<br />Title: The Pilot<br />Doctor: Twelfth","Season: 10<br />Episode: 6<br />Title: Oxygen<br />Doctor: Twelfth","Season: 10<br />Episode: 7<br />Title: Extremis<br />Doctor: Twelfth","Season: 10<br />Episode: 8<br />Title: The Pyramid at the End of the World<br />Doctor: Twelfth","Season: 11<br />Episode: 1<br />Title: Twice Upon a Time<br />Doctor: Thirteenth","Season: 12<br />Episode: 5<br />Title: Fugitive of the Judoon<br />Doctor: Thirteenth"],"textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Good","legendgroup":"Good","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,6,7,7,7,8,8,8,8,9,9,9,9,9,9,9,10,10],"y":[6,9,10,12,13,5,9,10,13,14,9,10,11,12,13,9,10,11,12,13,14,1,4,5,10,12,13,1,2,3,5,8,11,14,2,6,15,5,9,10,12,2,3,9,11,12,13,14,12,13],"text":[8.7,9.2,9.1,8.7,9.1,9.3,8.7,8.8,8.5,9.3,9,9.2,9.8,8.7,8.7,9.4,9.5,9.1,8.9,9.1,9.2,8.8,8.7,8.6,9.3,9.1,9.1,8.5,8.9,8.8,9,9.1,8.5,8.5,8.6,9,9,8.9,8.5,8.5,8.6,8.5,8.5,8.5,8.5,9.6,8.6,8.5,9.2,9],"hovertext":["Season: 1<br />Episode: 6<br />Title: Dalek<br />Doctor: Ninth","Season: 1<br />Episode: 9<br />Title: The Empty Child<br />Doctor: Ninth","Season: 1<br />Episode: 10<br />Title: The Doctor Dances<br />Doctor: Ninth","Season: 1<br />Episode: 12<br />Title: Bad Wolf<br />Doctor: Ninth","Season: 1<br />Episode: 13<br />Title: The Parting of the Ways<br />Doctor: Ninth","Season: 2<br />Episode: 5<br />Title: The Girl in the Fireplace<br />Doctor: Tenth","Season: 2<br />Episode: 9<br />Title: The Impossible Planet<br />Doctor: Tenth","Season: 2<br />Episode: 10<br />Title: The Satan Pit<br />Doctor: Tenth","Season: 2<br />Episode: 13<br />Title: Army of Ghosts<br />Doctor: Tenth","Season: 2<br />Episode: 14<br />Title: Doomsday<br />Doctor: Tenth","Season: 3<br />Episode: 9<br />Title: Human Nature<br />Doctor: Tenth","Season: 3<br />Episode: 10<br />Title: The Family of Blood<br />Doctor: Tenth","Season: 3<br />Episode: 11<br />Title: Blink<br />Doctor: Tenth","Season: 3<br />Episode: 12<br />Title: Utopia<br />Doctor: Tenth","Season: 3<br />Episode: 13<br />Title: The Sound of Drums<br />Doctor: Tenth","Season: 4<br />Episode: 9<br />Title: Silence in the Library<br />Doctor: Tenth","Season: 4<br />Episode: 10<br />Title: Forest of the Dead<br />Doctor: Tenth","Season: 4<br />Episode: 11<br />Title: Midnight<br />Doctor: Tenth","Season: 4<br />Episode: 12<br />Title: Turn Left<br />Doctor: Tenth","Season: 4<br />Episode: 13<br />Title: The Stolen Earth<br />Doctor: Tenth","Season: 4<br />Episode: 14<br />Title: Journey's End<br />Doctor: Tenth","Season: 5<br />Episode: 1<br />Title: The Eleventh Hour<br />Doctor: Eleventh","Season: 5<br />Episode: 4<br />Title: The Time of Angels<br />Doctor: Eleventh","Season: 5<br />Episode: 5<br />Title: Flesh and Stone<br />Doctor: Eleventh","Season: 5<br />Episode: 10<br />Title: Vincent and the Doctor<br />Doctor: Eleventh","Season: 5<br />Episode: 12<br />Title: The Pandorica Opens<br />Doctor: Eleventh","Season: 5<br />Episode: 13<br />Title: The Big Bang<br />Doctor: Eleventh","Season: 6<br />Episode: 1<br />Title: A Christmas Carol<br />Doctor: Eleventh","Season: 6<br />Episode: 2<br />Title: The Impossible Astronaut<br />Doctor: Eleventh","Season: 6<br />Episode: 3<br />Title: Day of the Moon<br />Doctor: Eleventh","Season: 6<br />Episode: 5<br />Title: The Doctor's Wife<br />Doctor: Eleventh","Season: 6<br />Episode: 8<br />Title: A Good Man Goes to War<br />Doctor: Eleventh","Season: 6<br />Episode: 11<br />Title: The Girl Who Waited<br />Doctor: Eleventh","Season: 6<br />Episode: 14<br />Title: The Wedding of River Song<br />Doctor: Eleventh","Season: 7<br />Episode: 2<br />Title: Asylum of the Daleks<br />Doctor: Eleventh","Season: 7<br />Episode: 6<br />Title: The Angels Take Manhattan<br />Doctor: Eleventh","Season: 7<br />Episode: 15<br />Title: The Name of the Doctor<br />Doctor: Eleventh","Season: 8<br />Episode: 5<br />Title: Listen<br />Doctor: Eleventh","Season: 8<br />Episode: 9<br />Title: Mummy on the Orient Express<br />Doctor: Eleventh","Season: 8<br />Episode: 10<br />Title: Flatline<br />Doctor: Eleventh","Season: 8<br />Episode: 12<br />Title: Dark Water<br />Doctor: Eleventh","Season: 9<br />Episode: 2<br />Title: The Magician's Apprentice<br />Doctor: Twelfth","Season: 9<br />Episode: 3<br />Title: The Witch's Familiar<br />Doctor: Twelfth","Season: 9<br />Episode: 9<br />Title: The Zygon Inversion<br />Doctor: Twelfth","Season: 9<br />Episode: 11<br />Title: Face the Raven<br />Doctor: Twelfth","Season: 9<br />Episode: 12<br />Title: Heaven Sent<br />Doctor: Twelfth","Season: 9<br />Episode: 13<br />Title: Hell Bent<br />Doctor: Twelfth","Season: 9<br />Episode: 14<br />Title: The Husbands of River Song<br />Doctor: Twelfth","Season: 10<br />Episode: 12<br />Title: World Enough and Time<br />Doctor: Twelfth","Season: 10<br />Episode: 13<br />Title: The Doctor Falls<br />Doctor: Twelfth"],"textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Great","legendgroup":"Great","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,1,1,1,2,2,3,3,3,3,5,5,5,5,6,6,6,6,7,7,7,7,7,7,7,7,8,8,8,10,10,10,10,10,10,10,11,11,12,12,12,12,12],"y":[4,5,7,11,2,8,5,6,7,8,3,6,8,9,4,6,7,10,1,3,4,9,10,12,13,14,4,7,8,1,3,4,5,9,10,11,2,4,1,2,4,8,9],"text":[7,7,7.1,7.1,7.4,6.7,7,6.9,6.6,7.4,6.7,7,7.3,7.4,6.7,7.2,7.4,7,7.2,7.4,7.4,7.3,7.2,7.4,7.3,7.3,7,7.3,6.9,7.4,7.2,7.3,7.4,7.1,7,6.9,6.9,7,6.6,6.5,6.5,7.2,6.9],"hovertext":["Season: 1<br />Episode: 4<br />Title: Aliens of London<br />Doctor: Ninth","Season: 1<br />Episode: 5<br />Title: World War Three<br />Doctor: Ninth","Season: 1<br />Episode: 7<br />Title: The Long Game<br />Doctor: Ninth","Season: 1<br />Episode: 11<br />Title: Boom Town<br />Doctor: Ninth","Season: 2<br />Episode: 2<br />Title: New Earth<br />Doctor: Tenth","Season: 2<br />Episode: 8<br />Title: The Idiot's Lantern<br />Doctor: Tenth","Season: 3<br />Episode: 5<br />Title: Daleks in Manhattan<br />Doctor: Tenth","Season: 3<br />Episode: 6<br />Title: Evolution of the Daleks<br />Doctor: Tenth","Season: 3<br />Episode: 7<br />Title: The Lazarus Experiment<br />Doctor: Tenth","Season: 3<br />Episode: 8<br />Title: 42<br />Doctor: Tenth","Season: 5<br />Episode: 3<br />Title: Victory of the Daleks<br />Doctor: Eleventh","Season: 5<br />Episode: 6<br />Title: The Vampires of Venice<br />Doctor: Eleventh","Season: 5<br />Episode: 8<br />Title: The Hungry Earth<br />Doctor: Eleventh","Season: 5<br />Episode: 9<br />Title: Cold Blood<br />Doctor: Eleventh","Season: 6<br />Episode: 4<br />Title: The Curse of the Black Spot<br />Doctor: Eleventh","Season: 6<br />Episode: 6<br />Title: The Rebel Flesh<br />Doctor: Eleventh","Season: 6<br />Episode: 7<br />Title: The Almost People<br />Doctor: Eleventh","Season: 6<br />Episode: 10<br />Title: Night Terrors<br />Doctor: Eleventh","Season: 7<br />Episode: 1<br />Title: The Doctor, the Widow and the Wardrobe<br />Doctor: Eleventh","Season: 7<br />Episode: 3<br />Title: Dinosaurs on a Spaceship<br />Doctor: Eleventh","Season: 7<br />Episode: 4<br />Title: A Town Called Mercy<br />Doctor: Eleventh","Season: 7<br />Episode: 9<br />Title: The Rings of Akhaten<br />Doctor: Eleventh","Season: 7<br />Episode: 10<br />Title: Cold War<br />Doctor: Eleventh","Season: 7<br />Episode: 12<br />Title: Journey to the Centre of the TARDIS<br />Doctor: Eleventh","Season: 7<br />Episode: 13<br />Title: The Crimson Horror<br />Doctor: Eleventh","Season: 7<br />Episode: 14<br />Title: Nightmare in Silver<br />Doctor: Eleventh","Season: 8<br />Episode: 4<br />Title: Robot of Sherwood<br />Doctor: Eleventh","Season: 8<br />Episode: 7<br />Title: The Caretaker<br />Doctor: Eleventh","Season: 8<br />Episode: 8<br />Title: Kill the Moon<br />Doctor: Eleventh","Season: 10<br />Episode: 1<br />Title: The Return of Doctor Mysterio<br />Doctor: Twelfth","Season: 10<br />Episode: 3<br />Title: Smile<br />Doctor: Twelfth","Season: 10<br />Episode: 4<br />Title: Thin Ice<br />Doctor: Twelfth","Season: 10<br />Episode: 5<br />Title: Knock Knock<br />Doctor: Twelfth","Season: 10<br />Episode: 9<br />Title: The Lie of the Land<br />Doctor: Twelfth","Season: 10<br />Episode: 10<br />Title: Empress of Mars<br />Doctor: Twelfth","Season: 10<br />Episode: 11<br />Title: The Eaters of Light<br />Doctor: Twelfth","Season: 11<br />Episode: 2<br />Title: The Woman Who Fell to Earth<br />Doctor: Thirteenth","Season: 11<br />Episode: 4<br />Title: Rosa<br />Doctor: Thirteenth","Season: 12<br />Episode: 1<br />Title: Spyfall: Part One<br />Doctor: Thirteenth","Season: 12<br />Episode: 2<br />Title: Spyfall: Part Two<br />Doctor: Thirteenth","Season: 12<br />Episode: 4<br />Title: Nikola Tesla's Night of Terror<br />Doctor: Thirteenth","Season: 12<br />Episode: 8<br />Title: The Haunting of Villa Diodati<br />Doctor: Thirteenth","Season: 12<br />Episode: 9<br />Title: Ascension of the Cybermen<br />Doctor: Thirteenth"],"textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","name":"Regular","legendgroup":"Regular","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Doctor Who IMDb Ratings: 2005-2020","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,12.6],"tickmode":"array","ticktext":["1","2","3","4","5","6","7","8","9","10","11","12"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12],"categoryorder":"array","categoryarray":["1","2","3","4","5","6","7","8","9","10","11","12"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Season","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.25,16.25],"tickmode":"array","ticktext":["0","5","10","15"],"tickvals":[0,5,10,15],"categoryorder":"array","categoryarray":["0","5","10","15"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Episode #","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.913385826771654},"annotations":[{"text":"Quality","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"ae575f7c9ce3":{"x":{},"y":{},"fill":{},"text":{},"type":"scatter"},"ae576e202c0e":{"label":{},"x":{},"y":{},"fill":{},"text":{}}},"cur_data":"ae575f7c9ce3","visdat":{"ae575f7c9ce3":["function (y) ","x"],"ae576e202c0e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+
+<br><br><br><br>
+<p>Copyright &copy; 2020 David Brocker All rights reserved.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
