@@ -457,25 +457,17 @@ doctorwho_pltly &lt;- doctorwho %&gt;%
                      &quot;Title: &quot;, Title, &quot;\n&quot;,
                      &quot;Doctor: &quot;,Doctor))
 
-dw_p &lt;- doctorwho_pltly %&gt;% 
-  # Notice the text=text in the aesthetics
-  ggplot(aes(factor(Season),EpisodeNumber,fill=Quality,text=text)) +
+doctorwho %&gt;% 
+  ggplot(aes(factor(Season),EpisodeNumber,fill=Quality)) +
     geom_tile(colour=&quot;black&quot;)+
     geom_text(aes(label=Ratings))+
     scale_fill_manual(values=cols)+
   theme_classic()+
   theme(axis.ticks = element_blank()) +
     labs(x=&quot;Season&quot;,y=&quot;Episode #&quot;,
-         title=&quot;Doctor Who IMDb Ratings: 2005-2020&quot;)
-# This is what makes the plot interactive
-pp &lt;- ggplotly(dw_p,tooltip = &quot;text&quot;)  
- 
-#pp
-
-library(htmlwidgets)
-saveWidget(pp,&quot;DW_plot.html&quot;,selfcontained = F)</code></pre>
-<iframe src="DW_plot.html" style="position:absolute;height:100%;width:100%"">
-</iframe>
+         title=&quot;Doctor Who IMDb Ratings: 2005-2020&quot;)</code></pre>
+<p><img src="tvshow_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>For an interactvie plot, see <a href="DW_plot.html">here</a></p>
 </div>
 
 
