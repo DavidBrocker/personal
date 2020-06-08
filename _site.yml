@@ -8,7 +8,7 @@ navbar:
     - text: "R"
       href: RLearning.html
     - text: "Gallery"
-      href: Gallery.html
+      href: gallery.html
   right:
     - text: "Mail"
       icon: fa-envelope fa-lg
