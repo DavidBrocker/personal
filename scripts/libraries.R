@@ -1,0 +1,6 @@
+library("ggplot2")
+library("tidyverse")
+library("tidytext")
+library("stringr")
+library("rvest")
+library("here")
