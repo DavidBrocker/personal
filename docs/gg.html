@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>David Brocker - Introduction to ggplot</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><link rel="stylesheet" href="styles.css">
+<meta name="twitter:title" content="David Brocker - Introduction to ggplot">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="twitter.com/gg_files/figure-html/unnamed-chunk-2-1.png">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">David Brocker</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./courses.html" rel="" target="">
+ <span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research.html" rel="" target="">
+ <span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./basictut.html" rel="" target="">
+ <span class="menu-text">Basic Operations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./descript.html" rel="" target="">
+ <span class="menu-text">Descriptive Statistics</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./string.html" rel="" target="">
+ <span class="menu-text">String Manipulation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./gg.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Introduction to ggplot</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./vis1.html" rel="" target="">
+ <span class="menu-text">Visualizations: {Stringr}</span></a>
+  </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">bb.qmd</span>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./scrape.html" rel="" target="">
+ <span class="menu-text">scrape</span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#scatterplots" id="toc-scatterplots" class="nav-link active" data-scroll-target="#scatterplots">Scatterplots</a></li>
+  <li><a href="#heatmaps" id="toc-heatmaps" class="nav-link" data-scroll-target="#heatmaps">Heatmaps</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Introduction to ggplot</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="introduction-to-ggplot2" class="level4"><h4 class="anchored" data-anchor-id="introduction-to-ggplot2">Introduction to&nbsp;<code>ggplot2</code>
+</h4>
+<p>When I first started out with R, I only ever used the base plotting system. This was primarily because once I saw an example of a plot made with&nbsp;<code>ggplot</code>&nbsp;I was a little bit scared.</p>
+<p>After awhile I realized that&nbsp;<code>ggplot</code>&nbsp;was the way to go when it came to graphics. The goal of this is to hopefully assuage you to do the same!</p>
+<p>First, we will generate some data. I teach so we will use students and scores on a test and then look at how the students performed.</p>
+<p>Some of my colleagues use a 4 test grading scheme where each test is worth 25%. Let’s create a sample dataset with a class of 40 students and varying scores for each student as well as an average for each student.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/">forcats</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Exam_1<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">80</span>,<span class="fl">85</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Exam_2<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">75</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Exam_3<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">70</span>,<span class="fl">90</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Exam_4<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">60</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">test_data</span><span class="op">$</span><span class="va">FinalGrade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade
+1     81     75     77     70      75.75
+2     84     87     90     91      88.00
+3     83     82     74     91      82.50
+4     81     86     72     98      84.25
+5     83     84     77     99      85.75
+6     81     99     81     96      89.25</code></pre>
+</div>
+</div>
+<p>Let’s make a plot of the average score on each exam using the base plotting system.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get the means of each column (exam)</span></span>
+<span><span class="va">test_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">)</span></span>
+<span><span class="co"># Only use the first four exams</span></span>
+<span><span class="va">test_means</span> <span class="op">&lt;-</span> <span class="va">test_means</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">Exam_1m</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">$</span><span class="va">Exam_1</span><span class="op">)</span></span>
+<span><span class="va">Exam_2m</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">$</span><span class="va">Exam_2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">test_means</span><span class="op">)</span>,</span>
+<span>        names.arg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Exam 1"</span>,<span class="st">"Exam 2"</span>,<span class="st">"Exam 3"</span>,<span class="st">"Exam 4"</span><span class="op">)</span>,</span>
+<span>        col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>,<span class="st">"darkgreen"</span>,<span class="st">"darkorange"</span>,<span class="st">"darkred"</span><span class="op">)</span>,</span>
+<span>        density <span class="op">=</span> <span class="fl">40</span>,</span>
+<span>        ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span>,</span>
+<span>        xlab<span class="op">=</span><span class="st">"Exam Number"</span>,</span>
+<span>        ylab<span class="op">=</span><span class="st">"Score"</span>,</span>
+<span>        main<span class="op">=</span><span class="st">"Exam Score Averages"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="gg_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This does not look bad, but we could probably do better with&nbsp;<code>ggplot</code>.</p>
+<p>The first thing to note is the syntax that&nbsp;<code>ggplot</code>&nbsp;uses.</p>
+<p><code>ggplot(data,aes(x,y)) +   geom_() +   labs() +   theme_classic() +   theme()</code></p>
+<p>You will see here that each line is followed by a&nbsp;<code>+</code>&nbsp;which indicates that a new layer is being added. Let’s try this out using our dataframe. I will do it the way you will see it most places, and then afterwards only do it the shortened way:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Use the means we created before and add two line numbers</span></span>
+<span><span class="va">gg_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ExamNum<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Exam 1"</span>,<span class="st">"Exam 2"</span>,<span class="st">"Exam 3"</span>,<span class="st">"Exam 4"</span><span class="op">)</span>,</span>
+<span>  averages <span class="op">=</span> <span class="va">test_means</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># x-axis will be the test number, y will be the average </span></span>
+<span><span class="co"># The color will change based on value of the average</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">gg_test</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">ExamNum</span>,y<span class="op">=</span><span class="va">averages</span>,fill<span class="op">=</span><span class="va">averages</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="co"># Tells R to plot the value associated with the x-axis</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="co"># A nice theme </span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="co"># Specifies x and y axes labels and title for plot</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Exam Number"</span>,y<span class="op">=</span><span class="st">"Score"</span>,</span>
+<span>       title<span class="op">=</span><span class="st">"Exam Score Averages"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># Removes legend</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="co"># Specify limits </span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># Adds values from the averages vector and vertically adjusts</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">averages</span>,</span>
+<span>                vjust<span class="op">=</span><span class="op">-</span><span class="fl">.3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">.5</span>, </span>
+<span>                              size <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>                              face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="gg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I know that there is a <em>lot</em>&nbsp;going on in the example, but it just kind of looks nice, right?</p>
+<p>Let’s go back to the example and add some filtering. Let’s make a new column that determines whether or not a student passed or failed the test.</p>
+<p>When we first made the dataset we included a fifth column, FinalGrade that represents the students overall grade. We will then make a series of statements that will determine what the letter grade is, and then plot the result!</p>
+<p>We will be using the&nbsp;<code>%&gt;%</code>&nbsp;or pipe operator to pass the contents of&nbsp;<code>test_data</code>&nbsp;into our arranging.</p>
+<p>We will first use the&nbsp;<code>mutate</code>&nbsp;function which creates a new column based on the arguments you pass to it.</p>
+<p>We will also be using&nbsp;<code>case_when</code>&nbsp;which acts as an&nbsp;<code>ifelse</code>&nbsp;statement but with multiple conditionals.</p>
+<ul>
+<li>The basic structure is:&nbsp;<code>case_when(variable=this~make it this)</code>
+</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">test_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>LetterGrade<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">95</span><span class="op">~</span><span class="st">"A"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">90</span><span class="op">~</span><span class="st">"A-"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">87</span><span class="op">~</span><span class="st">"B+"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">84</span><span class="op">~</span><span class="st">"B"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">80</span><span class="op">~</span><span class="st">"B-"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">74</span><span class="op">~</span><span class="st">"C+"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">70</span><span class="op">~</span><span class="st">"C"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">67</span><span class="op">~</span><span class="st">"D+"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">64</span><span class="op">~</span><span class="st">"D"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">60</span><span class="op">~</span><span class="st">"D-"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&lt;</span><span class="fl">60</span><span class="op">~</span><span class="st">"F"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade LetterGrade
+1      81     75     77     70      75.75          C+
+2      84     87     90     91      88.00          B+
+3      83     82     74     91      82.50          B-
+4      81     86     72     98      84.25           B
+5      83     84     77     99      85.75           B
+6      81     99     81     96      89.25          B+
+7      84     91     76     83      83.50          B-
+8      85     92     71     63      77.75          C+
+9      80     83     72     77      78.00          C+
+10     84     78     80     82      81.00          B-
+11     83     99     81     68      82.75          B-
+12     84     78     82     64      77.00          C+
+13     84     91     88     96      89.75          B+
+14     81     82     82     90      83.75          B-
+15     85     86     88     64      80.75          B-
+16     82     86     84     73      81.25          B-
+17     84     83     83     94      86.00           B
+18     81     90     80     88      84.75           B
+19     81     91     87     63      80.50          B-
+20     85     88     77     92      85.50           B
+21     82     84     88     78      83.00          B-
+22     84     86     74     88      83.00          B-
+23     84     84     73     65      76.50          C+
+24     82     78     83     87      82.50          B-
+25     81     99     84     67      82.75          B-
+26     83     81     90     67      80.25          B-
+27     82     98     87     63      82.50          B-
+28     83     95     70     95      85.75           B
+29     80     93     89     71      83.25          B-
+30     82     91     73     93      84.75           B
+31     82     84     83     68      79.25          C+
+32     81     75     82     83      80.25          B-
+33     84     88     72     85      82.25          B-
+34     84     88     77     94      85.75           B
+35     83     97     71     84      83.75          B-
+36     83     95     78     75      82.75          B-
+37     84     79     75     91      82.25          B-
+38     82    100     85     73      85.00           B
+39     82     92     85     68      81.75          B-
+40     82     81     85     95      85.75           B</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">final_grade</span> <span class="op">&lt;-</span> <span class="va">test_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>LetterGrade<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">95</span><span class="op">~</span><span class="st">"A"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">90</span><span class="op">~</span><span class="st">"A-"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">87</span><span class="op">~</span><span class="st">"B+"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">84</span><span class="op">~</span><span class="st">"B"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">80</span><span class="op">~</span><span class="st">"B-"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">74</span><span class="op">~</span><span class="st">"C+"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">70</span><span class="op">~</span><span class="st">"C"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">67</span><span class="op">~</span><span class="st">"D+"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">64</span><span class="op">~</span><span class="st">"D"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&gt;=</span><span class="fl">60</span><span class="op">~</span><span class="st">"D-"</span>,</span>
+<span>    <span class="va">FinalGrade</span><span class="op">&lt;</span><span class="fl">60</span><span class="op">~</span><span class="st">"F"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">LetterGrade</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">final_grade</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+# Groups:   LetterGrade [4]
+  LetterGrade     n
+  &lt;chr&gt;       &lt;int&gt;
+1 B              10
+2 B+              3
+3 B-             21
+4 C+              6</code></pre>
+</div>
+</div>
+<p>Our students didn’t do particularly well, but that is to be expected when we control the range their grades can be in!</p>
+<p>Next, we will graph the data using&nbsp;<code>ggplot</code>, but this time we will pass the dataframe directly into the plot and remove the &nbsp;<code>x=</code>&nbsp;and&nbsp;<code>y=</code> declarations</p>
+<p>When we graph the results the letter grades will be backwards so we will need to use&nbsp;<code>fct_rev</code>&nbsp;to reverse them.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">final_grade</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># Place Grades on X axis and count on Y axis</span></span>
+<span>  <span class="co"># Color based on Letter Grade</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">LetterGrade</span><span class="op">)</span>,<span class="va">n</span>,fill<span class="op">=</span><span class="va">LetterGrade</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size<span class="op">=</span><span class="fl">12</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>,y<span class="op">=</span><span class="st">"Count"</span>,</span>
+<span>         title<span class="op">=</span><span class="st">"Letter Grade Frequency"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="co"># Flip the axes for better readability</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="co"># Remove the legend and the axis ticks</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span><span class="st">"none"</span>,</span>
+<span>          axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="co"># Add the count to the bars</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">n</span>,</span>
+<span>                  hjust<span class="op">=</span><span class="op">-</span><span class="fl">.08</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="gg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>I’m not entirely sure, but I think I’m just addicted to bar charts–but that’s <em>my</em>&nbsp;problem!</p>
+</section><section id="scatterplots" class="level3"><h3 class="anchored" data-anchor-id="scatterplots">Scatterplots</h3>
+<p>When I was first learning R in graduate school the class was given a task to plot points but in different colors depending on what gender the points came from. In base plotting this requires the use of not only the&nbsp;<code>plot</code>&nbsp;function but also the&nbsp;<code>points</code>&nbsp;function. It is entirely doable, but&nbsp;<code>ggplot</code>&nbsp;just handles it better!</p>
+<p>Let’s generate some data where we have hypothetical participants take an experiment where their reaction time is measured as well as their mood is measured.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scat_df</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    Sex<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>,<span class="st">"F"</span><span class="op">)</span>,<span class="fl">100</span>,replace <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,</span>
+<span>    RT<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">800</span>,<span class="fl">150</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span>,</span>
+<span>    TestScore<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">60</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">90</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">scat_df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sex      RT TestScore
+1     M  740.84        70
+2     F  824.85        81
+3     M  977.32        89
+4     F  983.64        83
+5     F  954.53        64
+6     F 1135.01        67
+7     F 1238.66        92
+8     M  934.69        95
+9     M  920.70        71
+10    F  657.51        81
+11    F  696.45        68
+12    F  686.58        77
+13    M  961.72        76
+14    M  783.74        73
+15    M  577.14        79
+16    M  936.96        73
+17    F  960.30        97
+18    F  811.17        92
+19    M  928.44        65
+20    F  832.58        73
+21    F  619.15       100
+22    M  756.87        61
+23    M  823.75        78
+24    F  821.05        69
+25    M  836.66        61
+26    M  935.22        86
+27    F  814.14        82
+28    F  982.85        99
+29    F  541.29        73
+30    M  760.71        66
+31    M  466.01        94
+32    F  637.62        72
+33    M  917.07        81
+34    M  811.05        86
+35    F  831.48        65
+36    F  682.24        98
+37    M  730.54        74
+38    F  902.77        68
+39    F  653.02        92
+40    M  871.98        65
+41    M  619.63        82
+42    F  787.32        69
+43    M  968.87        66
+44    F  787.45        77
+45    M  719.06        72
+46    F  673.00        73
+47    F  893.75        69
+48    M  896.50        86
+49    F 1087.69        89
+50    F  818.67        65
+51    M  839.87        70
+52    F 1153.98        79
+53    F  833.77        88
+54    M  542.64        51
+55    M 1070.14        66
+56    M  878.58        44
+57    F  672.40        76
+58    F  867.02        47
+59    M  700.63        65
+60    M  805.31        50
+61    F  548.53        56
+62    M  801.57        45
+63    F  609.79        79
+64    M  648.57        46
+65    F  858.18        52
+66    M  851.89        70
+67    M  720.19        82
+68    F  932.76        74
+69    F 1015.10        87
+70    F  854.16        86
+71    F  918.34        85
+72    M  648.22        59
+73    F  787.77        72
+74    F  691.55        81
+75    F  865.04        48
+76    F  684.61        46
+77    M  721.87        61
+78    M  860.27        74
+79    F  816.33        53
+80    M 1006.05        68
+81    F  718.43        47
+82    M  765.07        56
+83    F  875.86        82
+84    M  699.66        63
+85    F  773.67        79
+86    M 1018.07        77
+87    F  711.64        52
+88    M  860.27        80
+89    F  951.78        53
+90    F  773.64        52
+91    M  903.99        62
+92    F 1068.49        60
+93    M 1015.69        69
+94    F 1094.69        51
+95    M  660.86        71
+96    M  667.90        85
+97    M  929.31        87
+98    F  696.93        79
+99    F  748.91        82
+100   F  687.11        43</code></pre>
+</div>
+</div>
+<p>Plot Sex against RT and have the colors be linked to the Sex of the participant (point).</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scat_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">TestScore</span>,<span class="va">RT</span>,color<span class="op">=</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>shape<span class="op">=</span><span class="va">Sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Test Score"</span>,</span>
+<span>         y<span class="op">=</span><span class="st">"RT(ms)"</span>,</span>
+<span>         title<span class="op">=</span><span class="st">"RT and Test Scores"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="gg_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Clearly no real pattern is emerging from the data, but we can see a clear distinction between the different points.</p>
+</section><section id="heatmaps" class="level3"><h3 class="anchored" data-anchor-id="heatmaps">Heatmaps</h3>
+<p>One of my favorite&nbsp;<code>geom</code>’s to use is&nbsp;<code>geom_tile</code>&nbsp;which creates a heatmap style plot.</p>
+<p>Let’s create a fake TV show with fake episode titles and fake episode ratings.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dave_TV</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    Season<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"S"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">12</span><span class="op">)</span>,</span>
+<span>    Episode<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,<span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    Title<span class="op">=</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"The "</span>,</span>
+<span>                              <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">words</span>,<span class="fl">72</span><span class="op">)</span>,<span class="st">" "</span>,</span>
+<span>                              <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">words</span>,<span class="fl">72</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    Ratings<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">60</span>,<span class="fl">7.8</span>,<span class="fl">9</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">6</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>,</span>
+<span>    stringsAsFactors <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Dave_TV</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Season Episode                 Title Ratings
+1      S1       1      The Both Educate       9
+2      S1       2       The Match Sound       8
+3      S1       3       The Hate People       9
+4      S1       4          The You Back       8
+5      S1       5      The Result Stuff       8
+6      S1       6           The Go Pair       8
+7      S1       7  The Minister Correct       8
+8      S1       8         The Young Arm       8
+9      S1       9     The Except School       8
+10     S1      10     The Since Succeed       8
+11     S1      11        The File Agent       9
+12     S1      12      The Debate Point       9
+13     S2       1         The Tape Many       9
+14     S2       2       The Grant Final       9
+15     S2       3      The Farm Between       9
+16     S2       4      The Fund Process       9
+17     S2       5   The Moment Standard       9
+18     S2       6          The Can What       9
+19     S2       7      The Milk Science       8
+20     S2       8        The Which Kind       8
+21     S2       9  The Television Heart       8
+22     S2      10          The Tend Die       9
+23     S2      11        The Load Story       8
+24     S2      12     The Actual Second       9
+25     S3       1         The Area Feed       8
+26     S3       2      The Top Together       9
+27     S3       3    The Document Study       9
+28     S3       4       The Meaning Own       9
+29     S3       5     The Succeed Break       8
+30     S3       6    The Reason Balance       8
+31     S3       7 The Really Experience       9
+32     S3       8       The Listen Free       8
+33     S3       9       The Hell Indeed       8
+34     S3      10      The Flat Fortune       8
+35     S3      11       The Kitchen Few       9
+36     S3      12     The Answer Almost       8
+37     S4       1    The Blow Committee       9
+38     S4       2      The Eleven Count       8
+39     S4       3    The Positive Sleep       8
+40     S4       4          The Nine God       8
+41     S4       5          The Sit Real       9
+42     S4       6        The Say Manage       9
+43     S4       7  The Language Develop       9
+44     S4       8         The From Area       8
+45     S4       9         The Yes Stand       8
+46     S4      10        The Hand Today       8
+47     S4      11   The Again Telephone       9
+48     S4      12     The Every Instead       9
+49     S5       1 The Measure Difficult       9
+50     S5       2        The Much Apart       9
+51     S5       3        The About Hold       8
+52     S5       4        The Baby Eight       8
+53     S5       5     The Explain World       8
+54     S5       6       The Society Put       8
+55     S5       7 The Function Function       9
+56     S5       8      The Respect Cold       8
+57     S5       9        The Side Until       8
+58     S5      10       The Happen Hair       8
+59     S5      11    The But Department       8
+60     S5      12 The Secretary Realise       8
+61     S6       1      The Sick Collect       6
+62     S6       2         The Rail Team       9
+63     S6       3     The Main Organize       7
+64     S6       4        The Pack Often       9
+65     S6       5        The Refer Find       7
+66     S6       6      The Hundred Keep       7
+67     S6       7     The Change Sudden       7
+68     S6       8         The Press Bar       8
+69     S6       9       The Left Moment       8
+70     S6      10       The Term Though       7
+71     S6      11       The Beauty Away       8
+72     S6      12           The One Age       6</code></pre>
+</div>
+</div>
+<p>Firstly, I want to take a moment to see how truly excellent some of the episode titles are:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">title_samp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Dave_TV</span><span class="op">$</span><span class="va">Title</span>,<span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">title_samp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "The Fund Process"      "The Again Telephone"   "The Measure Difficult"
+ [4] "The Side Until"        "The Moment Standard"   "The Baby Eight"       
+ [7] "The Answer Almost"     "The Refer Find"        "The Respect Cold"     
+[10] "The Grant Final"      </code></pre>
+</div>
+</div>
+<p>Anyways, now that our data is in the correct format we can plot it.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Dave_TV</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Season</span>,<span class="va">Episode</span>,fill<span class="op">=</span><span class="va">Ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">Ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient</a></span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>,high<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="gg_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There could be an entirely separate tutorial on just color choices in&nbsp;<code>ggplot2</code>.</p>
+<p>Here is one last iteration that uses conditional values to color each episode or tile.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cols</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Bad"</span><span class="op">=</span><span class="st">"red2"</span>,</span>
+<span>       <span class="st">"Garbage"</span> <span class="op">=</span><span class="st">"darkblue"</span>,</span>
+<span>       <span class="st">"Great"</span> <span class="op">=</span><span class="st">"darkgreen"</span>,</span>
+<span>       <span class="st">"Regular"</span><span class="op">=</span><span class="st">"darkorange"</span>, </span>
+<span>       <span class="st">"Good"</span> <span class="op">=</span><span class="st">"gold"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Dave_TV</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Quality<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">Ratings</span><span class="op">&lt;</span><span class="fl">5.0</span> <span class="op">~</span> <span class="st">"Garbage"</span>,</span>
+<span>      <span class="va">Ratings</span><span class="op">&lt;</span><span class="fl">6.5</span> <span class="op">~</span> <span class="st">"Bad"</span>,</span>
+<span>      <span class="va">Ratings</span><span class="op">&lt;</span><span class="fl">7.5</span> <span class="op">~</span> <span class="st">"Regular"</span>,</span>
+<span>      <span class="va">Ratings</span><span class="op">&lt;</span><span class="fl">8.5</span> <span class="op">~</span> <span class="st">"Good"</span>,</span>
+<span>      <span class="va">Ratings</span><span class="op">&lt;</span><span class="fl">10</span> <span class="op">~</span> <span class="st">"Great"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Season</span>,<span class="va">Episode</span>,fill<span class="op">=</span><span class="va">Quality</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"black"</span>,size<span class="op">=</span><span class="fl">.085</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="va">Ratings</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="va">cols</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>,y<span class="op">=</span><span class="st">""</span>,</span>
+<span>        title<span class="op">=</span><span class="st">"Dave TV Episode Ratings"</span>,</span>
+<span>        caption<span class="op">=</span><span class="st">"Data from IAmDb)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="gg_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So there you have it, a very <em>brief</em>&nbsp;introduction to&nbsp;<code>ggplot</code>. As my own projects expand, I will include new sections or add more examples here.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
+
+
+</body></html>
