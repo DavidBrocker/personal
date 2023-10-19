@@ -1,0 +1,24 @@
+---
+title: "Teaching"
+editor: visual
+---
+
+I have taught three classes as a lab instructor:
+
+1.  **Statistics for the Psychological Sciences** - SPSS-Approach
+
+2.  **Experimental Psychology**
+
+3.  **Statistics for the Psychological Sciences** - R-Approach
+
+I am currently teaching three courses as a full instructor:
+
+1.  **Introduction to Psychology**
+
+2.  **Research Methods**
+
+3.  **Senior Project II - Applied Psychology**
+
+### Teaching Materials
+
+[Entire Course in R](https://davidbrocker.github.io/DBPSYC3400/)

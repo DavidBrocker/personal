@@ -1,0 +1,277 @@
+---
+title: "Introduction to ggplot"
+editor: visual
+filters:
+- webr
+- lightbox
+---
+
+#### Introduction to `ggplot2`
+
+When I first started out with R, I only ever used the base plotting system. This was primarily because once I saw an example of a plot made with `ggplot` I was a little bit scared.
+
+After awhile I realized that `ggplot` was the way to go when it came to graphics. The goal of this is to hopefully assuage you to do the same!
+
+First, we will generate some data. I teach so we will use students and scores on a test and then look at how the students performed.
+
+Some of my colleagues use a 4 test grading scheme where each test is worth 25%. Let's create a sample dataset with a class of 40 students and varying scores for each student as well as an average for each student.
+
+```{r}
+library(ggplot2)
+library(forcats)
+library(stringr)
+library(dplyr)
+test_data <- data.frame(
+  Exam_1=round(runif(40,80,85)),
+  Exam_2=round(runif(40,75,100)),
+  Exam_3=round(runif(40,70,90)),
+  Exam_4=round(runif(40,60,100)))
+
+test_data$FinalGrade <- rowMeans(test_data)
+
+head(test_data)
+```
+
+Let's make a plot of the average score on each exam using the base plotting system.
+
+```{r}
+# Get the means of each column (exam)
+test_means <- colMeans(test_data)
+# Only use the first four exams
+test_means <- test_means[1:4]
+
+Exam_1m=mean(test_data$Exam_1)
+Exam_2m=mean(test_data$Exam_2)
+
+barplot(c(test_means),
+        names.arg = c("Exam 1","Exam 2","Exam 3","Exam 4"),
+        col=c("darkblue","darkgreen","darkorange","darkred"),
+        density = 40,
+        ylim = c(0,100),
+        xlab="Exam Number",
+        ylab="Score",
+        main="Exam Score Averages")
+```
+
+This does not look bad, but we could probably do better with `ggplot`.
+
+The first thing to note is the syntax that `ggplot` uses.
+
+`ggplot(data,aes(x,y)) +   geom_() +   labs() +   theme_classic() +   theme()`
+
+You will see here that each line is followed by a `+` which indicates that a new layer is being added. Let's try this out using our dataframe. I will do it the way you will see it most places, and then afterwards only do it the shortened way:
+
+```{r}
+# Use the means we created before and add two line numbers
+gg_test <- data.frame(ExamNum=c("Exam 1","Exam 2","Exam 3","Exam 4"),
+  averages = test_means)
+
+
+# x-axis will be the test number, y will be the average 
+# The color will change based on value of the average
+ggplot(data=gg_test,aes(x=ExamNum,y=averages,fill=averages))+
+  # Tells R to plot the value associated with the x-axis
+  geom_bar(stat="identity")+
+  # A nice theme 
+  theme_minimal()+
+  # Specifies x and y axes labels and title for plot
+  labs(x="Exam Number",y="Score",
+       title="Exam Score Averages") +
+  # Removes legend
+  theme(legend.position = "none")+
+  # Specify limits 
+  ylim(0,100) +
+  # Adds values from the averages vector and vertically adjusts
+  geom_text(aes(label=averages,
+                vjust=-.3)) +
+  theme(
+    axis.text.y = element_blank(),
+    plot.title = element_text(hjust = .5, 
+                              size = 15,
+                              face = "bold")
+  )
+```
+
+I know that there is a *lot* going on in the example, but it just kind of looks nice, right?
+
+Let's go back to the example and add some filtering. Let's make a new column that determines whether or not a student passed or failed the test.
+
+When we first made the dataset we included a fifth column, FinalGrade that represents the students overall grade. We will then make a series of statements that will determine what the letter grade is, and then plot the result!
+
+We will be using the `%>%` or pipe operator to pass the contents of `test_data` into our arranging.
+
+We will first use the `mutate` function which creates a new column based on the arguments you pass to it.
+
+We will also be using `case_when` which acts as an `ifelse` statement but with multiple conditionals.
+
+-   The basic structure is: `case_when(variable=this~make it this)`
+
+```{r}
+test_data %>% 
+  mutate(LetterGrade=case_when(
+    FinalGrade>=95~"A",
+    FinalGrade>=90~"A-",
+    FinalGrade>=87~"B+",
+    FinalGrade>=84~"B",
+    FinalGrade>=80~"B-",
+    FinalGrade>=74~"C+",
+    FinalGrade>=70~"C",
+    FinalGrade>=67~"D+",
+    FinalGrade>=64~"D",
+    FinalGrade>=60~"D-",
+    FinalGrade<60~"F"))
+```
+
+```{r}
+final_grade <- test_data %>% 
+  mutate(LetterGrade=case_when(
+    FinalGrade>=95~"A",
+    FinalGrade>=90~"A-",
+    FinalGrade>=87~"B+",
+    FinalGrade>=84~"B",
+    FinalGrade>=80~"B-",
+    FinalGrade>=74~"C+",
+    FinalGrade>=70~"C",
+    FinalGrade>=67~"D+",
+    FinalGrade>=64~"D",
+    FinalGrade>=60~"D-",
+    FinalGrade<60~"F")) %>% 
+    group_by(LetterGrade) %>% 
+    count()
+
+final_grade
+```
+
+Our students didn't do particularly well, but that is to be expected when we control the range their grades can be in!
+
+Next, we will graph the data using `ggplot`, but this time we will pass the dataframe directly into the plot and remove the  `x=` and `y=` declarations
+
+When we graph the results the letter grades will be backwards so we will need to use `fct_rev` to reverse them.
+
+```{r}
+final_grade %>% 
+  # Place Grades on X axis and count on Y axis
+  # Color based on Letter Grade
+  ggplot(aes(fct_rev(LetterGrade),n,fill=LetterGrade)) +
+    geom_bar(stat="identity") +
+    theme_minimal(base_size=12) +
+    labs(x="",y="Count",
+         title="Letter Grade Frequency") +
+    # Flip the axes for better readability
+    coord_flip() +
+    # Remove the legend and the axis ticks
+    theme(legend.position ="none",
+          axis.ticks = element_blank()) +
+    # Add the count to the bars
+    geom_text(aes(label=n,
+                  hjust=-.08)) +
+  theme(
+    axis.text.x = element_blank()
+  )
+```
+
+I'm not entirely sure, but I think I'm just addicted to bar charts--but that's *my* problem!
+
+### Scatterplots
+
+When I was first learning R in graduate school the class was given a task to plot points but in different colors depending on what gender the points came from. In base plotting this requires the use of not only the `plot` function but also the `points` function. It is entirely doable, but `ggplot` just handles it better!
+
+Let's generate some data where we have hypothetical participants take an experiment where their reaction time is measured as well as their mood is measured.
+
+```{r}
+scat_df <- 
+  data.frame(
+    Sex=sample(c("M","F"),100,replace = T),
+    RT=round(rnorm(100,800,150),2),
+    TestScore=c(round(runif(50,60,100)),
+                round(runif(50,40,90)))
+)
+scat_df
+```
+
+Plot Sex against RT and have the colors be linked to the Sex of the participant (point).
+
+```{r}
+scat_df %>% 
+  ggplot(aes(TestScore,RT,color=Sex)) +
+    geom_point(aes(shape=Sex)) +
+    theme_minimal() +
+    labs(x="Test Score",
+         y="RT(ms)",
+         title="RT and Test Scores")
+```
+
+Clearly no real pattern is emerging from the data, but we can see a clear distinction between the different points.
+
+### Heatmaps
+
+One of my favorite `geom`'s to use is `geom_tile` which creates a heatmap style plot.
+
+Let's create a fake TV show with fake episode titles and fake episode ratings.
+
+```{r}
+Dave_TV <- 
+  data.frame(
+    Season=rep(paste0("S",1:6),each=12),
+    Episode=as.factor(rep(1:12,6)),
+    Title=str_to_title(paste0("The ",
+                              sample(words,72)," ",
+                              sample(words,72))),
+    Ratings=c(runif(60,7.8,9),runif(12,6,9)) |> round(0),
+    stringsAsFactors = F)
+
+Dave_TV
+```
+
+Firstly, I want to take a moment to see how truly excellent some of the episode titles are:
+
+```{r}
+title_samp <- sample(Dave_TV$Title,10)
+title_samp
+```
+
+Anyways, now that our data is in the correct format we can plot it.
+
+```{r}
+Dave_TV %>% 
+  ggplot(aes(Season,Episode,fill=Ratings)) +
+    geom_tile(size=1) +
+    theme_minimal() +
+    geom_text(aes(label=Ratings)) +
+    theme(axis.ticks = element_blank())+
+    scale_fill_gradient(low="yellow",high="blue")
+```
+
+There could be an entirely separate tutorial on just color choices in `ggplot2`.
+
+Here is one last iteration that uses conditional values to color each episode or tile.
+
+```{r}
+cols=c("Bad"="red2",
+       "Garbage" ="darkblue",
+       "Great" ="darkgreen",
+       "Regular"="darkorange", 
+       "Good" ="gold")
+
+Dave_TV %>% 
+  mutate(Quality=case_when(
+      Ratings<5.0 ~ "Garbage",
+      Ratings<6.5 ~ "Bad",
+      Ratings<7.5 ~ "Regular",
+      Ratings<8.5 ~ "Good",
+      Ratings<10 ~ "Great")) %>% 
+  ggplot(aes(Season,Episode,fill=Quality)) +
+    geom_tile(color="black",size=.085) +
+    theme_minimal() +
+    geom_text(aes(label=Ratings)) +
+    theme(axis.ticks = element_blank()) +
+    scale_fill_manual(values=cols) +
+    labs(x="",y="",
+        title="Dave TV Episode Ratings",
+        caption="Data from IAmDb)") +
+  theme(
+    plot.caption = element_text(face = "italic")
+  )
+```
+
+So there you have it, a very *brief* introduction to `ggplot`. As my own projects expand, I will include new sections or add more examples here.

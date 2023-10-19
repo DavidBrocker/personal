@@ -1,0 +1,353 @@
+---
+title: "String Manipulation"
+editor: visual
+filters:
+- webr
+---
+
+#### String Manipulation: Introduction to `stringr` and regular expressions.
+
+## Some primer on why regex is useful
+
+```{webr-r}
+library(stringr)
+library(stringi)
+```
+
+```{webr-r}
+# Create a string
+x <- "Here is a sentence, let us use it for this example."
+```
+
+#### Case Manipulation
+
+```{webr-r}
+# Convert the string to lowercase
+str_to_lower(x)
+```
+
+```{webr-r}
+# uppercase
+str_to_upper(x)
+```
+
+```{webr-r}
+# title case
+str_to_title(x)
+```
+
+```{webr-r}
+# Find the length of the string
+str_length(x)
+```
+
+It might be of interest to see how long the sentence is in terms of how many letters each word is
+
+```{webr-r}
+# First we need to split the string into words
+# Note: strsplit converts the vector into a list
+# Wrap it unist()
+x_split <- unlist(strsplit(x, " "))
+```
+
+Now the sentence is a string vector, so the `str_length` function will vectorize it
+
+```{webr-r}
+str_length(x_split)
+```
+
+#### String Manipulation
+
+```{webr-r}
+# Suffix
+str_c(x_split,"hello",sep=" ")
+```
+
+```{webr-r}
+str_c(x_split,"hello",sep="")
+```
+
+```{webr-r}
+# Prefix
+str_c("hello",x_split,sep=" ")
+```
+
+```{webr-r}
+str_c("hello",x_split,sep="")
+```
+
+```{webr-r}
+# Sort the sentence from A-Z
+str_sort(x_split)
+```
+
+#### **Regular Expression Glossary:**
+
+##### Looking for numbers
+
+`\\d` and `[0-9]`
+
+###### Example:
+
+```{webr-r}
+d <- "Hi I am 27 years and and 354 days old"
+# Each number is preceded by a boundary
+# We can use [0-9] or \\d
+str_match_all(d,"\\b[0-9]+\\b | \\b\\d+\\b")
+```
+
+##### Looking for boundary character
+
+`\\b`
+
+###### Example:
+
+```{webr-r}
+# Look for the boundaries
+b <- "Where are the boundaries here?"
+str_match_all(b,"\\b")
+```
+
+```{webr-r}
+# Look for everything BUT the boundaires
+str_match_all(b,"[^\\b]")
+```
+
+##### Looking for word characters
+
+`\\w`
+
+###### Example:
+
+```{webr-r}
+w <- "This is a sample text and a sample"
+str_match_all(w,"\\w")
+```
+
+##### Look for characters in the range of a-z (case-sensitive)
+
+`[a-z]`
+
+###### Example:
+
+```{webr-r}
+# The [a-z] is useful to look for characters in that range
+# but it can be modfied to specifics
+az <- "Match all of this"
+str_match_all(az,"[aA-zZ]")
+```
+
+```{webr-r}
+# Check for just vowels
+str_match_all(az,"[aeiou]")
+```
+
+```{webr-r}
+# Check for just consonants
+str_match_all(az,"[^aeiou]")
+```
+
+##### Look for characters in the range of A-Z (case-sensitive)
+
+`[A-Z]`
+
+##### Look for characters in the range of A-Z *and* a-z (case-sensitive)
+
+`[aA-zZ]`
+
+##### Match your pattern exactly n times
+
+`{n}`
+
+##### Match your pattern \>= n
+
+`{n,}`
+
+##### Match your pattern between n and k times
+
+`{n,k}`
+
+###### Example:
+
+```{webr-r}
+match <- "Flames can engulf surroundings in an instant"
+# Match word characters 3 times
+str_match_all(match,"\\w{3}")
+```
+
+```{webr-r}
+# Match word characters 3 or more times
+str_match_all(match,"\\w{3,}")
+```
+
+```{webr-r}
+# Match word characters between 3 and 5 times
+str_match_all(match,"\\w{3,5}")
+```
+
+##### Keep matching until you encounter a new pattern
+
+`+`
+
+```{webr-r}
+plus <- "Get the entire word of strings that start with a vowel"
+# The usage of + keeps matching \w characters until it encounters something else
+str_match_all(plus,"\\b[aeiou]\\w+")
+```
+
+```{webr-r}
+# Same thing but negate vowels and look for consonants
+str_match_all(plus,"\\b[^aeiou]\\w+")
+```
+
+```{webr-r}
+# Match full words of non-vowel characters
+# Try this with numbers
+plus_num <- "Alpha Centauri is 4 light years away which is approxamitely 150000000 miles away"
+str_match_all(plus_num,"\\d+")
+```
+
+##### Match any character except for line break. Useful when you don't know how many characters are in the pattern
+
+`.`
+
+```{webr-r}
+dot <- "Match this text"
+str_match_all(dot,".")
+```
+
+```{webr-r}
+# This will match two word characters
+str_match_all(dot,"\\w.")
+```
+
+##### Match zero or more times
+
+`*`
+
+```{webr-r}
+star <- "Just keep matching"
+str_match_all(star,"\\w*")
+```
+
+##### Match start of a string
+
+`^`
+
+###### Example: WHY DOES THIS NOT WORK?
+
+```{webr-r}
+start <- "What letter does each word start with?"
+str_match_all(start,"\\b^[aA-zZ]\\b")
+```
+
+##### Match end of a string
+
+`$`
+
+###### Example:
+
+```{webr-r}
+end <- "Match words that end with a vowel here"
+str_match_all(end,"\\b\\w+[aeiou]$")
+```
+
+```{webr-r}
+# Try to search for a particular suffix
+ing <- "I'm looking for a way to start bringing the king and queen some good stuff"
+unlist(str_match_all(ing,"(\\w+ing)"))
+```
+
+#### Regular Expressions
+
+Replace a word with something else, we will return the string into sentence format
+
+```{webr-r}
+x_sent <- str_flatten(x_split," ")
+```
+
+Replace any three letter word with "cake"
+
+```{webr-r}
+str_replace(x_sent,"\\b\\w{2}\\b","cake")
+```
+
+```{webr-r}
+# This only replaces one instance
+
+str_replace_all(x_sent,"\\b\\w{2}\\b","cake")
+```
+
+#### Remove a pattern
+
+```{webr-r}
+# Remove any word that starts with a vowel
+str_remove_all(x_sent,"\\b[aeiou]\\w+")
+```
+
+```{webr-r}
+# Remove any word greater than 5 letters
+str_remove_all(x_sent,"\\b\\w{5,}\\b")
+```
+
+#### Detect
+
+Does anything in your string match this pattern
+
+```{webr-r}
+# Returns items that match
+unlist(str_match_all(x_sent,"\\b[aeiou]\\w+"))
+```
+
+```{webr-r}
+# Returns logical
+str_detect(x_sent,"\\b[aeiou]\\w+")
+```
+
+#### Using `stringi` to generate passwords
+
+`stri_rand_strings` accepts the following arguments:
+
+-   `n`: The number of strings you want to make
+
+-   `length`: The length of the string you want
+
+-   `pattern`: The pattern you want to match
+
+```{webr-r}
+# Make 10 strings that are 8 characters long, with
+# 6 numbers and 2 letters in the range [aA-zZ]
+paste0(stri_rand_strings(10,6,"[0-9]"),
+      stri_rand_strings(10,2,"[aA-zZ:]"))
+```
+
+#### String Manipulation: Use Cases - String Extraction
+
+Imagine that you were given the following dataset:
+
+```{webr-r}
+        filename label
+1  (IMG_366.JPG)     z
+2  (IMG_365.JPG)     x
+3  (IMG_547.JPG)     i
+4  (IMG_288.JPG)     o
+5  (IMG_240.JPG)     a
+6  (IMG_445.JPG)     f
+7  (IMG_386.JPG)     w
+8  (IMG_646.JPG)     d
+9  (IMG_199.JPG)     v
+10 (IMG_697.JPG)     u
+```
+
+Your task is to extract *just* the numbers. You could do it one of two ways:
+
+```{webr-r}
+# Use | to indicate a logical OR
+str_remove_all(str_df$filename,"\\(IMG_|\\.|JPG\\)")
+```
+
+```{webr-r}
+unlist(str_match_all(str_df$filename,"\\d{1,}"))
+```
+
+Both methods return the same values, but with fewer needed regular expressions to match in the second example

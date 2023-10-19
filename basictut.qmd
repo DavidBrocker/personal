@@ -1,0 +1,181 @@
+---
+title: "Basic Operations"
+editor: visual
+filters: 
+  - webr
+---
+
+::: callout-note
+**Note:** Today we will go through how to install R-Studio, use the console for basic math, and store expressions and calculations as variables..
+:::
+
+## **Installing and Navigating R and R-Studio**
+
+::: callout-important
+*In order to get the confusion out of the way, when we are working in R-Studio, we are going to just call it R. There are two distinct programs, R and R-Studio. The differences is that R does not have a Graphical User Interface. This means that there are no dialog boxes or viewer panes built in. I prefer using R-Studio because it alots a few more options to the user.*
+:::
+
+1.  You will first need to [install R](https://cran.rstudio.com/). Make sure to note the operating system you are working on when doing so.
+
+2.  Once R is installed, you will need to [install R-Studio](https://www.rstudio.com/products/rstudio/download/#download).
+
+3.  When you open R you will see that there are three large boxes on the screen. The largest box on the left is the `Console`. This is where whatever you type will be evaluated by the program and when you press `Enter`, a result will appear below what you have typed.
+
+::: callout-note
+Try it out: Type your name into the console and press Enter. Do you notice that you get an error message? Why do you think this is?
+:::
+
+4.  The area on the right is divided into two parts: A tabset with the options; `Environment`,`History`,`Connections`, and `Build`. Additionally, there is a tabset directly below with the options; `Files`, `Plots`, `Packages`, `Help`, and `Viewer`.
+
+For the moment, we will only be paying attention to the `Console`.
+
+### **Basic Math**
+
+It may seem trivial at first, but it is good to know that the `Console` in R has an interface that acts as a calculator. The green text is what is typed into the console, and the black text, preceded by \[1\] is the result of the expression.
+
+```{webr-r}
+# Addition
+1+1
+```
+
+```{webr-r}
+# Subtraction
+4-1
+```
+
+```{webr-r}
+# Multiplication
+10*3
+```
+
+```{webr-r}
+# Division
+40/4
+```
+
+```{webr-r}
+# Exponentiation
+10^2
+```
+
+R will also follow the order of expressions, or how must of us know it: PEMDAS (Parentheses, exponents, multiplication, division, addition, and subtraction). This is especially important if you ever do a long formula.
+
+```{webr-r}
+12-(3+4)
+5*3-2
+20*2/6+5
+(3+1)+3*2-(12/4) 
+```
+
+### **Variables**
+
+Any expression you type into the console can be stored as a variable, which can be called later on. These variables can also be used in conjunction with different math expressions. It is important to note that when creating a variable, the variable can be used interchangably with the number(s) stored inside of it.
+
+::: callout-note
+*Note that the way we assign a number or object to a variable is by using `<-`. You can also use `=`, but as you will see in later seminars, the former option is a little more powerful.*
+
+You can use the shortcut: Option + Minus (Mac) \| Alt + Minus (PC)
+:::
+
+```{webr-r}
+x <- 2+2
+x
+```
+
+```{webr-r}
+x-1
+# You can create separate variables that use existing variables as a reference
+y <- x*4
+
+# You can multiply
+x*y
+
+# Divide
+x/y
+```
+
+::: callout-tip
+**Try it out:** Create a variable called `Name` and have this equal your name. After you have done, type the variable `Name` and press enter.
+:::
+
+```{webr-r}
+name <- 
+```
+
+You most likley got an error message. Here is why...
+
+### **Data Types**
+
+In R, there are different data types or classes that R will recognize. We will first focus on `Numeric` and `Character`. Take note of the `class()`function that identify how `R` evalutes this variable.
+
+```{webr-r}
+# Numeric
+x <- 2
+class(x)
+```
+
+```{webr-r}
+# Character
+y <- "hello world"
+class(y)
+```
+
+Now that we know that `R` evaluates different types of data in different ways, let us try out the Name exercise again.
+
+```{webr-r}
+Name <-  "Hello, my name is David"
+Name
+```
+
+Perfect!
+
+The reason that it would not work before is because `R` has no way of knowing what you are trying to type unless you explicitly tell it that you are trying to type a name, which is a character, denoted by two quotation marks.
+
+::: callout-tip
+**Try it out:** Create a variable with the following numbers: 1,1,2,3,5,8,13 and store it under the name `Fib`. Type `Fib` back into the console and press `Enter`.
+:::
+
+You probably were greeted with another error message. This is because `R` has no way of knowing that you want to display 7 distinct numbers. To get around this we have to do something called \"concatenation\".
+
+If we want to create a variable with more than one number, or object, inside of it we need to concatenate or combine that data first. In `R` this is done using the `c()` function. We can also call an object containing several unique numbers, a `vector`.
+
+```{webr-r}
+fib <- c(1,1,2,3,5,8,13)
+fib
+```
+
+By using the `c()` function, we are telling `R` to take these numbers (separated by a comma) and combine them so that they are all included in the variable, but still have their individuality.
+
+If you wanted to see what the 5^th^ number was in the `Fib`, you would put a bracket `[]`next to the variable name. Inside of the brackets you would put the position you wanted to see.
+
+```{webr-r}
+# Position 4
+fib[4]
+
+# Position 2
+fib[2]
+
+# Positin 1 through 3
+fib[1:3]
+```
+
+::: callout-tip
+**Try it out:** Create a numeric vector named `Add3` containing the numbers, 1,4,6,9. How could we go about adding 3 to each number in this vector?
+:::
+
+```{r}
+
+```
+
+::: callout-note
+It was mentioned before that the variables take on the properties of the objects in which they are created from. What this means is that if I declare `x <- 3`, `x + 3`, my result should be 6. With this in mind, the same should work on a group of numbers.
+:::
+
+```{webr-r}
+
+add3 + 3
+```
+
+::: callout-important
+This is *especially* helpful when you are dealing with data that you need to transform. We will learn about data transformation in later seminars.
+:::

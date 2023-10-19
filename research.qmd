@@ -1,0 +1,12 @@
+---
+title: "Research"
+editor: visual
+---
+
+My research focuses on the area of Social Psychology known as Person Perception.
+
+Here are a few projects I have worked on:
+
+-   [Morbid Curiosity](https://davidbrocker.github.io/Morbid/)
+
+-   [Caretaker Burden](https://davidbrocker.github.io/BOC/')

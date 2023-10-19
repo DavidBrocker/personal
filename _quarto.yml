@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+  
+website:
+  title: "David Brocker"
+  twitter-card: true
+  site-url: twitter.com
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - courses.qmd
+      - research.qmd
+      - writing.qmd
+      
+format:
+  html:
+    theme:
+      light: cosmo
+      dark:  [darkly, theme-dark.scss.css]
+    css: styles.css
+    toc: true
+    code-link: true
+
+filters:
+- lightbox
+lightbox: auto
+
+

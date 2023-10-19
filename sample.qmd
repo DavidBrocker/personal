@@ -1,0 +1,70 @@
+---
+title: "Sampling"
+format: revealjs
+editor: visual
+filters:
+  - shinylive
+---
+
+## Random Sampling
+
+```{r}
+library(visNetwork)
+
+nodes <- 
+  data.frame(
+    id = 1:100,
+    label = 1:100 |> as.character(),
+    title = 
+      paste0(
+        "<p>Age: ",runif(100,18,35) |> round(0),"<br>",
+        "Sex:", sample(c("M","F"),100,replace = TRUE),"</p>"
+      )
+    )
+
+edges <- 
+  data.frame(
+    from = sample(nodes$id,30),
+    to = sample(nodes$id,30)
+  )
+
+visNetwork(nodes) |> 
+  visNodes(shape = "icon",
+           icon = list(code = "f007", 
+                       size = 75,
+                       color = "maroon")) |> 
+  addFontAwesome()
+```
+
+## Probability Sampling
+
+## Cluster Sampling
+
+## Snowball Sampling
+
+```{r}
+node <- 
+  data.frame(
+    id = 1:30,
+    label = paste0("Couple ", 1:30)
+  )
+
+edge <- 
+  data.frame(
+    from = 1:30,
+    to = runif(30,2,30) |> round(0)
+  )
+
+visNetwork(node,edge) |> 
+  visNodes(shape = "icon",
+           icon = list(code = "f004")) |> 
+  visOptions(highlightNearest = 
+               list(enabled = TRUE, 
+                    degree = 3)) |> 
+    addFontAwesome()
+```
+
+## Stratified Sampling
+
+
+## Quota Sampling

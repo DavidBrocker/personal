@@ -1,0 +1,289 @@
+---
+title: "babynames"
+editor: visual
+---
+
+#### **Introduction**
+
+------------------------------------------------------------------------
+
+We will be using the `babynames` dataset to explore the `dplyr` and `ggplot2` package.
+
+First, let us take a look at the `babynames` dataset.
+
+```{r}   
+#| warning: false
+#| message: false
+library(stringr)
+library(gganimate)
+library(ggplot2)
+library(babynames)
+library(dplyr)
+library(forcats)
+# Preview of what the dataset looks like 
+head(babynames)
+```
+
+The table is structured in the following:
+
+-   Year: The year the name was recorded
+
+-   Name: The assigned sex of the recorded individual
+
+-   n: The number of recorded people with the name
+
+-   prop: n divided by total number of applicants in that year, which means proportions are of people of that gender with that name born in that year ^[1](https://cran.r-project.org/web/packages/babynames/babynames.pdf)^
+
+There are a myriad of questions we could ask here!
+
+-   How many unique names are there?
+
+-   What is the most common name?
+
+-   Do Male or Females represent the majority of unique names?
+
+-   How many unique names do each letter of the alphabet account for?
+
+#### **How many unique names are there?**
+
+------------------------------------------------------------------------
+
+We will need to use `dplyr` and `distinct` in order to find the number of unique names, or else we will run into an issue in which multiple instances of a name will be counted--thereby obscuring the actual number.
+
+```{r}         
+babynames |> 
+  # Get data ready to be sorted by name
+  group_by(name) |> 
+  # Count how many times each name appears
+  count()
+```
+
+You can see from the n column that this is reporting mulitple instances of each name. This does inadvertedly answer one of our other questions:
+
+#### **Which name appears most often throughout the years from 1880-2017?**
+
+------------------------------------------------------------------------
+
+```{r}         
+babynames |> 
+  group_by(name) |> 
+  # Sort the data from largest to smallest
+  count(sort=T)
+```
+
+It is also helpful to understand that this represents the number of occurrences throughout the years, it does not tell us the associated n\'s with each name, we will do that soon!
+
+Back to our original question: we need to remove all instances of a repeated name. We can do this with the `distinct` function.
+
+`distinct` uses the following argurments:
+
+-   `data` - What variable do you want to collect distinct values from?
+
+-   `.keep_all(logical)` - Can either be TRUE/T or FALSE/F which determines whether the other variables should remain.
+
+Here is an example using generated data first:
+
+```{r}         
+# Take a sample of letters from the alphabet with replacement
+x <- sample(letters,50,replace = T)
+y <- round(runif(50,5,100))
+# Prevent the string constants from being treated as factors
+xy <- data.frame(x,y,stringsAsFactors = F)
+# Find the distinct values
+xy |> distinct(x)
+```
+
+You will notice that we lost everything in the y column! We need to use the `.keep_all()` argument.
+
+```{r}         
+# Take a sample of letters from the alphabet with replacement
+x <- sample(letters,50,replace = T)
+y <- round(runif(50,5,100))
+# Prevent the string constants from being treated as factors
+xy <- data.frame(x,y,stringsAsFactors = F)
+# Find the distinct values
+xy |> 
+  distinct(x,.keep_all = T) |> 
+  group_by(x) |> 
+  arrange(x)
+```
+
+So now we will do the same with the `babynames` dataset to find the number of distinct names.
+
+```{r}         
+babynames |> 
+  # Remove all duplicated names, but keep the other variables
+  distinct(name,.keep_all = T)
+```
+
+Again we see the same 97,310 we saw previously! This tells us that the function worked. Now let us try to answer the following question:
+
+#### **How many unique names do each letter of the alphabet account for?**
+
+------------------------------------------------------------------------
+
+For this we will need to create a new variable: sw, that represents the letter the name starts with.
+
+We will do this using `muatate` and regular expressions, which are covered [here](http://davidabrocker.com/stringr.html). We will then need to repeat what we did by only returning the distinct names in the set.
+
+When the data is in this format, we will then `group_by` the new variable, sw and count.
+
+```{r}         
+babynames |> 
+  # Create new column that looks for the start of each name
+  mutate(sw=unlist(str_match_all(name,"^."))) |> 
+  # Remove duplicate names
+  distinct(name,.keep_all = T) |> 
+  # Sort by the starting letter
+  group_by(sw) |> 
+  # Sort by largest to smallest
+  count(sort=T)
+```
+
+Awesome! We can see that the letter A dominates the other letters.
+
+Now we can throw this into a graph:
+
+```{r}         
+babynames |> 
+  mutate(sw=unlist(str_match_all(name,"^."))) |> 
+  distinct(name,.keep_all = T) |> 
+  group_by(sw) |> 
+  count(sort=T) |> 
+  # fct_rev will make it A-Z rather than Z-A
+  ggplot(aes(fct_rev(sw),n,fill=n)) +
+    # Use a bar chart
+    geom_bar(stat="identity") +
+    # Flip for better view
+    coord_flip() +
+    # Fill based on category
+    scale_fill_continuous() +
+    # Super cool theme
+    theme_minimal() +
+    # Remove legend and axis ticks
+    theme(legend.position = "none",
+          axis.ticks = element_blank())+
+    # No need for axis labels, give title and caption
+    labs(x="",y="",
+         title="Number of Unique Names Per Letter",
+         caption="(based on {babynames})")
+```
+
+Cool!
+
+Now let us take a look at how many unique names are Male and how many are Female.
+
+```{r}         
+babynames |> 
+  mutate(sw=unlist(str_match_all(name,"^."))) |> 
+  distinct(name,.keep_all = T) |> 
+  # Sort by sex for easy filtering
+  group_by(sex) |> 
+  # Get the number of each sex
+  count() |> 
+  ggplot(aes(sex,n,fill=sex)) +
+    geom_bar(stat="identity") +
+    coord_flip() +
+    theme_minimal()+
+    theme(axis.ticks = element_blank(),
+          legend.position = "bottom")+
+    labs(x="Sex",y="",
+         title="Unique Names Attributed to Sex",
+         caption="(based on babynames)")+
+  # Manually fill colors
+  scale_fill_manual(values=c("#8700F9","#00C4AA"))
+```
+
+We can see that females have almost double the amount of unique names!
+
+While going through the dataset I noticed that even after removing duplicate names I was still seeing name doubles. I realized that this was because some exist have both male and female owners.
+
+The arranging of this particular question was a little difficult for me so I went over to [Reddit](http://davidabrocker.com/reddit.com/r/rstats.com) where a helpful user, PM_ME_CAREER_CHOICES was able to guide me in the right direction.
+
+```{r}         
+babynames |> 
+  distinct(sex,name,.keep_all = T) |> 
+  group_by(name) |> 
+  count() |> 
+  # If a name is truly unique it should be n = 1
+  filter(n ==2) 
+```
+
+We can see from this table that there are 10,763 names that have both male and female owners. Pretty cool!
+
+#### **What name(s) has the most owners (dead and alive)**
+
+------------------------------------------------------------------------
+
+Next we can take a look at what names have the most number of owners.
+
+We will do this by summing up every occurence of a name and then sorting them to get each names total count.
+
+```{r}         
+babynames |> 
+    group_by(sex,name) |> 
+    # Create column that adds up every n instance of a name
+    summarise(Total=sum(n)) |> 
+    # Arrange in descending order the total number 
+    arrange(desc(Total))
+```
+
+Let\'s see if we answered all of the questions!
+
+-   **How many unique names are there?**
+
+    -   There are 97,310 unique names.
+
+-   **What is the most common name?**
+
+    -   The most common name, or the name with the most owners appears to be James--with a whopping **5,150,472**!
+
+-   **Do Male or Females represent the majority of unique names?**
+
+    -   Females dominate the name ownership game with 61,832.
+
+-   **How many unique names do each letter of the alphabet account for?**
+
+    -   Since there are 26 values--I\'ll point you in the direction of the graph!
+
+Let\'s finish up with a animated graph using the `gganimate` package.
+
+```{r}
+#| cache: true
+babynames |> 
+    # Choose Specifc Name
+    filter(name=="David") |> 
+    # Choose Sex (we know ~10% of names are M and F)
+    filter(sex=="M") |> 
+    # Notice how we group by name, so the line will follow
+    ggplot(aes(year,n,group=name,color=name)) +
+    # Plot the points
+    geom_point() +
+    # Plot a line to connect the points
+    geom_line() +
+    # Cool Theme
+    theme_minimal() +
+    labs(y="Total Count",x="Year",
+         title=paste("Popularity of the name David from 1880-2017")) +
+    # Remove ticks and legend
+    theme(axis.ticks = element_blank(),
+        legend.title = element_blank()) +
+    # gganimate will use this to go from each year as its own graph
+  transition_reveal(year)
+```
+
+
+```{r}         
+babynames |> 
+  filter(name=="David") |> 
+    # Choose Sex (we know ~10% of names are M and F)
+    filter(sex=="M") |> 
+    # Notice how we group by name, so the line will follow
+    ggplot(aes(year,n,group=name,color=name)) +
+    # Plot the points
+    geom_point() +
+    # Plot a line to connect the points
+    geom_line() +
+    # Cool Theme
+    theme_minimal() 
+```

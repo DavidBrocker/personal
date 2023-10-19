@@ -1,0 +1,40 @@
+---
+title: "R"
+editor: visual
+---
+
+##### **Basic Tutorials**
+
+This section is for tutorials that focus on introductory topics using R. In most cases, I wanted to do something and couldn't figure out how and by scouring online I eventually found it and I hope to be able to replicate that for someone!
+
+1.  [Basic Operations](basictut.qmd)
+
+In this seminar, we will go over how to install, and use R-Studio. We will discuss the different classes of data (integer, numeric, string, matrix,and data frame), as well as how to perform simple math and store data in vectors and variables.
+
+2.  [Introduction to Descriptive Statistics](descript.qmd)
+
+In this seminar, we will go over how to create a data set to work with using the rnorm() and pnorm() functions. We will use the functions `mean`, `median`, and `range` to get measures of central tendency.
+
+3.  [String Manipulation using `stringr` and regular expressions.](string.qmd)
+
+Extracting text from a string, determining the length of a string, as well as generating text according to a pattern. A brief introduction to regular expressions.
+
+4.  [Plotting using `ggplot2`](gg.qmd)
+
+A better alternative to the base plotting system found in R. You are given the ability to add several graphing geometries and modifying axis labels, etc.
+
+##### **In-Depth Tutorials**
+
+This section is devoted to going a bit more in depth: - Moving away from the base plotting system - Working exclusively with `dplyr` and the `tidyverse` ecosystem.
+
+1.  [Visualizations: `stringr`](vis1.qmd)
+
+Using the `stringr::words`, and `stringr::sentences`  datasets, we can see how to create new variables and examine the characteristics that make up these string oriented datasets using `dplyr` and `ggplot2`.
+
+2.  [Visualizations: `babynames`](baby.qmd)
+
+Seeing how unique names exist in the `babynames` dataset is easy when you combine it with `dplyr` and `stringr`. Additional layers in `ggplot2` are shown which help make a readable, and pretty graph.
+
+3.  [Visualizations: TV Show Ratings](scrape.qmd)
+
+Using `read_html` and `geom_tile` to scrape relevant information from a specified website to create a dataset that lists the Season, Episode Name, and User Rating of a TV show to then create a heatmap of the ratings per season, per episode.

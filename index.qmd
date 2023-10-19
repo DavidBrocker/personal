@@ -1,0 +1,24 @@
+---
+title: "Hi, I'm Dave."
+editor: visual
+
+about:
+  template: jolla
+  image: profile.jpg
+  image-width: 50%
+  links:
+    - icon: linkedin
+      text: ""
+      href: https://www.linkedin.com/in/david-brocker/
+    - icon: github
+      text: ""
+      href: https://github.com/DavidBrocker
+    - icon: medium
+      text: ""
+      href: https://medium.com/@davidabrocker
+    - icon: send
+      text: ""
+      href: mailto:davidabrocker@gmail.com
+---
+
+I am a Lecturer, Lab Manager, and Internship Coordinator at Farmingdale State College. I am *overly* emphatic about R, music, and all things data!

@@ -1,0 +1,122 @@
+---
+title: "Descriptive Statistics"
+editor: visual
+filters:
+ - webr
+---
+
+### \*\* Introduction to R-Studio: Descriptive Statistics\*\*
+
+::: callout-note
+**Note:** Today we will go over how to create a data set to work with using the `rnorm` and `pnorm` functions. We will use the functions `mean`, `median`, and `range` to get measures of central tendency.
+:::
+
+#### **Data Generation**
+
+::: callout-tip
+*When we do not have data to work with, we can create it ourselves. It is important to note that this is **only** useful, and ethical, when we are doing it for instructional purposes!*
+:::
+
+The function `rnorm` has a few arguments that help specify the type of data that it will return: - `rnorm(n,mean,sd)` - n = number of observations - mean = desired mean of the sample - sd = desired standard deviation of the sample
+
+```{webr-r}
+x <- rnorm(10,10,1)
+x
+```
+
+In the above case, it was specified that we wanted R to return us a dataset that had an `n` of 10, a `mean` of 10, and a `standard deviation` of 1.
+
+There are some instances of preference when it comes to data generation,but I prefer the data to look a bit cleaner so I will usually:
+
+-   round the data so that there are two decimal places after the 0
+
+    -   We can do this by wrapping the `round` function around our `rnorm` function. `round` has one argument, `digits=n`, where n is the number of digits you would like to round to. In practice it should look like this:
+
+```{webr-r}
+x <- round(rnorm(10,10,1),digits=2)
+x
+```
+
+-   exclude numbers below 0 from the data.
+
+```{webr-r}
+x <- round(rnorm(10,10,1),digits=2)
+x[x > 10] <- 10
+x[x < 0] <- 0
+x
+```
+
+**Try it out:** Make a variable called `y` and make sure that it has 30 observations, a mean of 5, and a standard deviation of 5. Make sure that the data is rounded to 0 decimal places and does not include any value greater than 100 or less than 0.
+
+```{webr-r}
+y <- round(rnorm(25,80,5), digits =0)
+y[y>100] <- 100
+y[y<0] <- 0
+y
+```
+
+We can now assume that data we have generated could have come from a class that just recently took a test. What we would like to do next is find out some of the generalities of this data.
+
+#### **Descriptive Statistics**
+
+-   What is the average score?
+
+-   What score is right in the middle?
+
+-   What is the range of scores?
+
+We can do this using the `mean`, `median`, and `range` functions.
+
+All of these functions work by placing the object or variable you are looking to get descriptive data from.
+
+*When you are dealing with 'real data' you should make sure to give the dataset a descriptive name so you understand what you are working with. Let us rename the variable `y` to be called `testscores` instead.*
+
+```{webr-r}
+testscores <- y 
+testscores
+```
+
+Now that we have workable data we can start to look its properties.
+
+```{webr-r}
+# Mean
+mean(testscores)
+```
+
+```{webr-r}
+# Median
+median(testscores)
+```
+
+```{webr-r}
+# Range
+range(testscores)
+```
+
+We can see that we have a mean of 79.12, a median of 79, and a range of 17.
+
+In addition to using these three functions to extract summary data, we can use another function aptly named `summary`. This function returns the above three values as well as two additional values referencing datapoints in the 1^st^ and 3^rd^ quadrants.
+
+The `summary` function works by placing the variable you want to summarize inside the parentheses.
+
+```{webr-r}
+summary(testscores)
+```
+
+It might also be helpful for us to see what the standard deviation is for this dataset. We can do this by using the `sd` function.
+
+```{webr-r}
+sd(testscores)
+```
+
+We now have the ability to tell this professor that the average grade of her students was 79.12, and the standard deviation was 4.94402.
+
+This should not be too surprising to us seeing as how we designated the properties of this data set when we used our first `rnorm`function!
+
+::: callout-note
+**Try it out:** Get the summary data for the following data:
+:::
+
+```{webr-r}
+data <- c(87, 75, 90, 86, 96, 80, 88, 69, 84, 95, 83, 96, 79, 77, 70, 64, 74, 88, 91, 97, 62, 62, 73,90, 71)
+```
