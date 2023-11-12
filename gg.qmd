@@ -3,7 +3,6 @@ title: "Introduction to ggplot"
 editor: visual
 filters:
 - webr
-- lightbox
 ---
 
 #### Introduction to `ggplot2`

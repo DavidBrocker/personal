@@ -1,0 +1,10 @@
+---
+title: "Presentations"
+editor: visual
+---
+
+1.  October 24th, 2023: Farmingdale State College
+
+```{=html}
+<iframe class="slide-deck" style="width:720px; height:540px" src="demonstration.html"></iframe>
+```

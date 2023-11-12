@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.458">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>David Brocker - Introduction to ggplot</title>
 <style>
@@ -19,7 +19,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,16 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,21 +92,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script><link rel="stylesheet" href="styles.css">
 <meta name="twitter:title" content="David Brocker - Introduction to ggplot">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="twitter.com/gg_files/figure-html/unnamed-chunk-2-1.png">
-<meta name="twitter:image-height" content="960">
-<meta name="twitter:image-width" content="1344">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">David Brocker</span>
     </a>
@@ -115,53 +116,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">Portfolio</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./courses.html" rel="" target="">
- <span class="menu-text">Teaching</span></a>
+    <a class="nav-link" href="./courses.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research.html" rel="" target="">
- <span class="menu-text">Research</span></a>
+    <a class="nav-link" href="./research.html"> 
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./basictut.html" rel="" target="">
- <span class="menu-text">Basic Operations</span></a>
+    <a class="nav-link" href="./writing.html"> 
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./descript.html" rel="" target="">
- <span class="menu-text">Descriptive Statistics</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./string.html" rel="" target="">
- <span class="menu-text">String Manipulation</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./gg.html" rel="" target="" aria-current="page">
- <span class="menu-text">Introduction to ggplot</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./vis1.html" rel="" target="">
- <span class="menu-text">Visualizations: {Stringr}</span></a>
-  </li>  
-  <li class="dropdown-header">
- <span class="menu-text">bb.qmd</span>
-</li>
-  <li class="nav-item">
-    <a class="nav-link" href="./scrape.html" rel="" target="">
- <span class="menu-text">scrape</span></a>
+    <a class="nav-link" href="./presentations.html"> 
+<span class="menu-text">Presentations</span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools ms-auto">
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
@@ -188,6 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
   </div>
   
+
 
 </header><section id="introduction-to-ggplot2" class="level4"><h4 class="anchored" data-anchor-id="introduction-to-ggplot2">Introduction to&nbsp;<code>ggplot2</code>
 </h4>
@@ -225,12 +208,12 @@ Attaching package: 'dplyr'</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade
-1     81     75     77     70      75.75
-2     84     87     90     91      88.00
-3     83     82     74     91      82.50
-4     81     86     72     98      84.25
-5     83     84     77     99      85.75
-6     81     99     81     96      89.25</code></pre>
+1     82     78     83     89      83.00
+2     85     87     75    100      86.75
+3     83     97     80     83      85.75
+4     84     76     84     90      83.50
+5     80     96     71     64      77.75
+6     82     80     84     82      82.00</code></pre>
 </div>
 </div>
 <p>Let’s make a plot of the average score on each exam using the base plotting system.</p>
@@ -252,10 +235,7 @@ Attaching package: 'dplyr'</code></pre>
 <span>        ylab<span class="op">=</span><span class="st">"Score"</span>,</span>
 <span>        main<span class="op">=</span><span class="st">"Exam Score Averages"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="gg_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
+<p><img src="gg_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This does not look bad, but we could probably do better with&nbsp;<code>ggplot</code>.</p>
@@ -292,10 +272,7 @@ Attaching package: 'dplyr'</code></pre>
 <span>                              face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="gg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
+<p><img src="gg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>I know that there is a <em>lot</em>&nbsp;going on in the example, but it just kind of looks nice, right?</p>
@@ -324,46 +301,46 @@ Attaching package: 'dplyr'</code></pre>
 <span>    <span class="va">FinalGrade</span><span class="op">&lt;</span><span class="fl">60</span><span class="op">~</span><span class="st">"F"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade LetterGrade
-1      81     75     77     70      75.75          C+
-2      84     87     90     91      88.00          B+
-3      83     82     74     91      82.50          B-
-4      81     86     72     98      84.25           B
-5      83     84     77     99      85.75           B
-6      81     99     81     96      89.25          B+
-7      84     91     76     83      83.50          B-
-8      85     92     71     63      77.75          C+
-9      80     83     72     77      78.00          C+
-10     84     78     80     82      81.00          B-
-11     83     99     81     68      82.75          B-
-12     84     78     82     64      77.00          C+
-13     84     91     88     96      89.75          B+
-14     81     82     82     90      83.75          B-
-15     85     86     88     64      80.75          B-
-16     82     86     84     73      81.25          B-
-17     84     83     83     94      86.00           B
-18     81     90     80     88      84.75           B
-19     81     91     87     63      80.50          B-
-20     85     88     77     92      85.50           B
-21     82     84     88     78      83.00          B-
-22     84     86     74     88      83.00          B-
-23     84     84     73     65      76.50          C+
-24     82     78     83     87      82.50          B-
-25     81     99     84     67      82.75          B-
-26     83     81     90     67      80.25          B-
-27     82     98     87     63      82.50          B-
-28     83     95     70     95      85.75           B
-29     80     93     89     71      83.25          B-
-30     82     91     73     93      84.75           B
-31     82     84     83     68      79.25          C+
-32     81     75     82     83      80.25          B-
-33     84     88     72     85      82.25          B-
-34     84     88     77     94      85.75           B
-35     83     97     71     84      83.75          B-
-36     83     95     78     75      82.75          B-
-37     84     79     75     91      82.25          B-
-38     82    100     85     73      85.00           B
-39     82     92     85     68      81.75          B-
-40     82     81     85     95      85.75           B</code></pre>
+1      82     78     83     89      83.00          B-
+2      85     87     75    100      86.75           B
+3      83     97     80     83      85.75           B
+4      84     76     84     90      83.50          B-
+5      80     96     71     64      77.75          C+
+6      82     80     84     82      82.00          B-
+7      81    100     89     86      89.00          B+
+8      81     81     79     88      82.25          B-
+9      85     85     81     84      83.75          B-
+10     80     84     71     88      80.75          B-
+11     82     82     83     80      81.75          B-
+12     82     82     77     71      78.00          C+
+13     85     97     75     90      86.75           B
+14     83     94     89     73      84.75           B
+15     82     97     82    100      90.25          A-
+16     85     81     77     77      80.00          B-
+17     84     88     89     61      80.50          B-
+18     81     77     74     73      76.25          C+
+19     82     77     73     87      79.75          C+
+20     84     83     89     82      84.50           B
+21     84     85     86     99      88.50          B+
+22     82     84     84     62      78.00          C+
+23     81     98     81     96      89.00          B+
+24     82     76     88     93      84.75           B
+25     84     96     81     67      82.00          B-
+26     84     98     71     71      81.00          B-
+27     80     78     86     90      83.50          B-
+28     81     99     83     97      90.00          A-
+29     83     85     84     95      86.75           B
+30     84     98     77     68      81.75          B-
+31     81     80     84     92      84.25           B
+32     80     78     73     64      73.75           C
+33     82     83     87     63      78.75          C+
+34     82     82     73     64      75.25          C+
+35     82     87     89     99      89.25          B+
+36     83     87     89     88      86.75           B
+37     83     87     74     75      79.75          C+
+38     82     96     71     63      78.00          C+
+39     83     80     88     61      78.00          C+
+40     85     76     70     95      81.50          B-</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -385,14 +362,16 @@ Attaching package: 'dplyr'</code></pre>
 <span></span>
 <span><span class="va">final_grade</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-# Groups:   LetterGrade [4]
+<pre><code># A tibble: 6 × 2
+# Groups:   LetterGrade [6]
   LetterGrade     n
   &lt;chr&gt;       &lt;int&gt;
-1 B              10
-2 B+              3
-3 B-             21
-4 C+              6</code></pre>
+1 A-              2
+2 B               9
+3 B+              4
+4 B-             14
+5 C               1
+6 C+             10</code></pre>
 </div>
 </div>
 <p>Our students didn’t do particularly well, but that is to be expected when we control the range their grades can be in!</p>
@@ -419,10 +398,7 @@ Attaching package: 'dplyr'</code></pre>
 <span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="gg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
+<p><img src="gg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>I’m not entirely sure, but I think I’m just addicted to bar charts–but that’s <em>my</em>&nbsp;problem!</p>
@@ -440,106 +416,106 @@ Attaching package: 'dplyr'</code></pre>
 <span><span class="va">scat_df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sex      RT TestScore
-1     M  740.84        70
-2     F  824.85        81
-3     M  977.32        89
-4     F  983.64        83
-5     F  954.53        64
-6     F 1135.01        67
-7     F 1238.66        92
-8     M  934.69        95
-9     M  920.70        71
-10    F  657.51        81
-11    F  696.45        68
-12    F  686.58        77
-13    M  961.72        76
-14    M  783.74        73
-15    M  577.14        79
-16    M  936.96        73
-17    F  960.30        97
-18    F  811.17        92
-19    M  928.44        65
-20    F  832.58        73
-21    F  619.15       100
-22    M  756.87        61
-23    M  823.75        78
-24    F  821.05        69
-25    M  836.66        61
-26    M  935.22        86
-27    F  814.14        82
-28    F  982.85        99
-29    F  541.29        73
-30    M  760.71        66
-31    M  466.01        94
-32    F  637.62        72
-33    M  917.07        81
-34    M  811.05        86
-35    F  831.48        65
-36    F  682.24        98
-37    M  730.54        74
-38    F  902.77        68
-39    F  653.02        92
-40    M  871.98        65
-41    M  619.63        82
-42    F  787.32        69
-43    M  968.87        66
-44    F  787.45        77
-45    M  719.06        72
-46    F  673.00        73
-47    F  893.75        69
-48    M  896.50        86
-49    F 1087.69        89
-50    F  818.67        65
-51    M  839.87        70
-52    F 1153.98        79
-53    F  833.77        88
-54    M  542.64        51
-55    M 1070.14        66
-56    M  878.58        44
-57    F  672.40        76
-58    F  867.02        47
-59    M  700.63        65
-60    M  805.31        50
-61    F  548.53        56
-62    M  801.57        45
-63    F  609.79        79
-64    M  648.57        46
-65    F  858.18        52
-66    M  851.89        70
-67    M  720.19        82
-68    F  932.76        74
-69    F 1015.10        87
-70    F  854.16        86
-71    F  918.34        85
-72    M  648.22        59
-73    F  787.77        72
-74    F  691.55        81
-75    F  865.04        48
-76    F  684.61        46
-77    M  721.87        61
-78    M  860.27        74
-79    F  816.33        53
-80    M 1006.05        68
-81    F  718.43        47
-82    M  765.07        56
-83    F  875.86        82
-84    M  699.66        63
-85    F  773.67        79
-86    M 1018.07        77
-87    F  711.64        52
-88    M  860.27        80
-89    F  951.78        53
-90    F  773.64        52
-91    M  903.99        62
-92    F 1068.49        60
-93    M 1015.69        69
-94    F 1094.69        51
-95    M  660.86        71
-96    M  667.90        85
-97    M  929.31        87
-98    F  696.93        79
-99    F  748.91        82
-100   F  687.11        43</code></pre>
+1     F  830.23        69
+2     M 1052.96        80
+3     M  744.91        67
+4     F  826.67        78
+5     F  685.70        66
+6     F  826.48       100
+7     F  295.06        78
+8     F  742.33        70
+9     F  757.14        88
+10    M  706.14        95
+11    F  563.02        67
+12    M  540.13        92
+13    F  738.38        89
+14    M  924.02        95
+15    M  869.42        75
+16    M  743.24        94
+17    M  992.10        81
+18    M  736.56        73
+19    F  624.26        65
+20    M  798.06        74
+21    M 1017.80        95
+22    F  977.18        73
+23    F  849.75        71
+24    F 1069.17        68
+25    M  759.65        74
+26    F  786.44        83
+27    M  831.93        70
+28    M  691.58        70
+29    M  873.94        75
+30    F  922.20        63
+31    F  633.39        93
+32    M  974.24        61
+33    M  753.53        83
+34    M  586.97        66
+35    F 1080.93        84
+36    M  509.89        63
+37    M 1004.48        79
+38    F  888.54        96
+39    M 1027.65        93
+40    M  922.94        79
+41    M  986.27        95
+42    M  821.62        90
+43    F  793.58        91
+44    M  946.24        85
+45    F  924.99        89
+46    M  595.63        70
+47    M  942.15        88
+48    M 1040.33        75
+49    F  707.03        67
+50    F  662.86        70
+51    F  716.65        50
+52    M  914.27        69
+53    M 1154.40        86
+54    F  870.08        64
+55    F  688.62        72
+56    F  968.93        52
+57    M 1042.56        50
+58    M  902.57        60
+59    F  697.02        55
+60    F  939.78        57
+61    M  849.84        59
+62    F  761.23        81
+63    M  613.30        82
+64    M  776.65        53
+65    M  841.45        70
+66    F  641.78        57
+67    M  745.48        57
+68    F  843.55        79
+69    M  581.97        81
+70    M  980.07        41
+71    F  743.68        76
+72    F  898.63        79
+73    F  664.78        41
+74    F  924.20        45
+75    F  764.00        69
+76    M  997.31        61
+77    M  763.10        46
+78    F  824.72        42
+79    M  914.02        40
+80    M  857.82        78
+81    M  862.42        75
+82    F 1041.23        67
+83    M  843.66        47
+84    F  857.85        48
+85    F  916.80        41
+86    F  671.14        75
+87    F  679.02        51
+88    F  892.51        90
+89    M  708.20        83
+90    M  801.91        64
+91    M  803.54        44
+92    F  803.59        61
+93    M  851.28        43
+94    F  923.87        63
+95    M  881.25        56
+96    F  904.44        61
+97    M  780.20        62
+98    F  855.20        83
+99    F  582.70        47
+100   M  875.23        75</code></pre>
 </div>
 </div>
 <p>Plot Sex against RT and have the colors be linked to the Sex of the participant (point).</p>
@@ -552,10 +528,7 @@ Attaching package: 'dplyr'</code></pre>
 <span>         y<span class="op">=</span><span class="st">"RT(ms)"</span>,</span>
 <span>         title<span class="op">=</span><span class="st">"RT and Test Scores"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="gg_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
+<p><img src="gg_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Clearly no real pattern is emerging from the data, but we can see a clear distinction between the different points.</p>
@@ -576,78 +549,78 @@ Attaching package: 'dplyr'</code></pre>
 <span><span class="va">Dave_TV</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Season Episode                 Title Ratings
-1      S1       1      The Both Educate       9
-2      S1       2       The Match Sound       8
-3      S1       3       The Hate People       9
-4      S1       4          The You Back       8
-5      S1       5      The Result Stuff       8
-6      S1       6           The Go Pair       8
-7      S1       7  The Minister Correct       8
-8      S1       8         The Young Arm       8
-9      S1       9     The Except School       8
-10     S1      10     The Since Succeed       8
-11     S1      11        The File Agent       9
-12     S1      12      The Debate Point       9
-13     S2       1         The Tape Many       9
-14     S2       2       The Grant Final       9
-15     S2       3      The Farm Between       9
-16     S2       4      The Fund Process       9
-17     S2       5   The Moment Standard       9
-18     S2       6          The Can What       9
-19     S2       7      The Milk Science       8
-20     S2       8        The Which Kind       8
-21     S2       9  The Television Heart       8
-22     S2      10          The Tend Die       9
-23     S2      11        The Load Story       8
-24     S2      12     The Actual Second       9
-25     S3       1         The Area Feed       8
-26     S3       2      The Top Together       9
-27     S3       3    The Document Study       9
-28     S3       4       The Meaning Own       9
-29     S3       5     The Succeed Break       8
-30     S3       6    The Reason Balance       8
-31     S3       7 The Really Experience       9
-32     S3       8       The Listen Free       8
-33     S3       9       The Hell Indeed       8
-34     S3      10      The Flat Fortune       8
-35     S3      11       The Kitchen Few       9
-36     S3      12     The Answer Almost       8
-37     S4       1    The Blow Committee       9
-38     S4       2      The Eleven Count       8
-39     S4       3    The Positive Sleep       8
-40     S4       4          The Nine God       8
-41     S4       5          The Sit Real       9
-42     S4       6        The Say Manage       9
-43     S4       7  The Language Develop       9
-44     S4       8         The From Area       8
-45     S4       9         The Yes Stand       8
-46     S4      10        The Hand Today       8
-47     S4      11   The Again Telephone       9
-48     S4      12     The Every Instead       9
-49     S5       1 The Measure Difficult       9
-50     S5       2        The Much Apart       9
-51     S5       3        The About Hold       8
-52     S5       4        The Baby Eight       8
-53     S5       5     The Explain World       8
-54     S5       6       The Society Put       8
-55     S5       7 The Function Function       9
-56     S5       8      The Respect Cold       8
-57     S5       9        The Side Until       8
-58     S5      10       The Happen Hair       8
-59     S5      11    The But Department       8
-60     S5      12 The Secretary Realise       8
-61     S6       1      The Sick Collect       6
-62     S6       2         The Rail Team       9
-63     S6       3     The Main Organize       7
-64     S6       4        The Pack Often       9
-65     S6       5        The Refer Find       7
-66     S6       6      The Hundred Keep       7
-67     S6       7     The Change Sudden       7
-68     S6       8         The Press Bar       8
-69     S6       9       The Left Moment       8
-70     S6      10       The Term Though       7
-71     S6      11       The Beauty Away       8
-72     S6      12           The One Age       6</code></pre>
+1      S1       1          The Set Week       8
+2      S1       2      The Heavy Street       8
+3      S1       3  The Benefit Saturday       8
+4      S1       4   The Understand Fill       9
+5      S1       5   The Provide Suggest       9
+6      S1       6         The Take Push       8
+7      S1       7    The Colour Trouble       9
+8      S1       8  The Position Purpose       9
+9      S1       9        The Role Ready       8
+10     S1      10       The Lose Future       9
+11     S1      11          The Bus This       9
+12     S1      12         The Home Feed       8
+13     S2       1        The Favour Try       9
+14     S2       2         The Pull Road       9
+15     S2       3       The Dinner Rail       8
+16     S2       4         The Easy Mean       9
+17     S2       5     The Think Council       8
+18     S2       6       The Clock Think       9
+19     S2       7    The Town Available       8
+20     S2       8  The Floor Experience       9
+21     S2       9      The Whether Hall       9
+22     S2      10    The Practise Glass       9
+23     S2      11      The Electric Gas       8
+24     S2      12        The Boat Offer       9
+25     S3       1          The Art Idea       9
+26     S3       2     The Enough Appear       9
+27     S3       3    The Concern Almost       9
+28     S3       4          The East One       9
+29     S3       5 The Trouble Christmas       9
+30     S3       6       The Test Doctor       9
+31     S3       7       The County Hair       9
+32     S3       8        The Laugh Site       8
+33     S3       9    The Relation Weigh       8
+34     S3      10 The Apparent Practise       8
+35     S3      11      The Current Wait       9
+36     S3      12  The Possible America       9
+37     S4       1             The We As       9
+38     S4       2      The Chap Section       8
+39     S4       3        The More Share       9
+40     S4       4   The Succeed Operate       8
+41     S4       5       The Bag Germany       9
+42     S4       6    The Correct Indeed       9
+43     S4       7 The Support Associate       8
+44     S4       8   The Pretty Research       9
+45     S4       9  The Associate Report       8
+46     S4      10       The Shall Under       9
+47     S4      11     The Limit Holiday       8
+48     S4      12         The Be Window       8
+49     S5       1   The Advertise Speed       9
+50     S5       2         The Close Lay       8
+51     S5       3        The Market Any       8
+52     S5       4        The Service So       8
+53     S5       5        The Touch Room       9
+54     S5       6         The Bank Best       9
+55     S5       7     The Another Train       9
+56     S5       8      The Print Couple       8
+57     S5       9        The Awful Bill       9
+58     S5      10       The Score Blood       8
+59     S5      11          The Dog Make       9
+60     S5      12      The Mister Throw       8
+61     S6       1     The Example Match       8
+62     S6       2        The Press Fund       9
+63     S6       3         The Tea Marry       8
+64     S6       4   The Amount Positive       7
+65     S6       5       The Way Process       9
+66     S6       6         The Apply Few       7
+67     S6       7  The Deep Opportunity       8
+68     S6       8       The Kind Settle       6
+69     S6       9       The Lead Debate       6
+70     S6      10        The Check Body       7
+71     S6      11    The Question Stage       7
+72     S6      12    The Accept Student       6</code></pre>
 </div>
 </div>
 <p>Firstly, I want to take a moment to see how truly excellent some of the episode titles are:</p>
@@ -655,10 +628,10 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">title_samp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Dave_TV</span><span class="op">$</span><span class="va">Title</span>,<span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">title_samp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "The Fund Process"      "The Again Telephone"   "The Measure Difficult"
- [4] "The Side Until"        "The Moment Standard"   "The Baby Eight"       
- [7] "The Answer Almost"     "The Refer Find"        "The Respect Cold"     
-[10] "The Grant Final"      </code></pre>
+<pre><code> [1] "The Floor Experience" "The Accept Student"   "The Heavy Street"    
+ [4] "The Pretty Research"  "The Take Push"        "The Awful Bill"      
+ [7] "The Enough Appear"    "The Provide Suggest"  "The Relation Weigh"  
+[10] "The Market Any"      </code></pre>
 </div>
 </div>
 <p>Anyways, now that our data is in the correct format we can plot it.</p>
@@ -675,10 +648,7 @@ Attaching package: 'dplyr'</code></pre>
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="gg_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
+<p><img src="gg_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There could be an entirely separate tutorial on just color choices in&nbsp;<code>ggplot2</code>.</p>
@@ -710,10 +680,7 @@ Attaching package: 'dplyr'</code></pre>
 <span>    plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="gg_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="gg_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
+<p><img src="gg_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>So there you have it, a very <em>brief</em>&nbsp;introduction to&nbsp;<code>ggplot</code>. As my own projects expand, I will include new sections or add more examples here.</p>
@@ -760,6 +727,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -828,13 +822,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -913,10 +909,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -926,8 +921,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -940,6 +944,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -983,6 +1109,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1008,6 +1135,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1068,7 +1221,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});</script>
+
 
 
 </body></html>

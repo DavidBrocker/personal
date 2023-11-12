@@ -1,5 +1,5 @@
 ---
-title: "scrape"
+title: "Webscraping"
 editor: visual
 ---
 
@@ -12,8 +12,8 @@ library(ggplot2)
 library(stringr)
 library(forcats)
 library(gganimate)
-library(tidytext)
 library(dplyr)
+library(tidytext)
 library(plotly)
 library(huxtable)
 ```
@@ -29,10 +29,9 @@ Further down the line when I am more comfortable with the complex, I can make a 
 For now, we will be downloading the file hosted [here](https://raw.githubusercontent.com/DavidBrocker/personal/master/files/DoctorWho_Ratings.csv)
 
 ```{r}
-# First read in the csv hosted on my Github
+# First read in the csv 
 doctorwho <- 
-  read.csv("https://raw.githubusercontent.com/DavidBrocker/personal/master/files/DoctorWho_Ratings.csv") |> 
-  select(!X)
+  read.csv("doctorwho_ratings.csv")
 ```
 
 ```{r}

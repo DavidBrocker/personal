@@ -1,59 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>twitter.com/gg.html</loc>
-    <lastmod>2023-10-17T11:33:38.753Z</lastmod>
+    <loc>twitter.com/sample.html</loc>
+    <lastmod>2023-10-09T23:36:22.850Z</lastmod>
   </url>
   <url>
-    <loc>twitter.com/research.html</loc>
-    <lastmod>2023-10-19T11:39:38.396Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/courses.html</loc>
-    <lastmod>2023-10-19T11:39:37.115Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/vis1.html</loc>
-    <lastmod>2023-10-17T11:33:47.097Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/scrape.html</loc>
-    <lastmod>2023-10-17T11:33:57.273Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/index.html</loc>
-    <lastmod>2023-10-19T11:39:44.651Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/metro/metro.html</loc>
-    <lastmod>2023-10-17T11:34:05.071Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/basictut.html</loc>
-    <lastmod>2023-10-17T11:34:06.858Z</lastmod>
-  </url>
-  <url>
-    <loc>twitter.com/about.html</loc>
-    <lastmod>2023-10-19T11:39:35.682Z</lastmod>
+    <loc>twitter.com/presentations.html</loc>
+    <lastmod>2023-11-10T13:17:05.625Z</lastmod>
   </url>
   <url>
     <loc>twitter.com/baby.html</loc>
-    <lastmod>2023-10-17T11:34:20.480Z</lastmod>
+    <lastmod>2023-11-12T20:24:07.862Z</lastmod>
   </url>
   <url>
-    <loc>twitter.com/descript.html</loc>
-    <lastmod>2023-10-17T11:34:20.897Z</lastmod>
+    <loc>twitter.com/about.html</loc>
+    <lastmod>2023-10-17T11:40:32.631Z</lastmod>
   </url>
   <url>
-    <loc>twitter.com/string.html</loc>
-    <lastmod>2023-10-17T11:34:21.341Z</lastmod>
+    <loc>twitter.com/index.html</loc>
+    <lastmod>2023-11-12T19:38:16.748Z</lastmod>
   </url>
   <url>
-    <loc>twitter.com/sample.html</loc>
-    <lastmod>2023-10-17T11:34:22.626Z</lastmod>
+    <loc>twitter.com/scrape.html</loc>
+    <lastmod>2023-11-12T20:18:27.404Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/courses.html</loc>
+    <lastmod>2023-10-02T22:19:53.941Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/gg.html</loc>
+    <lastmod>2023-11-12T20:25:39.566Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/research.html</loc>
+    <lastmod>2023-10-19T10:51:42.979Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/vis1.html</loc>
+    <lastmod>2023-10-13T10:51:08.559Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/demonstration.html</loc>
+    <lastmod>2023-10-22T21:26:46.868Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/basictut.html</loc>
+    <lastmod>2023-10-03T21:00:12.868Z</lastmod>
   </url>
   <url>
     <loc>twitter.com/writing.html</loc>
-    <lastmod>2023-10-19T11:39:39.663Z</lastmod>
+    <lastmod>2023-10-19T11:19:03.138Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/descript.html</loc>
+    <lastmod>2023-10-04T12:02:36.578Z</lastmod>
+  </url>
+  <url>
+    <loc>twitter.com/string.html</loc>
+    <lastmod>2023-11-12T20:24:27.000Z</lastmod>
   </url>
 </urlset>

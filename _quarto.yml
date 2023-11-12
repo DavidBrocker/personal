@@ -9,11 +9,12 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: Home 
       - about.qmd
       - courses.qmd
       - research.qmd
       - writing.qmd
+      - presentations.qmd
       
 format:
   html:
@@ -23,9 +24,4 @@ format:
     css: styles.css
     toc: true
     code-link: true
-
-filters:
-- lightbox
-lightbox: auto
-
 

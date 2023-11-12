@@ -135,7 +135,7 @@ The reason that it would not work before is because `R` has no way of knowing 
 **Try it out:** Create a variable with the following numbers: 1,1,2,3,5,8,13 and store it under the name `Fib`. Type `Fib` back into the console and press `Enter`.
 :::
 
-You probably were greeted with another error message. This is because `R` has no way of knowing that you want to display 7 distinct numbers. To get around this we have to do something called \"concatenation\".
+You probably were greeted with another error message. This is because `R` has no way of knowing that you want to display 7 distinct numbers. To get around this we have to do something called "concatenation".
 
 If we want to create a variable with more than one number, or object, inside of it we need to concatenate or combine that data first. In `R` this is done using the `c()` function. We can also call an object containing several unique numbers, a `vector`.
 

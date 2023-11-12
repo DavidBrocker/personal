@@ -6,6 +6,7 @@ about:
   template: jolla
   image: profile.jpg
   image-width: 50%
+  image-shape: round
   links:
     - icon: linkedin
       text: ""

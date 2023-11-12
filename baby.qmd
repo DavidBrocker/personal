@@ -1,5 +1,5 @@
 ---
-title: "babynames"
+title: "Visualizations: Popularity of Baby Names"
 editor: visual
 ---
 
@@ -7,11 +7,11 @@ editor: visual
 
 ------------------------------------------------------------------------
 
-We will be using the `babynames` dataset to explore the `dplyr` and `ggplot2` package.
+We will be using the `babynames` dataset to explore the `dplyr` and `ggplot2` package.
 
-First, let us take a look at the `babynames` dataset.
+First, let us take a look at the `babynames` dataset.
 
-```{r}   
+```{r}
 #| warning: false
 #| message: false
 library(stringr)
@@ -50,7 +50,7 @@ There are a myriad of questions we could ask here!
 
 We will need to use `dplyr` and `distinct` in order to find the number of unique names, or else we will run into an issue in which multiple instances of a name will be counted--thereby obscuring the actual number.
 
-```{r}         
+```{r}
 babynames |> 
   # Get data ready to be sorted by name
   group_by(name) |> 
@@ -64,14 +64,14 @@ You can see from the n column that this is reporting mulitple instances of each 
 
 ------------------------------------------------------------------------
 
-```{r}         
+```{r}
 babynames |> 
   group_by(name) |> 
   # Sort the data from largest to smallest
   count(sort=T)
 ```
 
-It is also helpful to understand that this represents the number of occurrences throughout the years, it does not tell us the associated n\'s with each name, we will do that soon!
+It is also helpful to understand that this represents the number of occurrences throughout the years, it does not tell us the associated n's with each name, we will do that soon!
 
 Back to our original question: we need to remove all instances of a repeated name. We can do this with the `distinct` function.
 
@@ -83,7 +83,7 @@ Back to our original question: we need to remove all instances of a repeated nam
 
 Here is an example using generated data first:
 
-```{r}         
+```{r}
 # Take a sample of letters from the alphabet with replacement
 x <- sample(letters,50,replace = T)
 y <- round(runif(50,5,100))
@@ -95,7 +95,7 @@ xy |> distinct(x)
 
 You will notice that we lost everything in the y column! We need to use the `.keep_all()` argument.
 
-```{r}         
+```{r}
 # Take a sample of letters from the alphabet with replacement
 x <- sample(letters,50,replace = T)
 y <- round(runif(50,5,100))
@@ -110,7 +110,7 @@ xy |>
 
 So now we will do the same with the `babynames` dataset to find the number of distinct names.
 
-```{r}         
+```{r}
 babynames |> 
   # Remove all duplicated names, but keep the other variables
   distinct(name,.keep_all = T)
@@ -128,7 +128,7 @@ We will do this using `muatate` and regular expressions, which are covered [h
 
 When the data is in this format, we will then `group_by` the new variable, sw and count.
 
-```{r}         
+```{r}
 babynames |> 
   # Create new column that looks for the start of each name
   mutate(sw=unlist(str_match_all(name,"^."))) |> 
@@ -144,7 +144,7 @@ Awesome! We can see that the letter A dominates the other letters.
 
 Now we can throw this into a graph:
 
-```{r}         
+```{r}
 babynames |> 
   mutate(sw=unlist(str_match_all(name,"^."))) |> 
   distinct(name,.keep_all = T) |> 
@@ -173,7 +173,7 @@ Cool!
 
 Now let us take a look at how many unique names are Male and how many are Female.
 
-```{r}         
+```{r}
 babynames |> 
   mutate(sw=unlist(str_match_all(name,"^."))) |> 
   distinct(name,.keep_all = T) |> 
@@ -200,7 +200,7 @@ While going through the dataset I noticed that even after removing duplicate nam
 
 The arranging of this particular question was a little difficult for me so I went over to [Reddit](http://davidabrocker.com/reddit.com/r/rstats.com) where a helpful user, PM_ME_CAREER_CHOICES was able to guide me in the right direction.
 
-```{r}         
+```{r}
 babynames |> 
   distinct(sex,name,.keep_all = T) |> 
   group_by(name) |> 
@@ -219,7 +219,7 @@ Next we can take a look at what names have the most number of owners.
 
 We will do this by summing up every occurence of a name and then sorting them to get each names total count.
 
-```{r}         
+```{r}
 babynames |> 
     group_by(sex,name) |> 
     # Create column that adds up every n instance of a name
@@ -228,7 +228,7 @@ babynames |>
     arrange(desc(Total))
 ```
 
-Let\'s see if we answered all of the questions!
+Let's see if we answered all of the questions!
 
 -   **How many unique names are there?**
 
@@ -244,9 +244,9 @@ Let\'s see if we answered all of the questions!
 
 -   **How many unique names do each letter of the alphabet account for?**
 
-    -   Since there are 26 values--I\'ll point you in the direction of the graph!
+    -   Since there are 26 values--I'll point you in the direction of the graph!
 
-Let\'s finish up with a animated graph using the `gganimate` package.
+Let's finish up with a animated graph using the `gganimate` package.
 
 ```{r}
 #| cache: true
@@ -272,8 +272,7 @@ babynames |>
   transition_reveal(year)
 ```
 
-
-```{r}         
+```{r}
 babynames |> 
   filter(name=="David") |> 
     # Choose Sex (we know ~10% of names are M and F)
