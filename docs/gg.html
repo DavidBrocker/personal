@@ -139,6 +139,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./presentations.html"> 
 <span class="menu-text">Presentations</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./apps.html"> 
+<span class="menu-text">Apps</span></a>
+  </li>  
 </ul>
 </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -208,12 +212,12 @@ Attaching package: 'dplyr'</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">test_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade
-1     82     78     83     89      83.00
-2     85     87     75    100      86.75
-3     83     97     80     83      85.75
-4     84     76     84     90      83.50
-5     80     96     71     64      77.75
-6     82     80     84     82      82.00</code></pre>
+1     85     90     79     75      82.25
+2     81     95     88     66      82.50
+3     82     98     85     96      90.25
+4     81     95     78     92      86.50
+5     84     77     72     66      74.75
+6     84     85     87     78      83.50</code></pre>
 </div>
 </div>
 <p>Let’s make a plot of the average score on each exam using the base plotting system.</p>
@@ -301,46 +305,46 @@ Attaching package: 'dplyr'</code></pre>
 <span>    <span class="va">FinalGrade</span><span class="op">&lt;</span><span class="fl">60</span><span class="op">~</span><span class="st">"F"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade LetterGrade
-1      82     78     83     89      83.00          B-
-2      85     87     75    100      86.75           B
-3      83     97     80     83      85.75           B
-4      84     76     84     90      83.50          B-
-5      80     96     71     64      77.75          C+
-6      82     80     84     82      82.00          B-
-7      81    100     89     86      89.00          B+
-8      81     81     79     88      82.25          B-
-9      85     85     81     84      83.75          B-
-10     80     84     71     88      80.75          B-
-11     82     82     83     80      81.75          B-
-12     82     82     77     71      78.00          C+
-13     85     97     75     90      86.75           B
-14     83     94     89     73      84.75           B
-15     82     97     82    100      90.25          A-
-16     85     81     77     77      80.00          B-
-17     84     88     89     61      80.50          B-
-18     81     77     74     73      76.25          C+
-19     82     77     73     87      79.75          C+
-20     84     83     89     82      84.50           B
-21     84     85     86     99      88.50          B+
-22     82     84     84     62      78.00          C+
-23     81     98     81     96      89.00          B+
-24     82     76     88     93      84.75           B
-25     84     96     81     67      82.00          B-
-26     84     98     71     71      81.00          B-
-27     80     78     86     90      83.50          B-
-28     81     99     83     97      90.00          A-
-29     83     85     84     95      86.75           B
-30     84     98     77     68      81.75          B-
-31     81     80     84     92      84.25           B
-32     80     78     73     64      73.75           C
-33     82     83     87     63      78.75          C+
-34     82     82     73     64      75.25          C+
-35     82     87     89     99      89.25          B+
-36     83     87     89     88      86.75           B
-37     83     87     74     75      79.75          C+
-38     82     96     71     63      78.00          C+
-39     83     80     88     61      78.00          C+
-40     85     76     70     95      81.50          B-</code></pre>
+1      85     90     79     75      82.25          B-
+2      81     95     88     66      82.50          B-
+3      82     98     85     96      90.25          A-
+4      81     95     78     92      86.50           B
+5      84     77     72     66      74.75          C+
+6      84     85     87     78      83.50          B-
+7      84     98     78     89      87.25          B+
+8      82     75     74     72      75.75          C+
+9      82     76     70     75      75.75          C+
+10     81     79     79    100      84.75           B
+11     84     98     89     68      84.75           B
+12     83     98     74     70      81.25          B-
+13     82     85     83     78      82.00          B-
+14     82     89     87     90      87.00          B+
+15     81     96     81     67      81.25          B-
+16     84     78     73     91      81.50          B-
+17     83     98     85     87      88.25          B+
+18     82     93     90     97      90.50          A-
+19     85     95     87     74      85.25           B
+20     82     95     78     71      81.50          B-
+21     82     88     78     97      86.25           B
+22     84     90     83     61      79.50          C+
+23     80     98     71     89      84.50           B
+24     85     94     84     97      90.00          A-
+25     85     78     71     79      78.25          C+
+26     81     90     85     70      81.50          B-
+27     82     86     78     84      82.50          B-
+28     84     83     86     78      82.75          B-
+29     84     79     90     97      87.50          B+
+30     83     82     90     73      82.00          B-
+31     83     86     71     95      83.75          B-
+32     84     76     83     88      82.75          B-
+33     84     93     89     95      90.25          A-
+34     81     99     81     85      86.50           B
+35     85     97     74     71      81.75          B-
+36     82     97     75     80      83.50          B-
+37     84     95     83     79      85.25           B
+38     83     93     78     94      87.00          B+
+39     83     82     78     95      84.50           B
+40     84     96     74     78      83.00          B-</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -362,16 +366,15 @@ Attaching package: 'dplyr'</code></pre>
 <span></span>
 <span><span class="va">final_grade</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-# Groups:   LetterGrade [6]
+<pre><code># A tibble: 5 × 2
+# Groups:   LetterGrade [5]
   LetterGrade     n
   &lt;chr&gt;       &lt;int&gt;
-1 A-              2
+1 A-              4
 2 B               9
-3 B+              4
-4 B-             14
-5 C               1
-6 C+             10</code></pre>
+3 B+              5
+4 B-             17
+5 C+              5</code></pre>
 </div>
 </div>
 <p>Our students didn’t do particularly well, but that is to be expected when we control the range their grades can be in!</p>
@@ -416,106 +419,106 @@ Attaching package: 'dplyr'</code></pre>
 <span><span class="va">scat_df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sex      RT TestScore
-1     F  830.23        69
-2     M 1052.96        80
-3     M  744.91        67
-4     F  826.67        78
-5     F  685.70        66
-6     F  826.48       100
-7     F  295.06        78
-8     F  742.33        70
-9     F  757.14        88
-10    M  706.14        95
-11    F  563.02        67
-12    M  540.13        92
-13    F  738.38        89
-14    M  924.02        95
-15    M  869.42        75
-16    M  743.24        94
-17    M  992.10        81
-18    M  736.56        73
-19    F  624.26        65
-20    M  798.06        74
-21    M 1017.80        95
-22    F  977.18        73
-23    F  849.75        71
-24    F 1069.17        68
-25    M  759.65        74
-26    F  786.44        83
-27    M  831.93        70
-28    M  691.58        70
-29    M  873.94        75
-30    F  922.20        63
-31    F  633.39        93
-32    M  974.24        61
-33    M  753.53        83
-34    M  586.97        66
-35    F 1080.93        84
-36    M  509.89        63
-37    M 1004.48        79
-38    F  888.54        96
-39    M 1027.65        93
-40    M  922.94        79
-41    M  986.27        95
-42    M  821.62        90
-43    F  793.58        91
-44    M  946.24        85
-45    F  924.99        89
-46    M  595.63        70
-47    M  942.15        88
-48    M 1040.33        75
-49    F  707.03        67
-50    F  662.86        70
-51    F  716.65        50
-52    M  914.27        69
-53    M 1154.40        86
-54    F  870.08        64
-55    F  688.62        72
-56    F  968.93        52
-57    M 1042.56        50
-58    M  902.57        60
-59    F  697.02        55
-60    F  939.78        57
-61    M  849.84        59
-62    F  761.23        81
-63    M  613.30        82
-64    M  776.65        53
-65    M  841.45        70
-66    F  641.78        57
-67    M  745.48        57
-68    F  843.55        79
-69    M  581.97        81
-70    M  980.07        41
-71    F  743.68        76
-72    F  898.63        79
-73    F  664.78        41
-74    F  924.20        45
-75    F  764.00        69
-76    M  997.31        61
-77    M  763.10        46
-78    F  824.72        42
-79    M  914.02        40
-80    M  857.82        78
-81    M  862.42        75
-82    F 1041.23        67
-83    M  843.66        47
-84    F  857.85        48
-85    F  916.80        41
-86    F  671.14        75
-87    F  679.02        51
-88    F  892.51        90
-89    M  708.20        83
-90    M  801.91        64
-91    M  803.54        44
-92    F  803.59        61
-93    M  851.28        43
-94    F  923.87        63
-95    M  881.25        56
-96    F  904.44        61
-97    M  780.20        62
-98    F  855.20        83
-99    F  582.70        47
-100   M  875.23        75</code></pre>
+1     F  783.76        65
+2     M  748.52        88
+3     F 1086.35        97
+4     F  607.07        69
+5     M  787.47        66
+6     F  755.86        67
+7     M 1138.92        87
+8     F  748.03        96
+9     M  692.54        73
+10    M  723.09        61
+11    M  796.21        61
+12    M  878.43        71
+13    M  495.05        93
+14    M  677.05        83
+15    M  707.04        82
+16    F  821.28        93
+17    F  986.18        67
+18    F  844.40        80
+19    M  856.35        93
+20    M  961.75        89
+21    M  828.84        88
+22    F  808.52        95
+23    F  969.01        90
+24    F  837.60        90
+25    F  770.97        95
+26    M  825.89        88
+27    M  635.74        76
+28    F  779.35        89
+29    M 1091.54        74
+30    M  644.66        99
+31    M  830.10        86
+32    F  545.27        72
+33    F  887.00        87
+34    M  768.17        89
+35    M  899.74        86
+36    F  708.03        63
+37    M  869.45        66
+38    M  874.11        92
+39    F  926.16        93
+40    F  732.59        87
+41    M  676.48        85
+42    M  616.78        70
+43    F  624.18        64
+44    M  741.68        93
+45    M  837.08        73
+46    M 1148.34        75
+47    M  895.80        72
+48    F  785.64        81
+49    F  762.02        89
+50    F  864.37        94
+51    F  976.96        83
+52    M  531.35        55
+53    F  852.96        44
+54    F  886.44        87
+55    F  766.33        50
+56    M  359.90        75
+57    M  698.73        68
+58    M  771.78        66
+59    F  641.29        42
+60    M  873.92        90
+61    F  945.16        68
+62    M  890.35        72
+63    F  987.15        59
+64    M  674.25        41
+65    M  671.00        56
+66    M  971.42        81
+67    F  818.94        61
+68    F  805.48        75
+69    F 1000.65        73
+70    M  837.28        63
+71    F  857.00        56
+72    M  864.27        73
+73    F  823.55        75
+74    F  748.93        52
+75    M 1014.93        59
+76    F  524.14        83
+77    M  868.12        78
+78    F  796.67        41
+79    F  976.34        88
+80    M  677.17        43
+81    M  783.76        59
+82    F  629.82        75
+83    M  715.54        62
+84    F  588.11        56
+85    M 1081.73        82
+86    M  746.14        72
+87    F  919.44        48
+88    M  693.11        79
+89    F  693.56        68
+90    F  944.57        86
+91    F 1252.93        75
+92    F  829.14        60
+93    F  706.27        48
+94    M  586.11        62
+95    F  755.53        82
+96    F  680.91        80
+97    M  946.54        82
+98    M  919.99        53
+99    F 1085.21        52
+100   F  628.44        82</code></pre>
 </div>
 </div>
 <p>Plot Sex against RT and have the colors be linked to the Sex of the participant (point).</p>
@@ -549,78 +552,78 @@ Attaching package: 'dplyr'</code></pre>
 <span><span class="va">Dave_TV</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Season Episode                 Title Ratings
-1      S1       1          The Set Week       8
-2      S1       2      The Heavy Street       8
-3      S1       3  The Benefit Saturday       8
-4      S1       4   The Understand Fill       9
-5      S1       5   The Provide Suggest       9
-6      S1       6         The Take Push       8
-7      S1       7    The Colour Trouble       9
-8      S1       8  The Position Purpose       9
-9      S1       9        The Role Ready       8
-10     S1      10       The Lose Future       9
-11     S1      11          The Bus This       9
-12     S1      12         The Home Feed       8
-13     S2       1        The Favour Try       9
-14     S2       2         The Pull Road       9
-15     S2       3       The Dinner Rail       8
-16     S2       4         The Easy Mean       9
-17     S2       5     The Think Council       8
-18     S2       6       The Clock Think       9
-19     S2       7    The Town Available       8
-20     S2       8  The Floor Experience       9
-21     S2       9      The Whether Hall       9
-22     S2      10    The Practise Glass       9
-23     S2      11      The Electric Gas       8
-24     S2      12        The Boat Offer       9
-25     S3       1          The Art Idea       9
-26     S3       2     The Enough Appear       9
-27     S3       3    The Concern Almost       9
-28     S3       4          The East One       9
-29     S3       5 The Trouble Christmas       9
-30     S3       6       The Test Doctor       9
-31     S3       7       The County Hair       9
-32     S3       8        The Laugh Site       8
-33     S3       9    The Relation Weigh       8
-34     S3      10 The Apparent Practise       8
-35     S3      11      The Current Wait       9
-36     S3      12  The Possible America       9
-37     S4       1             The We As       9
-38     S4       2      The Chap Section       8
-39     S4       3        The More Share       9
-40     S4       4   The Succeed Operate       8
-41     S4       5       The Bag Germany       9
-42     S4       6    The Correct Indeed       9
-43     S4       7 The Support Associate       8
-44     S4       8   The Pretty Research       9
-45     S4       9  The Associate Report       8
-46     S4      10       The Shall Under       9
-47     S4      11     The Limit Holiday       8
-48     S4      12         The Be Window       8
-49     S5       1   The Advertise Speed       9
-50     S5       2         The Close Lay       8
-51     S5       3        The Market Any       8
-52     S5       4        The Service So       8
-53     S5       5        The Touch Room       9
-54     S5       6         The Bank Best       9
-55     S5       7     The Another Train       9
-56     S5       8      The Print Couple       8
-57     S5       9        The Awful Bill       9
-58     S5      10       The Score Blood       8
-59     S5      11          The Dog Make       9
-60     S5      12      The Mister Throw       8
-61     S6       1     The Example Match       8
-62     S6       2        The Press Fund       9
-63     S6       3         The Tea Marry       8
-64     S6       4   The Amount Positive       7
-65     S6       5       The Way Process       9
-66     S6       6         The Apply Few       7
-67     S6       7  The Deep Opportunity       8
-68     S6       8       The Kind Settle       6
-69     S6       9       The Lead Debate       6
-70     S6      10        The Check Body       7
-71     S6      11    The Question Stage       7
-72     S6      12    The Accept Student       6</code></pre>
+1      S1       1    The Figure Special       8
+2      S1       2       The There Lunch       8
+3      S1       3        The Fit Create       8
+4      S1       4        The Moment But       8
+5      S1       5     The Sleep Section       9
+6      S1       6     The Happen Stairs       8
+7      S1       7   The Thirty Together       8
+8      S1       8      The Fly Especial       8
+9      S1       9      The Power Nation       8
+10     S1      10     The Positive Come       8
+11     S1      11     The Saturday Look       9
+12     S1      12      The Train Dinner       8
+13     S2       1      The Church Seven       9
+14     S2       2   The Question Charge       8
+15     S2       3   The Organize Market       8
+16     S2       4        The Sign First       8
+17     S2       5  The Finance Resource       8
+18     S2       6        The Both Hullo       9
+19     S2       7      The Language Dog       9
+20     S2       8     The Second Always       9
+21     S2       9        The Very Level       8
+22     S2      10        The Out Office       8
+23     S2      11         The County As       8
+24     S2      12     The Staff Obvious       8
+25     S3       1        The Wonder Low       8
+26     S3       2    The Advertise Even       8
+27     S3       3 The Difficult Present       8
+28     S3       4   The Perfect Account       8
+29     S3       5      The Confer Minus       9
+30     S3       6      The Public Floor       8
+31     S3       7         The Use Score       8
+32     S3       8 The Programme Various       9
+33     S3       9        The Fight Kill       8
+34     S3      10     The Thirteen Rate       8
+35     S3      11  The Necessary Double       9
+36     S3      12      The Quarter Rail       8
+37     S4       1    The Percent Manage       8
+38     S4       2    The Client General       8
+39     S4       3         The Egg Never       9
+40     S4       4     The Welcome Judge       9
+41     S4       5  The Appropriate Also       8
+42     S4       6             The Say A       8
+43     S4       7  The Under Particular       8
+44     S4       8     The Office Middle       8
+45     S4       9       The Chance They       8
+46     S4      10     The During Bother       8
+47     S4      11             The Go To       8
+48     S4      12       The Stick Story       8
+49     S5       1           The For Get       8
+50     S5       2    The Evidence Clean       9
+51     S5       3        The Some Equal       8
+52     S5       4       The Road Settle       8
+53     S5       5         The Offer Egg       9
+54     S5       6  The Transport Europe       9
+55     S5       7          The Each Odd       9
+56     S5       8         The Over Make       9
+57     S5       9 The Enough Television       9
+58     S5      10    The Consult Friday       8
+59     S5      11     The Clothe Reason       8
+60     S5      12      The Honest Jesus       8
+61     S6       1       The Price Pound       6
+62     S6       2      The General Side       8
+63     S6       3       The Call Assume       7
+64     S6       4           The Tie Yet       7
+65     S6       5    The Serious Church       7
+66     S6       6     The Term Minister       6
+67     S6       7            The We Six       7
+68     S6       8           The She Guy       7
+69     S6       9      The Though Thank       7
+70     S6      10       The Corner Meet       8
+71     S6      11       The Likely Door       9
+72     S6      12         The Sir Woman       7</code></pre>
 </div>
 </div>
 <p>Firstly, I want to take a moment to see how truly excellent some of the episode titles are:</p>
@@ -628,10 +631,10 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">title_samp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Dave_TV</span><span class="op">$</span><span class="va">Title</span>,<span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">title_samp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "The Floor Experience" "The Accept Student"   "The Heavy Street"    
- [4] "The Pretty Research"  "The Take Push"        "The Awful Bill"      
- [7] "The Enough Appear"    "The Provide Suggest"  "The Relation Weigh"  
-[10] "The Market Any"      </code></pre>
+<pre><code> [1] "The Enough Television" "The Office Middle"     "The Fight Kill"       
+ [4] "The Church Seven"      "The Term Minister"     "The Very Level"       
+ [7] "The Clothe Reason"     "The Saturday Look"     "The Perfect Account"  
+[10] "The Evidence Clean"   </code></pre>
 </div>
 </div>
 <p>Anyways, now that our data is in the correct format we can plot it.</p>

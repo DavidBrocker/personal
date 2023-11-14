@@ -3,10 +3,10 @@ title: "Writing"
 editor: visual
 ---
 
-Below are some links to Medium articles i have published that walk using `shiny` to make interactive visuals:
+Below are some links to Medium articles i have published that walk through using `shiny` and `visnetwork` to make interactive visuals:
 
-[![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*7snXDiqA-gMVNDgCog1NaA.png){style="border-radius: 50%;" width="280" height="280"}](https://medium.com/@davidabrocker/using-shinydashboard-to-make-an-interactive-music-recommendation-tree-in-r-fc423c00008a)
+[![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*7snXDiqA-gMVNDgCog1NaA.png){width="280" height="280"}](https://medium.com/@davidabrocker/using-shinydashboard-to-make-an-interactive-music-recommendation-tree-in-r-fc423c00008a)
 
-[![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*TkaiRuS3YhUwt7_mQU_B9A.png){style="border-radius: 50%;" width="280" height="280"}](https://medium.com/@davidabrocker/making-your-first-shinydashboard-in-r-aa1b1d3947fe)
+[![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*TkaiRuS3YhUwt7_mQU_B9A.png){width="280" height="280"}](https://medium.com/@davidabrocker/making-your-first-shinydashboard-in-r-aa1b1d3947fe)
 
-[![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*OLMQN9qnDt8mFglDnxnEKg.png){style="border-radius: 50%;" width="280" height="280"}](https://medium.com/@davidabrocker/make-a-spotify-recommendation-network-with-r-e3367fc8b9c6)
+[![](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*OLMQN9qnDt8mFglDnxnEKg.png){width="280" height="280"}](https://medium.com/@davidabrocker/make-a-spotify-recommendation-network-with-r-e3367fc8b9c6)

@@ -1,0 +1,14 @@
+---
+title: "Apps"
+editor: visual
+---
+
+Shiny Apps with source code provided
+
+[MusicMatchup](https://dbrocker.shinyapps.io/MusicMatchup/) - Find your next favorite artist
+
+[ACrossingCoffee](https://dbrocker.shinyapps.io/ACrossingCoffee/) - Who should you meet at Brewster's?
+
+[CreatePlaylist](link) - Make a playlist based on recommended artists
+
+[RandomAmericanDad](https://dbrocker.shinyapps.io/RandomAmericanDad/) - Watch a Random Episode of American Dad!

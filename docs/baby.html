@@ -139,6 +139,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./presentations.html"> 
 <span class="menu-text">Presentations</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./apps.html"> 
+<span class="menu-text">Apps</span></a>
+  </li>  
 </ul>
 </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -276,26 +280,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">xy</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x
-1  e
-2  y
-3  r
-4  q
-5  d
-6  u
-7  v
-8  k
-9  s
-10 x
-11 w
-12 o
-13 m
-14 p
-15 c
-16 h
-17 t
-18 g
-19 z
-20 i</code></pre>
+1  f
+2  o
+3  p
+4  x
+5  j
+6  c
+7  w
+8  a
+9  g
+10 l
+11 z
+12 b
+13 s
+14 e
+15 t
+16 q
+17 m
+18 d
+19 h
+20 i
+21 n
+22 r
+23 k</code></pre>
 </div>
 </div>
 <p>You will notice that we lost everything in the y column! We need to use the&nbsp;<code>.keep_all()</code>&nbsp;argument.</p>
@@ -311,21 +318,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 23 × 2
-# Groups:   x [23]
+<pre><code># A tibble: 24 × 2
+# Groups:   x [24]
    x         y
    &lt;chr&gt; &lt;dbl&gt;
- 1 a        26
- 2 b        92
- 3 c        46
- 4 d        79
- 5 e        28
- 6 f        16
- 7 g        14
- 8 h        75
- 9 i        24
-10 j        45
-# ℹ 13 more rows</code></pre>
+ 1 a        83
+ 2 c        56
+ 3 d        16
+ 4 e        18
+ 5 f        98
+ 6 g        25
+ 7 h        57
+ 8 i        89
+ 9 j        31
+10 k        96
+# ℹ 14 more rows</code></pre>
 </div>
 </div>
 <p>So now we will do the same with the&nbsp;<code>babynames</code>&nbsp;dataset to find the number of distinct names.</p>
