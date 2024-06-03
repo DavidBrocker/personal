@@ -3,7 +3,7 @@ project:
   output-dir: docs
   
 website:
-  title: "David Brocker"
+  title: "Dave Brocker"
   twitter-card: true
   site-url: twitter.com
   navbar:
@@ -25,4 +25,7 @@ format:
     css: styles.css
     toc: true
     code-link: true
+    code-overflow: wrap
+    code-copy: hover
+    code-line-numbers: true
 

@@ -8,10 +8,10 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.458">
+  <meta name="generator" content="quarto-1.4.550">
 
   <meta name="author" content="David Brocker">
-  <title>David Brocker - R &amp; Quarto: Elevating Research Transparency</title>
+  <title>Dave Brocker - R &amp; Quarto: Elevating Research Transparency</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,7 +387,7 @@
       margin-right: 0; 
     }
   </style>
-<meta name="twitter:title" content="David Brocker - R &amp; Quarto: Elevating Research Transparency">
+<meta name="twitter:title" content="Dave Brocker - R &amp; Quarto: Elevating Research Transparency">
 <meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-dark">
@@ -429,59 +429,59 @@ David Brocker
 </section>
 <section id="import-data" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Import Data</h2>
-<div class="sourceCode" id="cb1" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a href="#cb1-1"></a><span class="co"># Read and Clean Data</span></span>
-<span id="cb1-2" class="hljs-ln-code"><a href="#cb1-2"></a> mcu <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"UpdatedMCdata.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a></a><span class="co"># Read and Clean Data</span></span>
+<span id="cb1-2" class="hljs-ln-code"><a></a> mcu <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"UpdatedMCdata.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="import-data-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Import Data</h2>
-<div class="sourceCode" id="cb2" data-code-line-numbers="6,8,10,12,14,16,34,36,38,40"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a href="#cb2-1"></a><span class="co"># Read and Clean Data</span></span>
-<span id="cb2-2" class="hljs-ln-code"><a href="#cb2-2"></a> mcu <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"UpdatedMCdata.xlsx"</span>)</span>
-<span id="cb2-3" class="hljs-ln-code"><a href="#cb2-3"></a><span class="co"># Clean</span></span>
-<span id="cb2-4" class="hljs-ln-code"><a href="#cb2-4"></a> mcu_cln <span class="ot">&lt;-</span> </span>
-<span id="cb2-5" class="hljs-ln-code"><a href="#cb2-5"></a>  mcu <span class="sc">%&gt;%</span> </span>
-<span id="cb2-6" class="hljs-ln-code"><a href="#cb2-6"></a>  <span class="co"># Get participants who finished </span></span>
-<span id="cb2-7" class="hljs-ln-code"><a href="#cb2-7"></a>  <span class="fu">filter</span>(Finished <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-8" class="hljs-ln-code"><a href="#cb2-8"></a>  <span class="co"># Get participants who consented </span></span>
-<span id="cb2-9" class="hljs-ln-code"><a href="#cb2-9"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Consent?</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-10" class="hljs-ln-code"><a href="#cb2-10"></a>  <span class="co"># Remove unneeded columns </span></span>
-<span id="cb2-11" class="hljs-ln-code"><a href="#cb2-11"></a>  <span class="fu">select</span>(<span class="sc">-</span>DistributionChannel,<span class="sc">-</span>UserLanguage) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-12" class="hljs-ln-code"><a href="#cb2-12"></a>  <span class="co"># Clean variable names </span></span>
-<span id="cb2-13" class="hljs-ln-code"><a href="#cb2-13"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">gsub</span>(<span class="st">" "</span>,<span class="st">"_"</span>,.x)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-14" class="hljs-ln-code"><a href="#cb2-14"></a>  <span class="co"># Make Score Columns numeric </span></span>
-<span id="cb2-15" class="hljs-ln-code"><a href="#cb2-15"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(SC0<span class="sc">:</span>SC14),as.numeric) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-16" class="hljs-ln-code"><a href="#cb2-16"></a>  <span class="co"># Remove SC0 and replace with scale name </span></span>
-<span id="cb2-17" class="hljs-ln-code"><a href="#cb2-17"></a>  <span class="fu">rename</span>( </span>
-<span id="cb2-18" class="hljs-ln-code"><a href="#cb2-18"></a>    <span class="at">Morbid_Curiosity_Overall =</span> SC0, </span>
-<span id="cb2-19" class="hljs-ln-code"><a href="#cb2-19"></a>    <span class="at">Mind =</span> SC1, </span>
-<span id="cb2-20" class="hljs-ln-code"><a href="#cb2-20"></a>    <span class="at">Body =</span> SC2, </span>
-<span id="cb2-21" class="hljs-ln-code"><a href="#cb2-21"></a>    <span class="at">Violence =</span> SC3,</span>
-<span id="cb2-22" class="hljs-ln-code"><a href="#cb2-22"></a>    <span class="at">Paranormal =</span> SC4, </span>
-<span id="cb2-23" class="hljs-ln-code"><a href="#cb2-23"></a>    <span class="at">Horror_Typology_Overall =</span> SC5, </span>
-<span id="cb2-24" class="hljs-ln-code"><a href="#cb2-24"></a>    <span class="at">AJ =</span> SC6, </span>
-<span id="cb2-25" class="hljs-ln-code"><a href="#cb2-25"></a>    <span class="at">WK =</span> SC7, </span>
-<span id="cb2-26" class="hljs-ln-code"><a href="#cb2-26"></a>    <span class="at">DC =</span> SC8, </span>
-<span id="cb2-27" class="hljs-ln-code"><a href="#cb2-27"></a>    <span class="at">Trait =</span> SC9, </span>
-<span id="cb2-28" class="hljs-ln-code"><a href="#cb2-28"></a>    <span class="at">State_Pre =</span> SC10, </span>
-<span id="cb2-29" class="hljs-ln-code"><a href="#cb2-29"></a>    <span class="at">Positive_Choice =</span> SC11,</span>
-<span id="cb2-30" class="hljs-ln-code"><a href="#cb2-30"></a>    <span class="at">Negative_Choice =</span> SC12,</span>
-<span id="cb2-31" class="hljs-ln-code"><a href="#cb2-31"></a>    <span class="at">PN_Choice =</span> SC13, </span>
-<span id="cb2-32" class="hljs-ln-code"><a href="#cb2-32"></a>    <span class="at">State_Post =</span> SC14) <span class="sc">|&gt;</span></span>
-<span id="cb2-33" class="hljs-ln-code"><a href="#cb2-33"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-34" class="hljs-ln-code"><a href="#cb2-34"></a>    <span class="co"># Divide all MC Total Score by 24</span></span>
-<span id="cb2-35" class="hljs-ln-code"><a href="#cb2-35"></a>    <span class="at">Morbid_Curiosity_Overall =</span> Morbid_Curiosity_Overall<span class="sc">/</span><span class="dv">24</span>,</span>
-<span id="cb2-36" class="hljs-ln-code"><a href="#cb2-36"></a>    <span class="co"># Divide all HT Total Score by 19</span></span>
-<span id="cb2-37" class="hljs-ln-code"><a href="#cb2-37"></a>    <span class="at">Horror_Typology_Overall =</span> Horror_Typology_Overall<span class="sc">/</span><span class="dv">19</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb2-38" class="hljs-ln-code"><a href="#cb2-38"></a>    <span class="co"># Divide each MC Subscale Item by 6</span></span>
-<span id="cb2-39" class="hljs-ln-code"><a href="#cb2-39"></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(Mind<span class="sc">:</span>Paranormal),scale_six) <span class="sc">|&gt;</span> </span>
-<span id="cb2-40" class="hljs-ln-code"><a href="#cb2-40"></a>    <span class="co"># Divide each HT Subscale Item by 6</span></span>
-<span id="cb2-41" class="hljs-ln-code"><a href="#cb2-41"></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(AJ<span class="sc">:</span>DC),scale_seven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-code-line-numbers="6,8,10,12,14,16,34,36,38,40"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="co"># Read and Clean Data</span></span>
+<span id="cb2-2" class="hljs-ln-code"><a></a> mcu <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"UpdatedMCdata.xlsx"</span>)</span>
+<span id="cb2-3" class="hljs-ln-code"><a></a><span class="co"># Clean</span></span>
+<span id="cb2-4" class="hljs-ln-code"><a></a> mcu_cln <span class="ot">&lt;-</span> </span>
+<span id="cb2-5" class="hljs-ln-code"><a></a>  mcu <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6" class="hljs-ln-code"><a></a>  <span class="co"># Get participants who finished </span></span>
+<span id="cb2-7" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(Finished <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8" class="hljs-ln-code"><a></a>  <span class="co"># Get participants who consented </span></span>
+<span id="cb2-9" class="hljs-ln-code"><a></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Consent?</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-10" class="hljs-ln-code"><a></a>  <span class="co"># Remove unneeded columns </span></span>
+<span id="cb2-11" class="hljs-ln-code"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>DistributionChannel,<span class="sc">-</span>UserLanguage) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12" class="hljs-ln-code"><a></a>  <span class="co"># Clean variable names </span></span>
+<span id="cb2-13" class="hljs-ln-code"><a></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">gsub</span>(<span class="st">" "</span>,<span class="st">"_"</span>,.x)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-14" class="hljs-ln-code"><a></a>  <span class="co"># Make Score Columns numeric </span></span>
+<span id="cb2-15" class="hljs-ln-code"><a></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(SC0<span class="sc">:</span>SC14),as.numeric) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-16" class="hljs-ln-code"><a></a>  <span class="co"># Remove SC0 and replace with scale name </span></span>
+<span id="cb2-17" class="hljs-ln-code"><a></a>  <span class="fu">rename</span>( </span>
+<span id="cb2-18" class="hljs-ln-code"><a></a>    <span class="at">Morbid_Curiosity_Overall =</span> SC0, </span>
+<span id="cb2-19" class="hljs-ln-code"><a></a>    <span class="at">Mind =</span> SC1, </span>
+<span id="cb2-20" class="hljs-ln-code"><a></a>    <span class="at">Body =</span> SC2, </span>
+<span id="cb2-21" class="hljs-ln-code"><a></a>    <span class="at">Violence =</span> SC3,</span>
+<span id="cb2-22" class="hljs-ln-code"><a></a>    <span class="at">Paranormal =</span> SC4, </span>
+<span id="cb2-23" class="hljs-ln-code"><a></a>    <span class="at">Horror_Typology_Overall =</span> SC5, </span>
+<span id="cb2-24" class="hljs-ln-code"><a></a>    <span class="at">AJ =</span> SC6, </span>
+<span id="cb2-25" class="hljs-ln-code"><a></a>    <span class="at">WK =</span> SC7, </span>
+<span id="cb2-26" class="hljs-ln-code"><a></a>    <span class="at">DC =</span> SC8, </span>
+<span id="cb2-27" class="hljs-ln-code"><a></a>    <span class="at">Trait =</span> SC9, </span>
+<span id="cb2-28" class="hljs-ln-code"><a></a>    <span class="at">State_Pre =</span> SC10, </span>
+<span id="cb2-29" class="hljs-ln-code"><a></a>    <span class="at">Positive_Choice =</span> SC11,</span>
+<span id="cb2-30" class="hljs-ln-code"><a></a>    <span class="at">Negative_Choice =</span> SC12,</span>
+<span id="cb2-31" class="hljs-ln-code"><a></a>    <span class="at">PN_Choice =</span> SC13, </span>
+<span id="cb2-32" class="hljs-ln-code"><a></a>    <span class="at">State_Post =</span> SC14) <span class="sc">|&gt;</span></span>
+<span id="cb2-33" class="hljs-ln-code"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-34" class="hljs-ln-code"><a></a>    <span class="co"># Divide all MC Total Score by 24</span></span>
+<span id="cb2-35" class="hljs-ln-code"><a></a>    <span class="at">Morbid_Curiosity_Overall =</span> Morbid_Curiosity_Overall<span class="sc">/</span><span class="dv">24</span>,</span>
+<span id="cb2-36" class="hljs-ln-code"><a></a>    <span class="co"># Divide all HT Total Score by 19</span></span>
+<span id="cb2-37" class="hljs-ln-code"><a></a>    <span class="at">Horror_Typology_Overall =</span> Horror_Typology_Overall<span class="sc">/</span><span class="dv">19</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb2-38" class="hljs-ln-code"><a></a>    <span class="co"># Divide each MC Subscale Item by 6</span></span>
+<span id="cb2-39" class="hljs-ln-code"><a></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(Mind<span class="sc">:</span>Paranormal),scale_six) <span class="sc">|&gt;</span> </span>
+<span id="cb2-40" class="hljs-ln-code"><a></a>    <span class="co"># Divide each HT Subscale Item by 6</span></span>
+<span id="cb2-41" class="hljs-ln-code"><a></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(AJ<span class="sc">:</span>DC),scale_seven)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="import-data-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Import Data</h2>
-<div class="sourceCode" id="cb3" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb3-1" class="hljs-ln-code"><a href="#cb3-1"></a><span class="co"># Subset Scales</span></span>
-<span id="cb3-2" class="hljs-ln-code"><a href="#cb3-2"></a> mc_scale <span class="ot">&lt;-</span> </span>
-<span id="cb3-3" class="hljs-ln-code"><a href="#cb3-3"></a>  mcu_cln <span class="sc">|&gt;</span> </span>
-<span id="cb3-4" class="hljs-ln-code"><a href="#cb3-4"></a>  <span class="fu">select</span>(Morbid_Curiosity_Overall<span class="sc">:</span>State_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb3-1" class="hljs-ln-code"><a></a><span class="co"># Subset Scales</span></span>
+<span id="cb3-2" class="hljs-ln-code"><a></a> mc_scale <span class="ot">&lt;-</span> </span>
+<span id="cb3-3" class="hljs-ln-code"><a></a>  mcu_cln <span class="sc">|&gt;</span> </span>
+<span id="cb3-4" class="hljs-ln-code"><a></a>  <span class="fu">select</span>(Morbid_Curiosity_Overall<span class="sc">:</span>State_Post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="visualize-data" class="slide level2">
 <h2>Visualize Data</h2>
@@ -502,7 +502,7 @@ David Brocker
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Before</a></li><li><a href="#tabset-1-2">After</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mcu <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>mcu <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "StartDate"             "EndDate"               "Status"               
@@ -511,9 +511,9 @@ David Brocker
 </div>
 </div>
 <div id="tabset-1-2">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mcu <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>mcu <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a></a><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "start_date"          "end_date"            "status"             
@@ -531,11 +531,15 @@ David Brocker
 <li class="fragment">Visualize Possible Relationships</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mcu_cln <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">pairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>mcu_cln <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a></a>  <span class="fu">pairs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="demonstration_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -547,11 +551,15 @@ David Brocker
 <li class="fragment">Scan for possible outliers</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>mcu_cln <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>mcu_cln <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a></a>  <span class="fu">boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="demonstration_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -607,8 +615,10 @@ David Brocker
 </ol>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
+</div>
 </div>
 </section>
 

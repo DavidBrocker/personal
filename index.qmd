@@ -4,7 +4,7 @@ editor: visual
 
 about:
   template: jolla
-  image: profile.jpg
+  image: images/profile.jpeg
   image-width: 50%
   image-shape: round
   links:
