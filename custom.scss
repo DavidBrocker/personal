@@ -48,7 +48,7 @@ $font-family-sans-serif: "Noto Sans Display" !default;
 // stamping an identical copy on every card; straighten on hover.
 $kurbits-tilts: -7deg, 5deg, -3deg, 8deg, -5deg;
 
-@each $card-class in ".app-card", ".class-taught", ".writing-card" {
+@each $card-class in ".app-card", ".class-taught", ".writing-card", ".gallery-card" {
   @for $i from 1 through length($kurbits-tilts) {
     #{$card-class}:nth-of-type(#{$i}) .kurbits-corner {
       transform: rotate(nth($kurbits-tilts, $i));
@@ -390,6 +390,51 @@ a:hover {
   margin: 0.5rem 0 1rem 0;
 }
 
+/* Portfolio gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.gallery-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border-left: 6px solid #b22222;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 1.5rem 1.5rem 1.75rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-image {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  margin-bottom: 1rem;
+}
+
+.gallery-card strong {
+  color: #b22222;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.gallery-caption {
+  display: block;
+  color: #444;
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+  line-height: 1.4;
+}
 
 /* Home Page Icons */
 

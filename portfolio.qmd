@@ -1,0 +1,47 @@
+---
+title: "Portfolio"
+editor: visual
+---
+
+<p style="text-align:center;">
+<span class="kurbits-rosette"></span>A few examples of analysis and visualization work<span class="kurbits-rosette"></span>
+</p>
+
+::::: gallery-grid
+
+::: gallery-card
+<div class="kurbits-corner"></div>
+![](images/gallery/scare-score.png){.gallery-image}  
+**Physiological Predictors of Scare Score**  
+<span class="gallery-caption">Multivariate regression identifying which physiological signals best predict a subjective "scare" response during horror films (R² = 0.999).</span>
+:::
+
+::: gallery-card
+<div class="kurbits-corner"></div>
+![](images/gallery/season-ratings.png){.gallery-image}  
+**Season-Over-Season Rating Trends**  
+<span class="gallery-caption">Per-season average ratings layered over individual episode scores across 12 seasons of a long-running series.</span>
+:::
+
+::: gallery-card
+<div class="kurbits-corner"></div>
+![](images/gallery/rt-scores.png){.gallery-image}  
+**Reaction Time vs. Test Performance**  
+<span class="gallery-caption">Group comparison exploring the relationship between reaction time and test score across two experimental conditions.</span>
+:::
+
+::: gallery-card
+<div class="kurbits-corner"></div>
+![](images/gallery/great-episodes.png){.gallery-image}  
+**Standout-Episode Comparison**  
+<span class="gallery-caption">Categorical breakdown comparing top-rated episode counts across leads.</span>
+:::
+
+::: gallery-card
+<div class="kurbits-corner"></div>
+![](images/gallery/word-length.png){.gallery-image}  
+**Word-Length Distribution**  
+<span class="gallery-caption">Text analytics on a 980-word corpus, surfacing the most common word length.</span>
+:::
+
+:::::

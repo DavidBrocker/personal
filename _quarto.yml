@@ -19,6 +19,9 @@ website:
       - href: apps.qmd
         icon: terminal
         text: Apps
+      - href: portfolio.qmd
+        icon: bar-chart
+        text: Portfolio
       
 format:
   html:

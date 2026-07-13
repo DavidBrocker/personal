@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-89dcb6811236377c4cbc137b5576334e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-f9640a4315d47d145548b3046a65c213.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -128,6 +128,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./apps.html"> <i class="bi bi-terminal" role="img">
 </i> 
 <span class="menu-text">Apps</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./portfolio.html"> <i class="bi bi-bar-chart" role="img">
+</i> 
+<span class="menu-text">Portfolio</span></a>
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
@@ -265,30 +270,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7"></a>xy <span class="sc">|&gt;</span> <span class="fu">distinct</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x
-1  l
-2  s
-3  r
-4  x
-5  b
+1  t
+2  g
+3  i
+4  l
+5  x
 6  d
-7  a
-8  e
-9  n
-10 g
-11 i
-12 u
-13 m
-14 q
-15 t
-16 y
-17 f
-18 k
-19 p
-20 h
-21 c
-22 z
-23 v
-24 w</code></pre>
+7  m
+8  k
+9  v
+10 y
+11 u
+12 s
+13 h
+14 f
+15 p
+16 e
+17 j
+18 r
+19 w
+20 z</code></pre>
 </div>
 </div>
 <p>You will notice that we lost everything in the y column! We need to use the&nbsp;<code>.keep_all()</code>&nbsp;argument.</p>
@@ -304,21 +305,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">group_by</span>(x) <span class="sc">|&gt;</span> </span>
 <span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">arrange</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 21 × 2
-# Groups:   x [21]
+<pre><code># A tibble: 20 × 2
+# Groups:   x [20]
    x         y
    &lt;chr&gt; &lt;dbl&gt;
- 1 a        65
- 2 c        55
- 3 d        27
- 4 e        34
- 5 f        50
- 6 g        55
- 7 h        51
- 8 k        85
- 9 l        27
-10 m        30
-# ℹ 11 more rows</code></pre>
+ 1 a        64
+ 2 b        14
+ 3 c        94
+ 4 d         9
+ 5 f        59
+ 6 g        91
+ 7 h        78
+ 8 j        38
+ 9 k         5
+10 m        13
+11 n        14
+12 o        69
+13 p        93
+14 s        57
+15 t        63
+16 u        54
+17 w        91
+18 x        23
+19 y        29
+20 z        87</code></pre>
 </div>
 </div>
 <p>So now we will do the same with the&nbsp;<code>babynames</code>&nbsp;dataset to find the number of distinct names.</p>
