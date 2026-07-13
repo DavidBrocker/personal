@@ -1,11 +1,9 @@
 ---
-title: "Introduction to ggplot"
+title: "Introduction to `ggplot2`"
 editor: visual
 filters:
 - webr
 ---
-
-#### Introduction to `ggplot2`
 
 When I first started out with R, I only ever used the base plotting system. This was primarily because once I saw an example of a plot made with `ggplot` I was a little bit scared.
 
@@ -18,33 +16,44 @@ Some of my colleagues use a 4 test grading scheme where each test is worth 25%. 
 ```{r}
 library(ggplot2)
 library(forcats)
+library(huxtable)
 library(stringr)
-library(dplyr)
-test_data <- data.frame(
-  Exam_1=round(runif(40,80,85)),
-  Exam_2=round(runif(40,75,100)),
-  Exam_3=round(runif(40,70,90)),
-  Exam_4=round(runif(40,60,100)))
+library(dplyr,warn.conflicts = F)
 
-test_data$FinalGrade <- rowMeans(test_data)
+test_data <- 
+  data.frame(
+    Student = paste0("Student",1:40),
+    Exam_1= runif(40,80,85) |> round(0),
+    Exam_2= runif(40,75,100) |> round(0),
+    Exam_3= runif(40,70,90) |> round(0),
+    Exam_4= runif(40,60,100) |> round(0)
+  )
 
-head(test_data)
+test_data |> 
+  select(!Student) |> 
+  summarize_all(mean) |> 
+  hux() |> 
+  theme_article()
 ```
 
 Let's make a plot of the average score on each exam using the base plotting system.
 
 ```{r}
-# Get the means of each column (exam)
-test_means <- colMeans(test_data)
-# Only use the first four exams
-test_means <- test_means[1:4]
 
-Exam_1m=mean(test_data$Exam_1)
-Exam_2m=mean(test_data$Exam_2)
+test_means <- 
+  test_data |> 
+  select(!Student) |> 
+  summarize_all(mean) |> 
+  tidyr::pivot_longer(cols = everything(),
+                      names_to = "Exam",
+                      values_to = "Average")
 
-barplot(c(test_means),
-        names.arg = c("Exam 1","Exam 2","Exam 3","Exam 4"),
-        col=c("darkblue","darkgreen","darkorange","darkred"),
+barplot(
+  test_means$Average,
+    names.arg = 
+      test_means$Exam,
+    col=c("darkblue","darkgreen","darkorange"
+    ,"darkred"),
         density = 40,
         ylim = c(0,100),
         xlab="Exam Number",
@@ -62,42 +71,34 @@ You will see here that each line is followed by a `+` which indicates that a n
 
 ```{r}
 # Use the means we created before and add two line numbers
-gg_test <- data.frame(ExamNum=c("Exam 1","Exam 2","Exam 3","Exam 4"),
-  averages = test_means)
-
-
-# x-axis will be the test number, y will be the average 
+# The x-axis will be the test number, y will be the average 
 # The color will change based on value of the average
-ggplot(data=gg_test,aes(x=ExamNum,y=averages,fill=averages))+
+
+ggplot(data = test_means,
+       aes(x = Exam, y = Average,fill = Exam)) +
   # Tells R to plot the value associated with the x-axis
-  geom_bar(stat="identity")+
+  geom_bar(stat="identity",
+           show.legend = FALSE,
+           aes(fill = 
+                 ifelse(Average == max(Average),
+                  "darkgreen","grey"))) +
   # A nice theme 
-  theme_minimal()+
+  theme_minimal() +
   # Specifies x and y axes labels and title for plot
-  labs(x="Exam Number",y="Score",
-       title="Exam Score Averages") +
-  # Removes legend
-  theme(legend.position = "none")+
-  # Specify limits 
-  ylim(0,100) +
-  # Adds values from the averages vector and vertically adjusts
-  geom_text(aes(label=averages,
-                vjust=-.3)) +
-  theme(
-    axis.text.y = element_blank(),
-    plot.title = element_text(hjust = .5, 
-                              size = 15,
-                              face = "bold")
-  )
+  labs(x = "\nExam Number",
+       y = "Score\n",
+       title = "Exam Score Averages") +
+  ylim(0,100) + 
+  scale_fill_identity()
 ```
 
-I know that there is a *lot* going on in the example, but it just kind of looks nice, right?
+I know that there is a *lot* going on in the example, but it kind of looks nice, right?
 
 Let's go back to the example and add some filtering. Let's make a new column that determines whether or not a student passed or failed the test.
 
 When we first made the dataset we included a fifth column, FinalGrade that represents the students overall grade. We will then make a series of statements that will determine what the letter grade is, and then plot the result!
 
-We will be using the `%>%` or pipe operator to pass the contents of `test_data` into our arranging.
+We will be using the `|>` or pipe operator to pass the contents of `test_data` into our arranging.
 
 We will first use the `mutate` function which creates a new column based on the arguments you pass to it.
 
@@ -106,39 +107,34 @@ We will also be using `case_when` which acts as an `ifelse` statement but wi
 -   The basic structure is: `case_when(variable=this~make it this)`
 
 ```{r}
-test_data %>% 
-  mutate(LetterGrade=case_when(
-    FinalGrade>=95~"A",
-    FinalGrade>=90~"A-",
-    FinalGrade>=87~"B+",
-    FinalGrade>=84~"B",
-    FinalGrade>=80~"B-",
-    FinalGrade>=74~"C+",
-    FinalGrade>=70~"C",
-    FinalGrade>=67~"D+",
-    FinalGrade>=64~"D",
-    FinalGrade>=60~"D-",
-    FinalGrade<60~"F"))
-```
 
-```{r}
-final_grade <- test_data %>% 
-  mutate(LetterGrade=case_when(
-    FinalGrade>=95~"A",
-    FinalGrade>=90~"A-",
-    FinalGrade>=87~"B+",
-    FinalGrade>=84~"B",
-    FinalGrade>=80~"B-",
-    FinalGrade>=74~"C+",
-    FinalGrade>=70~"C",
-    FinalGrade>=67~"D+",
-    FinalGrade>=64~"D",
-    FinalGrade>=60~"D-",
-    FinalGrade<60~"F")) %>% 
-    group_by(LetterGrade) %>% 
-    count()
+# Create a new column for final grade
 
-final_grade
+final_grade <- 
+  test_data |> 
+  group_by(Student) |> 
+  rowwise() |> 
+  mutate(
+    FinalGrade = mean(c_across(Exam_1:Exam_4))
+  ) |> 
+  ungroup() |> 
+  mutate(
+    LetterGrade=
+      case_when(
+      FinalGrade>=95~"A",
+      FinalGrade>=90~"A-",
+      FinalGrade>=87~"B+",
+      FinalGrade>=84~"B",
+      FinalGrade>=80~"B-",
+      FinalGrade>=74~"C+",
+      FinalGrade>=70~"C",
+      FinalGrade>=67~"D+",
+      FinalGrade>=64~"D",
+      FinalGrade>=60~"D-",
+      FinalGrade<60~"F")
+    ) |> 
+  group_by(LetterGrade) |> 
+  count()
 ```
 
 Our students didn't do particularly well, but that is to be expected when we control the range their grades can be in!
@@ -169,8 +165,6 @@ final_grade %>%
   )
 ```
 
-I'm not entirely sure, but I think I'm just addicted to bar charts--but that's *my* problem!
-
 ### Scatterplots
 
 When I was first learning R in graduate school the class was given a task to plot points but in different colors depending on what gender the points came from. In base plotting this requires the use of not only the `plot` function but also the `points` function. It is entirely doable, but `ggplot` just handles it better!
@@ -178,29 +172,39 @@ When I was first learning R in graduate school the class was given a task to plo
 Let's generate some data where we have hypothetical participants take an experiment where their reaction time is measured as well as their mood is measured.
 
 ```{r}
-scat_df <- 
+scatter <- 
   data.frame(
-    Sex=sample(c("M","F"),100,replace = T),
-    RT=round(rnorm(100,800,150),2),
-    TestScore=c(round(runif(50,60,100)),
-                round(runif(50,40,90)))
-)
-scat_df
+    Group = sample(c("G1","G2"),100,replace = T),
+    RT = rnorm(100,800,150) |> round(2),
+    TestScore = c(runif(50,60,100) |> round(2),
+                runif(50,40,90) |> round(2)
+                )
+  )
+scatter |> 
+  head() |> 
+  hux() |> 
+  theme_article()
 ```
 
-Plot Sex against RT and have the colors be linked to the Sex of the participant (point).
+Plot Sex against RT and have the colors be linked to the Group of the participant (point).
 
 ```{r}
-scat_df %>% 
-  ggplot(aes(TestScore,RT,color=Sex)) +
-    geom_point(aes(shape=Sex)) +
+scatter %>% 
+  ggplot(aes(TestScore,RT,color = Group)) +
+    geom_point(aes(shape = Group)) +
     theme_minimal() +
-    labs(x="Test Score",
-         y="RT(ms)",
-         title="RT and Test Scores")
+    labs(x="\nTest Score",
+         y="RT(ms)\n",
+         title="RT and Test Scores",
+         subtitle = "Participants had quicker reaction time in Group 2 compared to Group 1\n") + 
+  theme(
+    plot.title = element_text(size = 20, 
+                              face = "bold"),
+    plot.subtitle = element_text(face = "italic")
+  )
 ```
 
-Clearly no real pattern is emerging from the data, but we can see a clear distinction between the different points.
+No pattern is emerging from the (fake) data, but we can see a distinction between the different points.
 
 ### Heatmaps
 
@@ -211,15 +215,15 @@ Let's create a fake TV show with fake episode titles and fake episode ratings.
 ```{r}
 Dave_TV <- 
   data.frame(
-    Season=rep(paste0("S",1:6),each=12),
-    Episode=as.factor(rep(1:12,6)),
-    Title=str_to_title(paste0("The ",
+    Season = rep(paste0("S",1:6),each=12),
+    Episode = as.factor(rep(1:12,6)),
+    Title = str_to_title(paste0("The ",
                               sample(words,72)," ",
                               sample(words,72))),
-    Ratings=c(runif(60,7.8,9),runif(12,6,9)) |> round(0),
+    Ratings = c(runif(60,5.5,9),runif(12,7,9)) |> round(0),
     stringsAsFactors = F)
 
-Dave_TV
+Dave_TV |> head() |> hux() |> theme_article()
 ```
 
 Firstly, I want to take a moment to see how truly excellent some of the episode titles are:
@@ -233,12 +237,12 @@ Anyways, now that our data is in the correct format we can plot it.
 
 ```{r}
 Dave_TV %>% 
-  ggplot(aes(Season,Episode,fill=Ratings)) +
-    geom_tile(size=1) +
+  ggplot(aes(Season,Episode,fill = Ratings)) +
+    geom_tile() +
     theme_minimal() +
-    geom_text(aes(label=Ratings)) +
-    theme(axis.ticks = element_blank())+
-    scale_fill_gradient(low="yellow",high="blue")
+    labs(x = "\n") +
+    geom_text(aes(label = Ratings)) +
+    theme(axis.ticks = element_blank())
 ```
 
 There could be an entirely separate tutorial on just color choices in `ggplot2`.

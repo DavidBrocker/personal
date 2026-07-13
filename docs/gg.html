@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.6.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Dave Brocker - Introduction to ggplot</title>
+<title>Introduction to ggplot2 – ⬡⬢</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -65,12 +65,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-26e9821f55e995bbb31c559028f56e70.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -97,9 +95,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script><link rel="stylesheet" href="styles.css">
-<meta name="twitter:title" content="Dave Brocker - Introduction to ggplot">
-<meta name="twitter:description" content="">
-<meta name="twitter:card" content="summary">
 </head>
 <body class="nav-fixed">
 
@@ -107,47 +102,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Dave Brocker</span>
+    <span class="navbar-title">⬡⬢</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="./index.html"> <i class="bi bi-house" role="img">
+</i> 
 <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">R</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./courses.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Research</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./writing.html"> 
+    <a class="nav-link" href="./writing.html"> <i class="bi bi-pencil" role="img">
+</i> 
 <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./presentations.html"> 
-<span class="menu-text">Presentations</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./apps.html"> 
+    <a class="nav-link" href="./apps.html"> <i class="bi bi-terminal" role="img">
+</i> 
 <span class="menu-text">Apps</span></a>
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -163,7 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Introduction to ggplot</h1>
+<h1 class="title">Introduction to <code>ggplot2</code>
+</h1>
 </div>
 
 
@@ -177,68 +163,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="introduction-to-ggplot2" class="level4"><h4 class="anchored" data-anchor-id="introduction-to-ggplot2">Introduction to&nbsp;<code>ggplot2</code>
-</h4>
-<p>When I first started out with R, I only ever used the base plotting system. This was primarily because once I saw an example of a plot made with&nbsp;<code>ggplot</code>&nbsp;I was a little bit scared.</p>
+</header><p>When I first started out with R, I only ever used the base plotting system. This was primarily because once I saw an example of a plot made with&nbsp;<code>ggplot</code>&nbsp;I was a little bit scared.</p>
 <p>After awhile I realized that&nbsp;<code>ggplot</code>&nbsp;was the way to go when it came to graphics. The goal of this is to hopefully assuage you to do the same!</p>
 <p>First, we will generate some data. I teach so we will use students and scores on a test and then look at how the students performed.</p>
 <p>Some of my colleagues use a 4 test grading scheme where each test is worth 25%. Let’s create a sample dataset with a class of 40 students and varying scores for each student as well as an average for each student.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(forcats)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(huxtable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attaching package: 'dplyr'</code></pre>
+Attaching package: 'huxtable'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
+<pre><code>The following object is masked from 'package:ggplot2':
 
-    filter, lag</code></pre>
+    theme_grey</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>test_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="at">Exam_1=</span><span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">85</span>)),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">Exam_2=</span><span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">75</span>,<span class="dv">100</span>)),</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">Exam_3=</span><span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">70</span>,<span class="dv">90</span>)),</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="at">Exam_4=</span><span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">100</span>)))</span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>test_data<span class="sc">$</span>FinalGrade <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(test_data)</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="fu">head</span>(test_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade
-1     82     92     83     95      88.00
-2     81     82     75     98      84.00
-3     81     78     71     81      77.75
-4     80     79     79     87      81.25
-5     84     98     75     61      79.50
-6     85     93     82     71      82.75</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(dplyr,<span class="at">warn.conflicts =</span> F)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>test_data <span class="ot">&lt;-</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="at">Student =</span> <span class="fu">paste0</span>(<span class="st">"Student"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>),</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="at">Exam_1=</span> <span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">85</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">0</span>),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="at">Exam_2=</span> <span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">75</span>,<span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">0</span>),</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="at">Exam_3=</span> <span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">70</span>,<span class="dv">90</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">0</span>),</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="at">Exam_4=</span> <span class="fu">runif</span>(<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">0</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>  )</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>test_data <span class="sc">|&gt;</span> </span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">select</span>(<span class="sc">!</span>Student) <span class="sc">|&gt;</span> </span>
+<span id="cb4-15"><a href="#cb4-15"></a>  <span class="fu">summarize_all</span>(mean) <span class="sc">|&gt;</span> </span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">hux</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">theme_article</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col>
+<col>
+<col>
+<col>
+</colgroup><thead><tr>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">Exam_1</th>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">Exam_2</th>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">Exam_3</th>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">Exam_4</th>
+</tr></thead>
+<tbody><tr>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">82.3</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">86.6</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">79.5</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">81.2</td>
+</tr></tbody>
+</table>
 </div>
 </div>
 <p>Let’s make a plot of the average score on each exam using the base plotting system.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Get the means of each column (exam)</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>test_means <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(test_data)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># Only use the first four exams</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>test_means <span class="ot">&lt;-</span> test_means[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a>Exam_1m<span class="ot">=</span><span class="fu">mean</span>(test_data<span class="sc">$</span>Exam_1)</span>
-<span id="cb7-7"><a href="#cb7-7"></a>Exam_2m<span class="ot">=</span><span class="fu">mean</span>(test_data<span class="sc">$</span>Exam_2)</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="fu">barplot</span>(<span class="fu">c</span>(test_means),</span>
-<span id="cb7-10"><a href="#cb7-10"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">"Exam 1"</span>,<span class="st">"Exam 2"</span>,<span class="st">"Exam 3"</span>,<span class="st">"Exam 4"</span>),</span>
-<span id="cb7-11"><a href="#cb7-11"></a>        <span class="at">col=</span><span class="fu">c</span>(<span class="st">"darkblue"</span>,<span class="st">"darkgreen"</span>,<span class="st">"darkorange"</span>,<span class="st">"darkred"</span>),</span>
-<span id="cb7-12"><a href="#cb7-12"></a>        <span class="at">density =</span> <span class="dv">40</span>,</span>
-<span id="cb7-13"><a href="#cb7-13"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
-<span id="cb7-14"><a href="#cb7-14"></a>        <span class="at">xlab=</span><span class="st">"Exam Number"</span>,</span>
-<span id="cb7-15"><a href="#cb7-15"></a>        <span class="at">ylab=</span><span class="st">"Score"</span>,</span>
-<span id="cb7-16"><a href="#cb7-16"></a>        <span class="at">main=</span><span class="st">"Exam Score Averages"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>test_means <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  test_data <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">select</span>(<span class="sc">!</span>Student) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">summarize_all</span>(mean) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb5-6"><a href="#cb5-6"></a>                      <span class="at">names_to =</span> <span class="st">"Exam"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>                      <span class="at">values_to =</span> <span class="st">"Average"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="fu">barplot</span>(</span>
+<span id="cb5-10"><a href="#cb5-10"></a>  test_means<span class="sc">$</span>Average,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="at">names.arg =</span> </span>
+<span id="cb5-12"><a href="#cb5-12"></a>      test_means<span class="sc">$</span>Exam,</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    <span class="at">col=</span><span class="fu">c</span>(<span class="st">"darkblue"</span>,<span class="st">"darkgreen"</span>,<span class="st">"darkorange"</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>    ,<span class="st">"darkred"</span>),</span>
+<span id="cb5-15"><a href="#cb5-15"></a>        <span class="at">density =</span> <span class="dv">40</span>,</span>
+<span id="cb5-16"><a href="#cb5-16"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb5-17"><a href="#cb5-17"></a>        <span class="at">xlab=</span><span class="st">"Exam Number"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18"></a>        <span class="at">ylab=</span><span class="st">"Score"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19"></a>        <span class="at">main=</span><span class="st">"Exam Score Averages"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -251,34 +251,26 @@ Attaching package: 'dplyr'</code></pre>
 <p><code>ggplot(data,aes(x,y)) +   geom_() +   labs() +   theme_classic() +   theme()</code></p>
 <p>You will see here that each line is followed by a&nbsp;<code>+</code>&nbsp;which indicates that a new layer is being added. Let’s try this out using our dataframe. I will do it the way you will see it most places, and then afterwards only do it the shortened way:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Use the means we created before and add two line numbers</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>gg_test <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ExamNum=</span><span class="fu">c</span>(<span class="st">"Exam 1"</span>,<span class="st">"Exam 2"</span>,<span class="st">"Exam 3"</span>,<span class="st">"Exam 4"</span>),</span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="at">averages =</span> test_means)</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co"># x-axis will be the test number, y will be the average </span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># The color will change based on value of the average</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="fu">ggplot</span>(<span class="at">data=</span>gg_test,<span class="fu">aes</span>(<span class="at">x=</span>ExamNum,<span class="at">y=</span>averages,<span class="at">fill=</span>averages))<span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="co"># Tells R to plot the value associated with the x-axis</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>)<span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="co"># A nice theme </span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>  <span class="co"># Specifies x and y axes labels and title for plot</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Exam Number"</span>,<span class="at">y=</span><span class="st">"Score"</span>,</span>
-<span id="cb8-15"><a href="#cb8-15"></a>       <span class="at">title=</span><span class="st">"Exam Score Averages"</span>) <span class="sc">+</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a>  <span class="co"># Removes legend</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a>  <span class="co"># Specify limits </span></span>
-<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a>  <span class="co"># Adds values from the averages vector and vertically adjusts</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>averages,</span>
-<span id="cb8-22"><a href="#cb8-22"></a>                <span class="at">vjust=</span><span class="sc">-</span>.<span class="dv">3</span>)) <span class="sc">+</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a>  <span class="fu">theme</span>(</span>
-<span id="cb8-24"><a href="#cb8-24"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb8-25"><a href="#cb8-25"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>, </span>
-<span id="cb8-26"><a href="#cb8-26"></a>                              <span class="at">size =</span> <span class="dv">15</span>,</span>
-<span id="cb8-27"><a href="#cb8-27"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>)</span>
-<span id="cb8-28"><a href="#cb8-28"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Use the means we created before and add two line numbers</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># The x-axis will be the test number, y will be the average </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># The color will change based on value of the average</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">ggplot</span>(<span class="at">data =</span> test_means,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Exam, <span class="at">y =</span> Average,<span class="at">fill =</span> Exam)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="co"># Tells R to plot the value associated with the x-axis</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>           <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>           <span class="fu">aes</span>(<span class="at">fill =</span> </span>
+<span id="cb6-11"><a href="#cb6-11"></a>                 <span class="fu">ifelse</span>(Average <span class="sc">==</span> <span class="fu">max</span>(Average),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>                  <span class="st">"darkgreen"</span>,<span class="st">"grey"</span>))) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="co"># A nice theme </span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="co"># Specifies x and y axes labels and title for plot</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Exam Number"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17"></a>       <span class="at">y =</span> <span class="st">"Score</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>       <span class="at">title =</span> <span class="st">"Exam Score Averages"</span>) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span> </span>
+<span id="cb6-20"><a href="#cb6-20"></a>  <span class="fu">scale_fill_identity</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -286,10 +278,10 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 </div>
-<p>I know that there is a <em>lot</em>&nbsp;going on in the example, but it just kind of looks nice, right?</p>
+<p>I know that there is a <em>lot</em>&nbsp;going on in the example, but it kind of looks nice, right?</p>
 <p>Let’s go back to the example and add some filtering. Let’s make a new column that determines whether or not a student passed or failed the test.</p>
 <p>When we first made the dataset we included a fifth column, FinalGrade that represents the students overall grade. We will then make a series of statements that will determine what the letter grade is, and then plot the result!</p>
-<p>We will be using the&nbsp;<code>%&gt;%</code>&nbsp;or pipe operator to pass the contents of&nbsp;<code>test_data</code>&nbsp;into our arranging.</p>
+<p>We will be using the&nbsp;<code>|&gt;</code>&nbsp;or pipe operator to pass the contents of&nbsp;<code>test_data</code>&nbsp;into our arranging.</p>
 <p>We will first use the&nbsp;<code>mutate</code>&nbsp;function which creates a new column based on the arguments you pass to it.</p>
 <p>We will also be using&nbsp;<code>case_when</code>&nbsp;which acts as an&nbsp;<code>ifelse</code>&nbsp;statement but with multiple conditionals.</p>
 <ul>
@@ -297,375 +289,239 @@ Attaching package: 'dplyr'</code></pre>
 </li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">mutate</span>(<span class="at">LetterGrade=</span><span class="fu">case_when</span>(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">95</span><span class="sc">~</span><span class="st">"A"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">90</span><span class="sc">~</span><span class="st">"A-"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">87</span><span class="sc">~</span><span class="st">"B+"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">84</span><span class="sc">~</span><span class="st">"B"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">80</span><span class="sc">~</span><span class="st">"B-"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">74</span><span class="sc">~</span><span class="st">"C+"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">70</span><span class="sc">~</span><span class="st">"C"</span>,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">67</span><span class="sc">~</span><span class="st">"D+"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">64</span><span class="sc">~</span><span class="st">"D"</span>,</span>
-<span id="cb9-12"><a href="#cb9-12"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">60</span><span class="sc">~</span><span class="st">"D-"</span>,</span>
-<span id="cb9-13"><a href="#cb9-13"></a>    FinalGrade<span class="sc">&lt;</span><span class="dv">60</span><span class="sc">~</span><span class="st">"F"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Exam_1 Exam_2 Exam_3 Exam_4 FinalGrade LetterGrade
-1      82     92     83     95      88.00          B+
-2      81     82     75     98      84.00           B
-3      81     78     71     81      77.75          C+
-4      80     79     79     87      81.25          B-
-5      84     98     75     61      79.50          C+
-6      85     93     82     71      82.75          B-
-7      85     97     82     98      90.50          A-
-8      82     79     82    100      85.75           B
-9      83     91     72     74      80.00          B-
-10     80     77     76     76      77.25          C+
-11     81     87     73     91      83.00          B-
-12     85     93     83     61      80.50          B-
-13     83     80     79     92      83.50          B-
-14     84     95     75     80      83.50          B-
-15     84     96     88     78      86.50           B
-16     85     80     75     76      79.00          C+
-17     81     82     83     70      79.00          C+
-18     82     85     85     84      84.00           B
-19     83     94     84     80      85.25           B
-20     84     96     77     76      83.25          B-
-21     85     99     87     74      86.25           B
-22     83     87     74     79      80.75          B-
-23     81     85     85     98      87.25          B+
-24     80     99     86     96      90.25          A-
-25     83     85     77     69      78.50          C+
-26     83     85     71     93      83.00          B-
-27     84     92     82     76      83.50          B-
-28     84     93     76     83      84.00           B
-29     83     80     86     63      78.00          C+
-30     83     85     89     82      84.75           B
-31     83     86     80     82      82.75          B-
-32     81     99     90     75      86.25           B
-33     84     84     77     61      76.50          C+
-34     81     95     78     61      78.75          C+
-35     82     85     73     61      75.25          C+
-36     83     91     71     91      84.00           B
-37     85     97     72     67      80.25          B-
-38     85     86     73     71      78.75          C+
-39     80     96     84     68      82.00          B-
-40     84     89     76     67      79.00          C+</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>final_grade <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">mutate</span>(<span class="at">LetterGrade=</span><span class="fu">case_when</span>(</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">95</span><span class="sc">~</span><span class="st">"A"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">90</span><span class="sc">~</span><span class="st">"A-"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">87</span><span class="sc">~</span><span class="st">"B+"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">84</span><span class="sc">~</span><span class="st">"B"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">80</span><span class="sc">~</span><span class="st">"B-"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">74</span><span class="sc">~</span><span class="st">"C+"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">70</span><span class="sc">~</span><span class="st">"C"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">67</span><span class="sc">~</span><span class="st">"D+"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">64</span><span class="sc">~</span><span class="st">"D"</span>,</span>
-<span id="cb11-12"><a href="#cb11-12"></a>    FinalGrade<span class="sc">&gt;=</span><span class="dv">60</span><span class="sc">~</span><span class="st">"D-"</span>,</span>
-<span id="cb11-13"><a href="#cb11-13"></a>    FinalGrade<span class="sc">&lt;</span><span class="dv">60</span><span class="sc">~</span><span class="st">"F"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-14"><a href="#cb11-14"></a>    <span class="fu">group_by</span>(LetterGrade) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-15"><a href="#cb11-15"></a>    <span class="fu">count</span>()</span>
-<span id="cb11-16"><a href="#cb11-16"></a></span>
-<span id="cb11-17"><a href="#cb11-17"></a>final_grade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-# Groups:   LetterGrade [5]
-  LetterGrade     n
-  &lt;chr&gt;       &lt;int&gt;
-1 A-              2
-2 B              10
-3 B+              2
-4 B-             14
-5 C+             12</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Create a new column for final grade</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>final_grade <span class="ot">&lt;-</span> </span>
+<span id="cb7-4"><a href="#cb7-4"></a>  test_data <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">group_by</span>(Student) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">FinalGrade =</span> <span class="fu">mean</span>(<span class="fu">c_across</span>(Exam_1<span class="sc">:</span>Exam_4))</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="at">LetterGrade=</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb7-14"><a href="#cb7-14"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">95</span><span class="sc">~</span><span class="st">"A"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">90</span><span class="sc">~</span><span class="st">"A-"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">87</span><span class="sc">~</span><span class="st">"B+"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">84</span><span class="sc">~</span><span class="st">"B"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">80</span><span class="sc">~</span><span class="st">"B-"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">74</span><span class="sc">~</span><span class="st">"C+"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">70</span><span class="sc">~</span><span class="st">"C"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">67</span><span class="sc">~</span><span class="st">"D+"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">64</span><span class="sc">~</span><span class="st">"D"</span>,</span>
+<span id="cb7-23"><a href="#cb7-23"></a>      FinalGrade<span class="sc">&gt;=</span><span class="dv">60</span><span class="sc">~</span><span class="st">"D-"</span>,</span>
+<span id="cb7-24"><a href="#cb7-24"></a>      FinalGrade<span class="sc">&lt;</span><span class="dv">60</span><span class="sc">~</span><span class="st">"F"</span>)</span>
+<span id="cb7-25"><a href="#cb7-25"></a>    ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-26"><a href="#cb7-26"></a>  <span class="fu">group_by</span>(LetterGrade) <span class="sc">|&gt;</span> </span>
+<span id="cb7-27"><a href="#cb7-27"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our students didn’t do particularly well, but that is to be expected when we control the range their grades can be in!</p>
 <p>Next, we will graph the data using&nbsp;<code>ggplot</code>, but this time we will pass the dataframe directly into the plot and remove the &nbsp;<code>x=</code>&nbsp;and&nbsp;<code>y=</code> declarations</p>
 <p>When we graph the results the letter grades will be backwards so we will need to use&nbsp;<code>fct_rev</code>&nbsp;to reverse them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>final_grade <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="co"># Place Grades on X axis and count on Y axis</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="co"># Color based on Letter Grade</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_rev</span>(LetterGrade),n,<span class="at">fill=</span>LetterGrade)) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size=</span><span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Count"</span>,</span>
-<span id="cb13-8"><a href="#cb13-8"></a>         <span class="at">title=</span><span class="st">"Letter Grade Frequency"</span>) <span class="sc">+</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>    <span class="co"># Flip the axes for better readability</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>    <span class="co"># Remove the legend and the axis ticks</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span><span class="st">"none"</span>,</span>
-<span id="cb13-13"><a href="#cb13-13"></a>          <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a>    <span class="co"># Add the count to the bars</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>n,</span>
-<span id="cb13-16"><a href="#cb13-16"></a>                  <span class="at">hjust=</span><span class="sc">-</span>.<span class="dv">08</span>)) <span class="sc">+</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">theme</span>(</span>
-<span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb13-19"><a href="#cb13-19"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>final_grade <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="co"># Place Grades on X axis and count on Y axis</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="co"># Color based on Letter Grade</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_rev</span>(LetterGrade),n,<span class="at">fill=</span>LetterGrade)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size=</span><span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">"Count"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>         <span class="at">title=</span><span class="st">"Letter Grade Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    <span class="co"># Flip the axes for better readability</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="co"># Remove the legend and the axis ticks</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span><span class="st">"none"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13"></a>          <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="co"># Add the count to the bars</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>n,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>                  <span class="at">hjust=</span><span class="sc">-</span>.<span class="dv">08</span>)) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-18"><a href="#cb8-18"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb8-19"><a href="#cb8-19"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>I’m not entirely sure, but I think I’m just addicted to bar charts–but that’s <em>my</em>&nbsp;problem!</p>
-</section><section id="scatterplots" class="level3"><h3 class="anchored" data-anchor-id="scatterplots">Scatterplots</h3>
+<section id="scatterplots" class="level3"><h3 class="anchored" data-anchor-id="scatterplots">Scatterplots</h3>
 <p>When I was first learning R in graduate school the class was given a task to plot points but in different colors depending on what gender the points came from. In base plotting this requires the use of not only the&nbsp;<code>plot</code>&nbsp;function but also the&nbsp;<code>points</code>&nbsp;function. It is entirely doable, but&nbsp;<code>ggplot</code>&nbsp;just handles it better!</p>
 <p>Let’s generate some data where we have hypothetical participants take an experiment where their reaction time is measured as well as their mood is measured.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>scat_df <span class="ot">&lt;-</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb14-3"><a href="#cb14-3"></a>    <span class="at">Sex=</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"M"</span>,<span class="st">"F"</span>),<span class="dv">100</span>,<span class="at">replace =</span> T),</span>
-<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">RT=</span><span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">800</span>,<span class="dv">150</span>),<span class="dv">2</span>),</span>
-<span id="cb14-5"><a href="#cb14-5"></a>    <span class="at">TestScore=</span><span class="fu">c</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">100</span>)),</span>
-<span id="cb14-6"><a href="#cb14-6"></a>                <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">90</span>)))</span>
-<span id="cb14-7"><a href="#cb14-7"></a>)</span>
-<span id="cb14-8"><a href="#cb14-8"></a>scat_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Sex      RT TestScore
-1     M  605.93        84
-2     F  689.31        65
-3     F  646.58        89
-4     M 1048.09        94
-5     M 1040.51        89
-6     F  879.03        66
-7     F 1013.10        99
-8     M 1059.67        62
-9     M  801.06        74
-10    M  847.41        81
-11    F  711.60        70
-12    M  782.91        67
-13    M  848.91        76
-14    F  790.75        79
-15    M  638.69        79
-16    F  793.54        73
-17    F  999.04        61
-18    M  844.59        93
-19    F  928.91        93
-20    F  672.04        77
-21    M 1088.58        80
-22    F  743.70        63
-23    M  792.60        75
-24    F  731.62        89
-25    F  763.13        79
-26    F  857.86        72
-27    M  749.54        85
-28    F  460.20        92
-29    M  979.14        71
-30    M  737.36        86
-31    F 1082.14        68
-32    F  581.81        92
-33    M  859.77        67
-34    F  731.41        63
-35    M  968.88        85
-36    M  856.57        89
-37    M  491.09        85
-38    M  732.46        73
-39    M 1064.67        82
-40    M  574.58        82
-41    F  900.58        68
-42    M  950.06        97
-43    F  947.17        62
-44    F 1069.40        61
-45    M  790.72       100
-46    F  395.36        70
-47    M 1000.95        80
-48    M  909.09        85
-49    F  601.77        94
-50    F  789.96        94
-51    M  817.70        72
-52    M  766.81        79
-53    M  854.39        56
-54    F  851.28        53
-55    F  651.63        76
-56    M  692.04        87
-57    F  919.99        47
-58    F  662.43        84
-59    M  526.22        68
-60    M  674.96        85
-61    M  881.46        78
-62    F  626.36        46
-63    M  762.93        85
-64    F  836.21        51
-65    M  906.51        50
-66    F  639.73        41
-67    M  750.02        84
-68    F  549.14        48
-69    M 1135.27        68
-70    M  767.14        58
-71    M  762.06        40
-72    F  676.49        71
-73    F  600.69        66
-74    F 1274.71        71
-75    F  778.11        85
-76    F  896.18        86
-77    F  674.62        86
-78    M  884.33        68
-79    M  705.61        84
-80    F  650.11        63
-81    F  598.24        67
-82    M 1027.59        50
-83    F  844.12        74
-84    M  800.03        48
-85    M  800.68        68
-86    M  925.19        42
-87    M  676.45        63
-88    F  753.85        67
-89    M  536.27        41
-90    M  809.01        57
-91    M  871.10        66
-92    M  670.90        85
-93    F  931.06        90
-94    F  792.74        44
-95    M  641.42        59
-96    F  628.22        79
-97    M  712.49        57
-98    F  805.42        82
-99    M  574.78        42
-100   F  723.07        46</code></pre>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>scatter <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">Group =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"G1"</span>,<span class="st">"G2"</span>),<span class="dv">100</span>,<span class="at">replace =</span> T),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">RT =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">800</span>,<span class="dv">150</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>),</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">TestScore =</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>),</span>
+<span id="cb9-6"><a href="#cb9-6"></a>                <span class="fu">runif</span>(<span class="dv">50</span>,<span class="dv">40</span>,<span class="dv">90</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb9-7"><a href="#cb9-7"></a>                )</span>
+<span id="cb9-8"><a href="#cb9-8"></a>  )</span>
+<span id="cb9-9"><a href="#cb9-9"></a>scatter <span class="sc">|&gt;</span> </span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">hux</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">theme_article</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col>
+<col>
+<col>
+</colgroup><thead><tr>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">Group</th>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">RT</th>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">TestScore</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">G1</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;">722</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">81.6</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">G1</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">551</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">84.5</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">G2</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">636</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">86.5</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">G2</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">687</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">60.9</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">G1</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">960</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">67.5</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">G2</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;">860</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">68.4</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>Plot Sex against RT and have the colors be linked to the Sex of the participant (point).</p>
+<p>Plot Sex against RT and have the colors be linked to the Group of the participant (point).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>scat_df <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(TestScore,RT,<span class="at">color=</span>Sex)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>Sex)) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Test Score"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>         <span class="at">y=</span><span class="st">"RT(ms)"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>         <span class="at">title=</span><span class="st">"RT and Test Scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>scatter <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(TestScore,RT,<span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> Group)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"</span><span class="sc">\n</span><span class="st">Test Score"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>         <span class="at">y=</span><span class="st">"RT(ms)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>         <span class="at">title=</span><span class="st">"RT and Test Scores"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>         <span class="at">subtitle =</span> <span class="st">"Participants had quicker reaction time in Group 2 compared to Group 1</span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">+</span> </span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, </span>
+<span id="cb10-11"><a href="#cb10-11"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Clearly no real pattern is emerging from the data, but we can see a clear distinction between the different points.</p>
+<p>No pattern is emerging from the (fake) data, but we can see a distinction between the different points.</p>
 </section><section id="heatmaps" class="level3"><h3 class="anchored" data-anchor-id="heatmaps">Heatmaps</h3>
 <p>One of my favorite&nbsp;<code>geom</code>’s to use is&nbsp;<code>geom_tile</code>&nbsp;which creates a heatmap style plot.</p>
 <p>Let’s create a fake TV show with fake episode titles and fake episode ratings.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>Dave_TV <span class="ot">&lt;-</span> </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb17-3"><a href="#cb17-3"></a>    <span class="at">Season=</span><span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"S"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),<span class="at">each=</span><span class="dv">12</span>),</span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="at">Episode=</span><span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">6</span>)),</span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="at">Title=</span><span class="fu">str_to_title</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>,</span>
-<span id="cb17-6"><a href="#cb17-6"></a>                              <span class="fu">sample</span>(words,<span class="dv">72</span>),<span class="st">" "</span>,</span>
-<span id="cb17-7"><a href="#cb17-7"></a>                              <span class="fu">sample</span>(words,<span class="dv">72</span>))),</span>
-<span id="cb17-8"><a href="#cb17-8"></a>    <span class="at">Ratings=</span><span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">60</span>,<span class="fl">7.8</span>,<span class="dv">9</span>),<span class="fu">runif</span>(<span class="dv">12</span>,<span class="dv">6</span>,<span class="dv">9</span>)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">0</span>),</span>
-<span id="cb17-9"><a href="#cb17-9"></a>    <span class="at">stringsAsFactors =</span> F)</span>
-<span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a>Dave_TV</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Season Episode                 Title Ratings
-1      S1       1     The Visit Product       8
-2      S1       2     The Dinner Pretty       9
-3      S1       3       The Ago Through       8
-4      S1       4      The Propose Wash       8
-5      S1       5           The Do Post       9
-6      S1       6    The University Wee       8
-7      S1       7     The Shoot Respect       8
-8      S1       8         The Road Stop       8
-9      S1       9     The Evidence Hear       8
-10     S1      10    The Recommend Cook       9
-11     S1      11          The Kill Bed       9
-12     S1      12         The Mrs Claim       8
-13     S2       1       The Compute Buy       9
-14     S2       2        The Flat Class       8
-15     S2       3      The Depend Admit       9
-16     S2       4      The Staff Sister       8
-17     S2       5 The Private Christmas       9
-18     S2       6     The Serious Total       8
-19     S2       7       The Morning Tie       9
-20     S2       8      The Around After       8
-21     S2       9       The Inform Fish       8
-22     S2      10     The Germany Money       9
-23     S2      11      The Manage Weigh       8
-24     S2      12    The Whether Square       9
-25     S3       1    The Between Dinner       9
-26     S3       2       The Eleven Quid       9
-27     S3       3       The Train Until       9
-28     S3       4         The Word Hour       8
-29     S3       5        The Look Small       8
-30     S3       6       The Middle Page       9
-31     S3       7        The Apart Wide       8
-32     S3       8  The Million Strategy       8
-33     S3       9     The Choose Single       8
-34     S3      10   The Identify Centre       8
-35     S3      11      The Succeed Mind       8
-36     S3      12       The Ought Story       8
-37     S4       1           The Eat All       9
-38     S4       2 The Probable Although       8
-39     S4       3        The Allow Feel       8
-40     S4       4        The Thou Black       8
-41     S4       5       The Hullo Stick       8
-42     S4       6       The Unite Light       9
-43     S4       7      The Village Help       8
-44     S4       8     The Sheet Arrange       8
-45     S4       9      The Period Visit       8
-46     S4      10         The Party Cat       8
-47     S4      11  The Approach Provide       8
-48     S4      12        The Clothe Out       9
-49     S5       1      The Laugh Govern       8
-50     S5       2      The Situate Hope       8
-51     S5       3       The Draw Actual       8
-52     S5       4      The Various True       8
-53     S5       5       The Pull Strike       8
-54     S5       6       The Jump Summer       9
-55     S5       7      The Already Back       8
-56     S5       8        The Begin Very       9
-57     S5       9       The Electric To       8
-58     S5      10       The America Two       8
-59     S5      11     The Expect Nature       8
-60     S5      12         The Match Ask       8
-61     S6       1       The Secure Mark       8
-62     S6       2       The Jesus Sorry       7
-63     S6       3      The Nature Order       8
-64     S6       4       The Process Put       8
-65     S6       5      The Kitchen Left       8
-66     S6       6         The Park Rest       7
-67     S6       7       The Actual Cake       7
-68     S6       8     The However Break       8
-69     S6       9        The Point Five       8
-70     S6      10        The Excuse Eye       7
-71     S6      11      The Section Into       7
-72     S6      12     The Comment Paint       6</code></pre>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>Dave_TV <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">Season =</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"S"</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),<span class="at">each=</span><span class="dv">12</span>),</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">Episode =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">6</span>)),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">Title =</span> <span class="fu">str_to_title</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>                              <span class="fu">sample</span>(words,<span class="dv">72</span>),<span class="st">" "</span>,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>                              <span class="fu">sample</span>(words,<span class="dv">72</span>))),</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="at">Ratings =</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">60</span>,<span class="fl">5.5</span>,<span class="dv">9</span>),<span class="fu">runif</span>(<span class="dv">12</span>,<span class="dv">7</span>,<span class="dv">9</span>)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">0</span>),</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a>Dave_TV <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">hux</span>() <span class="sc">|&gt;</span> <span class="fu">theme_article</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col>
+<col>
+<col>
+<col>
+</colgroup><thead><tr>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">Season</th>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">Episode</th>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;">Title</th>
+<th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">Ratings</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">S1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;">1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;">The Follow Cook</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">7</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">S1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">2</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">The Sell Settle</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">6</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">S1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">3</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">The Tonight Press</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">8</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">S1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">4</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">The Health Slow</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">8</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">S1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">5</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;">The Shoot Equal</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">8</td>
+</tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">S1</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;">6</td>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;">The Nation Girl</td>
+<td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">6</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <p>Firstly, I want to take a moment to see how truly excellent some of the episode titles are:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>title_samp <span class="ot">&lt;-</span> <span class="fu">sample</span>(Dave_TV<span class="sc">$</span>Title,<span class="dv">10</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>title_samp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>title_samp <span class="ot">&lt;-</span> <span class="fu">sample</span>(Dave_TV<span class="sc">$</span>Title,<span class="dv">10</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>title_samp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "The However Break"  "The University Wee" "The Ago Through"   
- [4] "The Do Post"        "The Compute Buy"    "The Word Hour"     
- [7] "The Allow Feel"     "The Whether Square" "The Depend Admit"  
-[10] "The Around After"  </code></pre>
+<pre><code> [1] "The Other Brilliant" "The Strategy Role"   "The Nice Succeed"   
+ [4] "The Nation Girl"     "The Post Over"       "The Stick Lady"     
+ [7] "The Die Poor"        "The Fall More"       "The Only Note"      
+[10] "The Although None"  </code></pre>
 </div>
 </div>
 <p>Anyways, now that our data is in the correct format we can plot it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>Dave_TV <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Season,Episode,<span class="at">fill=</span>Ratings)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="fu">geom_tile</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Ratings)) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>    <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">"yellow"</span>,<span class="at">high=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>Dave_TV <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Season,Episode,<span class="at">fill =</span> Ratings)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Ratings)) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>    <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -673,34 +529,38 @@ Attaching package: 'dplyr'</code></pre>
 <p>There could be an entirely separate tutorial on just color choices in&nbsp;<code>ggplot2</code>.</p>
 <p>Here is one last iteration that uses conditional values to color each episode or tile.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>cols<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Bad"</span><span class="ot">=</span><span class="st">"red2"</span>,</span>
-<span id="cb23-2"><a href="#cb23-2"></a>       <span class="st">"Garbage"</span> <span class="ot">=</span><span class="st">"darkblue"</span>,</span>
-<span id="cb23-3"><a href="#cb23-3"></a>       <span class="st">"Great"</span> <span class="ot">=</span><span class="st">"darkgreen"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4"></a>       <span class="st">"Regular"</span><span class="ot">=</span><span class="st">"darkorange"</span>, </span>
-<span id="cb23-5"><a href="#cb23-5"></a>       <span class="st">"Good"</span> <span class="ot">=</span><span class="st">"gold"</span>)</span>
-<span id="cb23-6"><a href="#cb23-6"></a></span>
-<span id="cb23-7"><a href="#cb23-7"></a>Dave_TV <span class="sc">%&gt;%</span> </span>
-<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">mutate</span>(<span class="at">Quality=</span><span class="fu">case_when</span>(</span>
-<span id="cb23-9"><a href="#cb23-9"></a>      Ratings<span class="sc">&lt;</span><span class="fl">5.0</span> <span class="sc">~</span> <span class="st">"Garbage"</span>,</span>
-<span id="cb23-10"><a href="#cb23-10"></a>      Ratings<span class="sc">&lt;</span><span class="fl">6.5</span> <span class="sc">~</span> <span class="st">"Bad"</span>,</span>
-<span id="cb23-11"><a href="#cb23-11"></a>      Ratings<span class="sc">&lt;</span><span class="fl">7.5</span> <span class="sc">~</span> <span class="st">"Regular"</span>,</span>
-<span id="cb23-12"><a href="#cb23-12"></a>      Ratings<span class="sc">&lt;</span><span class="fl">8.5</span> <span class="sc">~</span> <span class="st">"Good"</span>,</span>
-<span id="cb23-13"><a href="#cb23-13"></a>      Ratings<span class="sc">&lt;</span><span class="dv">10</span> <span class="sc">~</span> <span class="st">"Great"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-14"><a href="#cb23-14"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Season,Episode,<span class="at">fill=</span>Quality)) <span class="sc">+</span></span>
-<span id="cb23-15"><a href="#cb23-15"></a>    <span class="fu">geom_tile</span>(<span class="at">color=</span><span class="st">"black"</span>,<span class="at">size=</span>.<span class="dv">085</span>) <span class="sc">+</span></span>
-<span id="cb23-16"><a href="#cb23-16"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Ratings)) <span class="sc">+</span></span>
-<span id="cb23-18"><a href="#cb23-18"></a>    <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb23-19"><a href="#cb23-19"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>cols) <span class="sc">+</span></span>
-<span id="cb23-20"><a href="#cb23-20"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>,</span>
-<span id="cb23-21"><a href="#cb23-21"></a>        <span class="at">title=</span><span class="st">"Dave TV Episode Ratings"</span>,</span>
-<span id="cb23-22"><a href="#cb23-22"></a>        <span class="at">caption=</span><span class="st">"Data from IAmDb)"</span>) <span class="sc">+</span></span>
-<span id="cb23-23"><a href="#cb23-23"></a>  <span class="fu">theme</span>(</span>
-<span id="cb23-24"><a href="#cb23-24"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
-<span id="cb23-25"><a href="#cb23-25"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>cols<span class="ot">=</span><span class="fu">c</span>(<span class="st">"Bad"</span><span class="ot">=</span><span class="st">"red2"</span>,</span>
+<span id="cb15-2"><a href="#cb15-2"></a>       <span class="st">"Garbage"</span> <span class="ot">=</span><span class="st">"darkblue"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>       <span class="st">"Great"</span> <span class="ot">=</span><span class="st">"darkgreen"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>       <span class="st">"Regular"</span><span class="ot">=</span><span class="st">"darkorange"</span>, </span>
+<span id="cb15-5"><a href="#cb15-5"></a>       <span class="st">"Good"</span> <span class="ot">=</span><span class="st">"gold"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a>Dave_TV <span class="sc">%&gt;%</span> </span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">mutate</span>(<span class="at">Quality=</span><span class="fu">case_when</span>(</span>
+<span id="cb15-9"><a href="#cb15-9"></a>      Ratings<span class="sc">&lt;</span><span class="fl">5.0</span> <span class="sc">~</span> <span class="st">"Garbage"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>      Ratings<span class="sc">&lt;</span><span class="fl">6.5</span> <span class="sc">~</span> <span class="st">"Bad"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11"></a>      Ratings<span class="sc">&lt;</span><span class="fl">7.5</span> <span class="sc">~</span> <span class="st">"Regular"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12"></a>      Ratings<span class="sc">&lt;</span><span class="fl">8.5</span> <span class="sc">~</span> <span class="st">"Good"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>      Ratings<span class="sc">&lt;</span><span class="dv">10</span> <span class="sc">~</span> <span class="st">"Great"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-14"><a href="#cb15-14"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Season,Episode,<span class="at">fill=</span>Quality)) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>    <span class="fu">geom_tile</span>(<span class="at">color=</span><span class="st">"black"</span>,<span class="at">size=</span>.<span class="dv">085</span>) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Ratings)) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a>    <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>cols) <span class="sc">+</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>        <span class="at">title=</span><span class="st">"Dave TV Episode Ratings"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22"></a>        <span class="at">caption=</span><span class="st">"Data from IAmDb)"</span>) <span class="sc">+</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-24"><a href="#cb15-24"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
+<span id="cb15-25"><a href="#cb15-25"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="gg_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -728,150 +588,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -887,18 +603,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -930,7 +635,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -965,7 +710,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1240,7 +989,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Dave Brocker</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 </body></html>

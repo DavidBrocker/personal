@@ -3,22 +3,48 @@ title: "Teaching"
 editor: visual
 ---
 
-I have taught three classes as a lab instructor:
+### Here are some of the courses I have taught!
 
-1.  **Statistics for the Psychological Sciences** - SPSS-Approach
+:::::: {.class-container}
 
-2.  **Experimental Psychology**
+:::: {.class-taught}
+**Course:** Statistics for Psychology  
+**Role:** Instructor
+::::
 
-3.  **Statistics for the Psychological Sciences** - R-Approach
+:::: {.class-taught}
+**Course:** Introduction to Psychology  
+**Role:** Instructor
+::::
 
-I am currently teaching three courses as a full instructor:
+:::: {.class-taught}
+**Course:** Research Methods  
+**Role:** Instructor
+::::
 
-1.  **Introduction to Psychology**
+:::: {.class-taught}
+**Course:** Senior Project I/II  
+**Role:** Instructor
+::::
 
-2.  **Research Methods**
+:::: {.class-taught}
+**Course:** Research Design and Analysis I  
+**Role:** Instructor
+::::
 
-3.  **Senior Project II - Applied Psychology**
+:::: {.class-taught}
+**Course:** Senior Project  
+**Role:** Instructor
+::::
 
-### Teaching Materials
+:::: {.class-taught}
+**Course:** Statistics for the Psychological Sciences  
+**Role:** Lab Instructor
+::::
 
-[Entire Course in R](https://davidbrocker.github.io/DBPSYC3400/)
+:::: {.class-taught}
+**Course:** Experimental Psychology  
+**Role:** Lab Instructor
+::::
+
+::::::

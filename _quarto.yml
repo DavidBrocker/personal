@@ -3,25 +3,24 @@ project:
   output-dir: docs
   
 website:
-  title: "Dave Brocker"
-  twitter-card: true
-  site-url: twitter.com
+  title: "⬡⬢"
+  page-footer: "Copyright 2025, Dave Brocker" 
   navbar:
-    left:
+    right: 
       - href: index.qmd
-        text: Home 
-      - about.qmd
+        icon: house
+        text: Home
       - courses.qmd
-      - research.qmd
-      - writing.qmd
-      - presentations.qmd
-      - apps.qmd
+      - href: writing.qmd
+        icon: pencil
+        text: Writing
+      - href: apps.qmd
+        icon: terminal
+        text: Apps
       
 format:
   html:
-    theme:
-      light: cosmo
-      dark:  [darkly, theme-dark.scss.css]
+    theme: [cosmo, custom.scss]
     css: styles.css
     toc: true
     code-link: true

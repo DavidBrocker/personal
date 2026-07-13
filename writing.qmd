@@ -3,12 +3,19 @@ title: "Writing"
 editor: visual
 ---
 
-Below are some links to Medium articles i have published that walk through using `shiny` and `visnetwork` to make interactive visuals:
 
-![](images/shinydash.png)
+## Writing
 
-![](images/recnet.png)
+Below are selected tutorials and articles I’ve published on *Medium*, focused on R, data visualization, and Shiny app development.
 
-![](images/shinyfirst.png)
+:::: writing-grid
 
-![](images/excel.png)
+::: writing-card
+![](images/shinydash.png){.writing-image}
+**[Using ShinyDashboard to make an interactive Music Recommendation Tree in R](https://medium.com/@davidbrocker/using-shinydashboard-to-make-an-interactive-music-recommendation-tree-in-r-...)**  
+<span class="writing-meta">Published on Medium · October 2022</span>  
+Explore how to build a dynamic recommendation dashboard in R using `shinydashboard`, `visNetwork`, and the Spotify API.  
+:::
+
+::::
+

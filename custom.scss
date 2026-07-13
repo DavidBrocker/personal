@@ -1,0 +1,358 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display&display=swap');
+
+/*-- scss:defaults --*/
+// Base document colors
+$body-bg: #F3F4F6;
+$link-color: #AD0000;
+$navbar-bg: #F3F4F6;
+$footer-bg: #AD0000;
+$footer-fg: #F3F4F6;
+
+
+// Code blocks
+
+
+// fonts
+$font-family-sans-serif: "Noto Sans Display" !default;
+
+/*-- scss:rules --*/
+
+.navbar-title {
+  position: absolute;
+  margin: 4px 12px;
+  padding: 4px 8px;
+  font-size: 3rem;
+}
+
+.title{
+  font-size: 6rem;
+  text-align: center;
+  display: float;
+}
+
+.about{
+  border-left: 10px solid #AD0000;
+}
+
+.about p{
+  display: float;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.nav-item {
+  padding-top: 2px;
+}
+
+nav-item p::after {
+  content: ">";
+}
+
+.nav-item:hover {
+  padding-top: 2px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+// footer
+
+.footer p {
+  font-size: 1rem;
+  padding-top: 20px;
+}
+
+.mm, .ad {
+  box-shadow: 0px 0px 2px 2px grey;
+}
+
+.hex {
+  position: absolute;
+  left: 40px;
+  top: 600px;
+  
+  -webkit-transition-duration: 5s;
+  
+  -webkit-transition-property: -webkit-transform;
+}
+
+.five{
+  background-color: lightgray;
+}
+
+.five strong{
+  color: red;
+}
+
+/* Title & section styling */
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #222;
+}
+
+h2 {
+  color: #800000; /* your maroon accent */
+  font-weight: 600;
+  margin-top: 2.5rem;
+}
+
+/* Course list styling */
+ol {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+ol li {
+  margin-bottom: 0.5rem;
+}
+
+ol li strong {
+  color: #333;
+}
+
+/* “Teaching Materials” link styling */
+a {
+  color: #b22222;
+  text-decoration: none;
+  border-bottom: 2px solid #b22222;
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #fff;
+  background-color: #b22222;
+  border-bottom: 2px solid #b22222;
+}
+
+/* Container CSS */
+.class-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(500px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+  align-items: start;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.class-taught {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border-left: 6px solid #b22222;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 1.8rem 1.8rem 1.8rem 2rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-size: 1.05rem;
+  overflow: hidden;
+}
+
+.class-taught:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Base text styles */
+.class-taught strong {
+  display: inline;
+  color: #222;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.class-taught p {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Subtle icon container */
+.class-taught::before {
+  content: "🎓";
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 1.8rem;
+  opacity: 0.25;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.class-taught:hover::before {
+  opacity: 0.4;
+  transform: scale(1.1);
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .class-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tutorial-card {
+  background: #fff;
+  border-left: 5px solid #b22222;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.2rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tutorial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tutorial-card a {
+  color: #b22222;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tutorial-card a:hover {
+  text-decoration: underline;
+}
+
+/* Grid container for app cards */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+/* Card style */
+.app-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border-left: 6px solid #b22222;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+  padding-bottom: .5rem;
+}
+
+.app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Image styling */
+.app-image {
+  width: 100%;
+  border-bottom: 2px solid #eee;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Text styling */
+.app-card strong,
+.app-card a {
+  color: #b22222;
+  font-size: 1.25rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.app-card a:hover {
+  text-decoration: underline;
+}
+
+.app-tagline {
+  display: block;
+  color: #444;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.app-card:hover .app-image {
+  transform: scale(1.03);
+  transition: transform 0.4s ease;
+}
+
+.writing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.writing-card {
+  background-color: #fff;
+  border-radius: 16px;
+  border-left: 6px solid #b22222;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.writing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.writing-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.writing-card strong,
+.writing-card a {
+  color: #b22222;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.writing-card a:hover {
+  text-decoration: underline;
+}
+
+.writing-meta {
+  display: block;
+  color: #555;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+
+/* Home Page Icons */
+
+.icon-container {
+  display: flex;
+  justify-content: center;   /* centers icons horizontally */
+  align-items: center;       /* vertically aligns them */
+  gap: 1.5rem;               /* even spacing between icons */
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.icons {
+  font-size: 2em;
+  color: #b22222;            /* optional: use your accent color */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.icons:hover {
+  transform: scale(1.1);
+  color: #e74c3c;            /* subtle hover change */
+}

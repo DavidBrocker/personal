@@ -1,25 +1,27 @@
 ---
-title: "Hi, I'm Dave."
-editor: visual
-
-about:
-  template: jolla
-  image: images/profile.jpeg
-  image-width: 50%
-  image-shape: round
-  links:
-    - icon: linkedin
-      text: ""
-      href: https://www.linkedin.com/in/david-brocker/
-    - icon: github
-      text: ""
-      href: https://github.com/DavidBrocker
-    - icon: medium
-      text: ""
-      href: https://medium.com/@davidabrocker
-    - icon: send
-      text: ""
-      href: mailto:davidabrocker@gmail.com
+title: "Hi, I'm Dave"
+# format: 
+#   html:
+#     template-partials: 
+#       - title-block.html
 ---
 
-I am a Lecturer, Lab Manager, and Internship Coordinator at Farmingdale State College. I am *overly* emphatic about R, music, and all things data!
+::: about
+I [teach](courses.html) statistics, research methods, and professional development. I [write](writing.html) and [speak](presentations.html) about [R](about.html) in both academic and professional settings (or *anywhere* that lets me!) I make [Shiny](apps.html) apps for teaching and fun!
+:::
+
+![](images/DaveLogo.PNG){fig-align="center" style="object-fit: cover;   border-radius: 50%;" width="300" height="300"}
+
+:::::: icon-container
+::: icons
+{{< fa brands linkedin >}}
+:::
+
+::: icons
+{{< fa brands github >}}
+:::
+
+::: icons
+{{< fa brands instagram >}}
+:::
+::::::

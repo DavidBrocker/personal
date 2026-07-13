@@ -1,14 +1,33 @@
 ---
-title: "Apps"
+title: "Shiny Apps"
 editor: visual
 ---
 
-Shiny Apps with source code provided
+::::: app-grid
 
-[MusicMatchup](https://dbrocker.shinyapps.io/MusicMatchup/) - Find your next favorite artist
+::: app-card
+![](images/musicmatch.png){.app-image}
 
-[ACrossingCoffee](https://dbrocker.shinyapps.io/ACrossingCoffee/) - Who should you meet at Brewster's?
+**[MusicMatchup](https://dbrocker.shinyapps.io/MusicMatchup/)**  
+Discover your next favorite artist through interactive data visualizations powered by the Spotify API.  
+<span class="app-tagline">Explore artists, genres, and related music in an intuitive interface.</span>
+:::
 
-[CreatePlaylist](link) - Make a playlist based on recommended artists
+::: app-card
+![](images/rand_am.png){.app-image}
 
-[RandomAmericanDad](https://dbrocker.shinyapps.io/RandomAmericanDad/) - Watch a Random Episode of American Dad!
+**[Random American Dad!](https://dbrocker.shinyapps.io/RandomAmericanDad/)** 
+Click the button and let chaos decide — stream a random episode of *American Dad!* with one click.  
+<span class="app-tagline">Built using Shiny and iMDB for effortless fun.</span>
+:::
+
+
+::: app-card
+![](images/mockinterview.png){.app-image}
+
+**[Mock Interview](https://dbrocker.shinyapps.io/MockInterview/)**<br> 
+Prepare yourself for graduate school and post-graduate employment.
+<span class="app-tagline">Built using Shiny and OpenAI API</span>
+:::
+
+:::::

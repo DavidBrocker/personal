@@ -5,16 +5,15 @@ filters:
 - webr
 ---
 
-#### String Manipulation: Introduction to `stringr` and regular expressions.
+#### String Manipulation: Introduction to `stringr` and regular expressions.
 
 ## Some primer on why regex is useful
 
 ```{webr-r}
+# Load in packages
 library(stringr)
 library(stringi)
-```
 
-```{webr-r}
 # Create a string
 x <- "Here is a sentence, let us use it for this example."
 ```
@@ -24,18 +23,15 @@ x <- "Here is a sentence, let us use it for this example."
 ```{webr-r}
 # Convert the string to lowercase
 str_to_lower(x)
-```
 
-```{webr-r}
 # uppercase
 str_to_upper(x)
-```
 
-```{webr-r}
 # title case
 str_to_title(x)
 ```
 
+#### Length of String
 ```{webr-r}
 # Find the length of the string
 str_length(x)
@@ -47,7 +43,7 @@ It might be of interest to see how long the sentence is in terms of how many let
 # First we need to split the string into words
 # Note: strsplit converts the vector into a list
 # Wrap it unist()
-x_split <- unlist(strsplit(x, " "))
+x_split <- strsplit(x, " ") |> 
 ```
 
 Now the sentence is a string vector, so the `str_length` function will vectorize it
@@ -61,21 +57,16 @@ str_length(x_split)
 ```{webr-r}
 # Suffix
 str_c(x_split,"hello",sep=" ")
-```
 
-```{webr-r}
 str_c(x_split,"hello",sep="")
-```
 
-```{webr-r}
 # Prefix
 str_c("hello",x_split,sep=" ")
-```
 
-```{webr-r}
 str_c("hello",x_split,sep="")
 ```
 
+#### Sorting
 ```{webr-r}
 # Sort the sentence from A-Z
 str_sort(x_split)
@@ -90,8 +81,9 @@ str_sort(x_split)
 ###### Example:
 
 ```{webr-r}
-d <- "Hi I am 27 years and and 354 days old"
+d <- "Hi I am 32 years and and 12 days old"
 # Each number is preceded by a boundary
+
 # We can use [0-9] or \\d
 str_match_all(d,"\\b[0-9]+\\b | \\b\\d+\\b")
 ```
@@ -106,9 +98,7 @@ str_match_all(d,"\\b[0-9]+\\b | \\b\\d+\\b")
 # Look for the boundaries
 b <- "Where are the boundaries here?"
 str_match_all(b,"\\b")
-```
 
-```{webr-r}
 # Look for everything BUT the boundaires
 str_match_all(b,"[^\\b]")
 ```
@@ -131,18 +121,17 @@ str_match_all(w,"\\w")
 ###### Example:
 
 ```{webr-r}
-# The [a-z] is useful to look for characters in that range
-# but it can be modfied to specifics
+# The [a-z] is useful to look for characters in that range but it can be modfied to specifics
+
 az <- "Match all of this"
+
 str_match_all(az,"[aA-zZ]")
 ```
 
 ```{webr-r}
 # Check for just vowels
 str_match_all(az,"[aeiou]")
-```
 
-```{webr-r}
 # Check for just consonants
 str_match_all(az,"[^aeiou]")
 ```

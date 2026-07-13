@@ -1,22 +1,28 @@
 ---
-title: "Visualizations: {Stringr}"
+title: "Visualizations: {stringr}"
 editor: visual
+highlight-style: arrow
+code-tools: 
+  source: true
+code-block-border-left: '#31BAE9'
+code-annotations: hover
 ---
 
-Using`dplyr` and the `stringr::words` package, we can demonstrate how to extract information from a dataset. Before we get into anything, let us take a look at a few of the characteristics of the `stringr::words` dataset.
+Using `dplyr` and the `stringr::words` dataset, we can demonstrate how to extract information from a dataset. Before we get into anything, let us take a look at a few of the characteristics of the `stringr::words` dataset.
 
 ```{r}
-library(stringr)
-library(dplyr)
-library(ggplot2)
-library(forcats)
-library(tidytext)
+#| warning: false
+#| message: false
+library(stringr) # Text Matching
+library(dplyr,warn.conflicts = FALSE) # Data Wrangling
+library(ggplot2) # Plotting
+library(forcats) # Managing Categories
+library(tidytext) # Word Tokenization
+library(huxtable) # Making Tables
+
 head(stringr::words)
-```
 
-```{r}
-words |> 
-  summary()
+length(words)
 ```
 
 A dataset with 980 words seems like a great tool to have!
@@ -25,24 +31,26 @@ A dataset with 980 words seems like a great tool to have!
 
 -   You could also use it to get some words that fit a certain criteria.
 
-### Example 1: Only Five Letter Words
+### Example 1: Match Five Letter Words
 
-1.  Using `str_match_all` we can enter a regular expression that will see match words that only have five characters.
+The following regular expression *should* match the red text below:
+
+::: five
+<strong>Upon</strong> the <strong>shelf</strong> was a <strong>penny</strong> and a dime
+:::
+
+1.  Using `str_match_all` we can enter a regular expression that will match words that have five characters.
 
 ```{r}
 five_letter <- 
-  str_match_all(words,pattern = "\\w{5}")
+  str_match(words,pattern = "\\w{5}") |> na.omit()
 
-head(five_letter)
+sample(five_letter,5)
 ```
 
-Here we encounter two errors:
+Uh oh!
 
-1.  We want to return a character vector, but right now we have a list.
-
-2.  We are returning words that *have* 5 letters, but are not exactly *only* five letters long.
-
-We will need to use `unlist()` and `\\b` in order to fix this.
+We are returning words that *have* 5 letters, but are not *only* five letters in length. To fix this, we will need to add a boundary element (`\b`) to the start and end of our expression.
 
 ```{r}
 five_letter_fixed <- 
@@ -52,33 +60,39 @@ five_letter_fixed <-
 head(five_letter_fixed)
 ```
 
-The regular expression here does the following:
+::: callout-note
+The use of `unlist()` coerces the result to a vector instead of a list
+:::
 
--   `\\b` represents a boundary character. This tells R to look for something to be followed by a space and finished before a space.
+The regular expression `\\b\\w{5}\\b` here does the following:
 
--   `\\w` tells R to look for a word-character.
+-   `\b` represents a boundary character. This tells R to look for something to be followed by a space and finished before a space.
+
+-   `\w` tells R to look for a word-character.
 
 -   `{5}` tells R to look for a word-character that has a length of exactly 5.
 
--   `\\b` lookd for the second boundary.
+-   `\b` looks for the second boundary.
 
-### Example 2: Finding Words That Start with AEIOU
+### Example 2: Finding Words That Start with `aeiou`
 
-Here we will use a regular expression that looks for where words start with specific letters.
+Here we will use a regular expression that looks for words that start with specific letters.
+
+Note: The words dataset is specifically lowercase\*, otherwise we would be using both upper and lower case in our expression.
 
 ```{r}
 vowel_words <- 
- str_match_all(words,"^[aeiou].*$") |> 
+ str_match_all(words,"\\b^[aeiou].*$") |> 
   unlist()
 
-sample(vowel_words,10)
+sample(vowel_words,5)
 ```
 
 Great!
 
 The regular expression does the following:
 
--   `\\b` - Looks for boundary
+-   `\b` - Looks for boundary
 
 -   `^` - Designates the start of a string.
 
@@ -90,60 +104,68 @@ The regular expression does the following:
 
 -   `$` - Tells R to look for the end of a string.
 
-### Most Common Start Letter Used in `stringr::words`
+## Example 2b. Finding words that DON'T start with vowels
 
-We will need to make `stringr::words` into a dataframe using `tibble()`.
+We can use the same regular expression we created earlier and at a **not** qualifier to essentially reverse our search.
 
-We need the data in a dataframe so that we can use the different functions in `dplyr` package.
+```{r}
+str_match_all(words,"\\b[^aeiou].*$") |> 
+  unlist() |> 
+  sample(5)
+```
 
-We use the `%>%` operator that takes the value on the left and passes it throuh to the right.
+Note that by moving the beginning of string qualifier `^` to the inside of the bracket resulted in the opposite of what we were looking for!
+
+### Most Common Start Letter Used in `stringr::words`
 
 ```{r}
 word_tbl <- 
-  tibble(line=1:length(words),
-         words=words)
-
+  words |>  # <1>
+  data.frame() |>  # <2>
+  mutate(  # <3>
+    StartsWith = str_match(words,"^.") |> unlist()  # <3>
+  ) |> 
+  group_by(StartsWith) |>  # <4>
+  count(sort = TRUE)   # <4>
+  
 word_tbl |> 
-  summary()
+  head() |> 
+  hux() |>  # <5>
+  theme_article()  # <6>
 ```
 
-```{r}
-word_tbl %>% 
-  # Create a column of the letter the word starts with
-  mutate(sw= str_match_all(words,"^.") |> unlist()) %>% 
-  # Group by that new column. Any change we make will be in accordance with this column. 
-  group_by(sw) %>% 
-# We will use the tally function to count how many observations fall into each category. 
-  tally()
-```
+1.  words: This is the input dataset (assumed to be a vector or list of words) that will be processed.
+2.  data.frame(): Converts the words object into a data frame to facilitate data manipulation.
+3.  mutate() and str_match(): Adds a new column StartsWith, extracting the first letter from each word using a regular expression. unlist() flattens the result into a vector.
+4.  group_by() and count(): Groups the data by the StartsWith column and counts the number of occurrences for each letter, sorting the counts in descending order.
+5.  hux(): Converts the resulting grouped and counted data into a huxtable object, which formats the data into a table.
+6.  theme_article(): Applies the “article” theme to style the table for presentation.
 
 Taking a look at the table we can see that there are two words that start with a capital C. This doesn't halt the process, but it is worth it to see who the culprits are.
 
 ```{r}
 word_tbl %>% 
-  mutate(sw=str_match_all(words,"^.") |> unlist()) %>% 
-  filter(sw=="C")
+  filter(StartsWith == "C")
 ```
 
-For our purposes, it is more than okay to change these entries to be lowercase. Conveniently, the `stringr` package really does have it all!
+For our purposes, it is okay to change these entries to be lowercase. Conveniently, the `stringr` package really does have it all!
 
 ```{r}
 words <- 
-  str_to_lower(words)
+  str_to_lower(stringr::words)
 
 word_tbl <- 
-  tibble(line=1:length(words),
-         words=words)
-
-word_tbl <- 
-  word_tbl %>% 
-  # Create a column of the letter the word starts with
+  words |> 
+  data.frame() |> 
   mutate(sw= str_match_all(words,"^.") |> 
            unlist()) %>% 
-  # Group by that new column. Any change we make will be in accordance with this column. 
   group_by(sw) %>% 
-# We will use the tally function to count how many observations fall into each category. 
-  tally()
+  count(sort = TRUE)
+
+word_tbl |> 
+  head() |> 
+  hux() |> 
+  theme_article()
 ```
 
 We could look at the table and make some observations, but it would be better to just graph everything!
@@ -152,28 +174,43 @@ Keep in mind that this list of words is only 980 observations long so there are 
 
 ```{r}
 word_tbl %>% 
-  ggplot(aes(fct_reorder(sw,n),n,fill=n)) + 
-    geom_bar(stat="identity") +
+  ggplot(aes(fct_reorder(sw,n),n,fill=n,label = n)) + 
+    geom_bar(stat="identity",
+             aes(fill = ifelse(n == max(n),"darkred","grey"))) +
     coord_flip() +
-  labs(x="",y="Count",
-         title="Number of Words Per Letter",
-       caption="(based on stringr::words)") +
+  labs(x ="",
+       y ="",
+       title ="Starting Letter Word Frequency",
+       subtitle = "The words dataset favors 's'and 'c'",
+       caption = "Data from stringr::words") +
     theme_minimal() +
-    theme(axis.ticks = element_blank(),
-          legend.position = "none") 
+    theme(
+      axis.ticks = element_blank(),
+      legend.position = "none",
+      axix.x.text = element_blank(),
+      plot.title.position = "plot",
+      plot.title = element_text(size = 20,
+                              face = "bold"),
+      plot.subtitle = element_text(face = "italic")
+  ) + 
+  scale_fill_identity() 
 ```
 
-For example, here is a quick way to create a vector of words and getting their length:
+## Most Frequent Word Length in `stringr::words`
+
+To get a words length, we can use `str_length()`
 
 ```{r}
-library(stringr)
-
 # Take a sample of 10 observations from the words package
-sample_words <- 
-  sample(words,10)
-# Find the length of each word
-sample_words |> 
-  str_length()
+
+set.seed(616)
+
+ww <- sample(words,10)
+
+tibble(
+  word = ww,
+  wl = str_length(ww)
+) 
 ```
 
 Using this same approach we could find out the number of each letter-sized word in the package.
@@ -181,93 +218,70 @@ Using this same approach we could find out the number of each letter-sized word 
 ```{r}
 # X-Axis Values for later
 xax <- 1:11
-# Create a dataframe to use 
+
 words_t <- 
-  tibble(line=1:length(words),
-         words=words)
-# Create a column with the lengths of the words
-words_t <- 
-  words_t %>% 
-  mutate(string_length=str_length(words)) %>% 
+  words |> 
+  data.frame() |> 
+  mutate(string_length = str_length(words)) %>% 
   group_by(string_length) %>% 
-  tally() 
+  count() 
+
+words_t
 ```
 
 ```{r}
-# Plot the frequencies, flip the coordinates
-# use our custom axis labels, remove axis ticks, 
-# plot the frequencies on the plot
-# label the axes 
 words_t %>%
-  ggplot(aes(string_length, n, fill = string_length)) +
-  geom_col() +
+  ggplot(aes(string_length, n, 
+             fill = string_length)) +
+  geom_bar(stat = "identity",
+           aes(fill = ifelse(n == max(n),"darkred","grey"))) +
   coord_flip() +
-  labs(x = "Length of Word") +
   scale_x_continuous(breaks = xax) +
   theme_minimal() +
-  theme(legend.position = "none",
-        axis.ticks = element_blank()) +
-  scale_fill_gradient(low = "darkred", high = "red1") +
-  geom_text(aes(label = n, hjust = -.5)) +
-ylim(0, 300) +
+  theme(
+    legend.position = "none",
+    axis.ticks = element_blank(),
+    axis.text.x = element_blank(),
+    plot.title = element_text(face = "bold",
+                              size = 20),
+    plot.title.position = "plot",
+    plot.subtitle = element_text(face = "italic")
+        ) +
+  scale_fill_identity() +
+  ylim(0, 300) +
   labs(
     x = "",
-    y = "Count",
+    y = "",
     title = "Frequency Distribution of Word Size",
-    caption = "(based on stringr::words)"
-  )
+    subtitle = "Keeping it Short and Sweet!",
+    caption = "Data from stringr::words"
+  ) 
 ```
 
-## stringr::sentences
+### stringr::sentences
+
+`stringr` also contains a sentences dataset.
 
 ```{r}
-sentences_t <- 
-  tibble(
+
+tibble(
     line=1:length(sentences),
-    sentence=sentences)
-
-sentences_t_ns <- 
-  sentences_t %>% 
-  unnest_tokens(word,sentence) %>% 
-  group_by(word) %>% 
-  count(sort=T) %>% 
-  ungroup() %>% 
-  slice(1:20) 
-
-sentences_t_ns %>% 
-  ggplot(aes(fct_reorder(word,n),n)) + 
-    geom_point() + 
-    geom_segment(aes(word,xend=word,n,yend=0)) +
-    coord_flip() +
-    theme_minimal() +
-    theme(axis.ticks = element_blank(),) +
-    labs(x="",y="",
-         title="Most Used Words: Stop Words Included",
-         caption="(based on stringr::sentences")
-```
-
-```{r}
-sentences_t_s <- 
-  sentences_t %>% 
+    sentence=sentences) %>% 
   unnest_tokens(word,sentence) %>% 
   anti_join(stop_words) %>% 
   group_by(word) %>% 
   count(sort=T) %>% 
-  ungroup() %>% 
-  slice(1:20) 
+  ungroup() |> 
+  wordcloud2::wordcloud2()
 ```
 
+
+Whoa! There are sure a lot of sentences with 'red' in them. Let's isolate those 11 sentences.
+
 ```{r}
-sentences_t_s <- 
-  sentences_t_s %>% 
-  ggplot(aes(fct_reorder(word,n),n)) + 
-  geom_point() + 
-  geom_segment(aes(word,xend=word,n,yend=0)) +
-  coord_flip() +
-  theme_minimal() +
-  theme(axis.ticks = element_blank(),) +
-  labs(x="",y="",
-       title="Most Used Non Stop_Words",
-       caption="(based on stringr::sentences)")
-sentences_t_s
+tibble(
+    line=1:length(sentences),
+    sentence=sentences) |> 
+  filter(str_detect(sentences,"\\bred\\b")) |> 
+  select(sentence)
 ```
