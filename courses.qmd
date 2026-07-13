@@ -5,44 +5,55 @@ editor: visual
 
 ### Here are some of the courses I have taught!
 
+::: {.kurbits-divider}
+:::
+
 :::::: {.class-container}
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Statistics for Psychology  
 **Role:** Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Introduction to Psychology  
 **Role:** Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Research Methods  
 **Role:** Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Senior Project I/II  
 **Role:** Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Research Design and Analysis I  
 **Role:** Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Senior Project  
 **Role:** Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Statistics for the Psychological Sciences  
 **Role:** Lab Instructor
 ::::
 
 :::: {.class-taught}
+<div class="kurbits-corner"></div>
 **Course:** Experimental Psychology  
 **Role:** Lab Instructor
 ::::

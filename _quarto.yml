@@ -4,9 +4,11 @@ project:
   
 website:
   title: "⬡⬢"
-  page-footer: "Copyright 2025, Dave Brocker" 
+  page-footer: "Copyright 2025, Dave Brocker"
   navbar:
-    right: 
+    logo: images/kurbits-hex-logo.svg
+    title: false
+    right:
       - href: index.qmd
         icon: house
         text: Home

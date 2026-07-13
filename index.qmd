@@ -12,6 +12,9 @@ I [teach](courses.html) statistics, research methods, and professional developme
 
 ![](images/DaveLogo.PNG){fig-align="center" style="object-fit: cover;   border-radius: 50%;" width="300" height="300"}
 
+::: {.kurbits-divider}
+:::
+
 :::::: icon-container
 ::: icons
 {{< fa brands linkedin >}}

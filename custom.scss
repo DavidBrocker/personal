@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display&display=swap');
 
 /*-- scss:defaults --*/
-// Base document colors
-$body-bg: #F3F4F6;
+// Base document colors -- kurbits-inspired palette
+$body-bg: #F7F1E3;
 $link-color: #AD0000;
-$navbar-bg: #F3F4F6;
+$navbar-bg: #F7F1E3;
 $footer-bg: #AD0000;
-$footer-fg: #F3F4F6;
+$footer-fg: #F7F1E3;
+$kurbits-blue: #1B4B72;
 
 
 // Code blocks
@@ -18,11 +19,66 @@ $font-family-sans-serif: "Noto Sans Display" !default;
 
 /*-- scss:rules --*/
 
-.navbar-title {
+.kurbits-divider {
+  height: 48px;
+  margin: 2.5rem auto;
+  max-width: 480px;
+  background-image: url("images/kurbits-divider.svg");
+  background-repeat: repeat-x;
+  background-size: 60px 48px;
+  background-position: center;
+}
+
+.kurbits-corner {
   position: absolute;
-  margin: 4px 12px;
-  padding: 4px 8px;
-  font-size: 3rem;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  background-image: url("images/kurbits-corner.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.85;
+  pointer-events: none;
+  transform-origin: top left;
+  transition: transform 0.3s ease;
+}
+
+// Give each flourish a slightly different hand-placed tilt instead of
+// stamping an identical copy on every card; straighten on hover.
+$kurbits-tilts: -7deg, 5deg, -3deg, 8deg, -5deg;
+
+@each $card-class in ".app-card", ".class-taught", ".writing-card" {
+  @for $i from 1 through length($kurbits-tilts) {
+    #{$card-class}:nth-of-type(#{$i}) .kurbits-corner {
+      transform: rotate(nth($kurbits-tilts, $i));
+    }
+  }
+
+  #{$card-class}:hover .kurbits-corner {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.kurbits-rosette {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  vertical-align: middle;
+  margin: 0 0.35em;
+  background-image: url("images/kurbits-rosette.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.navbar-brand img.navbar-logo {
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img.navbar-logo {
+  transform: rotate(-4deg) scale(1.08);
 }
 
 .title{
@@ -45,14 +101,15 @@ $font-family-sans-serif: "Noto Sans Display" !default;
   padding-top: 2px;
 }
 
-nav-item p::after {
-  content: ">";
+.navbar-nav .nav-link {
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.nav-item:hover {
-  padding-top: 2px;
-  border: 1px solid;
-  border-radius: 10px;
+.navbar-nav .nav-link:hover {
+  background-color: $link-color;
+  color: #fff;
+  border-bottom: 2px solid transparent;
 }
 // footer
 
@@ -233,6 +290,7 @@ a:hover {
 
 /* Card style */
 .app-card {
+  position: relative;
   background-color: #ffffff;
   border-radius: 16px;
   border-left: 6px solid #b22222;
@@ -292,6 +350,7 @@ a:hover {
 }
 
 .writing-card {
+  position: relative;
   background-color: #fff;
   border-radius: 16px;
   border-left: 6px solid #b22222;

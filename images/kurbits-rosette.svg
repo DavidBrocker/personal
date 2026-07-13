@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g>
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#AD0000"/>
+  </g>
+  <g transform="rotate(45 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#1B4B72"/>
+  </g>
+  <g transform="rotate(90 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#AD0000"/>
+  </g>
+  <g transform="rotate(135 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#1B4B72"/>
+  </g>
+  <g transform="rotate(180 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#AD0000"/>
+  </g>
+  <g transform="rotate(225 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#1B4B72"/>
+  </g>
+  <g transform="rotate(270 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#AD0000"/>
+  </g>
+  <g transform="rotate(315 24 24)">
+    <path d="M24,24 C20,15 20,7 24,3 C28,7 28,15 24,24 Z" fill="#1B4B72"/>
+  </g>
+  <circle cx="24" cy="24" r="4" fill="#F7F1E3" stroke="#1B4B72" stroke-width="1.5"/>
+</svg>

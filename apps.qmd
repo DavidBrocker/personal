@@ -3,29 +3,36 @@ title: "Shiny Apps"
 editor: visual
 ---
 
+<p style="text-align:center;">
+<span class="kurbits-rosette"></span>A few apps I've built for teaching and fun<span class="kurbits-rosette"></span>
+</p>
+
 ::::: app-grid
 
 ::: app-card
+<div class="kurbits-corner"></div>
 ![](images/musicmatch.png){.app-image}
 
 **[MusicMatchup](https://dbrocker.shinyapps.io/MusicMatchup/)**  
-Discover your next favorite artist through interactive data visualizations powered by the Spotify API.  
+Discover your next favorite artist through interactive data visualizations powered by the Spotify API.
 <span class="app-tagline">Explore artists, genres, and related music in an intuitive interface.</span>
 :::
 
 ::: app-card
+<div class="kurbits-corner"></div>
 ![](images/rand_am.png){.app-image}
 
-**[Random American Dad!](https://dbrocker.shinyapps.io/RandomAmericanDad/)** 
-Click the button and let chaos decide — stream a random episode of *American Dad!* with one click.  
+**[Random American Dad!](https://dbrocker.shinyapps.io/RandomAmericanDad/)**  
+Click the button and let chaos decide — stream a random episode of *American Dad!* with one click.
 <span class="app-tagline">Built using Shiny and iMDB for effortless fun.</span>
 :::
 
 
 ::: app-card
+<div class="kurbits-corner"></div>
 ![](images/mockinterview.png){.app-image}
 
-**[Mock Interview](https://dbrocker.shinyapps.io/MockInterview/)**<br> 
+**[Mock Interview](https://dbrocker.shinyapps.io/MockInterview/)**<br>
 Prepare yourself for graduate school and post-graduate employment.
 <span class="app-tagline">Built using Shiny and OpenAI API</span>
 :::
