@@ -491,8 +491,11 @@ a:hover {
   background-color: rgba(201, 138, 44, 0.1);
 }
 
-/* webR status badge, injected into the page title area */
-.quarto-title-meta {
+/* webR status badge, injected into the page title area.
+   Quarto always emits this div in the title block, even when empty on
+   pages without the webr filter -- only style it when it actually has
+   content, so it doesn't show up as an empty box everywhere else. */
+.quarto-title-meta:has(p) {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.65rem 1.1rem;
