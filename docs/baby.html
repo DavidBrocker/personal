@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ddda580363e04ae7a2158e6ed4252b61.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-303f060cc49c54501e92a55d0badd633.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -270,28 +270,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7"></a>xy <span class="sc">|&gt;</span> <span class="fu">distinct</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x
-1  z
-2  k
-3  q
-4  v
-5  i
-6  f
-7  d
-8  n
-9  l
-10 m
-11 o
-12 j
-13 y
-14 c
-15 a
-16 r
-17 g
-18 x
-19 u
-20 s
-21 e
-22 b</code></pre>
+1  o
+2  e
+3  s
+4  m
+5  y
+6  w
+7  n
+8  u
+9  x
+10 p
+11 j
+12 q
+13 f
+14 i
+15 z
+16 g
+17 d
+18 a
+19 l
+20 v
+21 c
+22 r
+23 k
+24 t</code></pre>
 </div>
 </div>
 <p>You will notice that we lost everything in the y column! We need to use the&nbsp;<code>.keep_all()</code>&nbsp;argument.</p>
@@ -307,21 +309,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">group_by</span>(x) <span class="sc">|&gt;</span> </span>
 <span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">arrange</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 21 × 2
-# Groups:   x [21]
+<pre><code># A tibble: 24 × 2
+# Groups:   x [24]
    x         y
    &lt;chr&gt; &lt;dbl&gt;
  1 a        61
- 2 c        21
- 3 d        10
- 4 e        64
- 5 f        58
- 6 h        60
- 7 k        87
- 8 l        10
- 9 m        92
-10 n        86
-# ℹ 11 more rows</code></pre>
+ 2 b        27
+ 3 c        58
+ 4 d        89
+ 5 e        98
+ 6 g        82
+ 7 h         9
+ 8 i         6
+ 9 j        69
+10 k        31
+# ℹ 14 more rows</code></pre>
 </div>
 </div>
 <p>So now we will do the same with the&nbsp;<code>babynames</code>&nbsp;dataset to find the number of distinct names.</p>
