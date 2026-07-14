@@ -270,30 +270,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7"></a>xy <span class="sc">|&gt;</span> <span class="fu">distinct</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x
-1  o
-2  e
-3  s
-4  m
-5  y
-6  w
-7  n
-8  u
-9  x
-10 p
-11 j
-12 q
-13 f
-14 i
-15 z
-16 g
-17 d
-18 a
-19 l
-20 v
-21 c
-22 r
-23 k
-24 t</code></pre>
+1  p
+2  b
+3  k
+4  x
+5  l
+6  d
+7  e
+8  y
+9  q
+10 z
+11 c
+12 o
+13 w
+14 v
+15 a
+16 r
+17 f
+18 s
+19 i
+20 h
+21 n
+22 t
+23 u
+24 g</code></pre>
 </div>
 </div>
 <p>You will notice that we lost everything in the y column! We need to use the&nbsp;<code>.keep_all()</code>&nbsp;argument.</p>
@@ -309,21 +309,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">group_by</span>(x) <span class="sc">|&gt;</span> </span>
 <span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">arrange</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 24 × 2
-# Groups:   x [24]
+<pre><code># A tibble: 21 × 2
+# Groups:   x [21]
    x         y
    &lt;chr&gt; &lt;dbl&gt;
- 1 a        61
- 2 b        27
- 3 c        58
- 4 d        89
- 5 e        98
- 6 g        82
- 7 h         9
- 8 i         6
- 9 j        69
-10 k        31
-# ℹ 14 more rows</code></pre>
+ 1 a        54
+ 2 b        98
+ 3 d        87
+ 4 e        52
+ 5 f        96
+ 6 g        15
+ 7 h        30
+ 8 i        79
+ 9 j        68
+10 k        50
+# ℹ 11 more rows</code></pre>
 </div>
 </div>
 <p>So now we will do the same with the&nbsp;<code>babynames</code>&nbsp;dataset to find the number of distinct names.</p>

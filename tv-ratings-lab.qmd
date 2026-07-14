@@ -1,0 +1,88 @@
+---
+title: "TV Ratings Lab (Prototype)"
+editor: visual
+filters:
+  - webr
+webr:
+  packages:
+    - dplyr
+    - ggplot2
+    - forcats
+resources:
+  - data/
+---
+
+::: callout-note
+This page is a **prototype**, not a finished lesson. It's here to test one idea: can the *exact same* analysis code run on two completely different datasets, with nothing but the data itself swapped out? Everything below is live and editable — nothing is pre-rendered.
+:::
+
+### Pick your show
+
+Run the block below as-is to work with **Doctor Who**. To switch to **The Simpsons**, change the file path on the first line and re-run this block *and every block below it*.
+
+```{webr-r}
+show_data <- "https://davidabrocker.com/data/doctorwho_ratings.csv"
+# show_data <- "https://davidabrocker.com/data/simpsons_ratings.csv"
+
+ratings <- read.csv(show_data)
+head(ratings)
+```
+
+::: callout-tip
+**Try it out:** Comment out the Doctor Who line, uncomment the Simpsons line, and re-run. Then re-run each block below — same code, different show.
+:::
+
+```{webr-r}
+library(dplyr)
+library(ggplot2)
+library(forcats)
+
+quality_colors <- c(
+  "Great"   = "#AD0000",
+  "Good"    = "#1B4B72",
+  "Regular" = "#C98A2C",
+  "Bad"     = "#888888",
+  "Garbage" = "#4A4A4A"
+)
+```
+
+### Average rating by season
+
+```{webr-r}
+ratings |>
+  ggplot(aes(as.factor(Season), Ratings)) +
+  geom_point(aes(color = Quality), alpha = .3) +
+  stat_summary(fun = "mean", geom = "point", size = 2) +
+  scale_color_manual(values = quality_colors) +
+  theme_minimal() +
+  labs(x = "Season", y = "Rating", title = "Average Rating by Season")
+```
+
+### Which season had the most standout episodes?
+
+```{webr-r}
+ratings |>
+  filter(Quality == "Great") |>
+  count(Season) |>
+  ggplot(aes(fct_reorder(as.factor(Season), n), n)) +
+  geom_col(fill = quality_colors[["Great"]]) +
+  coord_flip() +
+  theme_minimal() +
+  labs(x = "Season", y = "Count", title = "'Great' Episodes per Season")
+```
+
+### Every episode, at a glance
+
+```{webr-r}
+ratings |>
+  ggplot(aes(factor(Season), EpisodeNumber, fill = Quality)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = Ratings), size = 2.5) +
+  scale_fill_manual(values = quality_colors) +
+  theme_minimal() +
+  labs(x = "Season", y = "Episode", title = "Episode Heatmap")
+```
+
+::: callout-important
+The lesson code above never references "Doctor Who" or "The Simpsons" by name — it only depends on `Season`, `EpisodeNumber`, `Ratings`, and `Quality` columns existing. Any new show's data can be added the same way: clean it into that shape, drop the CSV in `data/`, and it plugs into this exact lesson.
+:::
