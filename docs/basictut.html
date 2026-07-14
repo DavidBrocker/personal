@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.33">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Basic Operations – ⬡⬢</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,6 +21,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
+
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -34,7 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f9640a4315d47d145548b3046a65c213.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-859bbec5db73187df27931fe4fd72ac6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -60,7 +65,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/editor/editor.main.css">
+}</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/editor/editor.main.css">
+
 <style>
   .monaco-editor pre {
     background-color: unset !important;
@@ -101,6 +108,7 @@ ul.task-list li input[type="checkbox"] {
     opacity: .65
   }
 </style>
+
 <script type="module">
 
   // Start a timer
@@ -213,15 +221,22 @@ ul.task-list li input[type="checkbox"] {
     // If initialized, switch to a green light
     startupMessageWebR.innerText = "🟢 Ready!"
   }
-</script><link rel="stylesheet" href="styles.css">
+</script>
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/kurbits-hex-logo.svg" alt="" class="navbar-logo"></a>
+    <img src="./images/kurbits-hex-logo.svg" alt="" class="navbar-logo">
+    </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -229,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="./index.html"> <i class="bi bi-house" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
@@ -254,29 +269,34 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Portfolio</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#installing-and-navigating-r-and-r-studio" id="toc-installing-and-navigating-r-and-r-studio" class="nav-link active" data-scroll-target="#installing-and-navigating-r-and-r-studio"><strong>Installing and Navigating R and R-Studio</strong></a>
+  <li><a href="#installing-and-navigating-r-and-r-studio" id="toc-installing-and-navigating-r-and-r-studio" class="nav-link active" data-scroll-target="#installing-and-navigating-r-and-r-studio"><strong>Installing and Navigating R and R-Studio</strong></a>
   <ul class="collapse">
-<li><a href="#basic-math" id="toc-basic-math" class="nav-link" data-scroll-target="#basic-math"><strong>Basic Math</strong></a></li>
+  <li><a href="#basic-math" id="toc-basic-math" class="nav-link" data-scroll-target="#basic-math"><strong>Basic Math</strong></a></li>
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><strong>Variables</strong></a></li>
   <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><strong>Data Types</strong></a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/loader.js"></script><script type="module" id="webr-monaco-editor-init">
+<main class="content" id="quarto-document-content">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/loader.js"></script>
+<script type="module" id="webr-monaco-editor-init">
 
   // Configure the Monaco Editor's loader
   require.config({
@@ -284,7 +304,10 @@ ul.task-list li input[type="checkbox"] {
       'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs'
     }
   });
-</script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+</script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Basic Operations</h1>
 </div>
 
@@ -299,7 +322,10 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><div class="callout callout-style-default callout-note callout-titled">
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -309,10 +335,11 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Note:</strong>&nbsp;Today we will go through how to install R-Studio, use the console for basic math, and store expressions and calculations as variables..</p>
+<p>Today we will go through how to install R-Studio, use the console for basic math, and store expressions and calculations as variables.</p>
 </div>
 </div>
-<section id="installing-and-navigating-r-and-r-studio" class="level2"><h2 class="anchored" data-anchor-id="installing-and-navigating-r-and-r-studio"><strong>Installing and Navigating R and R-Studio</strong></h2>
+<section id="installing-and-navigating-r-and-r-studio" class="level2">
+<h2 class="anchored" data-anchor-id="installing-and-navigating-r-and-r-studio"><strong>Installing and Navigating R and R-Studio</strong></h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -323,13 +350,13 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>In order to get the confusion out of the way, when we are working in R-Studio, we are going to just call it R. There are two distinct programs, R and R-Studio. The differences is that R does not have a Graphical User Interface. This means that there are no dialog boxes or viewer panes built in. I prefer using R-Studio because it alots a few more options to the user.</em></p>
+<p><em>In order to get the confusion out of the way, when we are working in R-Studio, we are going to just call it R. There are two distinct programs, R and R-Studio. The differences is that R does not have a Graphical User Interface. This means that there are no dialog boxes or viewer panes built in. I prefer using R-Studio because it allots a few more options to the user.</em></p>
 </div>
 </div>
 <ol type="1">
-<li><p>You will first need to&nbsp;<a href="https://cran.rstudio.com/">install R</a>. Make sure to note the operating system you are working on when doing so.</p></li>
-<li><p>Once R is installed, you will need to&nbsp;<a href="https://www.rstudio.com/products/rstudio/download/#download">install R-Studio</a>.</p></li>
-<li><p>When you open R you will see that there are three large boxes on the screen. The largest box on the left is the&nbsp;<code>Console</code>. This is where whatever you type will be evaluated by the program and when you press&nbsp;<code>Enter</code>, a result will appear below what you have typed.</p></li>
+<li><p>You will first need to <a href="https://cran.rstudio.com/">install R</a>. Make sure to note the operating system you are working on when doing so.</p></li>
+<li><p>Once R is installed, you will need to <a href="https://www.rstudio.com/products/rstudio/download/#download">install R-Studio</a>.</p></li>
+<li><p>When you open R you will see that there are three large boxes on the screen. The largest box on the left is the <code>Console</code>. This is where whatever you type will be evaluated by the program and when you press <code>Enter</code>, a result will appear below what you have typed.</p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -345,11 +372,12 @@ Note
 </div>
 </div>
 <ol start="4" type="1">
-<li>The area on the right is divided into two parts: A tabset with the options;&nbsp;<code>Environment</code>,<code>History</code>,<code>Connections</code>, and&nbsp;<code>Build</code>. Additionally, there is a tabset directly below with the options;&nbsp;<code>Files</code>,&nbsp;<code>Plots</code>,&nbsp;<code>Packages</code>,&nbsp;<code>Help</code>, and&nbsp;<code>Viewer</code>.</li>
+<li>The area on the right is divided into two parts: A tabset with the options; <code>Environment</code>,<code>History</code>,<code>Connections</code>, and <code>Build</code>. Additionally, there is a tabset directly below with the options; <code>Files</code>, <code>Plots</code>, <code>Packages</code>, <code>Help</code>, and <code>Viewer</code>.</li>
 </ol>
-<p>For the moment, we will only be paying attention to the&nbsp;<code>Console</code>.</p>
-<section id="basic-math" class="level3"><h3 class="anchored" data-anchor-id="basic-math"><strong>Basic Math</strong></h3>
-<p>It may seem trivial at first, but it is good to know that the&nbsp;<code>Console</code>&nbsp;in R has an interface that acts as a calculator. The green text is what is typed into the console, and the black text, preceded by [1] is the result of the expression.</p>
+<p>For the moment, we will only be paying attention to the <code>Console</code>.</p>
+<section id="basic-math" class="level3">
+<h3 class="anchored" data-anchor-id="basic-math"><strong>Basic Math</strong></h3>
+<p>It may seem trivial at first, but it is good to know that the <code>Console</code> in R has an interface that acts as a calculator. The green text is what is typed into the console, and the black text, preceded by [1] is the result of the expression.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">Loading
   webR...</button>
 <div id="webr-editor-1"></div>
@@ -370,7 +398,7 @@ Note
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
       value: `# Addition
-1+1`,
+1 + 1`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -554,7 +582,8 @@ Note
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
+</script>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-2">Loading
   webR...</button>
 <div id="webr-editor-2"></div>
 <div id="webr-code-output-2" aria-live="assertive">
@@ -574,7 +603,7 @@ Note
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
       value: `# Subtraction
-4-1`,
+4 - 1`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -758,7 +787,8 @@ Note
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
+</script>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-3">Loading
   webR...</button>
 <div id="webr-editor-3"></div>
 <div id="webr-code-output-3" aria-live="assertive">
@@ -778,7 +808,7 @@ Note
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
       value: `# Multiplication
-10*3`,
+10 * 3`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -962,7 +992,8 @@ Note
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
+</script>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-4">Loading
   webR...</button>
 <div id="webr-editor-4"></div>
 <div id="webr-code-output-4" aria-live="assertive">
@@ -982,7 +1013,7 @@ Note
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
       value: `# Division
-40/4`,
+40 / 4`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1166,7 +1197,8 @@ Note
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">Loading
+</script>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-5">Loading
   webR...</button>
 <div id="webr-editor-5"></div>
 <div id="webr-code-output-5" aria-live="assertive">
@@ -1370,7 +1402,8 @@ Note
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><p>R will also follow the order of expressions, or how must of us know it: PEMDAS (Parentheses, exponents, multiplication, division, addition, and subtraction). This is especially important if you ever do a long formula.</p>
+</script>
+<p>R will also follow the order of expressions, or how most of us know it: PEMDAS (Parentheses, exponents, multiplication, division, addition, and subtraction). This is especially important if you ever do a long formula.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-6">Loading
   webR...</button>
 <div id="webr-editor-6"></div>
@@ -1390,10 +1423,10 @@ Note
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `12-(3+4)
-5*3-2
-20*2/6+5
-(3+1)+3*2-(12/4) `,
+      value: `12 - (3 + 4)
+5 * 3 - 2
+20 * 2 / 6 + 5
+(3 + 1) + 3 * 2 - (12 / 4)`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -1577,8 +1610,11 @@ Note
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script></section><section id="variables" class="level3"><h3 class="anchored" data-anchor-id="variables"><strong>Variables</strong></h3>
-<p>Any expression you type into the console can be stored as a variable, which can be called later on. These variables can also be used in conjunction with different math expressions. It is important to note that when creating a variable, the variable can be used interchangably with the number(s) stored inside of it.</p>
+</script>
+</section>
+<section id="variables" class="level3">
+<h3 class="anchored" data-anchor-id="variables"><strong>Variables</strong></h3>
+<p>Any expression you type into the console can be stored as a variable, which can be called later on. These variables can also be used in conjunction with different math expressions. It is important to note that when creating a variable, the variable can be used interchangeably with the number(s) stored inside of it.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1589,7 +1625,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Note that the way we assign a number or object to a variable is by using&nbsp;<code>&lt;-</code>. You can also use&nbsp;<code>=</code>, but as you will see in later seminars, the former option is a little more powerful.</em></p>
+<p><em>Note that the way we assign a number or object to a variable is by using <code>&lt;-</code>. You can also use <code>=</code>, but as you will see in later seminars, the former option is a little more powerful.</em></p>
 <p>You can use the shortcut: Option + Minus (Mac) | Alt + Minus (PC)</p>
 </div>
 </div>
@@ -1612,7 +1648,7 @@ Note
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `x <- 2+2
+      value: `x <- 2 + 2
 x`,
       language: 'r',
       theme: 'vs-light',
@@ -1797,7 +1833,8 @@ x`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">Loading
+</script>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-8">Loading
   webR...</button>
 <div id="webr-editor-8"></div>
 <div id="webr-code-output-8" aria-live="assertive">
@@ -1816,15 +1853,15 @@ x`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `x-1
+      value: `x - 1
 # You can create separate variables that use existing variables as a reference
-y <- x*4
+y <- x * 4
 
 # You can multiply
-x*y
+x * y
 
 # Divide
-x/y`,
+x / y`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2008,7 +2045,8 @@ x/y`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><div class="callout callout-style-default callout-tip callout-titled">
+</script>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2018,7 +2056,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Try it out:</strong>&nbsp;Create a variable called&nbsp;<code>Name</code>&nbsp;and have this equal your name. After you have done, type the variable&nbsp;<code>Name</code>&nbsp;and press enter.</p>
+<p><strong>Try it out:</strong> Create a variable called <code>name</code> and have this equal your name. After you have done so, type the variable <code>name</code> and press enter.</p>
 </div>
 </div>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-9">Loading
@@ -2040,7 +2078,7 @@ Tip
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `name <- `,
+      value: `name <-`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2224,9 +2262,12 @@ Tip
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><p>You most likley got an error message. Here is why…</p>
-</section><section id="data-types" class="level3"><h3 class="anchored" data-anchor-id="data-types"><strong>Data Types</strong></h3>
-<p>In R, there are different data types or classes that R will recognize. We will first focus on&nbsp;<code>Numeric</code>&nbsp;and&nbsp;<code>Character</code>. Take note of the&nbsp;<code><a href="https://rdrr.io/r/base/class.html">class()</a></code>function that identify how&nbsp;<code>R</code>&nbsp;evalutes this variable.</p>
+</script>
+<p>You most likely got an error message. Here is why…</p>
+</section>
+<section id="data-types" class="level3">
+<h3 class="anchored" data-anchor-id="data-types"><strong>Data Types</strong></h3>
+<p>In R, there are different data types or classes that R will recognize. We will first focus on <code>Numeric</code> and <code>Character</code>. Take note of the <code>class()</code> function that identify how <code>R</code> evaluates this variable.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-10">Loading
   webR...</button>
 <div id="webr-editor-10"></div>
@@ -2432,7 +2473,8 @@ class(x)`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
+</script>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-11">Loading
   webR...</button>
 <div id="webr-editor-11"></div>
 <div id="webr-code-output-11" aria-live="assertive">
@@ -2637,7 +2679,8 @@ class(y)`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><p>Now that we know that&nbsp;<code>R</code>&nbsp;evaluates different types of data in different ways, let us try out the Name exercise again.</p>
+</script>
+<p>Now that we know that <code>R</code> evaluates different types of data in different ways, let us try out the name exercise again.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-12">Loading
   webR...</button>
 <div id="webr-editor-12"></div>
@@ -2657,8 +2700,8 @@ class(y)`,
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `Name <-  "Hello, my name is David"
-Name`,
+      value: `name <- "Hello, my name is David"
+name`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -2842,8 +2885,9 @@ Name`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><p>Perfect!</p>
-<p>The reason that it would not work before is because&nbsp;<code>R</code>&nbsp;has no way of knowing what you are trying to type unless you explicitly tell it that you are trying to type a name, which is a character, denoted by two quotation marks.</p>
+</script>
+<p>Perfect!</p>
+<p>The reason that it would not work before is because <code>R</code> has no way of knowing what you are trying to type unless you explicitly tell it that you are trying to type a name, which is a character, denoted by two quotation marks.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2854,11 +2898,11 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Try it out:</strong>&nbsp;Create a variable with the following numbers: 1,1,2,3,5,8,13 and store it under the name&nbsp;<code>Fib</code>. Type&nbsp;<code>Fib</code>&nbsp;back into the console and press&nbsp;<code>Enter</code>.</p>
+<p><strong>Try it out:</strong> Create a variable with the following numbers: 1,1,2,3,5,8,13 and store it under the name <code>fib</code>. Type <code>fib</code> back into the console and press <code>Enter</code>.</p>
 </div>
 </div>
-<p>You probably were greeted with another error message. This is because&nbsp;<code>R</code>&nbsp;has no way of knowing that you want to display 7 distinct numbers. To get around this we have to do something called “concatenation”.</p>
-<p>If we want to create a variable with more than one number, or object, inside of it we need to concatenate or combine that data first. In&nbsp;<code>R</code>&nbsp;this is done using the&nbsp;<code><a href="https://rdrr.io/r/base/c.html">c()</a></code>&nbsp;function. We can also call an object containing several unique numbers, a&nbsp;<code>vector</code>.</p>
+<p>You probably were greeted with another error message. This is because <code>R</code> has no way of knowing that you want to display 7 distinct numbers. To get around this we have to do something called “concatenation”.</p>
+<p>If we want to create a variable with more than one number, or object, inside of it we need to concatenate or combine that data first. In <code>R</code> this is done using the <code>c()</code> function. We can also call an object containing several unique numbers, a <code>vector</code>.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-13">Loading
   webR...</button>
 <div id="webr-editor-13"></div>
@@ -2878,7 +2922,7 @@ Tip
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `fib <- c(1,1,2,3,5,8,13)
+      value: `fib <- c(1, 1, 2, 3, 5, 8, 13)
 fib`,
       language: 'r',
       theme: 'vs-light',
@@ -3063,8 +3107,9 @@ fib`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><p>By using the&nbsp;<code><a href="https://rdrr.io/r/base/c.html">c()</a></code>&nbsp;function, we are telling&nbsp;<code>R</code>&nbsp;to take these numbers (separated by a comma) and combine them so that they are all included in the variable, but still have their individuality.</p>
-<p>If you wanted to see what the 5<sup>th</sup>&nbsp;number was in the&nbsp;<code>Fib</code>, you would put a bracket <code>[]</code>next to the variable name. Inside of the brackets you would put the position you wanted to see.</p>
+</script>
+<p>By using the <code>c()</code> function, we are telling <code>R</code> to take these numbers (separated by a comma) and combine them so that they are all included in the variable, but still have their individuality.</p>
+<p>If you wanted to see what the 5<sup>th</sup> number was in the <code>fib</code> vector, you would put a bracket <code>[]</code> next to the variable name. Inside of the brackets you would put the position you wanted to see.</p>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-14">Loading
   webR...</button>
 <div id="webr-editor-14"></div>
@@ -3090,7 +3135,7 @@ fib[4]
 # Position 2
 fib[2]
 
-# Positin 1 through 3
+# Position 1 through 3
 fib[1:3]`,
       language: 'r',
       theme: 'vs-light',
@@ -3275,7 +3320,8 @@ fib[1:3]`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><div class="callout callout-style-default callout-tip callout-titled">
+</script>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -3285,20 +3331,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Try it out:</strong>&nbsp;Create a numeric vector named&nbsp;<code>Add3</code>&nbsp;containing the numbers, 1,4,6,9. How could we go about adding 3 to each number in this vector?</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It was mentioned before that the variables take on the properties of the objects in which they are created from. What this means is that if I declare&nbsp;<code>x &lt;- 3</code>,&nbsp;<code>x + 3</code>, my result should be 6. With this in mind, the same should work on a group of numbers.</p>
+<p><strong>Try it out:</strong> Create a numeric vector named <code>add3</code> containing the numbers, 1,4,6,9. How could we go about adding 3 to each number in this vector?</p>
 </div>
 </div>
 <button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-15">Loading
@@ -3320,8 +3353,7 @@ Note
   let editor;
   require(['vs/editor/editor.main'], function () {
     editor = monaco.editor.create(editorDiv, {
-      value: `
-add3 + 3`,
+      value: `add3 <-`,
       language: 'r',
       theme: 'vs-light',
       automaticLayout: true,           // TODO: Could be problematic for slide decks
@@ -3505,7 +3537,225 @@ add3 + 3`,
   runButton.onclick = function () {
     executeCode(editor.getValue());
   };
-</script><div class="callout callout-style-default callout-important callout-titled">
+</script>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It was mentioned before that the variables take on the properties of the objects in which they are created from. What this means is that if I declare <code>x &lt;- 3</code>, <code>x + 3</code>, my result should be 6. With this in mind, the same should work on a group of numbers.</p>
+</div>
+</div>
+<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-16">Loading
+  webR...</button>
+<div id="webr-editor-16"></div>
+<div id="webr-code-output-16" aria-live="assertive">
+  <pre style="visibility: hidden"></pre>
+</div>
+<script type="module">
+  // Retrieve webR code cell information
+  const runButton = document.getElementById("webr-run-button-16");
+  const outputDiv = document.getElementById("webr-code-output-16");
+  const editorDiv = document.getElementById("webr-editor-16");
+
+  // Add a light grey outline around the code editor
+  editorDiv.style.border = "1px solid #eee";
+
+  // Load the Monaco Editor and create an instance
+  let editor;
+  require(['vs/editor/editor.main'], function () {
+    editor = monaco.editor.create(editorDiv, {
+      value: `add3 + 3`,
+      language: 'r',
+      theme: 'vs-light',
+      automaticLayout: true,           // TODO: Could be problematic for slide decks
+      scrollBeyondLastLine: false,
+      minimap: {
+        enabled: false
+      },
+      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      renderLineHighlight: "none",     // Disable current line highlighting
+      hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
+    });
+
+    // Dynamically modify the height of the editor window if new lines are added.
+    let ignoreEvent = false;
+    const updateHeight = () => {
+      const contentHeight = editor.getContentHeight();
+      // We're avoiding a width change
+      //editorDiv.style.width = `${width}px`;
+      editorDiv.style.height = `${contentHeight}px`;
+      try {
+        ignoreEvent = true;
+
+        // The key to resizing is this call
+        editor.layout();
+      } finally {
+        ignoreEvent = false;
+      }
+    };
+
+    // Helper function to check if selected text is empty
+    function isEmptyCodeText(selectedCodeText) {
+      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+    }
+
+    // Registry of keyboard shortcuts that should be re-added to each editor window
+    // when focus changes.
+    const addWebRKeyboardShortCutCommands = () => {
+      // Add a keydown event listener for Shift+Enter to run all code in cell
+      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+
+        // Retrieve all text inside the editor
+        executeCode(editor.getValue());
+      });
+
+      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+
+        // Get the selected text from the editor
+        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
+        // Check if no code is selected
+        if (isEmptyCodeText(selectedText)) {
+          // Obtain the current cursor position
+          let currentPosition = editor.getPosition();
+          // Retrieve the current line content
+          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
+
+          // Propose a new position to move the cursor to
+          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+
+          // Check if the new position is beyond the last line of the editor
+          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
+            // Add a new line at the end of the editor
+            editor.executeEdits("addNewLine", [{
+            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+            text: "\n", 
+            forceMoveMarkers: true,
+            }]);
+          }
+          
+          // Run the entire line of code.
+          executeCode(currentLine);
+
+          // Move cursor to new position
+          editor.setPosition(newPosition);
+        } else {
+          // Code to run when Ctrl+Enter is pressed with selected code
+          executeCode(selectedText);
+        }
+      });
+    }
+
+    // Register an on focus event handler for when a code cell is selected to update
+    // what keyboard shortcut commands should work.
+    // This is a workaround to fix a regression that happened with multiple
+    // editor windows since Monaco 0.32.0 
+    // https://github.com/microsoft/monaco-editor/issues/2947
+    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
+
+    // Register an on change event for when new code is added to the editor window
+    editor.onDidContentSizeChange(updateHeight);
+
+    // Manually re-update height to account for the content we inserted into the call
+    updateHeight();
+  });
+
+  // Function to execute the code (accepts code as an argument)
+  async function executeCode(codeToRun) {
+    // Disable run button for code cell active
+    runButton.disabled = true;
+
+    // Create a canvas variable for graphics
+    let canvas = undefined;
+
+    // Initialize webR
+    await globalThis.webR.init();
+
+    // Setup a webR canvas by making a namespace call into the {webr} package
+    await webR.evalRVoid("webr::canvas(width=504, height=360)");
+
+    // Capture output data from evaluating the code
+    const result = await webRCodeShelter.captureR(codeToRun, {
+      withAutoprint: true,
+      captureStreams: true,
+      captureConditions: false//,
+      // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
+    });
+
+    // Start attempting to parse the result data
+    try {
+
+      // Stop creating images
+      await webR.evalRVoid("dev.off()");
+
+      // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
+      const out = result.output.filter(
+        evt => evt.type == "stdout" || evt.type == "stderr"
+      ).map((evt) => evt.data).join("\n");
+
+      // Clean the state
+      const msgs = await webR.flush();
+
+      // Output each image stored
+      msgs.forEach(msg => {
+        // Determine if old canvas can be used or a new canvas is required.
+        if (msg.type === 'canvas'){
+          // Add image to the current canvas
+          if (msg.data.event === 'canvasImage') {
+            canvas.getContext('2d').drawImage(msg.data.image, 0, 0);
+          } else if (msg.data.event === 'canvasNewPage') {
+            // Generate a new canvas element
+            canvas = document.createElement("canvas");
+            canvas.setAttribute("width", 2 * 504);
+            canvas.setAttribute("height", 2 * 360);
+            canvas.style.width = "700px";
+            canvas.style.display = "block";
+            canvas.style.margin = "auto";
+          }
+        }
+      });
+
+      // Nullify the outputDiv of content
+      outputDiv.innerHTML = "";
+
+      // Design an output object for messages
+      const pre = document.createElement("pre");
+      if (/\S/.test(out)) {
+        // Display results as text
+        const code = document.createElement("code");
+        code.innerText = out;
+        pre.appendChild(code);
+      } else {
+        // If nothing is present, hide the element.
+        pre.style.visibility = "hidden";
+      }
+      outputDiv.appendChild(pre);
+
+      // Place the graphics on the canvas
+      if (canvas) {
+        const p = document.createElement("p");
+        p.appendChild(canvas);
+        outputDiv.appendChild(p);
+      }
+    } finally {
+      // Clean up the remaining code
+      webRCodeShelter.purge();
+      runButton.disabled = false;
+    }
+  }
+
+  // Add a click event listener to the run button
+  runButton.onclick = function () {
+    executeCode(editor.getValue());
+  };
+</script>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -3520,7 +3770,11 @@ Important
 </div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -3941,7 +4195,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -3953,6 +4208,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 </body></html>

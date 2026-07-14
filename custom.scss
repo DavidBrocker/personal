@@ -9,6 +9,7 @@ $navbar-bg: #F7F1E3;
 $footer-bg: #AD0000;
 $footer-fg: #F7F1E3;
 $kurbits-blue: #1B4B72;
+$kurbits-gold: #C98A2C;
 
 
 // Code blocks
@@ -459,4 +460,89 @@ a:hover {
 .icons:hover {
   transform: scale(1.1);
   color: #e74c3c;            /* subtle hover change */
+}
+
+/* Tutorial pages: callouts, webR status, and interactive code blocks */
+
+.callout {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.callout-note {
+  border-left-color: $kurbits-blue !important;
+}
+.callout-note .callout-header {
+  background-color: rgba(27, 75, 114, 0.08);
+}
+
+.callout-important {
+  border-left-color: $link-color !important;
+}
+.callout-important .callout-header {
+  background-color: rgba(173, 0, 0, 0.06);
+}
+
+.callout-tip {
+  border-left-color: $kurbits-gold !important;
+}
+.callout-tip .callout-header {
+  background-color: rgba(201, 138, 44, 0.1);
+}
+
+/* webR status badge, injected into the page title area */
+.quarto-title-meta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.65rem 1.1rem;
+  background-color: #ffffff;
+  border-left: 6px solid $kurbits-blue;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.quarto-title-meta-heading {
+  font-weight: 700;
+  color: $link-color;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.quarto-title-meta-contents p {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+}
+
+/* webR "Run code" button */
+.btn-webr {
+  background-color: $link-color !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-webr:hover:not(:disabled) {
+  background-color: $kurbits-blue !important;
+  transform: translateY(-2px);
+}
+
+.btn-webr:disabled {
+  background-color: #ccc !important;
+}
+
+/* webR live editor + output panes */
+[id^="webr-editor-"] {
+  border: 1px solid #e0dcd0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+
+[id^="webr-code-output-"] {
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
 }
