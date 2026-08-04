@@ -38,6 +38,7 @@ format:
       light: [cosmo, custom.scss]
       dark: [darkly, custom-dark.scss]
     css: styles.css
+    include-after-body: dark-glow.html
     toc: true
     code-link: true
     code-overflow: wrap

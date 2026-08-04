@@ -69,8 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-52a378687125cb48a58a8c40161838ab.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1013d34ea6ec90ef77d69b2041332eeb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1ec98f436e99f65c99c7d59c6e70cac3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-8065de0be267eadbe21a0cbee4a11998.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-713a6075f860612e665295fa200bae42.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -288,28 +288,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7"></a>xy <span class="sc">|&gt;</span> <span class="fu">distinct</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x
-1  k
-2  i
-3  x
-4  q
-5  a
-6  p
-7  f
-8  e
-9  m
-10 u
-11 b
-12 h
-13 o
-14 v
-15 y
-16 g
-17 s
-18 r
-19 n
-20 t
-21 j
-22 w</code></pre>
+1  u
+2  d
+3  f
+4  g
+5  q
+6  s
+7  r
+8  a
+9  w
+10 o
+11 m
+12 i
+13 y
+14 c
+15 h
+16 k
+17 z
+18 t
+19 j
+20 b
+21 n
+22 p
+23 e
+24 x</code></pre>
 </div>
 </div>
 <p>You will notice that we lost everything in the y column! We need to use the&nbsp;<code>.keep_all()</code>&nbsp;argument.</p>
@@ -325,21 +327,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">group_by</span>(x) <span class="sc">|&gt;</span> </span>
 <span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">arrange</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 23 × 2
-# Groups:   x [23]
+<pre><code># A tibble: 20 × 2
+# Groups:   x [20]
    x         y
    &lt;chr&gt; &lt;dbl&gt;
- 1 c        61
- 2 d        28
- 3 e        46
- 4 f        13
- 5 g        64
- 6 h        56
- 7 i        58
- 8 k        94
- 9 l        64
-10 m        84
-# ℹ 13 more rows</code></pre>
+ 1 a        88
+ 2 b        65
+ 3 c        38
+ 4 d        11
+ 5 e        17
+ 6 f        68
+ 7 i        11
+ 8 j        24
+ 9 l        18
+10 m        52
+11 n        46
+12 o        69
+13 q        38
+14 r        61
+15 s       100
+16 u        87
+17 v        12
+18 x        51
+19 y        93
+20 z        78</code></pre>
 </div>
 </div>
 <p>So now we will do the same with the&nbsp;<code>babynames</code>&nbsp;dataset to find the number of distinct names.</p>
@@ -608,7 +619,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script>
+// Cursor-follow glow, dark mode only — the CSS is scoped to custom-dark.scss's
+// compiled bundle, so this listener is harmless (and unused) on the light theme.
+(function () {
+  var raf = null;
+  function setGlow(x, y) {
+    document.documentElement.style.setProperty('--glow-x', x + 'px');
+    document.documentElement.style.setProperty('--glow-y', y + 'px');
+    raf = null;
+  }
+  document.addEventListener('mousemove', function (e) {
+    if (raf) return;
+    var x = e.clientX, y = e.clientY;
+    raf = requestAnimationFrame(function () { setGlow(x, y); });
+  });
+})();
+</script><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

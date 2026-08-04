@@ -50,6 +50,16 @@ code { color: $plum-dark; background: color-mix(in srgb, $ink 6%, transparent); 
 .navbar-nav .nav-link { color: $ink; border-radius: 999px; padding: 6px 14px !important; transition: background-color 0.2s ease, color 0.2s ease; }
 .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { background-color: $plum; color: #fff; }
 
+// Dark-mode toggle — a real bordered button instead of a bare icon glyph
+.quarto-color-scheme-toggle {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  width: 36px; height: 36px; margin-left: 4px;
+  border: 1px solid color-mix(in srgb, $ink 20%, transparent); border-radius: 999px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.quarto-color-scheme-toggle:hover { background-color: color-mix(in srgb, $ink 7%, transparent); transform: scale(1.06); }
+.quarto-color-scheme-toggle i.bi::before { font-size: 1rem; }
+
 // Footer — dark plum, cream text (mirrors the site's marquee treatment)
 .footer, .page-footer { background-color: $footer-bg; color: $footer-fg; }
 .footer p { font-size: 0.95rem; padding-top: 20px; }
@@ -221,6 +231,7 @@ $kurbits-tilts: -7deg, 5deg, -3deg, 8deg, -5deg;
 .btn-outline:hover { background-color: color-mix(in srgb, $ink 7%, transparent); }
 
 // — Home hero —
+.after-dark-note { display: none; }
 .hero-section { display: flex; flex-wrap: wrap; gap: 2.5rem; align-items: flex-start; margin-top: 1rem; }
 .hero-main { flex: 1 1 380px; }
 .hero-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 1rem; }

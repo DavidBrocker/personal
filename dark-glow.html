@@ -1,0 +1,17 @@
+<script>
+// Cursor-follow glow, dark mode only — the CSS is scoped to custom-dark.scss's
+// compiled bundle, so this listener is harmless (and unused) on the light theme.
+(function () {
+  var raf = null;
+  function setGlow(x, y) {
+    document.documentElement.style.setProperty('--glow-x', x + 'px');
+    document.documentElement.style.setProperty('--glow-y', y + 'px');
+    raf = null;
+  }
+  document.addEventListener('mousemove', function (e) {
+    if (raf) return;
+    var x = e.clientX, y = e.clientY;
+    raf = requestAnimationFrame(function () { setGlow(x, y); });
+  });
+})();
+</script>

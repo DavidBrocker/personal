@@ -39,8 +39,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-52a378687125cb48a58a8c40161838ab.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1013d34ea6ec90ef77d69b2041332eeb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1ec98f436e99f65c99c7d59c6e70cac3.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-8065de0be267eadbe21a0cbee4a11998.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-713a6075f860612e665295fa200bae42.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -7689,6 +7689,23 @@ str_remove_all(str_df$filename,"\\\\(IMG_|\\\\.|JPG\\\\)")`,
 </section>
 
 </main> <!-- /main -->
+<script>
+// Cursor-follow glow, dark mode only — the CSS is scoped to custom-dark.scss's
+// compiled bundle, so this listener is harmless (and unused) on the light theme.
+(function () {
+  var raf = null;
+  function setGlow(x, y) {
+    document.documentElement.style.setProperty('--glow-x', x + 'px');
+    document.documentElement.style.setProperty('--glow-y', y + 'px');
+    raf = null;
+  }
+  document.addEventListener('mousemove', function (e) {
+    if (raf) return;
+    var x = e.clientX, y = e.clientY;
+    raf = requestAnimationFrame(function () { setGlow(x, y); });
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

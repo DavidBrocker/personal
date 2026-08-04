@@ -10,6 +10,7 @@ editor: visual
 <img src="images/profile.jpeg" class="hero-avatar" alt="Dave Brocker">
 </div>
 <p class="hero-bio">I <a href="courses.qmd">teach</a> statistics, research methods, and professional development. I <a href="writing.qmd">write</a> and speak about R in both academic and professional settings (or <em>anywhere</em> that lets me!) I make <a href="apps.qmd">Shiny</a> apps for teaching and fun.</p>
+<p class="after-dark-note">After dark, I study why we can't look away — morbid curiosity, taboo, and the things that go bump in the night.</p>
 <div class="hero-buttons">
 <a href="courses.qmd" class="pill-btn btn-plum">Browse my courses</a>
 <a href="portfolio.qmd" class="pill-btn btn-ghost-plum">See my work →</a>

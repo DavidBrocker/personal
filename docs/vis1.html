@@ -73,8 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-52a378687125cb48a58a8c40161838ab.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b3e460f38ff236518cd8dccef0b8f9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-2b35ea258e6c8ce53d939c09eb33fe39.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ba70bfa8e1abda34e19a3212bc5c5d3c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-90ea460d6788fbe7d049c0e3b992a2e5.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -259,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-3"><a href="#cb5-3"></a></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="fu">sample</span>(five_letter,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "pleas" "judge" "healt" "neces" "elect"</code></pre>
+<pre><code>[1] "black" "eleve" "avail" "front" "chair"</code></pre>
 </div>
 </div>
 <p>Uh oh!</p>
@@ -306,7 +306,7 @@ Note
 <span id="cb9-4"><a href="#cb9-4"></a></span>
 <span id="cb9-5"><a href="#cb9-5"></a><span class="fu">sample</span>(vowel_words,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "already" "arm"     "awful"   "other"   "only"   </code></pre>
+<pre><code>[1] "appropriate" "industry"    "after"       "own"         "along"      </code></pre>
 </div>
 </div>
 <p>Great!</p>
@@ -328,7 +328,7 @@ Note
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">sample</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "how"    "please" "sorry"  "body"   "pence" </code></pre>
+<pre><code>[1] "sunday"  "simple"  "compute" "hour"    "record" </code></pre>
 </div>
 </div>
 <p>Note that by moving the beginning of string qualifier <code>^</code> to the inside of the bracket resulted in the opposite of what we were looking for!</p>
@@ -678,6 +678,23 @@ the element hierarchy.</code></pre>
 </section>
 
 </main> <!-- /main -->
+<script>
+// Cursor-follow glow, dark mode only — the CSS is scoped to custom-dark.scss's
+// compiled bundle, so this listener is harmless (and unused) on the light theme.
+(function () {
+  var raf = null;
+  function setGlow(x, y) {
+    document.documentElement.style.setProperty('--glow-x', x + 'px');
+    document.documentElement.style.setProperty('--glow-y', y + 'px');
+    raf = null;
+  }
+  document.addEventListener('mousemove', function (e) {
+    if (raf) return;
+    var x = e.clientX, y = e.clientY;
+    raf = requestAnimationFrame(function () { setGlow(x, y); });
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
