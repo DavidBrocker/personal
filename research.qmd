@@ -3,10 +3,60 @@ title: "Research"
 editor: visual
 ---
 
-My research focuses on the area of Social Psychology known as Person Perception.
+My research lives in Social Psychology, focused on Person Perception — I design studies to explore why people do weird things (like seek out horror, or look away from it) and how we perceive and respond to one another.
 
-Here are a few projects I have worked on:
+## Projects
 
--   [Morbid Curiosity](https://davidbrocker.github.io/Morbid/)
+<div class="research-project-grid">
+<div class="research-project-card" style="position:relative;">
+<div class="research-collaborator">With Brendan Jaghab</div>
+<div class="research-project-title"><a href="https://davidbrocker.github.io/Morbid/" class="stretched-link">Morbid Curiosity, Anxiety &amp; VANE</a></div>
+<p>Whether morbid curiosity predicts a taste for horror, correlates with anxiety, and drives people to seek out negative stimuli — part of IGNITE Symposium Vol. 4.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">View full report →</span>
+</div>
 
--   [Caretaker Burden](https://davidbrocker.github.io/BOC/')
+<div class="research-project-card" style="position:relative;">
+<div class="research-collaborator">With Maria Anderson</div>
+<div class="research-project-title"><a href="https://davidbrocker.github.io/BOC/" class="stretched-link">Burden of Care: Informal Caregiver Attitudes &amp; Wellbeing</a></div>
+<p>How confidence, social support, and priming relate to caregiver burden and the positive aspects of caregiving.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">View full report →</span>
+</div>
+</div>
+
+## Student Posters
+
+### IGNITE Symposium Vol. 4
+
+Undergraduate research supervised as part of the IGNITE Symposium.
+
+<div class="poster-grid">
+<div class="poster-card" style="position:relative;">
+<img src="images/LM_Post.PNG" class="poster-thumb">
+<p class="poster-title"><a href="https://davidbrocker.github.io/Morbid/eating_disorder.html" class="stretched-link">Social Dynamics in Online Eating Disorder Communities</a></p>
+</div>
+
+<div class="poster-card" style="position:relative;">
+<img src="images/clipboard-533692806.png" class="poster-thumb">
+<p class="poster-title"><a href="https://davidbrocker.github.io/Morbid/trigger.html" class="stretched-link">For Whom the Trigger Warns: Trigger Warnings, Avoidance &amp; Morbid Curiosity</a></p>
+</div>
+
+<div class="poster-card" style="position:relative;">
+<img src="images/clipboard-1450612597.png" class="poster-thumb">
+<p class="poster-title"><a href="https://davidbrocker.github.io/Morbid/resolving_uncertainty.html" class="stretched-link">Resolving Uncertainty: Facial Expression, Visual Path &amp; Affect</a></p>
+</div>
+
+<div class="poster-card" style="position:relative;">
+<img src="images/clipboard-3577484256.png" class="poster-thumb">
+<p class="poster-title"><a href="https://davidbrocker.github.io/Morbid/lisd.html" class="stretched-link">Loneliness, Isolation &amp; Anxiety During COVID-19</a></p>
+</div>
+
+<div class="poster-card" style="position:relative;">
+<img src="images/clipboard-1660182199.png" class="poster-thumb">
+<p class="poster-title"><a href="https://davidbrocker.github.io/Morbid/algospeak.html" class="stretched-link">Word Substitution &amp; Perceived Meaning and Valence</a></p>
+</div>
+
+<div class="poster-card" style="position:relative;">
+<img src="images/clipboard-784562507.png" class="poster-thumb">
+<p class="poster-title"><a href="https://davidbrocker.github.io/Morbid/self_harm.html" class="stretched-link">Linguistic Framing in Online Self-Harm Communities</a></p>
+</div>
+</div>

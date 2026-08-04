@@ -1,0 +1,66 @@
+---
+title: "R Tutorials"
+editor: visual
+---
+
+##### **Basic Tutorials**
+
+This section is for tutorials that focus on introductory topics using R. In most cases, I wanted to do something and couldn't figure out how and by scouring online I eventually found it and I hope to be able to replicate that for someone!
+
+::: {.kurbits-divider}
+:::
+
+::::: tutorial-grid
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[Basic Operations](basictut.qmd)**  
+Learn how to install and use R, create data objects, and perform basic math.
+:::
+
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[Descriptive Statistics](descript.qmd)**  
+Work with functions like `mean()`, `median()`, and `range()` to summarize data.
+:::
+
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[String Manipulation](string.qmd)**  
+Use `stringr` and regex to extract and format text effectively.
+:::
+
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[Plotting with ggplot2](gg.qmd)**  
+Visualize data using the powerful and flexible `ggplot2` package.
+:::
+:::::
+
+##### **In-Depth Tutorials**
+
+This section focuses on moving beyond the basics — working primarily within the **`tidyverse`** ecosystem to create cleaner, more reproducible, and visually engaging analyses.
+
+::: {.kurbits-divider}
+:::
+
+::::: tutorial-grid
+
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[Visualizations: `stringr`](vis1.qmd)**  
+Explore how to generate and analyze text-based datasets using the `stringr::words` and `stringr::sentences` data. You’ll create new variables, summarize patterns, and visualize results using `dplyr` and `ggplot2`.
+:::
+
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[Visualizations: `babynames`](baby.qmd)**  
+Discover naming trends using the `babynames` dataset. Learn how to combine `dplyr` and `stringr` to explore unique name patterns, and enhance your plots with layered elements in `ggplot2` for clarity and style.
+:::
+
+::: tutorial-card
+<div class="kurbits-corner"></div>
+**[Visualizations: TV Show Ratings](scrape.qmd)**  
+Learn how to scrape data from the web using `rvest::read_html()` and transform it into a structured dataset. Visualize TV episode ratings as a heatmap with `geom_tile()`, highlighting trends across seasons.
+:::
+
+:::::

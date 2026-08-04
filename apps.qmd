@@ -1,40 +1,44 @@
 ---
-title: "Shiny Apps"
+title: "Apps & Packages"
 editor: visual
 ---
 
-<p style="text-align:center;">
-<span class="kurbits-rosette"></span>A few apps I've built for teaching and fun<span class="kurbits-rosette"></span>
-</p>
+A few Shiny apps and R packages I've built for teaching and fun.
 
-::::: app-grid
+<div class="app-tile-grid">
+<div class="app-tile" style="position:relative;">
+<img src="images/musicmatch.png" class="app-tile-thumb">
+<div class="app-tile-body">
+<div class="app-tile-title"><a href="https://dbrocker.shinyapps.io/MusicMatchup/" class="stretched-link">MusicMatchup</a></div>
+<p>Discover your next favorite artist through interactive data visualizations powered by the Spotify API.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">Launch app →</span>
+</div>
+</div>
 
-::: app-card
-<div class="kurbits-corner"></div>
-![](images/musicmatch.png){.app-image}
+<div class="app-tile" style="position:relative;">
+<img src="images/mockinterview.png" class="app-tile-thumb">
+<div class="app-tile-body">
+<div class="app-tile-title"><a href="https://dbrocker.shinyapps.io/MockInterview/" class="stretched-link">Mock Interview</a></div>
+<p>Prepare for graduate school and post-graduate employment. Built using Shiny and the OpenAI API.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">Launch app →</span>
+</div>
+</div>
+</div>
 
-**[MusicMatchup](https://dbrocker.shinyapps.io/MusicMatchup/)**  
-Discover your next favorite artist through interactive data visualizations powered by the Spotify API.
-<span class="app-tagline">Explore artists, genres, and related music in an intuitive interface.</span>
-:::
+## Packages I've built
 
-::: app-card
-<div class="kurbits-corner"></div>
-![](images/rand_am.png){.app-image}
+<div class="package-grid">
+<div class="package-card" style="position:relative;">
+<span class="package-source-tag cran">CRAN</span>
+<div class="package-title"><a href="https://cran.r-project.org/package=aesopR" class="stretched-link">aesopR</a></div>
+<p>A tidy, public-domain corpus of 147 Aesop's Fables — full texts, word-level tokens, and pre-joined sentiment lexicons — built for text analysis and NLP teaching without relying on copyrighted material.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">View on CRAN →</span>
+</div>
 
-**[Random American Dad!](https://dbrocker.shinyapps.io/RandomAmericanDad/)**  
-Click the button and let chaos decide — stream a random episode of *American Dad!* with one click.
-<span class="app-tagline">Built using Shiny and iMDB for effortless fun.</span>
-:::
-
-
-::: app-card
-<div class="kurbits-corner"></div>
-![](images/mockinterview.png){.app-image}
-
-**[Mock Interview](https://dbrocker.shinyapps.io/MockInterview/)**<br>
-Prepare yourself for graduate school and post-graduate employment.
-<span class="app-tagline">Built using Shiny and OpenAI API</span>
-:::
-
-:::::
+<div class="package-card" style="position:relative;">
+<span class="package-source-tag github">GitHub</span>
+<div class="package-title"><a href="https://github.com/DavidBrocker/musickitr" class="stretched-link">musickitr</a></div>
+<p>Tidy, tibble-based access to the Apple Music Catalog API — search, charts, and Jaccard similarity utilities for building recommendation tools, in the spirit of spotifyr.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">View on GitHub →</span>
+</div>
+</div>

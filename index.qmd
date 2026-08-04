@@ -1,16 +1,65 @@
 ---
-title: "Hi, I'm Dave"
-# format: 
-#   html:
-#     template-partials: 
-#       - title-block.html
+pagetitle: "Hi, I'm Dave"
+editor: visual
 ---
 
-::: about
-I [teach](courses.html) statistics, research methods, and professional development. I [write](writing.html) and [speak](presentations.html) about [R](about.html) in both academic and professional settings (or *anywhere* that lets me!) I make [Shiny](apps.html) apps for teaching and fun!
-:::
+<div class="hero-section">
+<div class="hero-main">
+<div class="hero-title-row">
+<span class="hero-title-text">Hi, I'm Dave</span>
+<img src="images/profile.jpeg" class="hero-avatar" alt="Dave Brocker">
+</div>
+<p class="hero-bio">I <a href="courses.qmd">teach</a> statistics, research methods, and professional development. I <a href="writing.qmd">write</a> and speak about R in both academic and professional settings (or <em>anywhere</em> that lets me!) I make <a href="apps.qmd">Shiny</a> apps for teaching and fun.</p>
+<div class="hero-buttons">
+<a href="courses.qmd" class="pill-btn btn-plum">Browse my courses</a>
+<a href="portfolio.qmd" class="pill-btn btn-ghost-plum">See my work →</a>
+</div>
+</div>
 
-![](images/DaveLogo.PNG){fig-align="center" style="object-fit: cover;   border-radius: 50%;" width="300" height="300"}
+<div class="teaching-now-card">
+<div class="teaching-now-kicker">Currently teaching</div>
+<div class="course-row"><span class="course-row-name">Statistics for Psychology</span><span class="role-tag role-tag-instructor">Instructor</span></div>
+<div class="course-row"><span class="course-row-name">Research Methods</span><span class="role-tag role-tag-instructor">Instructor</span></div>
+<div class="course-row"><span class="course-row-name">Senior Project I/II</span><span class="role-tag role-tag-instructor">Instructor</span></div>
+<div class="course-row"><span class="course-row-name">Research Design &amp; Analysis I</span><span class="role-tag role-tag-instructor">Instructor</span></div>
+<div class="course-row"><span class="course-row-name">Experimental Psychology</span><span class="role-tag role-tag-lab">Lab Instructor</span></div>
+<a href="courses.qmd" class="btn-ghost-plum" style="display:inline-block;margin-top:0.5rem;">See all 8 courses →</a>
+</div>
+</div>
+
+<div class="preview-grid">
+<div class="preview-card" style="position:relative;">
+<img src="images/shinydash.png" class="preview-thumb">
+<div class="preview-card-body">
+<div class="preview-card-kicker">Writing</div>
+<div class="preview-card-title"><a href="writing.qmd" class="stretched-link">Using ShinyDashboard for a Music Recommendation Tree</a></div>
+<div class="preview-card-meta">Medium · October 2022</div>
+</div>
+</div>
+
+<div class="preview-card" style="position:relative;">
+<div class="preview-card-body">
+<div class="preview-card-kicker"><a href="apps.qmd" class="stretched-link">Apps &amp; packages</a></div>
+<div class="preview-app-row"><img src="images/musicmatch.png" class="preview-app-icon"> <span>MusicMatchup</span></div>
+<div class="preview-app-row"><img src="images/mockinterview.png" class="preview-app-icon"> <span>Mock Interview</span></div>
+<div class="preview-app-row"><img src="images/aesopr-logo.png" class="preview-app-icon"> <span>aesopR (CRAN)</span></div>
+<span class="btn-ghost-plum" style="display:inline-block;margin-top:0.4rem;">All apps &amp; packages →</span>
+</div>
+</div>
+
+<div class="preview-card" style="position:relative;">
+<div class="preview-card-body">
+<div class="preview-card-kicker"><a href="portfolio.qmd" class="stretched-link">Portfolio</a></div>
+<div class="preview-portfolio-grid">
+<img src="images/gallery/scare-score.png">
+<img src="images/gallery/season-ratings.png">
+<img src="images/gallery/rt-scores.png">
+<img src="images/gallery/great-episodes.png">
+</div>
+<span class="btn-ghost-plum" style="display:inline-block;margin-top:0.6rem;">See the gallery →</span>
+</div>
+</div>
+</div>
 
 ::: {.kurbits-divider}
 :::

@@ -3,59 +3,94 @@ title: "Teaching"
 editor: visual
 ---
 
-### Here are some of the courses I have taught!
+Stats, research methods, and everything around them — for undergrads working toward their senior projects and beyond.
 
-::: {.kurbits-divider}
-:::
+<div class="class-container">
 
-:::::: {.class-container}
+<div class="course-detail-card">
+<div class="course-detail-kicker">Instructor</div>
+<div class="course-detail-title">Statistics for Psychology</div>
+<p class="course-detail-body">Descriptive and inferential statistics for the behavioral sciences — central tendency, hypothesis testing, correlation, regression, t-tests, and ANOVA, with hands-on statistical software practice.</p>
+<div class="institution-badge">FSC</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Statistics for Psychology  
-**Role:** Instructor
-::::
+<div class="course-detail-card">
+<div class="course-detail-kicker">Instructor</div>
+<div class="course-detail-title">Introduction to Psychology</div>
+<p class="course-detail-body">A survey of core psychological concepts — research methods, the biological bases of behavior, learning, memory, personality, and psychopathology — across the full landscape of the field.</p>
+<div class="institution-badge">FSC</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Introduction to Psychology  
-**Role:** Instructor
-::::
+<div class="course-detail-card">
+<div class="course-detail-kicker">Instructor</div>
+<div class="course-detail-title">Research Methods</div>
+<p class="course-detail-body">The scientific method in applied psychology — hypothesis formulation, experimental design, data collection and analysis, and research report writing, with a hands-on lab component.</p>
+<div class="institution-badge">FSC</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Research Methods  
-**Role:** Instructor
-::::
+<div class="course-detail-card">
+<div class="course-detail-kicker">Instructor</div>
+<div class="course-detail-title">Senior Project I/II</div>
+<p class="course-detail-body">The capstone internship or research experience for Applied Psychology seniors — apply classroom knowledge in a real workplace, research assistantship, or independent project.</p>
+<div class="institution-badge">FSC</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Senior Project I/II  
-**Role:** Instructor
-::::
+<div class="course-detail-card">
+<div class="course-detail-kicker">Instructor</div>
+<div class="course-detail-title">Research Design and Analysis I</div>
+<p class="course-detail-body">An empirical-science foundation for psychology majors — how psychologists build and evaluate research, from study design through APA-style reporting.</p>
+<div class="institution-badge">SUNY OW</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Research Design and Analysis I  
-**Role:** Instructor
-::::
+<div class="course-detail-card">
+<div class="course-detail-kicker">Instructor</div>
+<div class="course-detail-title">Senior Project</div>
+<p class="course-detail-body">The culminating research seminar for the BA program — students design and complete an original research paper or creative project under close faculty mentorship.</p>
+<div class="institution-badge">NYU</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Senior Project  
-**Role:** Instructor
-::::
+<div class="course-detail-card lab">
+<div class="course-detail-kicker">Lab Instructor</div>
+<div class="course-detail-title" style="margin-bottom:0;">Statistics for the Psychological Sciences</div>
+<div class="institution-badge">BC</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Statistics for the Psychological Sciences  
-**Role:** Lab Instructor
-::::
+<div class="course-detail-card lab">
+<div class="course-detail-kicker">Lab Instructor</div>
+<div class="course-detail-title" style="margin-bottom:0;">Experimental Psychology</div>
+<div class="institution-badge">BC</div>
+</div>
 
-:::: {.class-taught}
-<div class="kurbits-corner"></div>
-**Course:** Experimental Psychology  
-**Role:** Lab Instructor
-::::
+</div>
 
-::::::
+<div class="testimonial-section">
+<div class="teaching-now-kicker">What students say</div>
+<h2>Real course evaluations, unedited jokes</h2>
+<p style="color:color-mix(in srgb, currentColor 82%, transparent);margin-bottom:1.75rem;">Pulled straight from anonymous end-of-semester evaluations.</p>
+
+<div class="testimonial-marquee-mask">
+<div class="testimonial-marquee-track">
+
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Statistics for Psychology</span><p class="testimonial-quote">&ldquo;I liked the jokes.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Statistics for Psychology</span><p class="testimonial-quote">&ldquo;Funny, very knowledgeable and clear with his words.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Statistics for Psychology</span><p class="testimonial-quote">&ldquo;Hands down, the most understanding professor ever.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Research Methods</span><p class="testimonial-quote">&ldquo;Best professor I have ever had, made research so fun and I actually wanted to come to class for once.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Research Methods</span><p class="testimonial-quote">&ldquo;Brocker is great! His jokes are funny 50% of the time, but he's a great professor.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Research Methods</span><p class="testimonial-quote">&ldquo;Professor Brocker makes Research Methods seem less scary. He is easy to talk to and available outside of class.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Senior Project II</span><p class="testimonial-quote">&ldquo;Hands down the best professor I have ever had &hellip; ties humor into lessons in a way that makes the material stick.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Senior Project II</span><p class="testimonial-quote">&ldquo;One of the best professors I've ever had.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Senior Project II</span><p class="testimonial-quote">&ldquo;Just really enjoy Professor Brocker's lectures and how he teaches.&rdquo;</p></div>
+
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Statistics for Psychology</span><p class="testimonial-quote">&ldquo;I liked the jokes.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Statistics for Psychology</span><p class="testimonial-quote">&ldquo;Funny, very knowledgeable and clear with his words.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Statistics for Psychology</span><p class="testimonial-quote">&ldquo;Hands down, the most understanding professor ever.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Research Methods</span><p class="testimonial-quote">&ldquo;Best professor I have ever had, made research so fun and I actually wanted to come to class for once.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Research Methods</span><p class="testimonial-quote">&ldquo;Brocker is great! His jokes are funny 50% of the time, but he's a great professor.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Research Methods</span><p class="testimonial-quote">&ldquo;Professor Brocker makes Research Methods seem less scary. He is easy to talk to and available outside of class.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Senior Project II</span><p class="testimonial-quote">&ldquo;Hands down the best professor I have ever had &hellip; ties humor into lessons in a way that makes the material stick.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Senior Project II</span><p class="testimonial-quote">&ldquo;One of the best professors I've ever had.&rdquo;</p></div>
+<div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><span class="testimonial-course-tag">Senior Project II</span><p class="testimonial-quote">&ldquo;Just really enjoy Professor Brocker's lectures and how he teaches.&rdquo;</p></div>
+
+</div>
+</div>
+</div>

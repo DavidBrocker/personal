@@ -16,16 +16,27 @@ website:
       - href: writing.qmd
         icon: pencil
         text: Writing
+      - href: tutorials.qmd
+        icon: mortarboard
+        text: Tutorials
       - href: apps.qmd
         icon: terminal
         text: Apps
       - href: portfolio.qmd
         icon: bar-chart
         text: Portfolio
-      
+      - href: research.qmd
+        icon: search
+        text: Research
+      - href: about.qmd
+        icon: person
+        text: About
+
 format:
   html:
-    theme: [cosmo, custom.scss]
+    theme:
+      light: [cosmo, custom.scss]
+      dark: [darkly, custom-dark.scss]
     css: styles.css
     toc: true
     code-link: true

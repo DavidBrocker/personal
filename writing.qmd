@@ -3,23 +3,16 @@ title: "Writing"
 editor: visual
 ---
 
+Selected tutorials and articles I've published on Medium, focused on R, data visualization, and Shiny app development.
 
-## Writing
-
-Below are selected tutorials and articles I’ve published on *Medium*, focused on R, data visualization, and Shiny app development.
-
-::: {.kurbits-divider}
-:::
-
-:::: writing-grid
-
-::: writing-card
-<div class="kurbits-corner"></div>
-![](images/shinydash.png){.writing-image}
-**[Using ShinyDashboard to make an interactive Music Recommendation Tree in R](https://medium.com/@davidbrocker/using-shinydashboard-to-make-an-interactive-music-recommendation-tree-in-r-...)**  
-<span class="writing-meta">Published on Medium · October 2022</span>  
-Explore how to build a dynamic recommendation dashboard in R using `shinydashboard`, `visNetwork`, and the Spotify API.
-:::
-
-::::
-
+<div style="max-width:900px;">
+<div class="preview-card" style="display:flex;flex-wrap:wrap;position:relative;">
+<img src="images/shinydash.png" class="preview-thumb" style="flex:1 1 260px;height:auto;min-height:200px;">
+<div class="preview-card-body" style="flex:2 1 320px;">
+<div class="preview-card-meta">Medium · October 2022</div>
+<div class="preview-card-title" style="font-size:1.2rem;"><a href="https://medium.com/@davidbrocker/using-shinydashboard-to-make-an-interactive-music-recommendation-tree-in-r-..." class="stretched-link">Using ShinyDashboard to make an interactive Music Recommendation Tree in R</a></div>
+<p style="opacity:0.85;">Explore how to build a dynamic recommendation dashboard in R using <code>shinydashboard</code>, <code>visNetwork</code>, and the Spotify API.</p>
+<span class="btn-ghost-plum" style="display:inline-block;">Read on Medium →</span>
+</div>
+</div>
+</div>
