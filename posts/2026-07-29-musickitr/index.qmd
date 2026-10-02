@@ -1,0 +1,45 @@
+---
+title: "MusicKitR"
+date: "2026-07-29"
+description: 'A brief summary of this post.'
+categories: 'R'
+draft: true
+---
+
+i am still working on the iOS port of my music recommendation application. In the process I am picking up information that I feel like was right in front of me but I am seeing it in a different light now! The Swift files received minimal input from me; I mainly would test the build and report back with my wishlist. There were some areas where I felt like I *could* in theory change values, but I was afraid of the syntax and breaking everything!
+
+While this was going on I was thinking about 'what else' could I add? For an entirely different project, I came across the idea of an API sandbox, specifically for wikipedia. I asked Claude to help me generate a sandbox for Apple's MusicKit API. Initially this ended up being a bash script that would output some request in JSON (re: scary) format. When I asked if we could make it pretty using something like {jsonlite} and {tibble}, Claude essentially said 'just do that then'.
+
+- I didn't know you could call R from the terminal?!
+
+- I didn't know there were more ways for me to integrate R with my computer!
+
+- I wonder if we could call this bash script from R
+
+  - I wonder if we could just make this into a package so that other people could use this!
+
+    - I still like the, 'I'm building it for me' mantra, but I figure people could enjoy this as well!
+
+I had previously made one package, aesopR and submitted it to CRAN. The process itself introduced concepts I had heard about but not fully understood. Roxygen2, testhat, and devtools, were all phrases, packages, and functions i had seen while trying to scope through Github source files, but never really paying too much attention to.
+
+The goal for this project was to essentially build a MusicKit version of "{spotifyr}", the package I had used so frequently for my other projects. Before I knew it, Claude had created a repo, deployed tests, and made the package. it was great because now i had the ability to interact with the data like I wanted to, but I didn't actually 'do' anything! This has been the biggest area of \[word for roughness/tenseness\] for me. If I didn't make it, did I do anything? Can I speak about it in a way that suggests ownership or that fishes for praise?
+
+```{r}
+library(musickitr)
+library(tidyverse)
+
+# Search for Song
+ml <- mk_search("Molecules",types = "songs")
+
+# Identify Response
+ml$songs |> 
+  filter(str_detect(artist_name,"^Aes")) |> 
+  slice(1) |> pull(id)
+
+
+
+```
+
+I know that I didn't 'make' MusicKitR for praise, I did it because I wanted to be able to still make network charts and shiny apps like I used to. I did it so I could show my students the ins and outs of the package making process and give them a behind the scenes look. I did it so I could make a hex sticker for the package!
+
+For now, musickitr has 9 functions, and I hope to expand on that. I also would like some community input. Any feature requests? Anything documentation-wise not clear or something that could be made clearer?

@@ -127,6 +127,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./blog.html"> <i class="bi bi-journal-text" role="img">
+</i> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./tutorials.html"> <i class="bi bi-mortarboard" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
@@ -288,30 +293,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7"></a>xy <span class="sc">|&gt;</span> <span class="fu">distinct</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x
-1  u
-2  d
-3  f
-4  g
-5  q
-6  s
+1  n
+2  e
+3  d
+4  u
+5  w
+6  q
 7  r
-8  a
-9  w
-10 o
-11 m
-12 i
-13 y
-14 c
-15 h
-16 k
-17 z
-18 t
-19 j
-20 b
-21 n
-22 p
-23 e
-24 x</code></pre>
+8  m
+9  k
+10 j
+11 h
+12 z
+13 l
+14 g
+15 f
+16 p
+17 b
+18 s
+19 o
+20 a
+21 v
+22 i</code></pre>
 </div>
 </div>
 <p>You will notice that we lost everything in the y column! We need to use the&nbsp;<code>.keep_all()</code>&nbsp;argument.</p>
@@ -327,30 +330,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">group_by</span>(x) <span class="sc">|&gt;</span> </span>
 <span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">arrange</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 × 2
-# Groups:   x [20]
+<pre><code># A tibble: 22 × 2
+# Groups:   x [22]
    x         y
    &lt;chr&gt; &lt;dbl&gt;
- 1 a        88
- 2 b        65
- 3 c        38
- 4 d        11
- 5 e        17
- 6 f        68
- 7 i        11
- 8 j        24
- 9 l        18
-10 m        52
-11 n        46
-12 o        69
-13 q        38
-14 r        61
-15 s       100
-16 u        87
-17 v        12
-18 x        51
-19 y        93
-20 z        78</code></pre>
+ 1 a        77
+ 2 b        79
+ 3 c        67
+ 4 d        26
+ 5 e        57
+ 6 f        21
+ 7 g        17
+ 8 h        27
+ 9 i        86
+10 j        82
+# ℹ 12 more rows</code></pre>
 </div>
 </div>
 <p>So now we will do the same with the&nbsp;<code>babynames</code>&nbsp;dataset to find the number of distinct names.</p>
@@ -563,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul>
 <p>Let’s finish up with a animated graph using the&nbsp;<code>gganimate</code>&nbsp;package.</p>
-<div class="cell" data-hash="baby_cache/html/unnamed-chunk-12_efa9bda35c028719df56d0714f082a06">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>babynames <span class="sc">|&gt;</span> </span>
 <span id="cb22-2"><a href="#cb22-2"></a>    <span class="co"># Choose Specifc Name</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a>    <span class="fu">filter</span>(name<span class="sc">==</span><span class="st">"David"</span>) <span class="sc">|&gt;</span> </span>

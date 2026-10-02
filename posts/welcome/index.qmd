@@ -1,0 +1,118 @@
+---
+title: "Maybe It's Not For You, Maybe It's For Me"
+subtitle: "A stream-of-consciousness look at rebuilding my music recommender."
+date: "2026-07-02"
+categories: [R, Swift, Side-Projects, Music]
+image: "thumbnail.png"
+image-height: "220px"
+execute:
+  freeze: true
+format:
+  html:
+    code-fold: true   
+    code-summary: "Show the R Code"
+---
+
+At any given moment, I have about 100 ideas all circling around. As to which idea gets the most attention, well—that is about as random as a [Lava Lamp Array](https://blog.cloudflare.com/randomness-101-lavarand-in-production/) generating cryptographic seeds.
+
+## The Music Project Roots
+
+Last night, I found myself deep in the weeds of rebuilding my [music recommendation project](https://github.com/DavidBrocker/MusicMatchup). This application is incredibly close to my heart. It was one of the very first data science side-projects where I successfully combined my love for programming in **R** with my obsession for discovering new music.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(visNetwork) # My favorite network graph tool!
+library(tidyverse) 
+
+# Load file showing Allie X and Magdalena Bay Similarity
+ax_mb <- read.csv("files/ax_mb_edge.csv")
+
+# Build Nodes
+nodes <- 
+  tibble(
+    id = unique(c(ax_mb$from,ax_mb$to)),
+    label = id,
+    image = "circularImage",
+    shadow = TRUE
+  )
+
+# Common Artists from both seed and children
+# Allie X, Magdalena Bay, LIZ, 
+# Rina Sawayama, and Sky Ferreira
+locations = c(1,2,4,7,8)
+
+# Create Color Change
+nodes <- 
+  nodes |> 
+  mutate(
+    loc = row_number(), 
+    color = 
+      if_else(
+        loc %in% locations,
+        "#2a9d8f",
+        "#0d3b66")
+    )
+
+# Build Edges
+edges <- 
+  tibble(
+    from = ax_mb$from,
+    to = ax_mb$to
+  )
+
+# Combine into network graph
+visNetwork(nodes, edges) |> 
+  visOptions(
+    highlightNearest = 
+      list(
+        enabled = TRUE, 
+        degree = 1, 
+        hover = TRUE
+        )
+    ) |> 
+  visInteraction(
+    zoomView = TRUE      
+  ) |> 
+  visPhysics(
+    stabilization = TRUE  
+  )
+
+```
+
+Beyond personal use, it was an educational cornerstone for me. It was a tool I regularly showed to my students to spark their imaginations and say:
+
+> "This is exactly what you can build when you learn R."
+
+## The Migration: Moving to Apple Music
+
+As these tech stories usually go, Spotify ended up [changing their developer API platform rules](https://developer.spotify.com/documentation/web-api/references/changes/february-2026). Rather than letting the project die, I decided to migrate the entire back-end framework over to Apple Music.
+
+There was just one problem: I don't know **Swift** at all.
+
+To bridge the knowledge gap, I've been `pair-programming` with Claude[^1]. We have been figuring out the cleanest way to replicate my past logic while heavily modifying the User Interface (UI) and User Experience (UX).
+
+[^1]: I have mixed feelings on the `vibe-coding` label, so for now I am going to just use a different phrase to mollify myself.
+
+## Building for an Audience of One
+
+While coding last night, I hit a massive wall of clarity. I realized I was over-engineering the application to make it palatable and perfect for *other* people.
+
+But I didn't create this for other people. I originally built it for myself.
+
+Once I stopped trying to design a commercial, one-size-fits-all product, the development felt real again. I sat back and looked at how I actually discover music in real life:
+
+1.  I look at what a platform recommends as a similar artist.
+2.  I skip around their tracks, listening for about 5 seconds.
+3.  I quickly decide whether to discard or keep them.
+
+Now...just to implement that mechanic!
+
+::: {.callout-tip icon="false"}
+## About This Space
+
+If you stick around this blog, you are guaranteed to encounter more stream-of-consciousness thoughts, weird technical tangents, and dots that you might not immediately know how to connect (I don't either!). I promise it will make sense eventually (maybe!).
+:::
+
+Thanks for reading. Let's see where the next lava lamp bubble floats!

@@ -1,0 +1,20 @@
+---
+title: "readline() is the input function I was actually looking for"
+date: "2026-08-06"
+description: 'A quick note on finding R''s real free-text input function after going down the select.list() and menu() rabbit hole.'
+categories: 'R'
+draft: true
+---
+
+I've been building a little Wordle clone in R using {cli} (naturally), and the first real snag wasn't the game logic — it was just getting a word out of the person playing. I kept reaching for `select.list()` since it was the first console-input function I found, then tried `menu()` when that felt off. Both work fine, but only for picking from a fixed set of choices. Neither one lets someone just type a word and hit enter.
+
+Turns out the function I actually wanted was `readline()` — R's plain "type anything, I'll wait" primitive. Obvious in hindsight, but it's easy to land on `select.list()`/`menu()` first since they show up so readily and *look* like general input functions.
+
+One catch worth remembering: `readline()` only works in an interactive session. It won't work if the script is run non-interactively (e.g. via `Rscript`), so anything built around it needs an `interactive()` guard — and ideally a way to feed in preset input for testing, since you can't exactly automate a prompt that's waiting on a human.
+
+```r
+if (!interactive()) stop("this needs an interactive session")
+guess <- readline("Guess: ")
+```
+
+Small thing, but it's the kind of function-name mixup that's worth writing down so I stop relearning it every few months.

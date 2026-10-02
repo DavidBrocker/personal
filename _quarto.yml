@@ -16,6 +16,9 @@ website:
       - href: writing.qmd
         icon: pencil
         text: Writing
+      - href: blog.qmd
+        icon: journal-text
+        text: Blog
       - href: tutorials.qmd
         icon: mortarboard
         text: Tutorials
@@ -44,4 +47,3 @@ format:
     code-overflow: wrap
     code-copy: hover
     code-line-numbers: true
-
