@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<style>
+:root {
+  --color-bg: #f5ead8;
+  --color-surface: #ebddc5;
+  --color-text: #201e1d;
+  --color-accent: #7d3a55;
+  --color-accent-2: #7a8a5e;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+  --color-neutral-100: #f9f4ed;
+  --color-neutral-200: #eee7db;
+  --color-neutral-300: #dcd3c4;
+  --color-neutral-400: #c0b6a5;
+  --color-neutral-500: #a19786;
+  --color-neutral-600: #82796a;
+  --color-neutral-700: #645c50;
+  --color-neutral-800: #474238;
+  --color-neutral-900: #2e2b25;
+  --color-accent-100: #fdf0f5;
+  --color-accent-200: #f9dce8;
+  --color-accent-300: #f0bcd3;
+  --color-accent-400: #dd8fae;
+  --color-accent-500: #c26a8c;
+  --color-accent-600: #a14d6c;
+  --color-accent-700: #7d3a55;
+  --color-accent-800: #59293c;
+  --color-accent-900: #3a1a27;
+  --color-accent-2-100: #f0fae1;
+  --color-accent-2-200: #e1eecc;
+  --color-accent-2-300: #ccdbb2;
+  --color-accent-2-400: #aebf92;
+  --color-accent-2-500: #8fa073;
+  --color-accent-2-600: #728157;
+  --color-accent-2-700: #56633f;
+  --color-accent-2-800: #3d472b;
+  --color-accent-2-900: #272e1b;
+  --font-heading: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+  --font-heading-weight: 400;
+  --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --space-1: 4.4px; --space-2: 8.8px; --space-3: 13.2px; --space-4: 17.6px; --space-6: 26.4px; --space-8: 35.2px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 28px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
+}
+body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+.washed{filter:saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94)}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2); }
+h1 { font-size: 42px; } h2 { font-size: 32px; } h3 { font-size: 25px; } h4 { font-size: 20px; } h5 { font-size: 16px; } h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent-700); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent-800); }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption { font-size: 11px; margin-top: var(--space-1); color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 14px; line-height: 1.2; color: var(--color-text); background: transparent; border: 1px solid transparent; padding: var(--space-2) calc(var(--space-3) * 1.2); border-radius: var(--radius-md); transition: transform 0.2s ease, background 0.2s ease; }
+.btn:hover { transform: scale(1.045); }
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--color-accent); color: var(--color-bg); }
+.btn-primary:hover { background: var(--color-accent-600); }
+.btn-primary:active { background: var(--color-accent-700); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface); }
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-title { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 17px; line-height: 1.2; }
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.card-meta { display: flex; align-items: center; gap: 6px; font-size: 11px; color: color-mix(in srgb, var(--color-text) 50%, transparent); }
+.elev-sm { box-shadow: var(--shadow-sm); }
+.elev-md { box-shadow: var(--shadow-md); }
+.tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; border-radius: calc(var(--radius-md) * 0.75); }
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+.card { border-radius: calc(var(--radius-lg) * 1.15); }
+.btn, .tag { border-radius: 999px; }
+.hexA{clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)}
+.pnav a{color:var(--color-text);text-decoration:none;font-size:14px;transition:color 0.15s ease}
+.pnav a:hover{color:var(--color-accent-700)}
+@keyframes breathe{0%,100%{opacity:0.55}50%{opacity:0.85}}
+@keyframes flicker-in{0%{opacity:0}8%{opacity:0.9}14%{opacity:0.15}22%{opacity:0.8}30%{opacity:0.3}45%{opacity:0.7}100%{opacity:0.55}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative;{{ themeVarsStyle }}" onMouseMove="{{ handleMouseMove }}">
+<sc-if value="{{ dark }}" hint-placeholder-val="{{ false }}">
+  <div key="{{ flickerKey }}" style="position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at center, transparent 35%, color-mix(in srgb, var(--color-bg) 70%, black) 100%);animation:flicker-in 0.7s ease-out, breathe 7s ease-in-out infinite 0.7s"></div>
+  <div style="{{ glowStyle }}"></div>
+</sc-if>
+<nav style="display:flex;align-items:center;gap:36px;padding:16px clamp(16px,4vw,56px);background:var(--color-bg);max-width:1280px;margin:0 auto;flex-wrap:wrap;row-gap:10px;position:relative;z-index:1">
+  <div style="display:flex;align-items:center;gap:10px;margin-right:auto">
+    <svg width="34" height="17" viewBox="0 0 84 40" style="display:block">
+      <path d="M19,2 L34.6,11 L34.6,29 L19,38 L3.4,29 L3.4,11 Z" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="3" stroke-linejoin="round"></path>
+      <circle cx="19" cy="20" r="3.4" fill="var(--color-accent)"></circle>
+      <path d="M65,2 L80.6,11 L80.6,29 L65,38 L49.4,29 L49.4,11 Z" fill="var(--color-accent-2)"></path>
+      <circle cx="65" cy="20" r="3.6" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="1.4"></circle>
+    </svg>
+    <span style="font-family:var(--font-heading);font-size:19px">Dave Brocker</span>
+  </div>
+  <div class="pnav" style="display:flex;gap:10px 24px;flex-wrap:wrap">
+    <a href="Home.dc.html">Home</a>
+    <a href="Teaching.dc.html">Teaching</a>
+    <a href="Writing.dc.html">Writing</a>
+    <a href="Tutorials.dc.html">Tutorials</a>
+    <a href="Apps.dc.html">Apps</a>
+    <a href="Portfolio.dc.html">Portfolio</a>
+    <a href="Research.dc.html" style="color:var(--color-accent-700);font-weight:600">Research</a>
+    <a href="About.dc.html">About</a>
+  </div>
+  <button onClick="{{ toggleDark }}" aria-label="{{ toggleLabel }}" title="{{ toggleLabel }}" class="btn btn-icon" style="border:1px solid var(--color-divider);color:var(--color-text)">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="{{ moonFill }}" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</nav>
+
+<div style="max-width:1280px;margin:0 auto;padding:20px clamp(16px,4vw,56px) 12px">
+  <div class="tag tag-accent" style="margin-bottom:16px">⬡⬢ Research</div>
+  <h1 style="font-size:clamp(30px,6vw,44px);margin-bottom:14px">Research</h1>
+  <p style="font-size:16px;max-width:680px;color:color-mix(in srgb, var(--color-text) 75%, transparent)">My research lives in Social Psychology, focused on Person Perception &mdash; I design studies to explore why people do weird things (like seek out horror, or look away from it) and how we perceive and respond to one another.</p>
+</div>
+
+<div style="max-width:1280px;margin:0 auto;padding:8px clamp(16px,4vw,56px) 20px">
+  <div class="card-kicker" style="margin-bottom:10px">Projects</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px">
+    <a href="https://davidbrocker.github.io/Morbid/" class="card elev-sm" style="padding:24px;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <div class="card-kicker">With Brendan Jaghab</div>
+      <div class="card-title" style="margin-bottom:6px">Morbid Curiosity, Anxiety &amp; VANE</div>
+      <p class="card-body">Whether morbid curiosity predicts a taste for horror, correlates with anxiety, and drives people to seek out negative stimuli &mdash; part of IGNITE Symposium Vol. 4.</p>
+      <span class="btn btn-ghost" style="padding-left:0;margin-top:8px;display:inline-flex">View full report &rarr;</span>
+    </a>
+    <a href="https://davidbrocker.github.io/BOC/" class="card elev-sm" style="padding:24px;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <div class="card-kicker">With Maria Anderson</div>
+      <div class="card-title" style="margin-bottom:6px">Burden of Care: Informal Caregiver Attitudes &amp; Wellbeing</div>
+      <p class="card-body">How confidence, social support, and priming relate to caregiver burden and the positive aspects of caregiving.</p>
+      <span class="btn btn-ghost" style="padding-left:0;margin-top:8px;display:inline-flex">View full report &rarr;</span>
+    </a>
+  </div>
+</div>
+
+<div style="max-width:1280px;margin:0 auto;padding:20px clamp(16px,4vw,56px) 64px">
+  <div class="card-kicker" style="margin-bottom:6px">Student Posters</div>
+  <h2 style="font-size:26px;margin-bottom:6px">IGNITE Symposium Vol. 4</h2>
+  <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin-bottom:22px">Undergraduate research supervised as part of the IGNITE Symposium.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px">
+    <a href="https://davidbrocker.github.io/Morbid/eating_disorder.html" class="card elev-sm" style="padding:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <image-slot id="ignite-1" shape="rect" style="width:100%;height:140px" class="washed" placeholder="Poster" src="LM_Post-sm.png"></image-slot>
+      <div style="padding:16px"><div class="card-title" style="font-size:15px;margin:0">Social Dynamics in Online Eating Disorder Communities</div></div>
+    </a>
+    <a href="https://davidbrocker.github.io/Morbid/trigger.html" class="card elev-sm" style="padding:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <image-slot id="ignite-2" shape="rect" style="width:100%;height:140px" class="washed" placeholder="Poster" src="images/clipboard-533692806-sm.png"></image-slot>
+      <div style="padding:16px"><div class="card-title" style="font-size:15px;margin:0">For Whom the Trigger Warns: Trigger Warnings, Avoidance &amp; Morbid Curiosity</div></div>
+    </a>
+    <a href="https://davidbrocker.github.io/Morbid/resolving_uncertainty.html" class="card elev-sm" style="padding:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <image-slot id="ignite-3" shape="rect" style="width:100%;height:140px" class="washed" placeholder="Poster" src="images/clipboard-1450612597-sm.png"></image-slot>
+      <div style="padding:16px"><div class="card-title" style="font-size:15px;margin:0">Resolving Uncertainty: Facial Expression, Visual Path &amp; Affect</div></div>
+    </a>
+    <a href="https://davidbrocker.github.io/Morbid/lisd.html" class="card elev-sm" style="padding:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <image-slot id="ignite-4" shape="rect" style="width:100%;height:140px" class="washed" placeholder="Poster" src="images/clipboard-3577484256-sm.png"></image-slot>
+      <div style="padding:16px"><div class="card-title" style="font-size:15px;margin:0">Loneliness, Isolation &amp; Anxiety During COVID-19</div></div>
+    </a>
+    <a href="https://davidbrocker.github.io/Morbid/algospeak.html" class="card elev-sm" style="padding:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <image-slot id="ignite-5" shape="rect" style="width:100%;height:140px" class="washed" placeholder="Poster" src="images/clipboard-1660182199-sm.png"></image-slot>
+      <div style="padding:16px"><div class="card-title" style="font-size:15px;margin:0">Word Substitution &amp; Perceived Meaning and Valence</div></div>
+    </a>
+    <a href="https://davidbrocker.github.io/Morbid/self_harm.html" class="card elev-sm" style="padding:0;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.25s ease,box-shadow 0.25s ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <image-slot id="ignite-6" shape="rect" style="width:100%;height:140px" class="washed" placeholder="Poster" src="images/clipboard-784562507-sm.png"></image-slot>
+      <div style="padding:16px"><div class="card-title" style="font-size:15px;margin:0">Linguistic Framing in Online Self-Harm Communities</div></div>
+    </a>
+  </div>
+</div>
+
+<div style="max-width:1280px;margin:0 auto;padding:24px clamp(16px,4vw,56px) 36px;border-top:1px solid var(--color-divider);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+  <span style="font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Copyright 2026, Dave Brocker</span>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="mailto:davidabrocker@gmail.com" aria-label="Email" style="color:var(--color-text);display:flex;transition:color 0.2s ease,transform 0.2s ease" style-hover="color:var(--color-accent-700);transform:scale(1.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a>
+    <a href="https://github.com/davidbrocker" aria-label="GitHub" style="color:var(--color-text);display:flex;transition:color 0.2s ease,transform 0.2s ease" style-hover="color:var(--color-accent-700);transform:scale(1.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg></a>
+    <a href="https://linkedin.com/in/david-brocker" aria-label="LinkedIn" style="color:var(--color-text);display:flex;transition:color 0.2s ease,transform 0.2s ease" style-hover="color:var(--color-accent-700);transform:scale(1.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+  </div>
+  <svg width="16" height="8" viewBox="0 0 84 40"><path d="M19,2 L34.6,11 L34.6,29 L19,38 L3.4,29 L3.4,11 Z" fill="var(--color-accent)"></path></svg>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: false, flickerKey: 0, mx: -9999, my: -9999 };
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('db-mood-dark');
+      if (saved === '1') this.setState({ dark: true });
+    } catch (e) {}
+  }
+  toggleDark = () => {
+    this.setState(s => {
+      const dark = !s.dark;
+      try { localStorage.setItem('db-mood-dark', dark ? '1' : '0'); } catch (e) {}
+      return { dark, flickerKey: s.flickerKey + 1 };
+    });
+  };
+  handleMouseMove = (e) => {
+    if (!this.state.dark) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    this.setState({ mx: e.clientX - rect.left, my: e.clientY - rect.top });
+  };
+  renderVals() {
+    const dark = this.state.dark;
+    const darkVars = "--color-bg:#16101a;--color-surface:#241a2b;--color-text:#ece4e8;--color-accent:#c17a9c;--color-accent-2:#8aa06e;--color-divider:color-mix(in srgb, #ece4e8 14%, transparent);--color-neutral-100:#2a232d;--color-neutral-200:#362d3b;--color-neutral-300:#453a4c;--color-neutral-400:#5c4f66;--color-neutral-500:#776a82;--color-neutral-600:#97899f;--color-neutral-700:#b6acbd;--color-neutral-800:#d6cfda;--color-neutral-900:#f3f0f5;--color-accent-100:#3a1f2d;--color-accent-200:#4a2839;--color-accent-300:#5c3247;--color-accent-400:#7a4360;--color-accent-500:#9c5678;--color-accent-600:#b8698c;--color-accent-700:#cf82a1;--color-accent-800:#e3a8bc;--color-accent-900:#f5d6e2;--color-accent-2-100:#202b18;--color-accent-2-200:#2b3a20;--color-accent-2-300:#384a29;--color-accent-2-400:#4a6136;--color-accent-2-500:#5f7a46;--color-accent-2-600:#7a9660;--color-accent-2-700:#98b280;--color-accent-2-800:#bad2a4;--color-accent-2-900:#ddeecb;--shadow-sm:0 1px 3px rgba(0,0,0,0.5);--shadow-md:0 4px 16px rgba(0,0,0,0.55);--shadow-lg:0 18px 44px rgba(0,0,0,0.65);--mood-trans:0.55s;";
+    const themeVarsStyle = "background:var(--color-bg);color:var(--color-text);transition:background 0.6s ease,color 0.6s ease;" + (dark ? darkVars : "");
+    const toggleLabel = dark ? "Switch to daylight mode" : "Switch to after-dark mode";
+    const moonFill = dark ? "var(--color-accent)" : "none";
+    const glowStyle = `position:absolute;z-index:0;pointer-events:none;top:${this.state.my - 130}px;left:${this.state.mx - 130}px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, var(--color-accent) 30%, transparent) 0%, transparent 70%);filter:blur(3px);transition:top 0.08s linear,left 0.08s linear`;
+    return { dark, toggleDark: this.toggleDark, handleMouseMove: this.handleMouseMove, flickerKey: this.state.flickerKey, glowStyle, themeVarsStyle, toggleLabel, moonFill };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+/*-- scss:defaults --*/
+// Organic — plum & sage on cream, replacing the old kurbits blue/red/gold.
+// Two accent hues + neutrals only; variety comes from weight, not new colors.
+
+$plum:        #7d3a55;
+$plum-dark:   #3a1a27;
+$plum-tint:   #fdf0f5;
+$sage:        #7a8a5e;
+$sage-dark:   #3d472b;
+$sage-tint:   #f0fae1;
+$cream:       #f5ead8;
+$surface:     #ebddc5;
+$ink:         #201e1d;
+
+$body-bg:      $cream;
+$body-color:   $ink;
+$link-color:   $plum;
+$navbar-bg:    $cream;
+$navbar-fg:    $ink;
+$footer-bg:    $plum-dark;
+$footer-fg:    $cream;
+
+$primary:      $plum;
+$secondary:    $sage;
+
+$font-family-sans-serif: system-ui, -apple-system, "Segoe UI", sans-serif !default;
+$font-family-monospace: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace !default;
+$headings-font-family: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif !default;
+$headings-font-weight: 600 !default;
+
+$border-radius: 1rem !default;
+$border-radius-sm: 0.6rem !default;
+$border-radius-lg: 1.4rem !default;
+$card-border-radius: 1.4rem !default;
+
+/*-- scss:rules --*/
+
+body { line-height: 1.6; }
+h1, h2, h3, h4, h5 { letter-spacing: -0.01em; }
+h1 { font-size: 2.75rem; font-weight: 700; color: $ink; }
+h2 { color: $plum; font-weight: 600; margin-top: 2.25rem; }
+a { color: $plum; text-decoration: none; border-bottom: 2px solid color-mix(in srgb, $plum 35%, transparent); padding-bottom: 1px; transition: all 0.2s ease; }
+a:hover { color: #fff; background-color: $plum; border-bottom-color: $plum; }
+code { color: $plum-dark; background: color-mix(in srgb, $ink 6%, transparent); border-radius: 6px; }
+
+// Navbar — cream ground, plum hover, rounded pill links
+.navbar { background-color: $navbar-bg !important; border-bottom: 1px solid color-mix(in srgb, $ink 12%, transparent); }
+.navbar-brand img.navbar-logo { height: 36px; transition: transform 0.3s ease; }
+.navbar-brand:hover img.navbar-logo { transform: rotate(-4deg) scale(1.08); }
+.navbar-nav .nav-link { color: $ink; border-radius: 999px; padding: 6px 14px !important; transition: background-color 0.2s ease, color 0.2s ease; }
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { background-color: $plum; color: #fff; }
+
+// Footer — dark plum, cream text (mirrors the site's marquee treatment)
+.footer, .page-footer { background-color: $footer-bg; color: $footer-fg; }
+.footer p { font-size: 0.95rem; padding-top: 20px; }
+.footer a { color: $footer-fg; border-bottom-color: color-mix(in srgb, $footer-fg 40%, transparent); }
+.footer a:hover { background-color: $footer-fg; color: $footer-bg; }
+
+// Kurbits flourishes — kept, tilt animation preserved; corner/rosette/divider SVGs
+// still carry the old blue/gold fill baked into the asset files themselves and
+// should be recolored separately (see README) to finish matching this palette.
+.kurbits-divider {
+  height: 48px; margin: 2.5rem auto; max-width: 480px;
+  background-image: url("images/kurbits-divider.svg");
+  background-repeat: repeat-x; background-size: 60px 48px; background-position: center;
+}
+.kurbits-corner {
+  position: absolute; top: 0; left: 0; width: 32px; height: 32px;
+  background-image: url("images/kurbits-corner.svg");
+  background-repeat: no-repeat; background-size: contain; opacity: 0.85;
+  pointer-events: none; transform-origin: top left; transition: transform 0.3s ease;
+}
+$kurbits-tilts: -7deg, 5deg, -3deg, 8deg, -5deg;
+@each $card-class in ".app-card", ".class-taught", ".writing-card", ".gallery-card", ".tutorial-card" {
+  @for $i from 1 through length($kurbits-tilts) {
+    #{$card-class}:nth-of-type(#{$i}) .kurbits-corner { transform: rotate(nth($kurbits-tilts, $i)); }
+  }
+  #{$card-class}:hover .kurbits-corner { transform: rotate(0deg) scale(1.1); opacity: 1; }
+}
+.kurbits-rosette {
+  display: inline-block; width: 1.4em; height: 1.4em; vertical-align: middle; margin: 0 0.35em;
+  background-image: url("images/kurbits-rosette.svg"); background-repeat: no-repeat; background-size: contain;
+}
+
+// Shared card look — soft, fully rounded, no left accent bar; a gentle lift on hover
+// is the "variety" signal instead of a new color.
+%organic-card {
+  position: relative;
+  background-color: #fff;
+  border-radius: $card-border-radius;
+  box-shadow: 0 4px 16px rgba(46, 27, 24, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+%organic-card-hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(46, 27, 24, 0.14);
+}
+
+.class-taught, .tutorial-card, .app-card, .writing-card, .gallery-card {
+  @extend %organic-card;
+  padding: 1.6rem 1.7rem;
+}
+.class-taught:hover, .tutorial-card:hover, .app-card:hover, .writing-card:hover, .gallery-card:hover {
+  @extend %organic-card-hover;
+}
+.class-taught strong, .tutorial-card a, .app-card strong, .app-card a, .writing-card strong, .writing-card a, .gallery-card strong {
+  color: $plum; font-weight: 600;
+}
+.class-taught::before { content: none; } // drop the graduation-cap emoji
+
+.class-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+.tutorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem; margin-top: 2rem; }
+.writing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; margin-top: 2rem; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; margin-top: 2rem; }
+
+.app-image, .writing-image, .gallery-image { border-radius: $border-radius-sm; margin-bottom: 1rem; }
+.app-card:hover .app-image { transform: scale(1.03); transition: transform 0.4s ease; }
+.app-tagline, .writing-meta, .gallery-caption { color: color-mix(in srgb, $ink 65%, transparent); font-size: 0.9rem; }
+
+// Callouts — three semantic roles from two accents + one neutral, not three new hues
+.callout { border-radius: $border-radius-sm; overflow: hidden; box-shadow: 0 4px 14px rgba(46, 27, 24, 0.06); }
+.callout-note { border-left-color: $sage !important; }
+.callout-note .callout-header { background-color: rgba(122, 138, 94, 0.1); }
+.callout-important { border-left-color: $plum !important; }
+.callout-important .callout-header { background-color: rgba(125, 58, 85, 0.08); }
+.callout-tip { border-left-color: #8a7458 !important; } // warm neutral, not a third hue
+.callout-tip .callout-header { background-color: rgba(138, 116, 88, 0.1); }
+
+// webR status badge in the title block
+.quarto-title-meta:has(p) {
+  display: inline-block; margin-top: 1rem; padding: 0.65rem 1.1rem;
+  background-color: #fff; border-left: 6px solid $sage; border-radius: $border-radius-sm;
+  box-shadow: 0 4px 14px rgba(46, 27, 24, 0.06);
+}
+.quarto-title-meta-heading { font-weight: 700; color: $plum; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+.quarto-title-meta-contents p { margin: 0.25rem 0 0; font-weight: 600; }
+
+// webR "Run code" button + live editor/output panes
+.btn-webr {
+  background-color: $plum !important; color: #fff !important; border: none !important;
+  border-radius: 999px !important; transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-webr:hover:not(:disabled) { background-color: $sage-dark !important; transform: translateY(-2px); }
+.btn-webr:disabled { background-color: #ccc !important; }
+
+[id^="webr-editor-"] {
+  border: 1px solid color-mix(in srgb, $ink 14%, transparent);
+  border-top: none; border-radius: 0 0 $border-radius-sm $border-radius-sm; overflow: hidden;
+}
+[id^="webr-code-output-"] {
+  border-radius: 0 0 $border-radius-sm $border-radius-sm; margin-bottom: 1.5rem; overflow: hidden;
+  background-color: $surface;
+}
+
+// Home-page icon row
+.icon-container {
+  display: flex; justify-content: center; align-items: center; gap: 1.5rem; padding: 1rem;
+  background-color: #fff; border-radius: $border-radius-lg; max-width: 300px; margin: 0 auto;
+}
+.icons { font-size: 2em; color: $plum; transition: transform 0.2s ease, color 0.2s ease; }
+.icons:hover { transform: scale(1.1); color: $sage-dark; }
+
+// Page title (Quarto's h1.title on every page) + the home-page bio block
+.title {
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+  font-weight: 700;
+  text-align: center;
+  color: $ink;
+}
+
+.about {
+  border-left: none;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+.about p {
+  text-align: center;
+  font-size: 1.4rem;
+  color: color-mix(in srgb, $ink 85%, transparent);
+}
+
+// Ad-hoc demo block used inline in a tutorial (vis1.qmd) — recolored, kept functional
+.five {
+  background-color: $surface;
+  border-radius: $border-radius-sm;
+  padding: 0.75rem 1rem;
+}
+.five strong { color: $plum; }
+
+.hex {
+  position: absolute;
+  left: 40px;
+  top: 600px;
+  transition-duration: 5s;
+  transition-property: transform;
+}
+
+@media (max-width: 768px) {
+  .class-container, .tutorial-grid, .app-grid, .writing-grid, .gallery-grid { grid-template-columns: 1fr; }
+}

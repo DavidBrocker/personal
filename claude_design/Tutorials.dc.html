@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<style>
+:root {
+  --color-bg: #f5ead8; --color-surface: #ebddc5; --color-text: #201e1d;
+  --color-accent: #7d3a55; --color-accent-2: #7a8a5e;
+  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+  --color-neutral-100: #f9f4ed; --color-neutral-200: #eee7db; --color-neutral-300: #dcd3c4;
+  --color-neutral-400: #c0b6a5; --color-neutral-500: #a19786; --color-neutral-600: #82796a;
+  --color-neutral-700: #645c50; --color-neutral-800: #474238; --color-neutral-900: #2e2b25;
+  --color-accent-100: #fdf0f5; --color-accent-200: #f9dce8; --color-accent-300: #f0bcd3;
+  --color-accent-400: #dd8fae; --color-accent-500: #c26a8c; --color-accent-600: #a14d6c;
+  --color-accent-700: #7d3a55; --color-accent-800: #59293c; --color-accent-900: #3a1a27;
+  --color-accent-2-100: #f0fae1; --color-accent-2-200: #e1eecc; --color-accent-2-300: #ccdbb2;
+  --color-accent-2-400: #aebf92; --color-accent-2-500: #8fa073; --color-accent-2-600: #728157;
+  --color-accent-2-700: #56633f; --color-accent-2-800: #3d472b; --color-accent-2-900: #272e1b;
+  --font-heading: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+  --font-heading-weight: 400;
+  --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --space-1: 4.4px; --space-2: 8.8px; --space-3: 13.2px; --space-4: 17.6px; --space-6: 26.4px; --space-8: 35.2px;
+  --radius-sm: 8px; --radius-md: 16px; --radius-lg: 28px;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
+}
+body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+*, *::before, *::after { box-sizing: border-box; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2); }
+h1 { font-size: 42px; } h2 { font-size: 32px; } h3 { font-size: 25px; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent-700); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent-800); }
+code { font-family: ui-monospace, monospace; font-size: 0.92em; background: color-mix(in srgb, var(--color-text) 8%, transparent); padding: 1px 5px; border-radius: 5px; }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 14px; line-height: 1.2; color: var(--color-text); background: transparent; border: 1px solid transparent; padding: var(--space-2) calc(var(--space-3) * 1.2); border-radius: var(--radius-md); transition: transform 0.2s ease, background 0.2s ease; }
+.btn:hover { transform: scale(1.045); }
+.btn:active { transform: scale(0.98); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-3); border-radius: calc(var(--radius-lg) * 1.15); background: var(--color-surface); }
+.card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+.card-title { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 17px; line-height: 1.2; }
+.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+.elev-sm { box-shadow: var(--shadow-sm); }
+.tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; border-radius: 999px; }
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+.btn, .tag { border-radius: 999px; }
+.hexA{clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)}
+.pnav a{color:var(--color-text);text-decoration:none;font-size:14px;transition:color 0.15s ease}
+.pnav a:hover{color:var(--color-accent-700)}
+@keyframes breathe{0%,100%{opacity:0.55}50%{opacity:0.85}}
+@keyframes flicker-in{0%{opacity:0}8%{opacity:0.9}14%{opacity:0.15}22%{opacity:0.8}30%{opacity:0.3}45%{opacity:0.7}100%{opacity:0.55}}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="position:relative;{{ themeVarsStyle }}" onMouseMove="{{ handleMouseMove }}">
+<sc-if value="{{ dark }}" hint-placeholder-val="{{ false }}">
+  <div key="{{ flickerKey }}" style="position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(ellipse at center, transparent 35%, color-mix(in srgb, var(--color-bg) 70%, black) 100%);animation:flicker-in 0.7s ease-out, breathe 7s ease-in-out infinite 0.7s"></div>
+  <div style="{{ glowStyle }}"></div>
+</sc-if>
+<nav style="display:flex;align-items:center;gap:36px;padding:16px clamp(16px,4vw,56px);background:var(--color-bg);max-width:1280px;margin:0 auto;flex-wrap:wrap;row-gap:10px;position:relative;z-index:1">
+  <div style="display:flex;align-items:center;gap:10px;margin-right:auto">
+    <svg width="34" height="17" viewBox="0 0 84 40" style="display:block">
+      <path d="M19,2 L34.6,11 L34.6,29 L19,38 L3.4,29 L3.4,11 Z" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="3" stroke-linejoin="round"></path>
+      <circle cx="19" cy="20" r="3.4" fill="var(--color-accent)"></circle>
+      <path d="M65,2 L80.6,11 L80.6,29 L65,38 L49.4,29 L49.4,11 Z" fill="var(--color-accent-2)"></path>
+      <circle cx="65" cy="20" r="3.6" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="1.4"></circle>
+    </svg>
+    <span style="font-family:var(--font-heading);font-size:19px">Dave Brocker</span>
+  </div>
+  <div class="pnav" style="display:flex;gap:10px 24px;flex-wrap:wrap">
+    <a href="Home.dc.html">Home</a>
+    <a href="Teaching.dc.html">Teaching</a>
+    <a href="Writing.dc.html">Writing</a>
+    <a href="Tutorials.dc.html" style="color:var(--color-accent-700);font-weight:600">Tutorials</a>
+    <a href="Apps.dc.html">Apps</a>
+    <a href="Portfolio.dc.html">Portfolio</a>
+    <a href="Research.dc.html">Research</a>
+    <a href="About.dc.html">About</a>
+  </div>
+  <button onClick="{{ toggleDark }}" aria-label="{{ toggleLabel }}" title="{{ toggleLabel }}" class="btn btn-icon" style="border:1px solid var(--color-divider);color:var(--color-text)">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="{{ moonFill }}" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+  </button>
+</nav>
+
+<div style="max-width:1280px;margin:0 auto;padding:20px clamp(16px,4vw,56px) 12px;position:relative;z-index:1">
+  <div class="tag tag-accent" style="margin-bottom:16px">{{ heroTagText }}</div>
+  <h1 style="font-size:clamp(30px,6vw,44px);margin-bottom:14px">{{ heroTitle }}</h1>
+  <p style="font-size:16px;max-width:680px;color:color-mix(in srgb, var(--color-text) 80%, transparent);margin-bottom:10px">&ldquo;What&rsquo;s the best way to start learning R?&rdquo; I hear this all the time &mdash; I asked the same question when I was first shown R in graduate school. There&rsquo;s a real treasure trove of material out there: <a href="https://r4ds.hadley.nz/">R for Data Science</a>, <a href="https://bookdown.org/ndphillips/YaRrr/">The Pirate&rsquo;s Guide to R</a>, and the illustrated guides <a href="https://allisonhorst.com/">Allison Horst</a> makes about functions and the tidyverse. Here&rsquo;s what helped me.</p>
+</div>
+
+<div style="max-width:1280px;margin:0 auto;padding:8px clamp(16px,4vw,56px) 44px;position:relative;z-index:1">
+  <div class="card-kicker" style="margin-bottom:6px">Getting started</div>
+  <h2 style="font-size:24px;margin-bottom:16px">Basic Tutorials</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+    <a href="https://davidabrocker.com/basictut.html" class="card elev-sm" style="padding:22px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease;grid-column:span 2;background:var(--color-accent-100)" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <span class="tag tag-accent" style="align-self:flex-start;margin-bottom:6px">Start here</span>
+      <div class="card-title" style="font-size:20px;margin-bottom:6px">Basic Operations</div>
+      <p class="card-body">Learn how to install and use R, create data objects, and perform basic math.</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">10–15 minutes</span>
+        <span class="tag tag-neutral">Difficulty 1/5</span>
+      </div>
+    </a>
+    <a href="https://davidabrocker.com/descript.html" class="card elev-sm" style="padding:20px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <div class="card-title" style="margin-bottom:6px">Descriptive Statistics</div>
+      <p class="card-body">Work with functions like <code>mean()</code>, <code>median()</code>, and <code>range()</code> to summarize data.</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">15–20 minutes</span>
+        <span class="tag tag-neutral">Difficulty 2/5</span>
+      </div>
+    </a>
+    <a href="https://davidabrocker.com/string.html" class="card elev-sm" style="padding:20px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <div class="card-title" style="margin-bottom:6px">String Manipulation</div>
+      <p class="card-body">Use <code>stringr</code> and regex to extract and format text effectively.</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">20–25 minutes</span>
+        <span class="tag tag-neutral">Difficulty 2/5</span>
+      </div>
+    </a>
+    <a href="https://davidabrocker.com/gg.html" class="card elev-sm" style="padding:20px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <div class="card-title" style="margin-bottom:6px">Plotting with ggplot2</div>
+      <p class="card-body">Visualize data using the powerful and flexible <code>ggplot2</code> package.</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">20–30 minutes</span>
+        <span class="tag tag-neutral">Difficulty 3/5</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div style="max-width:1280px;margin:0 auto;padding:8px clamp(16px,4vw,56px) 56px;position:relative;z-index:1">
+  <div class="card-kicker" style="margin-bottom:6px">Beyond the basics</div>
+  <h2 style="font-size:24px;margin-bottom:6px">In-Depth Tutorials</h2>
+  <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin-bottom:18px">Working primarily within the <code>tidyverse</code> ecosystem to create cleaner, more reproducible, and visually engaging analyses.</p>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+    <a href="https://davidabrocker.com/vis1.html" class="card elev-sm" style="padding:20px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <span class="tag tag-accent-2" style="align-self:flex-start;margin-bottom:6px">stringr</span>
+      <div class="card-title" style="margin-bottom:6px">Visualizations: stringr</div>
+      <p class="card-body">Generate and analyze text-based datasets using <code>stringr::words</code> and <code>stringr::sentences</code>, then visualize with <code>dplyr</code> and <code>ggplot2</code>.</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">25–35 minutes</span>
+        <span class="tag tag-neutral">Difficulty 3/5</span>
+      </div>
+    </a>
+    <a href="{{ babyHref }}" class="card elev-sm" style="padding:20px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <span class="tag tag-accent-2" style="align-self:flex-start;margin-bottom:6px">{{ babyTag }}</span>
+      <div class="card-title" style="margin-bottom:6px">{{ babyTitle }}</div>
+      <p class="card-body">{{ babyBody }}</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">20–30 minutes</span>
+        <span class="tag tag-neutral">Difficulty 3/5</span>
+      </div>
+    </a>
+    <a href="https://davidabrocker.com/scrape.html" class="card elev-sm" style="padding:20px;text-decoration:none;color:inherit;transition:transform var(--mood-trans,0.25s) ease,box-shadow var(--mood-trans,0.25s) ease" style-hover="transform:translateY(-5px);box-shadow:var(--shadow-md)">
+      <span class="tag tag-accent-2" style="align-self:flex-start;margin-bottom:6px">rvest</span>
+      <div class="card-title" style="margin-bottom:6px">Visualizations: TV Show Ratings</div>
+      <p class="card-body">Scrape data with <code>rvest::read_html()</code>, structure it, and visualize episode ratings as a heatmap with <code>geom_tile()</code>.</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">30–40 minutes</span>
+        <span class="tag tag-neutral">Difficulty 4/5</span>
+      </div>
+    </a>
+    <div class="card elev-sm" style="padding:20px;border:1.5px dashed var(--color-divider);background:transparent">
+      <span class="tag tag-outline" style="align-self:flex-start;margin-bottom:6px">{{ netTag }} &middot; coming soon</span>
+      <div class="card-title" style="margin-bottom:6px">{{ netTitle }}</div>
+      <p class="card-body">{{ netBody }}</p>
+      <div class="card-meta" style="margin-top:4px">
+        <span class="tag tag-neutral">TBD</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:1280px;margin:0 auto;padding:24px clamp(16px,4vw,56px) 36px;border-top:1px solid var(--color-divider);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:1">
+  <span style="font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Copyright 2026, Dave Brocker</span>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a href="mailto:davidabrocker@gmail.com" aria-label="Email" style="color:var(--color-text);display:flex;transition:color 0.2s ease,transform 0.2s ease" style-hover="color:var(--color-accent-700);transform:scale(1.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a>
+    <a href="https://github.com/davidbrocker" aria-label="GitHub" style="color:var(--color-text);display:flex;transition:color 0.2s ease,transform 0.2s ease" style-hover="color:var(--color-accent-700);transform:scale(1.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg></a>
+    <a href="https://linkedin.com/in/david-brocker" aria-label="LinkedIn" style="color:var(--color-text);display:flex;transition:color 0.2s ease,transform 0.2s ease" style-hover="color:var(--color-accent-700);transform:scale(1.12)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+  </div>
+  <svg width="16" height="8" viewBox="0 0 84 40"><path d="M19,2 L34.6,11 L34.6,29 L19,38 L3.4,29 L3.4,11 Z" fill="var(--color-accent)"></path></svg>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { dark: false, flickerKey: 0, mx: -9999, my: -9999 };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('db-mood-dark');
+      if (saved === '1') this.setState({ dark: true });
+    } catch (e) {}
+  }
+
+  toggleDark = () => {
+    this.setState(s => {
+      const dark = !s.dark;
+      try { localStorage.setItem('db-mood-dark', dark ? '1' : '0'); } catch (e) {}
+      return { dark, flickerKey: s.flickerKey + 1 };
+    });
+  };
+
+  handleMouseMove = (e) => {
+    if (!this.state.dark) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    this.setState({ mx: e.clientX - rect.left, my: e.clientY - rect.top });
+  };
+
+  renderVals() {
+    const dark = this.state.dark;
+    const darkVars = "--color-bg:#16101a;--color-surface:#241a2b;--color-text:#ece4e8;--color-accent:#c17a9c;--color-accent-2:#8aa06e;--color-divider:color-mix(in srgb, #ece4e8 14%, transparent);--color-neutral-100:#2a232d;--color-neutral-200:#362d3b;--color-neutral-300:#453a4c;--color-neutral-400:#5c4f66;--color-neutral-500:#776a82;--color-neutral-600:#97899f;--color-neutral-700:#b6acbd;--color-neutral-800:#d6cfda;--color-neutral-900:#f3f0f5;--color-accent-100:#3a1f2d;--color-accent-200:#4a2839;--color-accent-300:#5c3247;--color-accent-400:#7a4360;--color-accent-500:#9c5678;--color-accent-600:#b8698c;--color-accent-700:#cf82a1;--color-accent-800:#e3a8bc;--color-accent-900:#f5d6e2;--color-accent-2-100:#202b18;--color-accent-2-200:#2b3a20;--color-accent-2-300:#384a29;--color-accent-2-400:#4a6136;--color-accent-2-500:#5f7a46;--color-accent-2-600:#7a9660;--color-accent-2-700:#98b280;--color-accent-2-800:#bad2a4;--color-accent-2-900:#ddeecb;--shadow-sm:0 1px 3px rgba(0,0,0,0.5);--shadow-md:0 4px 16px rgba(0,0,0,0.55);--shadow-lg:0 18px 44px rgba(0,0,0,0.65);--mood-trans:0.55s;";
+    const themeVarsStyle = "background:var(--color-bg);color:var(--color-text);transition:background 0.6s ease,color 0.6s ease;" + (dark ? darkVars : "");
+    const heroTagText = dark ? "☾ Tutorials" : "⬡⬢ Tutorials";
+    const heroTitle = dark ? "R Tutorials, After Hours" : "R Tutorials";
+    const toggleLabel = dark ? "Switch to daylight mode" : "Switch to after-dark mode";
+    const moonFill = dark ? "var(--color-accent)" : "none";
+    const glowStyle = `position:absolute;z-index:0;pointer-events:none;top:${this.state.my - 130}px;left:${this.state.mx - 130}px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, var(--color-accent) 30%, transparent) 0%, transparent 70%);filter:blur(3px);transition:top 0.08s linear,left 0.08s linear`;
+
+    const babyHref = dark ? "https://davidabrocker.com/killers.html" : "https://davidabrocker.com/baby.html";
+    const babyTag = dark ? "serial killers" : "babynames";
+    const babyTitle = dark ? "Visualizations: Serial Killers" : "Visualizations: babynames";
+    const babyBody = dark
+      ? "Build a small dataset from public Wikipedia records on convicted serial killers, then explore victim counts and eras with dplyr and layered ggplot2 styling."
+      : "Discover naming trends with the babynames dataset, combining dplyr and stringr for pattern exploration and layered ggplot2 styling.";
+
+    const netTag = dark ? "visNetwork" : "visNetwork";
+    const netTitle = dark ? "Cold Case Connections" : "Package Explorer";
+    const netBody = dark
+      ? "Map victims, suspects, and evidence links in a real unsolved case as an interactive node-edge network, exploring clustering and hover interactivity."
+      : "Pull every function in an R package with ls(package:pkg) and render its namespace as an expandable hierarchical tree.";
+
+    return {
+      dark, toggleDark: this.toggleDark, handleMouseMove: this.handleMouseMove,
+      flickerKey: this.state.flickerKey, glowStyle, themeVarsStyle,
+      heroTagText, heroTitle, toggleLabel, moonFill,
+      babyHref, babyTag, babyTitle, babyBody,
+      netTag, netTitle, netBody
+    };
+  }
+}
+</script>
+</body>
+</html>
