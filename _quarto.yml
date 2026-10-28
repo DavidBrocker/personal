@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "posts/"
+    - "!claude_design/"
   
 website:
   title: "⬡⬢"
@@ -12,7 +16,9 @@ website:
       - href: index.qmd
         icon: house
         text: Home
-      - courses.qmd
+      - href: courses.qmd
+        icon: book
+        text: Teaching
       - href: writing.qmd
         icon: pencil
         text: Writing

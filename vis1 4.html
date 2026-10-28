@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Visualizations: {stringr} – ⬡⬢</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a57caa782ac30625e1808b110f0f204.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-1ddb8a958426cfbaea79a696fab1cb48.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2a57caa782ac30625e1808b110f0f204.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a2cf94a6166785b1cf93010ac5b05220.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-adfa98e288e575b94015fddb603c91f7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a2cf94a6166785b1cf93010ac5b05220.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="site_libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="site_libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="site_libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/kurbits-hex-logo.svg" alt="" class="navbar-logo light-content">
+    <img src="./images/kurbits-hex-logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./courses.html"> <i class="bi bi-book" role="img">
+</i> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./writing.html"> <i class="bi bi-pencil" role="img">
+</i> 
+<span class="menu-text">Writing</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html"> <i class="bi bi-journal-text" role="img">
+</i> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tutorials.html"> <i class="bi bi-mortarboard" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./apps.html"> <i class="bi bi-terminal" role="img">
+</i> 
+<span class="menu-text">Apps</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./portfolio.html"> <i class="bi bi-bar-chart" role="img">
+</i> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research.html"> <i class="bi bi-search" role="img">
+</i> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> <i class="bi bi-person" role="img">
+</i> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#example-1-match-five-letter-words" id="toc-example-1-match-five-letter-words" class="nav-link active" data-scroll-target="#example-1-match-five-letter-words">Example 1: Match Five Letter Words</a></li>
+  <li><a href="#example-2-finding-words-that-start-with-aeiou" id="toc-example-2-finding-words-that-start-with-aeiou" class="nav-link" data-scroll-target="#example-2-finding-words-that-start-with-aeiou">Example 2: Finding Words That Start with <code>aeiou</code></a></li>
+  <li><a href="#example-2b.-finding-words-that-dont-start-with-vowels" id="toc-example-2b.-finding-words-that-dont-start-with-vowels" class="nav-link" data-scroll-target="#example-2b.-finding-words-that-dont-start-with-vowels">Example 2b. Finding words that DON’T start with vowels</a>
+  <ul class="collapse">
+  <li><a href="#most-common-start-letter-used-in-stringrwords" id="toc-most-common-start-letter-used-in-stringrwords" class="nav-link" data-scroll-target="#most-common-start-letter-used-in-stringrwords">Most Common Start Letter Used in <code>stringr::words</code></a></li>
+  </ul></li>
+  <li><a href="#most-frequent-word-length-in-stringrwords" id="toc-most-frequent-word-length-in-stringrwords" class="nav-link" data-scroll-target="#most-frequent-word-length-in-stringrwords">Most Frequent Word Length in <code>stringr::words</code></a>
+  <ul class="collapse">
+  <li><a href="#stringrsentences" id="toc-stringrsentences" class="nav-link" data-scroll-target="#stringrsentences">stringr::sentences</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Visualizations: {stringr}</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Using <code>dplyr</code>&nbsp;and the&nbsp;<code>stringr::words</code> dataset, we can demonstrate how to extract information from a dataset. Before we get into anything, let us take a look at a few of the characteristics of the&nbsp;<code>stringr::words</code>&nbsp;dataset.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(stringr) <span class="co"># Text Matching</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="fu">library</span>(dplyr,<span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># Data Wrangling</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="fu">library</span>(ggplot2) <span class="co"># Plotting</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="fu">library</span>(forcats) <span class="co"># Managing Categories</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="fu">library</span>(tidytext) <span class="co"># Word Tokenization</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="fu">library</span>(huxtable) <span class="co"># Making Tables</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a><span class="fu">head</span>(stringr<span class="sc">::</span>words)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a"        "able"     "about"    "absolute" "accept"   "account" </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">length</span>(words)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 980</code></pre>
+</div>
+</div>
+<p>A dataset with 980 words seems like a great tool to have!</p>
+<ul>
+<li><p>You could use it to create arbitrary categories.</p></li>
+<li><p>You could also use it to get some words that fit a certain criteria.</p></li>
+</ul>
+<section id="example-1-match-five-letter-words" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-match-five-letter-words">Example 1: Match Five Letter Words</h3>
+<p>The following regular expression <em>should</em> match the red text below:</p>
+<div class="five">
+<p><strong>Upon</strong> the <strong>shelf</strong> was a <strong>penny</strong> and a dime</p>
+</div>
+<ol type="1">
+<li>Using <code>str_match_all</code> we can enter a regular expression that will match words that have five characters.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>five_letter <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>  <span class="fu">str_match</span>(words,<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">w{5}"</span>) <span class="sc">|&gt;</span> <span class="fu">na.omit</span>()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a><span class="fu">sample</span>(five_letter,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "addre" "healt" "brita" "teach" "enter"</code></pre>
+</div>
+</div>
+<p>Uh oh!</p>
+<p>We are returning words that <em>have</em> 5 letters, but are not <em>only</em>&nbsp;five letters in length. To fix this, we will need to add a boundary element (<code>\b</code>) to the start and end of our expression.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>five_letter_fixed <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  <span class="fu">str_match_all</span>(words, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">w{5}</span><span class="sc">\\</span><span class="st">b"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    <span class="fu">unlist</span>()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a><span class="fu">head</span>(five_letter_fixed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "about" "admit" "after" "again" "agent" "agree"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The use of <code>unlist()</code> coerces the result to a vector instead of a list</p>
+</div>
+</div>
+<p>The regular expression <code>\\b\\w{5}\\b</code> here does the following:</p>
+<ul>
+<li><p><code>\b</code>&nbsp;represents a boundary character. This tells R to look for something to be followed by a space and finished before a space.</p></li>
+<li><p><code>\w</code>&nbsp;tells R to look for a word-character.</p></li>
+<li><p><code>{5}</code>&nbsp;tells R to look for a word-character that has a length of exactly 5.</p></li>
+<li><p><code>\b</code>&nbsp;looks for the second boundary.</p></li>
+</ul>
+</section>
+<section id="example-2-finding-words-that-start-with-aeiou" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-finding-words-that-start-with-aeiou">Example 2: Finding Words That Start with <code>aeiou</code></h3>
+<p>Here we will use a regular expression that looks for words that start with specific letters.</p>
+<p>Note: The words dataset is specifically lowercase*, otherwise we would be using both upper and lower case in our expression.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>vowel_words <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a> <span class="fu">str_match_all</span>(words,<span class="st">"</span><span class="sc">\\</span><span class="st">b^[aeiou].*$"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a><span class="fu">sample</span>(vowel_words,<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "enough" "egg"    "apply"  "else"   "unite" </code></pre>
+</div>
+</div>
+<p>Great!</p>
+<p>The regular expression does the following:</p>
+<ul>
+<li><p><code>\b</code>&nbsp;- Looks for boundary</p></li>
+<li><p><code>^</code>&nbsp;- Designates the start of a string.</p></li>
+<li><p><code>[aeiou]</code>&nbsp;- Matches the start of the string that is either a,e,i,o,or u.</p></li>
+<li><p><code>.</code>&nbsp;- Looks for any character that follows the first match.</p></li>
+<li><p><code>*</code>&nbsp;- Looks for an unlimited number of matches until it is told to stop.</p></li>
+<li><p><code>$</code>&nbsp;- Tells R to look for the end of a string.</p></li>
+</ul>
+</section>
+<section id="example-2b.-finding-words-that-dont-start-with-vowels" class="level2">
+<h2 class="anchored" data-anchor-id="example-2b.-finding-words-that-dont-start-with-vowels">Example 2b. Finding words that DON’T start with vowels</h2>
+<p>We can use the same regular expression we created earlier and at a <strong>not</strong> qualifier to essentially reverse our search.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="fu">str_match_all</span>(words,<span class="st">"</span><span class="sc">\\</span><span class="st">b[^aeiou].*$"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>  <span class="fu">sample</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "family" "happy"  "weigh"  "music"  "hot"   </code></pre>
+</div>
+</div>
+<p>Note that by moving the beginning of string qualifier <code>^</code> to the inside of the bracket resulted in the opposite of what we were looking for!</p>
+<section id="most-common-start-letter-used-in-stringrwords" class="level3">
+<h3 class="anchored" data-anchor-id="most-common-start-letter-used-in-stringrwords">Most Common Start Letter Used in <code>stringr::words</code></h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-label="1"></a>word_tbl <span class="ot">&lt;-</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-label="2"></a>  words <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3" aria-label="3"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4" aria-label="4"></a>  <span class="fu">mutate</span>(</span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5" aria-label="5"></a>    <span class="at">StartsWith =</span> <span class="fu">str_match</span>(words,<span class="st">"^."</span>) <span class="sc">|&gt;</span> <span class="fu">unlist</span>()</span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6" aria-label="6"></a>  ) <span class="sc">|&gt;</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4">4</button><span id="annotated-cell-7-7" class="code-annotation-target"><a href="#annotated-cell-7-7" aria-label="7"></a>  <span class="fu">group_by</span>(StartsWith) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-7-8"><a href="#annotated-cell-7-8" aria-label="8"></a>  <span class="fu">count</span>(<span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9" aria-label="9"></a>  </span>
+<span id="annotated-cell-7-10"><a href="#annotated-cell-7-10" aria-label="10"></a>word_tbl <span class="sc">|&gt;</span> </span>
+<span id="annotated-cell-7-11"><a href="#annotated-cell-7-11" aria-label="11"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="5">5</button><span id="annotated-cell-7-12" class="code-annotation-target"><a href="#annotated-cell-7-12" aria-label="12"></a>  <span class="fu">hux</span>() <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="6">6</button><span id="annotated-cell-7-13" class="code-annotation-target"><a href="#annotated-cell-7-13" aria-label="13"></a>  <span class="fu">theme_article</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="2" data-code-annotation="1">words: This is the input dataset (assumed to be a vector or list of words) that will be processed.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="3" data-code-annotation="2">data.frame(): Converts the words object into a data frame to facilitate data manipulation.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="4,5" data-code-annotation="3">mutate() and str_match(): Adds a new column StartsWith, extracting the first letter from each word using a regular expression. unlist() flattens the result into a vector.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="7,8" data-code-annotation="4">group_by() and count(): Groups the data by the StartsWith column and counts the number of occurrences for each letter, sorting the counts in descending order.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="12" data-code-annotation="5">hux(): Converts the resulting grouped and counted data into a huxtable object, which formats the data into a table.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="13" data-code-annotation="6">theme_article(): Applies the “article” theme to style the table for presentation.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col><col></colgroup><thead>
+<tr>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">StartsWith</th><th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">n</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">s</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">119</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">c</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">83</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">p</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">72</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">a</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">65</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">t</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">65</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">b</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">58</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Taking a look at the table we can see that there are two words that start with a capital C. This doesn’t halt the process, but it is worth it to see who the culprits are.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>word_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>  <span class="fu">filter</span>(StartsWith <span class="sc">==</span> <span class="st">"C"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using one column matrices in `filter()` or `filter_out()` was deprecated in
+dplyr 1.1.0.
+ℹ Please use one dimensional logical vectors instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+# Groups:   StartsWith [1]
+  StartsWith[,1]     n
+  &lt;chr&gt;          &lt;int&gt;
+1 C                  2</code></pre>
+</div>
+</div>
+<p>For our purposes, it is okay to change these entries to be lowercase. Conveniently, the&nbsp;<code>stringr</code>&nbsp;package really does have it all!</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a>words <span class="ot">&lt;-</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>  <span class="fu">str_to_lower</span>(stringr<span class="sc">::</span>words)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-label="3"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-label="4"></a>word_tbl <span class="ot">&lt;-</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-label="5"></a>  words <span class="sc">|&gt;</span> </span>
+<span id="cb16-6"><a href="#cb16-6" aria-label="6"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-label="7"></a>  <span class="fu">mutate</span>(<span class="at">sw=</span> <span class="fu">str_match_all</span>(words,<span class="st">"^."</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-8"><a href="#cb16-8" aria-label="8"></a>           <span class="fu">unlist</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-label="9"></a>  <span class="fu">group_by</span>(sw) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-label="10"></a>  <span class="fu">count</span>(<span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-label="11"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-label="12"></a>word_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb16-13"><a href="#cb16-13" aria-label="13"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-14"><a href="#cb16-14" aria-label="14"></a>  <span class="fu">hux</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb16-15"><a href="#cb16-15" aria-label="15"></a>  <span class="fu">theme_article</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col><col></colgroup><thead>
+<tr>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">sw</th><th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">n</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">s</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">119</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">c</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">85</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">p</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">72</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">a</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">65</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 0pt;">t</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 0pt 6pt 6pt;">65</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 6pt 6pt 0pt;">b</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt;    padding: 6pt 0pt 6pt 6pt;">58</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We could look at the table and make some observations, but it would be better to just graph everything!</p>
+<p>Keep in mind that this list of words is only 980 observations long so there are plenty of missing words. With that being said, what letter is represented the most in the&nbsp;<code>stringr::words</code>&nbsp;vector?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a>word_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(sw,n),n,<span class="at">fill=</span>n,<span class="at">label =</span> n)) <span class="sc">+</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-label="3"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-label="4"></a>             <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">ifelse</span>(n <span class="sc">==</span> <span class="fu">max</span>(n),<span class="st">"darkred"</span>,<span class="st">"grey"</span>))) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-label="5"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-label="6"></a>  <span class="fu">labs</span>(<span class="at">x =</span><span class="st">""</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-label="7"></a>       <span class="at">y =</span><span class="st">""</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-label="8"></a>       <span class="at">title =</span><span class="st">"Starting Letter Word Frequency"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-label="9"></a>       <span class="at">subtitle =</span> <span class="st">"The words dataset favors 's'and 'c'"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-label="10"></a>       <span class="at">caption =</span> <span class="st">"Data from stringr::words"</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-label="11"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-label="12"></a>    <span class="fu">theme</span>(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-label="13"></a>      <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-label="14"></a>      <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-label="15"></a>      <span class="at">axix.x.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-16"><a href="#cb17-16" aria-label="16"></a>      <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-label="17"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-label="18"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb17-19"><a href="#cb17-19" aria-label="19"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-label="20"></a>  ) <span class="sc">+</span> </span>
+<span id="cb17-21"><a href="#cb17-21" aria-label="21"></a>  <span class="fu">scale_fill_identity</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in plot_theme(plot): The `axix.x.text` theme element is not defined in
+the element hierarchy.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="vis1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="most-frequent-word-length-in-stringrwords" class="level2">
+<h2 class="anchored" data-anchor-id="most-frequent-word-length-in-stringrwords">Most Frequent Word Length in <code>stringr::words</code></h2>
+<p>To get a words length, we can use <code>str_length()</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a><span class="co"># Take a sample of 10 observations from the words package</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a><span class="fu">set.seed</span>(<span class="dv">616</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-label="4"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-label="5"></a>ww <span class="ot">&lt;-</span> <span class="fu">sample</span>(words,<span class="dv">10</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-label="6"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-label="7"></a><span class="fu">tibble</span>(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-label="8"></a>  <span class="at">word =</span> ww,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-label="9"></a>  <span class="at">wl =</span> <span class="fu">str_length</span>(ww)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-label="10"></a>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col><col></colgroup><thead>
+<tr>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt;">word</th><th class="huxtable-cell huxtable-header" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt;">wl</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">nature</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0pt;     background-color: rgb(242, 242, 242);">6</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;">clothe</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;">6</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">back</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;     background-color: rgb(242, 242, 242);">4</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;">other</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;">5</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">allow</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;     background-color: rgb(242, 242, 242);">5</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;">suggest</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;">7</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">however</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;     background-color: rgb(242, 242, 242);">7</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;">cup</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;">3</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">mile</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt;     background-color: rgb(242, 242, 242);">4</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt;">just</td><td class="huxtable-cell" style="text-align: right;  border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt;">4</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Using this same approach we could find out the number of each letter-sized word in the package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a><span class="co"># X-Axis Values for later</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a>xax <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-label="3"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-label="4"></a>words_t <span class="ot">&lt;-</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-label="5"></a>  words <span class="sc">|&gt;</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-label="6"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-label="7"></a>  <span class="fu">mutate</span>(<span class="at">string_length =</span> <span class="fu">str_length</span>(words)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-label="8"></a>  <span class="fu">group_by</span>(string_length) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-9"><a href="#cb20-9" aria-label="9"></a>  <span class="fu">count</span>() </span>
+<span id="cb20-10"><a href="#cb20-10" aria-label="10"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-label="11"></a>words_t</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 2
+# Groups:   string_length [11]
+   string_length     n
+           &lt;int&gt; &lt;int&gt;
+ 1             1     1
+ 2             2    18
+ 3             3   110
+ 4             4   263
+ 5             5   200
+ 6             6   169
+ 7             7   119
+ 8             8    57
+ 9             9    30
+10            10     9
+11            11     4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a>words_t <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(string_length, n, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-label="3"></a>             <span class="at">fill =</span> string_length)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-label="4"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-label="5"></a>           <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">ifelse</span>(n <span class="sc">==</span> <span class="fu">max</span>(n),<span class="st">"darkred"</span>,<span class="st">"grey"</span>))) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-label="6"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-label="7"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> xax) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-label="8"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-label="9"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-label="10"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-label="11"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-12"><a href="#cb22-12" aria-label="12"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-13"><a href="#cb22-13" aria-label="13"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-label="14"></a>                              <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb22-15"><a href="#cb22-15" aria-label="15"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-label="16"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-label="17"></a>        ) <span class="sc">+</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-label="18"></a>  <span class="fu">scale_fill_identity</span>() <span class="sc">+</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-label="19"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">300</span>) <span class="sc">+</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-label="20"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-21"><a href="#cb22-21" aria-label="21"></a>    <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb22-22"><a href="#cb22-22" aria-label="22"></a>    <span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb22-23"><a href="#cb22-23" aria-label="23"></a>    <span class="at">title =</span> <span class="st">"Frequency Distribution of Word Size"</span>,</span>
+<span id="cb22-24"><a href="#cb22-24" aria-label="24"></a>    <span class="at">subtitle =</span> <span class="st">"Keeping it Short and Sweet!"</span>,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-label="25"></a>    <span class="at">caption =</span> <span class="st">"Data from stringr::words"</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-label="26"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="vis1_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="stringrsentences" class="level3">
+<h3 class="anchored" data-anchor-id="stringrsentences">stringr::sentences</h3>
+<p><code>stringr</code> also contains a sentences dataset.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a><span class="fu">tibble</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-label="2"></a>    <span class="at">line=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sentences),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-label="3"></a>    <span class="at">sentence=</span>sentences) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-label="4"></a>  <span class="fu">unnest_tokens</span>(word,sentence) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-label="5"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-6"><a href="#cb23-6" aria-label="6"></a>  <span class="fu">group_by</span>(word) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-7"><a href="#cb23-7" aria-label="7"></a>  <span class="fu">count</span>(<span class="at">sort=</span>T) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-8"><a href="#cb23-8" aria-label="8"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb23-9"><a href="#cb23-9" aria-label="9"></a>  wordcloud2<span class="sc">::</span><span class="fu">wordcloud2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(word)`</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-6be98cedf9b331f27abe" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-6be98cedf9b331f27abe">{"x":{"word":["red","fine","green","hot","strong","wall","hard","makes","round","thin","water","blue","bright","dull","gold","sharp","box","brass","brown","grass","left","night","paper","road","tea","top","wide","write","air","boy","cut","fence","fire","floor","girl","horse","hung","leaves","light","set","ship","store","sun","takes","tall","white","wind","add","black","book","broke","cat","child","coat","cold","day","days","deep","desk","dog","door","dry","fell","hole","house","lack","lost","mark","pack","pot","ran","rare","rose","smell","straight","ten","tight","time","words","worn","act","bad","bank","beat","bring","chair","clean","cloth","clothes","corn","corner","dark","dust","edge","fast","fish","fly","form","friends","fun","hold","home","ice","ink","lay","low","moved","paint","read","ring","ripe","salt","serve","sheet","slide","soft","sound","spring","start","stone","stood","street","struck","sweet","taste","thick","town","wood","barn","base","beach","beef","bell","blow","boat","bowl","breeze","brought","built","burn","burned","carpet","carved","catch","chart","children","china","clock","cloud","contents","cord","cover","covered","crack","crawled","cup","dirt","dried","drifts","drink","drive","drop","empty","failed","fall","feet","finish","fit","flame","flood","food","found","free","front","fruit","glass","hands","hat","head","heat","heavy","jerk","joy","jump","knife","lamp","laugh","lawn","lead","leave","line","lines","loud","march","morning","mouse","move","neat","north","note","odor","office","pail","pearl","pencil","pie","pink","pipe","plans","poor","port","pure","quick","rings","sad","sand","sat","screen","served","shirt","shoe","shone","shore","short","size","sky","soap","space","spot","square","stain","steady","stew","stop","straw","swan","tales","tan","tender","times","tin","tired","torn","tree","waste","watch","week","wet","win","wooden","wrote","age","apple","bag","bare","beauty","beer","bent","bill","bills","birch","birth","block","blocks","blows","board","boards","books","bound","brand","break","brew","button","cap","care","cart","cats","caught","cement","cents","chance","chicken","chopped","clay","coin","coins","colt","compass","cool","costly","costs","couch","cracked","crackers","crash","crate","crooked","crowd","curls","curtain","cushion","cuts","debt","dense","dig","dip","dirty","dish","distance","doubt","draft","dress","drip","earth","easy","edges","eggs","eyes","fail","fair","fans","farmer","fasten","field","fight","fill","fired","firm","fits","flat","float","floated","foot","force","forget","freeze","fresh","friend","friendly","fudge","fund","funds","fur","gate","gay","gently","glasses","glue","grace","graceful","grain","gray","grew","ground","grow","half","hatch","health","hear","held","hoist","horn","hours","inches","inside","jacket","jar","join","juice","jumped","june","kite","lake","late","lathe","lawyer","led","life","limp","list","log","logs","looked","lose","loss","lot","luck","main","mat","means","met","middle","miles","money","month","mud","mule","music","nail","names","news","nose","page","painted","pants","past","path","pay","pears","peas","person","phone","phrase","pierced","pile","pills","pine","pins","plan","plant","plate","play","player","plead","pleasant","pole","porch","post","press","pressed","prince","punch","pup","quickly","rain","raise","rang","reach","rice","rich","rider","rise","river","rope","rug","ruins","rum","rusty","sandy","scared","school","score","screw","sea","seized","sell","send","sense","settle","sew","shake","shaky","shape","sheep","shelves","shoes","silk","silver","skill","sleep","sleeping","slid","slipped","smile","smoke","smoky","smooth","snow","soak","sold","soldiers","source","spilled","stale","steam","steel","step","stick","sticky","stiff","stones","stories","storm","story","stranger","stream","stretched","strike","sugar","sum","sunday","swim","tack","talked","tank","tasty","tent","thirty","threw","trap","tray","tube","tuesday","twisted","useless","valve","vest","wake","waved","weak","weather","weight","wild","winding","wine","wise","word","worse","yacht","yellow","zest","abrupt","absent","account","acid","actor","actress","adding","admire","admit","ads","aid","aim","alarm","allowed","aloft","amounts","ancient","answer","antique","apples","arm","arrive","arrived","ashes","attack","attacked","attic","axe","baby","background","badly","bail","balance","balked","ball","band","banned","bark","barred","barrel","batches","bath","bathe","bay","beam","bear","beetle","bench","bend","betrayed","bid","bike","bind","binds","bird","biscuits","blades","blew","blind","bloom","blotter","blown","blushed","boiled","boldly","bolted","bombs","bond","bonds","booth","booze","boss","bottles","bottom","bowls","boys","braid","branches","breakfast","breathe","bred","bribes","bricks","brightened","brim","brings","brisk","broken","brothers","bucket","buckle","bump","bun","bunch","buns","burns","burnt","bushes","business","busses","buy","buyer","buyers","calf","called","calves","canned","canoe","cans","cape","capture","car","card","carry","cars","cartridge","castle","caused","cent","central","chairs","changing","chap","charm","chased","cheap","cheat","cheese","cherish","cherries","chicks","chief","child's","chink","choose","chorus","cigar","circled","circus","claim","clams","clan","clap","class","cleanse","cleat","clink","clips","close","closely","closet","clouds","clowns","club","coach","coal","coax","cobs","cod","code","coffee","colds","collapse","collar","color","colored","column","comfort","cone","constant","contest","cook","cooked","cop","copper","cork","cost","council","counted","courage","court","cow","cramp","crane","creaked","cream","creek","crew","cried","crop","cross","crouch","crowded","cruise","cruiser","crunch","cue","cuffs","cure","cured","curled","daily","dam","dance","danced","danger","dart","dash","death","decide","deepened","deeply","defense","depth","deserve","designed","designs","despair","dew","dice","dill","dim","dime","dimes","dinner","dipped","discuss","dishes","dispense","distinct","ditch","dive","doctor","dogs","doll","doorknob","dots","drapes","draw","drenching","drilled","drinks","drizzle","droned","droop","droopy","dropped","drove","drown","drug","ducks","duke","dune","dunk","dusty","dying","ear","earned","ears","east","eastern","eat","eaten","egg","endure","equal","erase","errand","error","evade","evening","events","extra","eye","eyelids","faced","factors","fails","fairy","fake","fallen","false","fame","fan","farm","farmers","farther","faults","feather","fed","feed","feel","feline","ferment","ferns","fevers","fields","fierce","fifty","fig","figs","figures","filing","filled","fin","finished","fires","firmly","fix","fizz","flames","flaps","flashy","flask","flavor","flavors","flaw","flax","fleet","flew","flickered","flint","flop","flounder","flower","follow","fond","fool","football","footprints","forest","fox","frail","freed","french","fright","frighten","frocks","frog","frost","frosted","frosty","frown","frozen","fry","fury","gain","game","gang","garbage","gas","gather","gathered","gaunt","gem","gift","gifts","glaring","gloss","glow","gnawed","goose","grand","grape","grapes","grease","greet","grin","grows","guess","guests","gun","guy","hail","hailed","hall","halt","ham","hammer","hand","hang","happen","harder","hardship","hardware","hash","hate","hats","hazy","healthy","heap","heart","hearts","heave","hedge","heir","helped","helps","hemp","hero","heroes","hewn","hidden","highway","hikes","hill","hilt","hind","hinge","hip","hired","hissed","hit","hitch","hog","hogs","holes","honest","honor","hook","hop","hope","hops","hose","hostess","housed","houses","huge","hurdle","hurry","hurt","idea","improves","informs","inn","islands","itches","items","jail","jam","jammed","jangled","jazz","jell","jerked","job","journey","judge","jug","junk","key","kick","kid","kids","kindle","kinds","king","king's","kits","kitten","kittens","knee","ladies","lag","lamb","lame","landing","lantern","lanterns","lasts","latch","lazy","leads","leaf","league","leaned","lease","leash","leather","ledge","leg","lemons","length","lent","level","lift","limb","limits","lined","lingers","lists","lit","littered","live","lived","lives","living","load","lobes","lock","locked","lodging","lofty","lonesome","loop","love","luggage","lure","lush","madam","maid","mail","mailed","mails","malt","man's","mantel","map","maple","maps","marble","mare","market","marks","marsh","mass","match","mats","matter","matters","maze","meal","meant","mend","merge","mesh","metal","meter","method","mild","milk","mince","minds","minutes","miss","missed","mix","mob","mondays","moss","mouldy","mouth","moves","moving","muff","muffled","mules","mumble","mute","nag","narrow","nasty","natives","navy","neatly","neck","necklace","neighbor's","neon","nerves","nest","net","nets","nice","node","noise","noon","northern","northward","nozzle","nudge","oak","oat","oath","oats","objects","occurred","offered","oiled","orange","orchid","outdoors","owed","ox","pace","package","packed","pad","pages","paid","painful","painting","pal","palate","pan","parades","park","parked","partner","party","pass","passage","passed","paste","pattered","paved","paw","payment","peace","peach","peak","peat","pedal","peddler","peel","peep","peg","pen","pencils","pennant","penny","people","pepper","perch","perfect","period","pet","petals","phase","pick","picked","pickle","pickles","piece","piles","pin","piny","pipes","pirate's","pirates","pit","pitch","planes","plank","planks","played","players","playing","plea","pleasure","pluck","plum","plunge","plush","poached","pocket","pockets","pod","pods","polish","poodles","pound","pour","poured","power","preserve","price","priceless","print","prize","prod","product","profit","promptly","prone","proof","protects","public","puff","pulled","purple","purse","push","pushed","puzzling","quart","queen's","quench","rack","raft","rag","raging","rags","rained","rainy","rake","ram","ramp","rarest","rate","raw","rays","reached","reads","rear","reared","records","reef","relax","release","rented","replace","requests","response","restless","restores","result","revives","revolved","ribbons","ridge","rink","roads","rob","robbed","robins","rocks","rod","roll","roof","rosebush","rough","roused","rows","rubbish","rude","ruled","runs","rush","rust","sail","sale","salmon","salty","sang","sank","sash","sausage","save","saved","saves","scale","scarce","scarcer","scare","schools","scoot","scores","scraps","scratch","seals","season","seats","secret","secrets","seed","seeds","seldom","sever","severe","sewed","shade","shaggy","shallow","shaped","shares","sheath","shed","sheets","shell","shelter","shield","shift","shimmered","shine","shiny","shipped","shipping","shoelace","shortened","shoulder","shower","showered","shrubs","shut","sick","sickness","siege","sight","sign","sills","simplest","sing","sink","sinking","sip","sit","sixteen","skin","slab","slam","slang","slant","slash","slate","sleek","slice","slices","slides","slip","slow","slowly","slush","smart","smatter","smuggled","snapped","snapper","snip","snowed","sock","sockets","sofa","softly","sour","spark","sparkled","sparks","spattered","speaks","speech","speed","speedy","spend","spice","spill","spin","split","spoils","spread","sputtered","squirrel","stable","stage","stalk","stalled","stamped","stand","stare","stark","started","stately","statement","stayed","steep","steer","stems","steps","sticks","stitch","stockings","stole","store's","strained","strap","stray","streak","streets","strength","strip","stripe","strive","strokes","strongly","stubborn","stuff","stuffed","stung","stunned","stupid","stylish","suffer","suffice","suit","sullen","sums","sun's","surface","swam","swapped","swayed","sweater","swell","swing","switch","sword","table","tacks","tailor","tame","tang","tape","taps","tar","target","task","tastes","taught","teach","team","tear","teeth","tend","tenth","term","thaw","theft","thief","thieves","thirst","thistles","thresh","thrive","throne","throw","thrown","thumb","tide","tie","ties","tightly","tilted","timing","tinged","tinsel","tiny","tire","toad","told","tones","tongs","tool","torch","tore","touch","toys","trace","track","trail","train","trample","trash","treadmill","trim","trims","trinkets","trod","troops","tropics","trotted","trout","truck","true","trunk","trust","tuck","tumbled","tumbles","tunes","turf","turkey","tusk","twelfth","twin","twine","twist","type","unfit","urge","vamp","van","vane","vase","vast","vat","vent","verdict","verse","view","vote","vouch","wading","wagon","wait","waiting","walk","walked","walking","walled","walls","walnut","wanders","war","warm","warmth","warp","wash","watched","watchful","waters","waves","wax","waxed","weakly","wear","wearing","weave","weed","weeks","west","wharf","wheat","wheeled","wheels","whiff","whirled","whiskey","whistling","whitings","wildly","window","winds","wipe","wire","wires","wisp","wit","woke","woman","women","wonders","woodland","woods","wool","wore","workman's","world","worm","worst","woven","wreck","wrist","writer","writes","wrong","yard","yell","youth","zestful","zones"],"freq":[11,10,10,10,10,10,9,9,9,9,9,8,8,8,8,8,7,7,7,7,7,7,7,7,7,7,7,7,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":16.36363636363636,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+</div>
+</div>
+<p>Whoa! There are sure a lot of sentences with ‘red’ in them. Let’s isolate those 11 sentences.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-label="1"></a><span class="fu">tibble</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-label="2"></a>    <span class="at">line=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sentences),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-label="3"></a>    <span class="at">sentence=</span>sentences) <span class="sc">|&gt;</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-label="4"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(sentences,<span class="st">"</span><span class="sc">\\</span><span class="st">bred</span><span class="sc">\\</span><span class="st">b"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-label="5"></a>  <span class="fu">select</span>(sentence)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="margin-left: auto; margin-right: auto;">
+<colgroup><col></colgroup><thead>
+<tr>
+<th class="huxtable-cell huxtable-header" style="border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;">sentence</th></tr>
+</thead>
+<tbody>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">The sofa cushion is red and of light weight.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;">It is hard to erase blue or red ink.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">The box is held by a bright red snapper.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;">The houses are built of red clay bricks.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">The red tape bound the smuggled food.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;">The lake sparkled in the red hot sun.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">Mark the spot with a sign painted red.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;">The small red neon lamp went out.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;     background-color: rgb(242, 242, 242);">The sky in the west is tinged with orange red.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0.4pt;">The red paper brightened the dim stage.</td></tr>
+<tr>
+<td class="huxtable-cell" style="border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0.4pt;     background-color: rgb(242, 242, 242);">The big red apple fell to the ground.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+// Cursor-follow glow, dark mode only — the CSS is scoped to custom-dark.scss's
+// compiled bundle, so this listener is harmless (and unused) on the light theme.
+(function () {
+  var raf = null;
+  function setGlow(x, y) {
+    document.documentElement.style.setProperty('--glow-x', x + 'px');
+    document.documentElement.style.setProperty('--glow-y', y + 'px');
+    raf = null;
+  }
+  document.addEventListener('mousemove', function (e) {
+    if (raf) return;
+    var x = e.clientX, y = e.clientY;
+    raf = requestAnimationFrame(function () { setGlow(x, y); });
+  });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "Visualizations: {stringr}"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-label="3"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-label="4"></a><span class="an">highlight-style:</span><span class="co"> arrow</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-label="5"></a><span class="an">code-tools:</span><span class="co"> </span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-label="6"></a><span class="co">  source: true</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-label="7"></a><span class="an">code-block-border-left:</span><span class="co"> '#31BAE9'</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-label="8"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-label="9"></a><span class="co">---</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-label="10"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-label="11"></a>Using <span class="in">`dplyr`</span>&nbsp;and the&nbsp;<span class="in">`stringr::words`</span> dataset, we can demonstrate how to extract information from a dataset. Before we get into anything, let us take a look at a few of the characteristics of the&nbsp;<span class="in">`stringr::words`</span>&nbsp;dataset.</span>
+<span id="cb26-12"><a href="#cb26-12" aria-label="12"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-label="13"></a><span class="in">```{r}</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-label="14"></a><span class="co">#| warning: false</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-label="15"></a><span class="co">#| message: false</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-label="16"></a><span class="fu">library</span>(stringr) <span class="co"># Text Matching</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-label="17"></a><span class="fu">library</span>(dplyr,<span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># Data Wrangling</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-label="18"></a><span class="fu">library</span>(ggplot2) <span class="co"># Plotting</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-label="19"></a><span class="fu">library</span>(forcats) <span class="co"># Managing Categories</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-label="20"></a><span class="fu">library</span>(tidytext) <span class="co"># Word Tokenization</span></span>
+<span id="cb26-23"><a href="#cb26-23" aria-label="21"></a><span class="fu">library</span>(huxtable) <span class="co"># Making Tables</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-label="22"></a></span>
+<span id="cb26-25"><a href="#cb26-25" aria-label="23"></a><span class="fu">head</span>(stringr<span class="sc">::</span>words)</span>
+<span id="cb26-26"><a href="#cb26-26" aria-label="24"></a></span>
+<span id="cb26-27"><a href="#cb26-27" aria-label="25"></a><span class="fu">length</span>(words)</span>
+<span id="cb26-28"><a href="#cb26-28" aria-label="26"></a><span class="in">```</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-label="27"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-label="28"></a>A dataset with 980 words seems like a great tool to have!</span>
+<span id="cb26-31"><a href="#cb26-31" aria-label="29"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-label="30"></a><span class="ss">-   </span>You could use it to create arbitrary categories.</span>
+<span id="cb26-33"><a href="#cb26-33" aria-label="31"></a></span>
+<span id="cb26-34"><a href="#cb26-34" aria-label="32"></a><span class="ss">-   </span>You could also use it to get some words that fit a certain criteria.</span>
+<span id="cb26-35"><a href="#cb26-35" aria-label="33"></a></span>
+<span id="cb26-36"><a href="#cb26-36" aria-label="34"></a><span class="fu">### Example 1: Match Five Letter Words</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-label="35"></a></span>
+<span id="cb26-38"><a href="#cb26-38" aria-label="36"></a>The following regular expression *should* match the red text below:</span>
+<span id="cb26-39"><a href="#cb26-39" aria-label="37"></a></span>
+<span id="cb26-40"><a href="#cb26-40" aria-label="38"></a>::: five</span>
+<span id="cb26-41"><a href="#cb26-41" aria-label="39"></a><span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Upon<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span> the <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>shelf<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span> was a <span class="dt">&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>penny<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;</span> and a dime</span>
+<span id="cb26-42"><a href="#cb26-42" aria-label="40"></a>:::</span>
+<span id="cb26-43"><a href="#cb26-43" aria-label="41"></a></span>
+<span id="cb26-44"><a href="#cb26-44" aria-label="42"></a><span class="ss">1.  </span>Using <span class="in">`str_match_all`</span> we can enter a regular expression that will match words that have five characters.</span>
+<span id="cb26-45"><a href="#cb26-45" aria-label="43"></a></span>
+<span id="cb26-48"><a href="#cb26-48" aria-label="44"></a><span class="in">```{r}</span></span>
+<span id="cb26-49"><a href="#cb26-49" aria-label="45"></a>five_letter <span class="ot">&lt;-</span> </span>
+<span id="cb26-50"><a href="#cb26-50" aria-label="46"></a>  <span class="fu">str_match</span>(words,<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">w{5}"</span>) <span class="sc">|&gt;</span> <span class="fu">na.omit</span>()</span>
+<span id="cb26-51"><a href="#cb26-51" aria-label="47"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-label="48"></a><span class="fu">sample</span>(five_letter,<span class="dv">5</span>)</span>
+<span id="cb26-53"><a href="#cb26-53" aria-label="49"></a><span class="in">```</span></span>
+<span id="cb26-54"><a href="#cb26-54" aria-label="50"></a></span>
+<span id="cb26-55"><a href="#cb26-55" aria-label="51"></a>Uh oh!</span>
+<span id="cb26-56"><a href="#cb26-56" aria-label="52"></a></span>
+<span id="cb26-57"><a href="#cb26-57" aria-label="53"></a>We are returning words that *have* 5 letters, but are not *only*&nbsp;five letters in length. To fix this, we will need to add a boundary element (<span class="in">`\b`</span>) to the start and end of our expression.</span>
+<span id="cb26-58"><a href="#cb26-58" aria-label="54"></a></span>
+<span id="cb26-61"><a href="#cb26-61" aria-label="55"></a><span class="in">```{r}</span></span>
+<span id="cb26-62"><a href="#cb26-62" aria-label="56"></a>five_letter_fixed <span class="ot">&lt;-</span> </span>
+<span id="cb26-63"><a href="#cb26-63" aria-label="57"></a>  <span class="fu">str_match_all</span>(words, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">b</span><span class="sc">\\</span><span class="st">w{5}</span><span class="sc">\\</span><span class="st">b"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-64"><a href="#cb26-64" aria-label="58"></a>    <span class="fu">unlist</span>()</span>
+<span id="cb26-65"><a href="#cb26-65" aria-label="59"></a></span>
+<span id="cb26-66"><a href="#cb26-66" aria-label="60"></a><span class="fu">head</span>(five_letter_fixed)</span>
+<span id="cb26-67"><a href="#cb26-67" aria-label="61"></a><span class="in">```</span></span>
+<span id="cb26-68"><a href="#cb26-68" aria-label="62"></a></span>
+<span id="cb26-69"><a href="#cb26-69" aria-label="63"></a>::: callout-note</span>
+<span id="cb26-70"><a href="#cb26-70" aria-label="64"></a>The use of <span class="in">`unlist()`</span> coerces the result to a vector instead of a list</span>
+<span id="cb26-71"><a href="#cb26-71" aria-label="65"></a>:::</span>
+<span id="cb26-72"><a href="#cb26-72" aria-label="66"></a></span>
+<span id="cb26-73"><a href="#cb26-73" aria-label="67"></a>The regular expression <span class="in">`\\b\\w{5}\\b`</span> here does the following:</span>
+<span id="cb26-74"><a href="#cb26-74" aria-label="68"></a></span>
+<span id="cb26-75"><a href="#cb26-75" aria-label="69"></a><span class="ss">-   </span><span class="in">`\b`</span>&nbsp;represents a boundary character. This tells R to look for something to be followed by a space and finished before a space.</span>
+<span id="cb26-76"><a href="#cb26-76" aria-label="70"></a></span>
+<span id="cb26-77"><a href="#cb26-77" aria-label="71"></a><span class="ss">-   </span><span class="in">`\w`</span>&nbsp;tells R to look for a word-character.</span>
+<span id="cb26-78"><a href="#cb26-78" aria-label="72"></a></span>
+<span id="cb26-79"><a href="#cb26-79" aria-label="73"></a><span class="ss">-   </span><span class="in">`{5}`</span>&nbsp;tells R to look for a word-character that has a length of exactly 5.</span>
+<span id="cb26-80"><a href="#cb26-80" aria-label="74"></a></span>
+<span id="cb26-81"><a href="#cb26-81" aria-label="75"></a><span class="ss">-   </span><span class="in">`\b`</span>&nbsp;looks for the second boundary.</span>
+<span id="cb26-82"><a href="#cb26-82" aria-label="76"></a></span>
+<span id="cb26-83"><a href="#cb26-83" aria-label="77"></a><span class="fu">### Example 2: Finding Words That Start with `aeiou`</span></span>
+<span id="cb26-84"><a href="#cb26-84" aria-label="78"></a></span>
+<span id="cb26-85"><a href="#cb26-85" aria-label="79"></a>Here we will use a regular expression that looks for words that start with specific letters.</span>
+<span id="cb26-86"><a href="#cb26-86" aria-label="80"></a></span>
+<span id="cb26-87"><a href="#cb26-87" aria-label="81"></a>Note: The words dataset is specifically lowercase<span class="sc">\*</span>, otherwise we would be using both upper and lower case in our expression.</span>
+<span id="cb26-88"><a href="#cb26-88" aria-label="82"></a></span>
+<span id="cb26-91"><a href="#cb26-91" aria-label="83"></a><span class="in">```{r}</span></span>
+<span id="cb26-92"><a href="#cb26-92" aria-label="84"></a>vowel_words <span class="ot">&lt;-</span> </span>
+<span id="cb26-93"><a href="#cb26-93" aria-label="85"></a> <span class="fu">str_match_all</span>(words,<span class="st">"</span><span class="sc">\\</span><span class="st">b^[aeiou].*$"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-94"><a href="#cb26-94" aria-label="86"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb26-95"><a href="#cb26-95" aria-label="87"></a></span>
+<span id="cb26-96"><a href="#cb26-96" aria-label="88"></a><span class="fu">sample</span>(vowel_words,<span class="dv">5</span>)</span>
+<span id="cb26-97"><a href="#cb26-97" aria-label="89"></a><span class="in">```</span></span>
+<span id="cb26-98"><a href="#cb26-98" aria-label="90"></a></span>
+<span id="cb26-99"><a href="#cb26-99" aria-label="91"></a>Great!</span>
+<span id="cb26-100"><a href="#cb26-100" aria-label="92"></a></span>
+<span id="cb26-101"><a href="#cb26-101" aria-label="93"></a>The regular expression does the following:</span>
+<span id="cb26-102"><a href="#cb26-102" aria-label="94"></a></span>
+<span id="cb26-103"><a href="#cb26-103" aria-label="95"></a><span class="ss">-   </span><span class="in">`\b`</span>&nbsp;- Looks for boundary</span>
+<span id="cb26-104"><a href="#cb26-104" aria-label="96"></a></span>
+<span id="cb26-105"><a href="#cb26-105" aria-label="97"></a><span class="ss">-   </span><span class="in">`^`</span>&nbsp;- Designates the start of a string.</span>
+<span id="cb26-106"><a href="#cb26-106" aria-label="98"></a></span>
+<span id="cb26-107"><a href="#cb26-107" aria-label="99"></a><span class="ss">-   </span><span class="in">`[aeiou]`</span>&nbsp;- Matches the start of the string that is either a,e,i,o,or u.</span>
+<span id="cb26-108"><a href="#cb26-108" aria-label="100"></a></span>
+<span id="cb26-109"><a href="#cb26-109" aria-label="101"></a><span class="ss">-   </span><span class="in">`.`</span>&nbsp;- Looks for any character that follows the first match.</span>
+<span id="cb26-110"><a href="#cb26-110" aria-label="102"></a></span>
+<span id="cb26-111"><a href="#cb26-111" aria-label="103"></a><span class="ss">-   </span><span class="in">`*`</span>&nbsp;- Looks for an unlimited number of matches until it is told to stop.</span>
+<span id="cb26-112"><a href="#cb26-112" aria-label="104"></a></span>
+<span id="cb26-113"><a href="#cb26-113" aria-label="105"></a><span class="ss">-   </span><span class="in">`$`</span>&nbsp;- Tells R to look for the end of a string.</span>
+<span id="cb26-114"><a href="#cb26-114" aria-label="106"></a></span>
+<span id="cb26-115"><a href="#cb26-115" aria-label="107"></a><span class="fu">## Example 2b. Finding words that DON'T start with vowels</span></span>
+<span id="cb26-116"><a href="#cb26-116" aria-label="108"></a></span>
+<span id="cb26-117"><a href="#cb26-117" aria-label="109"></a>We can use the same regular expression we created earlier and at a **not** qualifier to essentially reverse our search.</span>
+<span id="cb26-118"><a href="#cb26-118" aria-label="110"></a></span>
+<span id="cb26-121"><a href="#cb26-121" aria-label="111"></a><span class="in">```{r}</span></span>
+<span id="cb26-122"><a href="#cb26-122" aria-label="112"></a><span class="fu">str_match_all</span>(words,<span class="st">"</span><span class="sc">\\</span><span class="st">b[^aeiou].*$"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-123"><a href="#cb26-123" aria-label="113"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-124"><a href="#cb26-124" aria-label="114"></a>  <span class="fu">sample</span>(<span class="dv">5</span>)</span>
+<span id="cb26-125"><a href="#cb26-125" aria-label="115"></a><span class="in">```</span></span>
+<span id="cb26-126"><a href="#cb26-126" aria-label="116"></a></span>
+<span id="cb26-127"><a href="#cb26-127" aria-label="117"></a>Note that by moving the beginning of string qualifier <span class="in">`^`</span> to the inside of the bracket resulted in the opposite of what we were looking for!</span>
+<span id="cb26-128"><a href="#cb26-128" aria-label="118"></a></span>
+<span id="cb26-129"><a href="#cb26-129" aria-label="119"></a><span class="fu">### Most Common Start Letter Used in `stringr::words`</span></span>
+<span id="cb26-130"><a href="#cb26-130" aria-label="120"></a></span>
+<span id="cb26-133"><a href="#cb26-133" aria-label="121"></a><span class="in">```{r}</span></span>
+<span id="cb26-134"><a href="#cb26-134" aria-label="122"></a>word_tbl <span class="ot">&lt;-</span> </span>
+<span id="cb26-135"><a href="#cb26-135" aria-label="123"></a>  words <span class="sc">|&gt;</span>  <span class="co"># &lt;1&gt;</span></span>
+<span id="cb26-136"><a href="#cb26-136" aria-label="124"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span>  <span class="co"># &lt;2&gt;</span></span>
+<span id="cb26-137"><a href="#cb26-137" aria-label="125"></a>  <span class="fu">mutate</span>(  <span class="co"># &lt;3&gt;</span></span>
+<span id="cb26-138"><a href="#cb26-138" aria-label="126"></a>    <span class="at">StartsWith =</span> <span class="fu">str_match</span>(words,<span class="st">"^."</span>) <span class="sc">|&gt;</span> <span class="fu">unlist</span>()  <span class="co"># &lt;3&gt;</span></span>
+<span id="cb26-139"><a href="#cb26-139" aria-label="127"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb26-140"><a href="#cb26-140" aria-label="128"></a>  <span class="fu">group_by</span>(StartsWith) <span class="sc">|&gt;</span>  <span class="co"># &lt;4&gt;</span></span>
+<span id="cb26-141"><a href="#cb26-141" aria-label="129"></a>  <span class="fu">count</span>(<span class="at">sort =</span> <span class="cn">TRUE</span>)   <span class="co"># &lt;4&gt;</span></span>
+<span id="cb26-142"><a href="#cb26-142" aria-label="130"></a>  </span>
+<span id="cb26-143"><a href="#cb26-143" aria-label="131"></a>word_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb26-144"><a href="#cb26-144" aria-label="132"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-145"><a href="#cb26-145" aria-label="133"></a>  <span class="fu">hux</span>() <span class="sc">|&gt;</span>  <span class="co"># &lt;5&gt;</span></span>
+<span id="cb26-146"><a href="#cb26-146" aria-label="134"></a>  <span class="fu">theme_article</span>()  <span class="co"># &lt;6&gt;</span></span>
+<span id="cb26-147"><a href="#cb26-147" aria-label="135"></a><span class="in">```</span></span>
+<span id="cb26-148"><a href="#cb26-148" aria-label="136"></a></span>
+<span id="cb26-149"><a href="#cb26-149" aria-label="137"></a><span class="ss">1.  </span>words: This is the input dataset (assumed to be a vector or list of words) that will be processed.</span>
+<span id="cb26-150"><a href="#cb26-150" aria-label="138"></a><span class="ss">2.  </span>data.frame(): Converts the words object into a data frame to facilitate data manipulation.</span>
+<span id="cb26-151"><a href="#cb26-151" aria-label="139"></a><span class="ss">3.  </span>mutate() and str_match(): Adds a new column StartsWith, extracting the first letter from each word using a regular expression. unlist() flattens the result into a vector.</span>
+<span id="cb26-152"><a href="#cb26-152" aria-label="140"></a><span class="ss">4.  </span>group_by() and count(): Groups the data by the StartsWith column and counts the number of occurrences for each letter, sorting the counts in descending order.</span>
+<span id="cb26-153"><a href="#cb26-153" aria-label="141"></a><span class="ss">5.  </span>hux(): Converts the resulting grouped and counted data into a huxtable object, which formats the data into a table.</span>
+<span id="cb26-154"><a href="#cb26-154" aria-label="142"></a><span class="ss">6.  </span>theme_article(): Applies the “article” theme to style the table for presentation.</span>
+<span id="cb26-155"><a href="#cb26-155" aria-label="143"></a></span>
+<span id="cb26-156"><a href="#cb26-156" aria-label="144"></a>Taking a look at the table we can see that there are two words that start with a capital C. This doesn't halt the process, but it is worth it to see who the culprits are.</span>
+<span id="cb26-157"><a href="#cb26-157" aria-label="145"></a></span>
+<span id="cb26-160"><a href="#cb26-160" aria-label="146"></a><span class="in">```{r}</span></span>
+<span id="cb26-161"><a href="#cb26-161" aria-label="147"></a>word_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb26-162"><a href="#cb26-162" aria-label="148"></a>  <span class="fu">filter</span>(StartsWith <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb26-163"><a href="#cb26-163" aria-label="149"></a><span class="in">```</span></span>
+<span id="cb26-164"><a href="#cb26-164" aria-label="150"></a></span>
+<span id="cb26-165"><a href="#cb26-165" aria-label="151"></a>For our purposes, it is okay to change these entries to be lowercase. Conveniently, the&nbsp;<span class="in">`stringr`</span>&nbsp;package really does have it all!</span>
+<span id="cb26-166"><a href="#cb26-166" aria-label="152"></a></span>
+<span id="cb26-169"><a href="#cb26-169" aria-label="153"></a><span class="in">```{r}</span></span>
+<span id="cb26-170"><a href="#cb26-170" aria-label="154"></a>words <span class="ot">&lt;-</span> </span>
+<span id="cb26-171"><a href="#cb26-171" aria-label="155"></a>  <span class="fu">str_to_lower</span>(stringr<span class="sc">::</span>words)</span>
+<span id="cb26-172"><a href="#cb26-172" aria-label="156"></a></span>
+<span id="cb26-173"><a href="#cb26-173" aria-label="157"></a>word_tbl <span class="ot">&lt;-</span> </span>
+<span id="cb26-174"><a href="#cb26-174" aria-label="158"></a>  words <span class="sc">|&gt;</span> </span>
+<span id="cb26-175"><a href="#cb26-175" aria-label="159"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-176"><a href="#cb26-176" aria-label="160"></a>  <span class="fu">mutate</span>(<span class="at">sw=</span> <span class="fu">str_match_all</span>(words,<span class="st">"^."</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-177"><a href="#cb26-177" aria-label="161"></a>           <span class="fu">unlist</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-178"><a href="#cb26-178" aria-label="162"></a>  <span class="fu">group_by</span>(sw) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-179"><a href="#cb26-179" aria-label="163"></a>  <span class="fu">count</span>(<span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-180"><a href="#cb26-180" aria-label="164"></a></span>
+<span id="cb26-181"><a href="#cb26-181" aria-label="165"></a>word_tbl <span class="sc">|&gt;</span> </span>
+<span id="cb26-182"><a href="#cb26-182" aria-label="166"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-183"><a href="#cb26-183" aria-label="167"></a>  <span class="fu">hux</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-184"><a href="#cb26-184" aria-label="168"></a>  <span class="fu">theme_article</span>()</span>
+<span id="cb26-185"><a href="#cb26-185" aria-label="169"></a><span class="in">```</span></span>
+<span id="cb26-186"><a href="#cb26-186" aria-label="170"></a></span>
+<span id="cb26-187"><a href="#cb26-187" aria-label="171"></a>We could look at the table and make some observations, but it would be better to just graph everything!</span>
+<span id="cb26-188"><a href="#cb26-188" aria-label="172"></a></span>
+<span id="cb26-189"><a href="#cb26-189" aria-label="173"></a>Keep in mind that this list of words is only 980 observations long so there are plenty of missing words. With that being said, what letter is represented the most in the&nbsp;<span class="in">`stringr::words`</span>&nbsp;vector?</span>
+<span id="cb26-190"><a href="#cb26-190" aria-label="174"></a></span>
+<span id="cb26-193"><a href="#cb26-193" aria-label="175"></a><span class="in">```{r}</span></span>
+<span id="cb26-194"><a href="#cb26-194" aria-label="176"></a>word_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb26-195"><a href="#cb26-195" aria-label="177"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_reorder</span>(sw,n),n,<span class="at">fill=</span>n,<span class="at">label =</span> n)) <span class="sc">+</span> </span>
+<span id="cb26-196"><a href="#cb26-196" aria-label="178"></a>    <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>,</span>
+<span id="cb26-197"><a href="#cb26-197" aria-label="179"></a>             <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">ifelse</span>(n <span class="sc">==</span> <span class="fu">max</span>(n),<span class="st">"darkred"</span>,<span class="st">"grey"</span>))) <span class="sc">+</span></span>
+<span id="cb26-198"><a href="#cb26-198" aria-label="180"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb26-199"><a href="#cb26-199" aria-label="181"></a>  <span class="fu">labs</span>(<span class="at">x =</span><span class="st">""</span>,</span>
+<span id="cb26-200"><a href="#cb26-200" aria-label="182"></a>       <span class="at">y =</span><span class="st">""</span>,</span>
+<span id="cb26-201"><a href="#cb26-201" aria-label="183"></a>       <span class="at">title =</span><span class="st">"Starting Letter Word Frequency"</span>,</span>
+<span id="cb26-202"><a href="#cb26-202" aria-label="184"></a>       <span class="at">subtitle =</span> <span class="st">"The words dataset favors 's'and 'c'"</span>,</span>
+<span id="cb26-203"><a href="#cb26-203" aria-label="185"></a>       <span class="at">caption =</span> <span class="st">"Data from stringr::words"</span>) <span class="sc">+</span></span>
+<span id="cb26-204"><a href="#cb26-204" aria-label="186"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb26-205"><a href="#cb26-205" aria-label="187"></a>    <span class="fu">theme</span>(</span>
+<span id="cb26-206"><a href="#cb26-206" aria-label="188"></a>      <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-207"><a href="#cb26-207" aria-label="189"></a>      <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb26-208"><a href="#cb26-208" aria-label="190"></a>      <span class="at">axix.x.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-209"><a href="#cb26-209" aria-label="191"></a>      <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb26-210"><a href="#cb26-210" aria-label="192"></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>,</span>
+<span id="cb26-211"><a href="#cb26-211" aria-label="193"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb26-212"><a href="#cb26-212" aria-label="194"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
+<span id="cb26-213"><a href="#cb26-213" aria-label="195"></a>  ) <span class="sc">+</span> </span>
+<span id="cb26-214"><a href="#cb26-214" aria-label="196"></a>  <span class="fu">scale_fill_identity</span>() </span>
+<span id="cb26-215"><a href="#cb26-215" aria-label="197"></a><span class="in">```</span></span>
+<span id="cb26-216"><a href="#cb26-216" aria-label="198"></a></span>
+<span id="cb26-217"><a href="#cb26-217" aria-label="199"></a><span class="fu">## Most Frequent Word Length in `stringr::words`</span></span>
+<span id="cb26-218"><a href="#cb26-218" aria-label="200"></a></span>
+<span id="cb26-219"><a href="#cb26-219" aria-label="201"></a>To get a words length, we can use <span class="in">`str_length()`</span></span>
+<span id="cb26-220"><a href="#cb26-220" aria-label="202"></a></span>
+<span id="cb26-223"><a href="#cb26-223" aria-label="203"></a><span class="in">```{r}</span></span>
+<span id="cb26-224"><a href="#cb26-224" aria-label="204"></a><span class="co"># Take a sample of 10 observations from the words package</span></span>
+<span id="cb26-225"><a href="#cb26-225" aria-label="205"></a></span>
+<span id="cb26-226"><a href="#cb26-226" aria-label="206"></a><span class="fu">set.seed</span>(<span class="dv">616</span>)</span>
+<span id="cb26-227"><a href="#cb26-227" aria-label="207"></a></span>
+<span id="cb26-228"><a href="#cb26-228" aria-label="208"></a>ww <span class="ot">&lt;-</span> <span class="fu">sample</span>(words,<span class="dv">10</span>)</span>
+<span id="cb26-229"><a href="#cb26-229" aria-label="209"></a></span>
+<span id="cb26-230"><a href="#cb26-230" aria-label="210"></a><span class="fu">tibble</span>(</span>
+<span id="cb26-231"><a href="#cb26-231" aria-label="211"></a>  <span class="at">word =</span> ww,</span>
+<span id="cb26-232"><a href="#cb26-232" aria-label="212"></a>  <span class="at">wl =</span> <span class="fu">str_length</span>(ww)</span>
+<span id="cb26-233"><a href="#cb26-233" aria-label="213"></a>) </span>
+<span id="cb26-234"><a href="#cb26-234" aria-label="214"></a><span class="in">```</span></span>
+<span id="cb26-235"><a href="#cb26-235" aria-label="215"></a></span>
+<span id="cb26-236"><a href="#cb26-236" aria-label="216"></a>Using this same approach we could find out the number of each letter-sized word in the package.</span>
+<span id="cb26-237"><a href="#cb26-237" aria-label="217"></a></span>
+<span id="cb26-240"><a href="#cb26-240" aria-label="218"></a><span class="in">```{r}</span></span>
+<span id="cb26-241"><a href="#cb26-241" aria-label="219"></a><span class="co"># X-Axis Values for later</span></span>
+<span id="cb26-242"><a href="#cb26-242" aria-label="220"></a>xax <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb26-243"><a href="#cb26-243" aria-label="221"></a></span>
+<span id="cb26-244"><a href="#cb26-244" aria-label="222"></a>words_t <span class="ot">&lt;-</span> </span>
+<span id="cb26-245"><a href="#cb26-245" aria-label="223"></a>  words <span class="sc">|&gt;</span> </span>
+<span id="cb26-246"><a href="#cb26-246" aria-label="224"></a>  <span class="fu">data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-247"><a href="#cb26-247" aria-label="225"></a>  <span class="fu">mutate</span>(<span class="at">string_length =</span> <span class="fu">str_length</span>(words)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-248"><a href="#cb26-248" aria-label="226"></a>  <span class="fu">group_by</span>(string_length) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-249"><a href="#cb26-249" aria-label="227"></a>  <span class="fu">count</span>() </span>
+<span id="cb26-250"><a href="#cb26-250" aria-label="228"></a></span>
+<span id="cb26-251"><a href="#cb26-251" aria-label="229"></a>words_t</span>
+<span id="cb26-252"><a href="#cb26-252" aria-label="230"></a><span class="in">```</span></span>
+<span id="cb26-253"><a href="#cb26-253" aria-label="231"></a></span>
+<span id="cb26-256"><a href="#cb26-256" aria-label="232"></a><span class="in">```{r}</span></span>
+<span id="cb26-257"><a href="#cb26-257" aria-label="233"></a>words_t <span class="sc">%&gt;%</span></span>
+<span id="cb26-258"><a href="#cb26-258" aria-label="234"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(string_length, n, </span>
+<span id="cb26-259"><a href="#cb26-259" aria-label="235"></a>             <span class="at">fill =</span> string_length)) <span class="sc">+</span></span>
+<span id="cb26-260"><a href="#cb26-260" aria-label="236"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,</span>
+<span id="cb26-261"><a href="#cb26-261" aria-label="237"></a>           <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">ifelse</span>(n <span class="sc">==</span> <span class="fu">max</span>(n),<span class="st">"darkred"</span>,<span class="st">"grey"</span>))) <span class="sc">+</span></span>
+<span id="cb26-262"><a href="#cb26-262" aria-label="238"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb26-263"><a href="#cb26-263" aria-label="239"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> xax) <span class="sc">+</span></span>
+<span id="cb26-264"><a href="#cb26-264" aria-label="240"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb26-265"><a href="#cb26-265" aria-label="241"></a>  <span class="fu">theme</span>(</span>
+<span id="cb26-266"><a href="#cb26-266" aria-label="242"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb26-267"><a href="#cb26-267" aria-label="243"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-268"><a href="#cb26-268" aria-label="244"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-269"><a href="#cb26-269" aria-label="245"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb26-270"><a href="#cb26-270" aria-label="246"></a>                              <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb26-271"><a href="#cb26-271" aria-label="247"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb26-272"><a href="#cb26-272" aria-label="248"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"italic"</span>)</span>
+<span id="cb26-273"><a href="#cb26-273" aria-label="249"></a>        ) <span class="sc">+</span></span>
+<span id="cb26-274"><a href="#cb26-274" aria-label="250"></a>  <span class="fu">scale_fill_identity</span>() <span class="sc">+</span></span>
+<span id="cb26-275"><a href="#cb26-275" aria-label="251"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">300</span>) <span class="sc">+</span></span>
+<span id="cb26-276"><a href="#cb26-276" aria-label="252"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-277"><a href="#cb26-277" aria-label="253"></a>    <span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb26-278"><a href="#cb26-278" aria-label="254"></a>    <span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb26-279"><a href="#cb26-279" aria-label="255"></a>    <span class="at">title =</span> <span class="st">"Frequency Distribution of Word Size"</span>,</span>
+<span id="cb26-280"><a href="#cb26-280" aria-label="256"></a>    <span class="at">subtitle =</span> <span class="st">"Keeping it Short and Sweet!"</span>,</span>
+<span id="cb26-281"><a href="#cb26-281" aria-label="257"></a>    <span class="at">caption =</span> <span class="st">"Data from stringr::words"</span></span>
+<span id="cb26-282"><a href="#cb26-282" aria-label="258"></a>  ) </span>
+<span id="cb26-283"><a href="#cb26-283" aria-label="259"></a><span class="in">```</span></span>
+<span id="cb26-284"><a href="#cb26-284" aria-label="260"></a></span>
+<span id="cb26-285"><a href="#cb26-285" aria-label="261"></a><span class="fu">### stringr::sentences</span></span>
+<span id="cb26-286"><a href="#cb26-286" aria-label="262"></a></span>
+<span id="cb26-287"><a href="#cb26-287" aria-label="263"></a><span class="in">`stringr`</span> also contains a sentences dataset.</span>
+<span id="cb26-288"><a href="#cb26-288" aria-label="264"></a></span>
+<span id="cb26-291"><a href="#cb26-291" aria-label="265"></a><span class="in">```{r}</span></span>
+<span id="cb26-292"><a href="#cb26-292" aria-label="266"></a><span class="fu">tibble</span>(</span>
+<span id="cb26-293"><a href="#cb26-293" aria-label="267"></a>    <span class="at">line=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sentences),</span>
+<span id="cb26-294"><a href="#cb26-294" aria-label="268"></a>    <span class="at">sentence=</span>sentences) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-295"><a href="#cb26-295" aria-label="269"></a>  <span class="fu">unnest_tokens</span>(word,sentence) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-296"><a href="#cb26-296" aria-label="270"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-297"><a href="#cb26-297" aria-label="271"></a>  <span class="fu">group_by</span>(word) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-298"><a href="#cb26-298" aria-label="272"></a>  <span class="fu">count</span>(<span class="at">sort=</span>T) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-299"><a href="#cb26-299" aria-label="273"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb26-300"><a href="#cb26-300" aria-label="274"></a>  wordcloud2<span class="sc">::</span><span class="fu">wordcloud2</span>()</span>
+<span id="cb26-301"><a href="#cb26-301" aria-label="275"></a><span class="in">```</span></span>
+<span id="cb26-302"><a href="#cb26-302" aria-label="276"></a></span>
+<span id="cb26-303"><a href="#cb26-303" aria-label="277"></a></span>
+<span id="cb26-304"><a href="#cb26-304" aria-label="278"></a>Whoa! There are sure a lot of sentences with 'red' in them. Let's isolate those 11 sentences.</span>
+<span id="cb26-305"><a href="#cb26-305" aria-label="279"></a></span>
+<span id="cb26-308"><a href="#cb26-308" aria-label="280"></a><span class="in">```{r}</span></span>
+<span id="cb26-309"><a href="#cb26-309" aria-label="281"></a><span class="fu">tibble</span>(</span>
+<span id="cb26-310"><a href="#cb26-310" aria-label="282"></a>    <span class="at">line=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sentences),</span>
+<span id="cb26-311"><a href="#cb26-311" aria-label="283"></a>    <span class="at">sentence=</span>sentences) <span class="sc">|&gt;</span> </span>
+<span id="cb26-312"><a href="#cb26-312" aria-label="284"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(sentences,<span class="st">"</span><span class="sc">\\</span><span class="st">bred</span><span class="sc">\\</span><span class="st">b"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb26-313"><a href="#cb26-313" aria-label="285"></a>  <span class="fu">select</span>(sentence)</span>
+<span id="cb26-314"><a href="#cb26-314" aria-label="286"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Dave Brocker</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

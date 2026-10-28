@@ -1,6 +1,7 @@
 ---
 title: "TV Ratings Lab (Prototype)"
 editor: visual
+engine: markdown
 filters:
   - webr
 webr:

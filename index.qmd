@@ -67,14 +67,14 @@ editor: visual
 
 :::::: icon-container
 ::: icons
-{{< fa brands linkedin >}}
+[{{< fa brands linkedin >}}](https://www.linkedin.com/in/davidbrocker){target="_blank" rel="noopener" aria-label="LinkedIn"}
 :::
 
 ::: icons
-{{< fa brands github >}}
+[{{< fa brands github >}}](https://github.com/davidbrocker){target="_blank" rel="noopener" aria-label="GitHub"}
 :::
 
 ::: icons
-{{< fa brands instagram >}}
+[{{< fa brands instagram >}}](https://www.instagram.com/datavizwithdave){target="_blank" rel="noopener" aria-label="Instagram"}
 :::
 ::::::

@@ -3,6 +3,7 @@ title: "String Manipulation"
 editor: visual
 filters:
 - webr
+engine: markdown
 ---
 
 #### String Manipulation: Introduction to `stringr` and regular expressions.
