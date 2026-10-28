@@ -9,7 +9,7 @@ Stats, research methods, and everything around them — for undergrads working t
 
 <div class="course-detail-card">
 <div class="course-detail-kicker">Instructor</div>
-<div class="course-detail-title">Statistics for Psychology</div>
+<div class="course-detail-title"><a href="https://davidbrocker.github.io/348SlideDecks/" class="stretched-link" target="_blank" rel="noopener">Statistics for Psychology</a></div>
 <p class="course-detail-body">Descriptive and inferential statistics for the behavioral sciences — central tendency, hypothesis testing, correlation, regression, t-tests, and ANOVA, with hands-on statistical software practice.</p>
 <div class="institution-badge">FSC</div>
 </div>

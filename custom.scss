@@ -47,7 +47,8 @@ code { color: $plum-dark; background: color-mix(in srgb, $ink 6%, transparent); 
 .navbar { background-color: $navbar-bg !important; border-bottom: 1px solid color-mix(in srgb, $ink 12%, transparent); }
 .navbar-brand img.navbar-logo { height: 36px; transition: transform 0.3s ease; }
 .navbar-brand:hover img.navbar-logo { transform: rotate(-4deg) scale(1.08); }
-.navbar-nav .nav-link { color: $ink; border-radius: 999px; padding: 6px 14px !important; transition: background-color 0.2s ease, color 0.2s ease; }
+.navbar-nav { gap: 6px; }
+.navbar-nav .nav-link { color: $ink; border-radius: 999px; border-bottom: none; padding: 6px 14px !important; transition: background-color 0.2s ease, color 0.2s ease; }
 .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { background-color: $plum; color: #fff; }
 
 // Dark-mode toggle — a real bordered button instead of a bare icon glyph
@@ -170,7 +171,15 @@ $kurbits-tilts: -7deg, 5deg, -3deg, 8deg, -5deg;
   background-color: #fff; border-radius: $border-radius-lg; max-width: 300px; margin: 0 auto;
 }
 .icons { font-size: 2em; color: $plum; transition: transform 0.2s ease, color 0.2s ease; }
-.icons:hover { transform: scale(1.1); color: $sage-dark; }
+.icons a {
+  display: flex; align-items: center; justify-content: center; width: 1.9em; height: 1.9em;
+  border-radius: 50%; border-bottom: none; padding: 0; color: inherit;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.icons:hover { transform: scale(1.1); }
+.icons a:hover { background-color: $plum; color: #fff; }
+.course-detail-title a { color: inherit; border-bottom: none; padding: 0; }
+.course-detail-title a:hover { background-color: transparent; color: $plum; }
 
 // Page title (Quarto's h1.title on every page) + the home-page bio block
 .title {
